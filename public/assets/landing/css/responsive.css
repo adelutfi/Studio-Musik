@@ -1,0 +1,861 @@
+@media (max-width: 1199.98px) {
+    .musicSlider .owl-carousel .owl-item img {
+        width: 100%;
+        height: 100%;
+    }
+    .album {
+        padding: 120px 0px 122px;
+    }
+    .gallery .sliderWrapper {
+        position: inherit;
+        margin-bottom: 0px;
+    }
+    .gallery {
+        padding: 120px 0px 130px;
+    }
+    .member {
+        padding: 120px 0px 130px;
+    }
+    .member .memberBox .info h3 {
+        font-size: 24px;
+    }
+    .joinus .bottomArea .box {
+        display: -webkit-flow-root;
+        display: -moz-flow-root;
+        display: flow-root;
+    }
+    .joinus .bottomArea .box h2 {
+        border-right: none;
+    }
+    .joinus .bottomArea {
+        margin-top: 112px;
+    }
+    .joinus {
+        padding: 125px 0px 123px;
+    }
+    .album2 {
+        margin-top: 55px;
+    }
+    .album3 {
+        margin-top: 55px;
+    }
+    .eventpage .event2 {
+        margin-top: 47px;
+    }
+    .eventpage .event3 {
+        margin-top: 47px;
+    }
+    .eventpage {
+        padding: 120px 0px 116px;
+    }
+    .about {
+        padding: 120px 0px 124px;
+    }
+    .gallery .product-deails-thumb {
+        width: 100%;
+        text-align: center;
+    }
+    .ucevent .title {
+        font-size: 44px;
+        line-height: 54px;
+    }
+    .ucevent span {
+        font-size: 35px;
+        line-height: 45px;
+    }
+    .joinus .topArea h3 {
+        font-size: 45px;
+        line-height: 55px;
+    }
+    .section-title .title,
+    .breadcumb-area .breadcumb-inner .title {
+        font-size: 45px;
+        line-height: 55px;
+    }
+    .concert .tabilContainer {
+        padding: 25px 40px 10px;
+    }
+    .album .right .secondaryTitle {
+        margin-bottom: 26px;
+        font-size: 26px;
+    }
+    .album .right .list .line a,
+    .album .right .list .line p {
+        font-size: 16px;
+        line-height: 26px;;
+    }
+    .album .right .socialLinks li a{
+        font-size: 18px;
+    }
+    .blog-area .single-blog-item .content .title {
+        font-size: 22px;
+        line-height: 30px;
+    }
+    .blog-details-page-content-area .blog-details-content .title {
+        font-size: 28px;
+        line-height: 33px;
+    }
+    .contact-area .title {
+        font-size: 42px;
+        line-height: 52px;
+    }
+    .breadcumb-area .breadcumb-inner .title {
+        font-size: 40px;
+        line-height: 50px;
+    }
+
+
+ }
+
+
+ @media (max-width: 991px) {
+ .navbar-light .navbar-toggler {
+    color: rgba(0, 0, 0, 0);
+    border-color: rgba(77, 63, 63, 0);
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+    width: auto;
+    border: 0px;
+}
+nav.navbar{
+    
+  background: -moz-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+  background: -webkit-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+  background: -ms-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+  background: -webkit-gradient(linear, left bottom, left top, from(#6501a1), to(#a730b2));
+  background: -webkit-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
+  background: -o-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
+  background: linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+    border-bottom: 0px;
+}
+#navbarSupportedContent{
+   text-align: left;
+   float: left;
+   padding-bottom: 11px;
+    padding-top: 3px;
+}
+.navbar-area .navbar-collapse .navbar-nav{
+    float: left;
+}
+.navbar-area .navbar-collapse .navbar-nav .nav-item .nav-link {
+    padding: 0px 15px;
+}
+.navbar-area .navbar-collapse .navbar-nav .nav-item {
+    padding: 0px 0px;
+}
+.dropdown-item {
+    padding: 0px 30px 0px;
+}
+.heroArea .maintitle h1 {
+    font-size: 80px;
+}
+.navbar-brand.logo img {
+    width: 110px;
+    padding: 5px 0px 5px;
+}
+
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(225, 225, 225, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.heroArea .maintitle h1 {
+    margin-top: 295px;
+}
+.album .left img{
+    width: 100%;
+    margin-bottom: 23px;
+}
+.album {
+    padding: 120px 0px 123px;
+}
+.member .memberBox {
+    margin-bottom: 30px;
+}
+.member {
+    padding: 120px 0px 100px;
+}
+.single-blog-item {
+    margin-bottom: 30px;
+}
+.blog-area {
+    padding: 120px 0px 100px;
+}
+.breadcumb-area {
+    padding: 184px 0 124px 0;
+}
+
+.about .aboutImg img{
+    width: 100%;
+    margin-bottom: 22px;
+}
+.ucevent .title {
+    font-size: 30px;
+}
+.ucevent span {
+    font-size: 50px;
+}
+.ucevent a.buybtn {
+    height: 60px;
+}
+.ucevent a.buybtn p {
+    line-height: 60px;
+}
+.eventpage .left img{
+    width: 100%;
+    margin-bottom: 23px;
+}
+.eventpage .event2 {
+    margin-top: 46px;
+}
+.eventpage .event3 {
+    margin-top: 46px;
+}
+.blog-area.blog-bg.blog-page .sidebar {
+    margin-top: 50px;
+}
+.blog-area.blog-page {
+    padding: 130px 0px 100px;
+}
+
+.sidebar .widget-area.tag .widget-body ul li a {
+    padding: 10px 25px;
+}
+.contact-area .title {
+    margin-top: 42px;
+}
+.joinus .bottomArea {
+    margin-top: 118px;
+}
+.joinus {
+    padding: 125px 0px 125px;
+}
+.joinus .topArea .joinform {
+    margin-top: 16px;
+}
+
+    .heroArea .maintitle h1 {
+        font-size: 75px;
+    }
+    .joinus {
+        padding-top: 110px;
+    }
+    .sidebar {
+        margin-top: 40px;
+    }
+    
+    .blog-details-page-content-area {
+        padding-bottom: 80px;
+    }
+    .contact-area .title {
+        font-size: 40px;
+        line-height: 50px;
+    }
+    .contact-area .left-content-area .title {
+        margin-top: 0px;
+    }
+    .project-masonry .filtr-item.grid-size {
+        width: 50%;
+    }
+    .blog-area.blog-page {
+        padding-bottom: 80px;
+        padding-top: 120px;
+    }
+
+}
+
+
+
+
+
+
+@media (max-width: 767px) {
+.joinus .topArea .joinform form button.submit {
+    font-size: 16px;
+}
+.joinus .bottomArea .box h2 {
+    font-size: 30px;
+}
+
+.joinus .bottomArea .box {
+    margin-bottom: 12px;
+}
+.joinus {
+    padding: 125px 0px 112px;
+}
+.joinus .bottomArea {
+    margin-top: 54px;
+}
+.heroArea .maintitle h1 {
+    font-size: 50px;
+}
+.heroArea .maintitle p {
+    letter-spacing: 2px;
+}
+.heroArea .maintitle h1 {
+    margin-top: 305px;
+}
+.secondaryTitle {
+    font-size: 20px;
+}
+.gallery .product-deails-thumb {
+    display: none;
+}
+.member .memberBox img {
+    width: 100%;
+
+}
+.member .memberBox{
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+.blog-area .single-blog-item .thumb img{
+    width: 100%;
+}
+.concert .table {
+
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    width: 550px;
+    max-width: 550px;
+
+}
+.ucevent a.buybtn p {
+    font-size: 16px;
+}
+.ucevent .title {
+    font-size: 25px;
+}
+.blog-details-page-content-area .blog-details-content .entry-footer .left-content ul li {
+    margin: 0 4px;
+
+}
+.sidebar .widget-area.search .serach-widget-form {
+    margin-top: 50px;
+}
+.blog-details-page-content-area {
+    padding: 130px 0 90px 0;
+}
+.contact-area {
+    padding: 79px 0 130px 0;
+}
+.contact-area {
+    padding: 79px 0 130px 0;
+}
+nav.navbar {
+    padding: 0px 15px;
+}
+.project-masonry .filtr-item.grid-size {
+    width: 50%;
+    max-width: 50%;
+}
+
+
+
+
+
+}
+
+
+
+
+@media (max-width: 575px) {
+    .heroArea .maintitle h1 {
+        letter-spacing: 8px;
+        margin-top: 233px;
+    }
+    .heroArea .maintitle p {
+        margin-bottom: 173px;
+    }
+    .blog-area.blog-page {
+        padding: 130px 0px 90px;
+    }
+    .footer-area {
+        text-align: center;
+    }
+    .footer-area .justify-content-end {
+        -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+        justify-content: center!important;
+        display: block!important;
+        text-align: center;
+    
+    }
+    .footer-area .socilLink {
+        text-align: center;
+        display: inline-block;
+    }
+    .footer-logo {
+        margin-bottom: 25px;
+    }
+    .blog-details-page-content-area .blog-details-content .entry-footer .left-content ul li a {
+        padding: 7px 20px;
+        font-size: 16px;
+    }
+    .blog-details-page-content-area .blog-details-content .entry-footer .left-content {
+        display: block;
+    }
+    .blog-details-page-content-area .blog-details-content .entry-footer .right-content {
+        display: block;
+        float: none;
+        margin: 20px 0px 0px;
+    }
+    .heroArea .maintitle h1 {
+        font-size: 50px;
+        line-height: 60px;
+        margin-bottom: 0;
+    }
+    .heroArea .musicSlider {
+        padding: 40px 0px 40px;
+    }
+    .heroArea .maintitle p {
+        font-size: 16px;
+    }
+    .section-title .title, 
+    .breadcumb-area .breadcumb-inner .title {
+        font-size: 40px;
+        line-height: 50px;
+    }
+    .section-title .subtitle {
+        letter-spacing: 2px;
+    }
+    .blog-area .single-blog-item .content .title {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    .album {
+        padding: 110px 0px 120px;
+    }
+    .ucevent span {
+        font-size: 30px;
+    }
+    .ucevent .title {
+        font-size: 34px;
+        line-height: 40px;
+    }
+    .joinus .topArea h3 {
+        font-size: 40px;
+        line-height: 50px;
+    }
+    .joinus{
+        padding-top: 100px;
+    }
+    .project-masonry .filtr-item.grid-size{
+        width: 100%;
+        max-width: 100%;
+    }
+    .breadcumb-area .breadcumb-inner .title{
+        font-size: 35px;
+    }
+    .contact-area .title {
+        font-size: 35px;
+        line-height: 45px;
+    }
+}
+
+
+
+@media (max-width: 490px) {
+    .member .memberBox{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .project-area .our-project-menu ul li {
+        padding: 10px 30px;
+    }
+    .project-area .our-project-menu ul li {
+        margin-bottom: 10px;
+    }
+    .project-area .our-project-menu ul li {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    .blog-details-page-content-area .blog-details-content .title {
+        font-size: 22px;
+        line-height: 28px;
+        margin-bottom: 18px;
+    
+    }
+}
+
+@media (max-width: 460px) {
+    .heroArea .maintitle h1 {
+        letter-spacing: 0px;
+        margin-top: 237px;
+        font-size: 50px;
+    }
+    .heroArea .maintitle p {
+        letter-spacing: 0px;
+    }
+    .section-title .subtitle {
+        letter-spacing: 2px;
+    }
+    .section-title .title {
+        font-size: 30px;
+    }
+    .section-title .title {
+        margin-bottom: 8px;
+    }
+    .album {
+        padding: 116px 0px 123px;
+    }
+    .gallery {
+        padding: 116px 0px 130px;
+    }
+    .member {
+        padding: 116px 0px 100px;
+    }
+    .concert {
+        padding: 116px 0px 130px;
+    }
+    .blog-area {
+        padding: 116px 0px 100px;
+    }
+    .ucevent {
+        padding: 116px 0px 130px;
+    }
+    .ucevent span {
+        font-size: 40px;
+    }
+    .ucevent a.buybtn {
+        width: 180px;
+        height: 50px;
+        line-height: 50px;
+    }
+    .ucevent a.buybtn p{
+        line-height: 50px;
+    }
+    .ucevent .title {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    .joinus .topArea .joinform form button.submit {
+        top: 85px;
+        width: 100%;
+    }
+    .joinus .bottomArea {
+        margin-top: 130px;
+    }
+    .joinus .topArea h3 {
+        font-size: 24px;
+    }
+    .joinus .bottomArea .box h2 {
+        font-size: 24px;
+    }
+    .eventpage .right span {
+        font-size: 24px;
+    }
+    
+    .eventpage .event2 {
+        margin-top: 48px;
+    }
+    .eventpage .event3 {
+        margin-top: 48px;
+    }
+    .breadcumb-area .breadcumb-inner .title {
+        font-size: 30px;
+        line-height: 40px;
+    }
+    .breadcumb-area {
+        padding: 190px 0 124px 0;
+    }
+    .section-title .subtitle {
+        letter-spacing: 0;
+    }
+    .gallery{
+        padding-bottom: 120px;
+    }
+    .blog-area .single-blog-item .content .title {
+        font-size: 24px;
+        line-height: 34px;
+    }
+    .ucevent .title {
+        font-size: 28px;
+        line-height: 40px;
+    }
+    .ucevent span {
+        font-size: 25px;
+    }
+    .joinus .topArea h3 {
+        font-size: 30px;
+    }
+    .joinus .topArea .joinform form button.submit {
+        position: initial;
+    }
+    .eventpage .right .secondaryTitle {
+        font-size: 24px;
+    }
+    .contact-area .title {
+        font-size: 30px;
+        line-height: 40px;
+    }
+    .about {
+        padding: 110px 0px 120px;
+    }
+}
+
+
+
+@media (max-width: 390px) {
+    .heroArea .musicSlider .item .contentBox{
+        display: flow-root!important;
+    }
+    .heroArea .musicSlider .item .contentBox .left{
+        display: flow-root!important;
+    }
+    .heroArea .musicSlider .item .contentBox .left .img {
+        margin-right: 0px; 
+        margin-bottom: 21px;
+    }
+    .heroArea .musicSlider .item .contentBox .left .img a {
+        width: 45px;
+        height: 45px;
+        line-height: 48px;
+    
+    }
+    .heroArea .musicSlider .item .contentBox .left .img a i{
+     font-size: 16px;
+    }
+    .project-masonry .filtr-item .inner-box .image .img-overlay .icon a {
+        width: 40px;
+        height: 40px;
+    }
+    .project-masonry .filtr-item .inner-box .image .img-overlay .icon a i {
+        font-size: 14px;
+        line-height: 37px;
+    }
+    .blog-area .single-blog-item .content {
+        padding: 25px 15px 23px 16px;
+    }
+    .member .memberBox .info h3 {
+        font-size: 20px;
+    }
+    .member .memberBox .info p {
+        font-size: 14px;
+    }
+    .section-title .title {
+        font-size: 25px;
+    }
+    .album .right .list .line a,
+    .album .right .list .line p
+     {
+        font-size: 16px;
+    }
+    .blog-area .single-blog-item .content .title {
+        font-size: 20px;
+    }
+    .ucevent p.subtitle {
+        font-size: 18px;
+    }
+    .ucevent span {
+        font-size: 24px;
+        font-weight: 600;
+    }
+    .project-area .our-project-menu ul li {
+        padding: 7px 17px;
+        font-size: 14px;
+    }
+    .joinus .bottomArea .box h2 {
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .joinus .topArea h3 {
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .eventpage .right span {
+        font-size: 20px;
+    }
+    .blog-details-page-content-area .blog-details-content .entry-comment .title {
+        font-size: 20px;
+    }
+    .blog-details-page-content-area .blog-details-content .entry-comment .comment-list li .single-comment-item .content .name {
+        font-size: 16px;
+    }
+    .blog-details-page-content-area .blog-details-content .comment-form-area .title {
+        font-size: 20px;
+    }
+    .sidebar .widget-area .widget-title .title {
+        font-size: 20px;
+    }
+    .contact-area .title {
+        font-size: 20px;
+        line-height: 34px;
+        margin-bottom: 37px;
+    }
+
+}
+
+
+@media (max-width: 414px) {
+    .heroArea .maintitle h1 {
+        font-weight: 600;
+    }
+    .project-masonry .filtr-item.grid-size {
+        width: 100%;
+        max-width: 100%;
+    }
+    .heroArea .maintitle h1 {
+        font-size: 45px;
+    }
+    .section-title .title {
+        font-size: 28px;
+    }
+    .joinus .topArea h3 {
+        font-size: 28px;
+        font-weight: 700;
+    }
+    .album .right .secondaryTitle {
+        margin-bottom: 26px;
+        font-size: 24px;
+    }
+    .blog-area .single-blog-item .content .title {
+        font-size: 24px;
+    }
+    .blog-details-page-content-area{
+        padding-bottom: 80px;
+    }
+    .blog-details-page-content-area .blog-details-content .title {
+        font-size: 24px;
+        line-height: 28px;
+    }
+    .blog-details-page-content-area .blog-details-content .entry-comment .title,
+    .blog-details-page-content-area .blog-details-content .comment-form-area .title {
+        font-size: 24px;
+    }
+    .blog-details-page-content-area .blog-details-content .entry-comment .comment-list li .single-comment-item .content .name {
+        font-size: 18px;
+    }
+    .contact-area .title {
+        font-size: 26px;
+        line-height: 34px;
+    }
+    .footer-area .socilLink ul li a i {
+        font-size: 16px;
+        line-height: 30px;
+    }
+    .member{
+        padding-bottom: 90px;
+    }
+    .ucevent .title {
+        font-size: 26px;
+        line-height: 40px;
+    }
+    .member .memberBox .info h3 {
+        font-size: 22px;
+    }
+    .blog-area .single-blog-item .content .title {
+        font-size: 22px;
+        line-height: 30px;
+    }
+    .ucevent span {
+        font-size: 22px;
+        font-weight: 600;
+    }
+    .eventpage{
+        padding-top: 110px;
+    }
+    .blog-area.blog-page{
+        padding-bottom: 80px;
+    }
+    .album {
+        padding-bottom: 115px;
+    }
+    .member {
+        padding-top: 105px;
+    }
+    .album .right .secondaryTitle {
+        margin-bottom: 20px;
+        font-size: 22px;
+    }
+    .album .right .socialLinks li a {
+        font-size: 16px;
+    }
+    .ucevent p.subtitle {
+        font-size: 16px;
+        line-height: 26px;
+    }
+    .heroArea .musicSlider .item .contentBox .left .text h4 {
+        color: #fff;
+    }
+    .heroArea .musicSlider .item .contentBox .left .text h4 {
+        font-size: 24px;
+    }
+}
+
+@media only screen and (max-width:384px){
+    .section-title .title.title2,
+    .section-title .title{
+        margin-bottom: 0;
+    }
+    .ucevent .title {
+        font-size: 25px;
+        line-height: 40px;
+    }
+    .joinus {
+        padding-bottom: 120px;
+    }
+    .eventpage .right .secondaryTitle {
+        font-size: 22px;
+    }
+    .blog-details-page-content-area .blog-details-content .entry-footer .left-content ul li {
+        margin-bottom: 10px;
+    }
+    .heroArea .musicSlider .item .contentBox .left .text h4 {
+        font-size: 22px;
+    }
+}
+
+@media only screen and (max-width:360px){
+    .section-title .title,
+    .joinus .topArea h3 {
+        font-size: 27px;
+    }
+    .blog-details-page-content-area .blog-details-content .title {
+        font-size: 22px;
+        line-height: 28px;
+    }
+}
+
+@media only screen and (max-width:330px){
+    .heroArea .maintitle h1 {
+        font-size: 40px;
+    }
+    .section-title .title, .joinus .topArea h3 {
+        font-size: 25px;
+        font-weight: 700;
+    }
+    .member .memberBox .info h3 {
+        font-size: 21px;
+    }
+    .joinus .topArea .joinform form {
+        display: block;
+    }
+    .joinus .topArea .joinform form button[type=submit]{
+        margin-top: 20px;
+    }
+    .album .right .socialLinks li a {
+        margin-right: 10px;
+    }
+    .eventpage .right .secondaryTitle {
+        font-size: 21px;
+    }
+    .eventpage .right li{
+        font-size: 13px;
+    }
+    .blog-area .single-blog-item .content .title {
+        font-size: 21px;
+        line-height: 30px;
+    }
+    .blog-details-page-content-area .blog-details-content .title {
+        font-size: 21px;
+        line-height: 28px;
+        font-weight: 600;
+    }
+    .blog-details-page-content-area {
+        padding-top: 120px;
+    }
+}
