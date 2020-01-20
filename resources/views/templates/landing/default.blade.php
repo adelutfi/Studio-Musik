@@ -151,7 +151,7 @@
                 <div class="col-12">
                     <div class="section-title">
                         <h2 class="title">
-                            New Album
+                            Album Baru
                         </h2>
                         <p class="subtitle">
                             New Album Available Everywhere
