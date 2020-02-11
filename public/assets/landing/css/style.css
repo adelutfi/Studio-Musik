@@ -23,9 +23,9 @@
 ** Services Area
 --------------------------
 ** Counterup Area
--------------------------- 
+--------------------------
 ** Our project Area
--------------------------- 
+--------------------------
 ** Our Team Area
 --------------------------
 ** Testimonials Area
@@ -33,7 +33,7 @@
 ** Latest Blog Area
 --------------------------
 ** Partners Area
--------------------------- 
+--------------------------
 ** Pricing Area
 --------------------------
 ** Faqs
@@ -46,7 +46,7 @@
 --------------------------
 ** Blog
 ----------------------------------
-** Blog Details 
+** Blog Details
 ----------------------------------
 ** Faqs page
 --------------------------
@@ -1223,7 +1223,7 @@ ul {
           -o-transition: all 0.3s ease-in;
           transition: all 0.3s ease-in; }
 
-/*  
+/*
 Hero Area Css Start
 */
 .heroArea {
@@ -1306,7 +1306,7 @@ Hero Area Css Start
             line-height: 26px;
             margin-top: 10px; }
 
-/*  
+/*
 Hero Area Css End
 */
 /* ------------------------------
@@ -1551,6 +1551,45 @@ Album Area Css Start
       .concert .tabilContainer .table tr td:last-child a:hover {
         background: #fff;
         color: #252e59; }
+
+        .concert .comment-form-area form button.submit {
+          /* position: absolute; */
+          top: 0;
+          right: 0px;
+          border: 0px;
+          font-size: 14px;
+          width: 120px;
+          height: 40px;
+          border-radius: 5px;
+          background: -moz-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          background: -webkit-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          background: -ms-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          background: -webkit-gradient(linear, left bottom, left top, from(#6501a1), to(#a730b2));
+          background: -webkit-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
+          background: -o-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
+          background: linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          font-weight: 800;
+          -webkit-transition: 0.3s ease-out;
+          -moz-transition: 0.3s ease-out;
+          -o-transition: 0.3s ease-out;
+          transition: 0.3s ease-out;
+          cursor: pointer; }
+
+        .concert .comment-form-area form button.submit:hover {
+          background: -moz-linear-gradient(90deg, #6501a1 0%, #a730b2 100%);
+          background: -webkit-linear-gradient(90deg, #6501a1 0%, #a730b2 100%);
+          background: -ms-linear-gradient(90deg, #6501a1 0%, #a730b2 100%);
+          background: -webkit-gradient(linear, left top, right top, from(#6501a1), to(#a730b2));
+          background: -webkit-linear-gradient(left, #6501a1 0%, #a730b2 100%);
+          background: -o-linear-gradient(left, #6501a1 0%, #a730b2 100%);
+          background: linear-gradient(90deg, #6501a1 0%, #a730b2 100%); }
+
+          .concert .comments-entry-form .form-group label {
+            display: block;
+            text-align: left;
+            color: white;
+            font-weight: bold;          
+          }
 
 /*---------------------------
 ** Concert Section End
@@ -1928,7 +1967,7 @@ Sidebar Area
 Blog Page start
 -----------------------*/
 .footer-area {
-  padding: 60px 0px 60px;
+  padding: 10px 0px 10px;
   background: -moz-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
   background: -webkit-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
   background: -ms-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
