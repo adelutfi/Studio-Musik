@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/studio', function () {
+    return view('templates.studio.default');
+});
+
+
+
 Route::get('/login', function(){
 	return view('auth.login');
 })->name('login');
