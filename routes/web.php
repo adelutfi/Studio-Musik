@@ -19,6 +19,10 @@ Route::get('/studio', function () {
     return view('templates.studio.default');
 });
 
+Route::get('/detail-studio', function () {
+    return view('detail-studio');
+});
+
 
 
 Route::get('/login', function(){
@@ -27,4 +31,3 @@ Route::get('/login', function(){
 Route::get('/register', function(){
 	return view('auth.register');
 })->name('register');
-

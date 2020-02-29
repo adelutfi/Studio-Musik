@@ -925,8 +925,8 @@ button {
   left: auto; }
 
 .musicSlider .owl-carousel .owl-item img {
-  width: auto;
-  height: auto; }
+  width: 250px;
+  height: 150px; }
 
 .musicSlider .owl-dots {
   text-align: center;
@@ -1252,9 +1252,10 @@ Hero Area Css Start
     text-align: center;
     font-weight: 600;
     letter-spacing: 15px;
-    margin-top: 336px;
+    margin-top: 200px;
     margin-bottom: 18px;
-    line-height: 90px; }
+    line-height: 90px;
+   }
   .heroArea .maintitle p {
     font-size: 18px;
     line-height: normal;
@@ -1263,7 +1264,7 @@ Hero Area Css Start
     color: #fff;
     margin-top: 0px;
     display: block;
-    margin-bottom: 244px; }
+    margin-bottom: 100px; }
   .heroArea .musicSlider {
     background: rgba(255, 255, 255, 0.2);
     padding: 60px 0px 60px; }
@@ -1313,7 +1314,7 @@ Hero Area Css End
 Album Area Css Start
 ------------------------------  */
 .album {
-  padding: 110px 0px 120px; }
+  padding: 0px 0px 30px; }
   .album .right {
     -ms-flex-item-align: center;
     align-self: center;
@@ -1458,7 +1459,32 @@ Album Area Css Start
 ** Member Section Css Start
 ---------------------------*/
 .member {
-  padding: 248px 0px 120px; }
+  padding: 0px 0px 0px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+ }
+  .concert .comment-form-area form button.submit {
+    /* position: absolute; */
+    top: 0;
+    right: 0px;
+    border: 0px;
+    font-size: 14px;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    background: -moz-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+    background: -webkit-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+    background: -ms-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+    background: -webkit-gradient(linear, left bottom, left top, from(#6501a1), to(#a730b2));
+    background: -webkit-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
+    background: -o-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
+    background: linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+    font-weight: 800;
+    -webkit-transition: 0.3s ease-out;
+    -moz-transition: 0.3s ease-out;
+    -o-transition: 0.3s ease-out;
+    transition: 0.3s ease-out;
+    cursor: pointer; }
   .member .memberBox {
     text-align: center;
     background: #fff;
@@ -1466,6 +1492,8 @@ Album Area Css Start
     -moz-box-shadow: 0px 50px 100px rgba(37, 46, 89, 0.08);
     box-shadow: 0px 50px 100px rgba(37, 46, 89, 0.08); }
     .member .memberBox img {
+      height: 200px;
+      width: 250px;
       -webkit-transition: all 0.3s ease-out;
       -moz-transition: all 0.3s ease-out;
       -o-transition: all 0.3s ease-out;
@@ -1483,6 +1511,29 @@ Album Area Css Start
         font-size: 16px;
         color: rgba(37, 46, 89, 0.7);
         font-weight: 700; }
+
+        .member button.submit {
+          /* position: absolute; */
+          top: 0;
+          right: 0px;
+          border: 0px;
+          font-size: 14px;
+          width: 300px;
+          height: 40px;
+          border-radius: 5px;
+          background: -moz-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          background: -webkit-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          background: -ms-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          background: -webkit-gradient(linear, left bottom, left top, from(#6501a1), to(#a730b2));
+          background: -webkit-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
+          background: -o-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
+          background: linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          font-weight: 800;
+          -webkit-transition: 0.3s ease-out;
+          -moz-transition: 0.3s ease-out;
+          -o-transition: 0.3s ease-out;
+          transition: 0.3s ease-out;
+          cursor: pointer; }
 
 .member.memberpage {
   padding: 110px 0px 90px; }
@@ -1588,7 +1639,7 @@ Album Area Css Start
             display: block;
             text-align: left;
             color: white;
-            font-weight: bold;          
+            font-weight: bold;
           }
 
 /*---------------------------
@@ -2171,7 +2222,11 @@ Blog Details Page
 .blog-details-page-content-area {
   padding: 120px 0 120px 0; }
   .blog-details-page-content-area .blog-details-content .thumb {
-    margin-bottom: 30px; }
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 720px;
+    height: auto;
+   }
   .blog-details-page-content-area .blog-details-content .title {
     font-size: 30px;
     line-height: 30px;
@@ -2269,7 +2324,8 @@ Blog Details Page
           top: 0;
           width: 80px; }
           .blog-details-page-content-area .blog-details-content .entry-comment .comment-list li .single-comment-item .thumb img {
-            border-radius: 50%; }
+            border-radius: 50%;
+           }
         .blog-details-page-content-area .blog-details-content .entry-comment .comment-list li .single-comment-item .content {
           position: relative;
           padding-left: 100px; }
@@ -2452,3 +2508,10 @@ Blog Details Page
       background: -o-linear-gradient(left, #6501a1 0%, #a730b2 100%);
       background: linear-gradient(90deg, #6501a1 0%, #a730b2 100%);
       color: #fff; }
+
+  .img-icon {
+    max-width: 70px;
+    height: auto;
+    width: auto;
+    margin-bottom: 10px;
+  }

@@ -2,7 +2,7 @@
 
 @section('content')
 
- 
+
     <!-- Hero Area Start -->
     <div class="heroArea">
         <div class="overlay"></div>
@@ -25,14 +25,14 @@
                                 <div class="contentBox">
                                     <div class="left">
                                         <div class="img">
-                                            <img class="img-fluid" src="assets/img/music-slider/slide1.jpg" alt="">
-                                            <a class="venobox" data-vbtype="video" data-autoplay="true" href="https://www.youtube.com/watch?v=R-1wBk3H2LI">
+                                            <img class="img-fluid" src="{{asset('public/images/studio/studio-1.jpeg')}}" alt="">
+                                            <!-- <a class="venobox" data-vbtype="video" data-autoplay="true" href="https://www.youtube.com/watch?v=R-1wBk3H2LI">
                                                 <i class="fas fa-play"></i>
-                                            </a>
+                                            </a> -->
                                         </div>
                                         <div class="text">
                                             <h4 class="secondaryTitle">
-                                                Bus Story | Season 1
+                                                Studio 1
                                             </h4>
                                             <p>
                                                 Music is an art form and cultural activity whose medium will include
@@ -46,14 +46,14 @@
                                 <div class="contentBox">
                                     <div class="left">
                                         <div class="img">
-                                            <img class="img-fluid" src="assets/img/music-slider/slide2.jpg" alt="">
-                                            <a class="venobox" data-vbtype="video" data-autoplay="true" href="https://www.youtube.com/watch?v=R-1wBk3H2LI">
+                                            <img class="img-fluid" src="{{asset('public/images/studio/studio-2.jpeg')}}" alt="">
+                                            <!-- <a class="venobox" data-vbtype="video" data-autoplay="true" href="https://www.youtube.com/watch?v=R-1wBk3H2LI">
                                                 <i class="fas fa-play"></i>
-                                            </a>
+                                            </a> -->
                                         </div>
                                         <div class="text">
                                             <h4 class="secondaryTitle">
-                                                Home Story | Season 2
+                                                Studio 2
                                             </h4>
                                             <p>
                                                 Music is an art form and cultural activity whose medium will include
@@ -67,14 +67,14 @@
                                 <div class="contentBox">
                                     <div class="left">
                                         <div class="img">
-                                            <img class="img-fluid" src="assets/img/music-slider/slide3.jpg" alt="">
-                                            <a class="venobox" data-vbtype="video" data-autoplay="true" href="https://www.youtube.com/watch?v=R-1wBk3H2LI">
+                                            <img class="img-fluid" src="{{asset('public/images/studio/studio-3.jpeg')}}" alt="">
+                                            <!-- <a class="venobox" data-vbtype="video" data-autoplay="true" href="https://www.youtube.com/watch?v=R-1wBk3H2LI">
                                                 <i class="fas fa-play"></i>
-                                            </a>
+                                            </a> -->
                                         </div>
                                         <div class="text">
                                             <h4 class="secondaryTitle">
-                                                Life Story | Season 3
+                                                Studio 3
                                             </h4>
                                             <p>
                                                 Music is an art form and cultural activity whose medium will include
@@ -92,70 +92,14 @@
     </div>
     <!-- Hero Area End -->
 
-   
-
-{{-- <!-- Gallery Section Start -->
-    <section class="gallery">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2 class="title title2">
-                            Disco Graphy
-                        </h2>
-                        <p class="subtitle subtitle2">
-                            New Album Available Everywhere
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="gallerySlider">
-            <div class="container">
-                <div class="row">
-                <div class="col-lg-12">
-                    <div class="sliderWrapper">
-                       <div class="photoSlider">
-                            <div class="gallery-slider" id="gallery-slider" data-slider-id="1">
-                                <div class="single-product-thumb">
-                                    <img src="assets/img/gallery/bigthumb1.jpg" alt="product details image">
-                                </div>
-                                <div class="single-product-thumb">
-                                    <img src="assets/img/gallery/bigthumb2.jpg" alt="product details image">
-                                </div>
-                                <div class="single-product-thumb">
-                                    <img src="assets/img/gallery/bigthumb3.jpg" alt="product details image">
-                                </div>
-                            </div>
-                            <ul class="owl-thumbs product-deails-thumb" data-slider-id="1">
-                                <li class="owl-thumb-item">
-                                    <img src="assets/img/gallery/smallthumb1.jpg" alt="product details thumb">
-                                </li>
-                                <li class="owl-thumb-item">
-                                    <img src="assets/img/gallery/smallthumb2.jpg" alt="product details thumb">
-                                </li>
-                                <li class="owl-thumb-item">
-                                    <img src="assets/img/gallery/smallthumb3.jpg" alt="product details thumb">
-                                </li>
-                            </ul>
-                       </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Gallery Section End --> --}}
-
     <!-- Brand Member Section Start -->
-        <section class="member">
+      <section class="member">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
                         <h2 class="title">
-                            Band Members
+                            Studio Musik
                         </h2>
                         <p class="subtitle">
                             New Album Available Everywhere
@@ -164,10 +108,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="memberBox">
                         <div class="img">
-                            <img src="{{asset('public/assets/landing/img/team/01.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/images/studio/studio-4.jpeg')}}" alt="">
                         </div>
                         <div class="info">
                             <h3>
@@ -179,10 +123,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="memberBox">
                         <div class="img">
-                            <img src="{{asset('public/assets/landing/img/team/02.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/images/studio/studio-5.jpeg')}}" alt="">
                         </div>
                         <div class="info">
                             <h3>
@@ -194,10 +138,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="memberBox">
                         <div class="img">
-                            <img src="{{asset('public/assets/landing/img/team/03.jpg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/images/studio/studio-6.jpeg')}}" alt="">
+                        </div>
+                        <div class="info">
+                            <h3>
+                                Jeremy Anderton
+                            </h3>
+                            <p>
+                                Singer, Dancer
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="memberBox">
+                        <div class="img">
+                            <img class="img-fluid" src="{{asset('public/images/studio/studio-7.jpeg')}}" alt="">
                         </div>
                         <div class="info">
                             <h3>
@@ -211,16 +170,57 @@
                 </div>
             </div>
         </div>
+        <div class="text-center mt-5">
+          <button class="submit" type="submit">Lihat Selengkapnya</button>
+        </div>
     </section>
     <!-- Brand Member Section End -->
      <!-- Album Area Start -->
-   <section class="album">
+     <section class="member">
+       <div class="container">
+           <div class="row">
+               <div class="col-12">
+                   <div class="section-title">
+                       <h2 class="title">
+                           Cara Pemesanan
+                       </h2>
+                       <p class="subtitle">
+                           New Album Available Everywhere
+                       </p>
+                   </div>
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-md-6 col-lg-3 text-center">
+                 <img class="img-icon" src="{{asset('public/assets/landing/img/shop.png')}}" alt="">
+                 <h5>Jeremy Anderton</h5>
+                 <p align="justify">Singer, Dancer</p>
+               </div>
+               <div class="col-md-6 col-lg-3 text-center">
+                 <img class="img-icon" src="{{asset('public/assets/landing/img/contract.png')}}" alt="">
+                 <h5>Jeremy Anderton</h5>
+                 <p align="justify" class="text-content-justify">Lorem </p>
+               </div>
+               <div class="col-md-6 col-lg-3 text-center">
+                  <img class="img-icon" src="{{asset('public/assets/landing/img/money.png')}}" alt="">
+                  <h5>Jeremy Anderton</h5>
+                  <p align="justify">Singer, Dancer</p>
+               </div>
+               <div class="col-md-6 col-lg-3 text-center">
+                  <img class="img-icon" src="{{asset('public/assets/landing/img/delivery-truck.png')}}" alt="">
+                  <h5>Jeremy Anderton</h5>
+                  <p align="justify">Singer, Dancer</p>
+               </div>
+           </div>
+       </div>
+   </section>
+   <!-- <section class="album">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
                         <h2 class="title">
-                            Album Baru
+                            Studio Baru
                         </h2>
                         <p class="subtitle">
                             New Album Available Everywhere
@@ -493,7 +493,7 @@
                             </form>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
         </section>
         <!--   JoinUS Section End  -->
