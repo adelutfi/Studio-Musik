@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="maintitle">
-                        <h1>Peyewaan studio Musik</h1>
+                        <h1>Penyewaan studio Musik</h1>
                         <p>Aja Klalen Sewa</p>
                     </div>
                 </div>
