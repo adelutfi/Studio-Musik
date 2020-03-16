@@ -1,8 +1,8 @@
     <nav class="navbar navbar-area navbar-expand-lg navbar-light">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand logo" href="index.html">
-                    <img src="assets/img/logo.png" alt="logo image">
+                <a class="navbar-brand logo" href="{{url('/')}}">
+                    <img src="{{asset('public/studio2.png')}}" alt="logo image">
                 </a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -21,7 +21,7 @@
                      <li class="nav-item">
                         <a class="nav-link" href="contact.html">Kontak</a>
                     </li>
-                   
+
                     @auth('web')
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,6 +32,9 @@
                             <a class="dropdown-item" href="blog-details.html">Keluar</a>
                         </div>
                     </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="contact.html">Penyewaan</a>
+                   </li>
                     @else
                      <li class="nav-item">
                         <a class="nav-link" href="{{route('login')}}">Login</a>
