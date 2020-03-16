@@ -23,6 +23,10 @@ Route::get('/detail-studio', function () {
     return view('detail-studio');
 });
 
+Route::get('/semua-studio', function () {
+    return view('studio');
+});
+
 
 
 Route::get('/login', function(){
