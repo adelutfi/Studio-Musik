@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="maintitle">
-                        <h1>Penyewaan studio Musik</h1>
+                        <h1>Penyewaan studio Musik Ning Tegal</h1>
                         <p>Aja Klalen Sewa</p>
                     </div>
                 </div>
@@ -32,11 +32,10 @@
                                         </div>
                                         <div class="text">
                                             <h4 class="secondaryTitle">
-                                                Studio 1
+                                                ACORD MUSIC STUDIO TEGAL
                                             </h4>
                                             <p>
-                                                Music is an art form and cultural activity whose medium will include
-                                                common
+                                                Jalan Sumbodro Gg. Asri lll, Slerok, Tegal Timur, Slerok, Tegal, Kota Tegal, Jawa Tengah 52124
                                             </p>
                                         </div>
                                     </div>
@@ -53,11 +52,10 @@
                                         </div>
                                         <div class="text">
                                             <h4 class="secondaryTitle">
-                                                Studio 2
+                                                4GIVENSTUDIO MUSIC TEGAL
                                             </h4>
                                             <p>
-                                                Music is an art form and cultural activity whose medium will include
-                                                common
+                                                Jalan Werkudoro No.140 RT/RW 004/006, Slerok, Kec. Tegal Tim., Kota Tegal, Jawa Tengah 52125
                                             </p>
                                         </div>
                                     </div>
@@ -74,11 +72,10 @@
                                         </div>
                                         <div class="text">
                                             <h4 class="secondaryTitle">
-                                                Studio 3
+                                                PURWA CARAKA MUSIC STUDIO
                                             </h4>
                                             <p>
-                                                Music is an art form and cultural activity whose medium will include
-                                                common
+                                                Jalan Jalak Barat No.69, Pekauman, Kec. Tegal Bar., Kota Tegal, Jawa Tengah 52125
                                             </p>
                                         </div>
                                     </div>
@@ -99,10 +96,10 @@
                 <div class="col-12">
                     <div class="section-title">
                         <h2 class="title">
-                            Studio Musik
+                            STUDIO MUSIK
                         </h2>
                         <p class="subtitle">
-                            New Album Available Everywhere
+                            pilih studio musik yang anda inginkan
                         </p>
                     </div>
                 </div>
@@ -115,10 +112,10 @@
                         </div>
                         <div class="info">
                             <h3>
-                                Andrew Smith
+                                MIGHT STUDIO
                             </h3>
                             <p>
-                                Lead Guitar, Bass Guitar
+                                Jalan Professor Muhammad Yamin, Kudaile, Kec. Slawi, Tegal, Jawa Tengah 52413.
                             </p>
                         </div>
                     </div>
@@ -130,10 +127,10 @@
                         </div>
                         <div class="info">
                             <h3>
-                                Jeremy Anderton
+                                STUDIO 10 (JI-SONG)
                             </h3>
                             <p>
-                                Singer, Dancer
+                                Jalan Werkudoro No.118, Pengabean, Slerok, Kec. Tegal Tim., Kota Tegal, Jawa Tengah 52192
                             </p>
                         </div>
                     </div>
@@ -145,10 +142,10 @@
                         </div>
                         <div class="info">
                             <h3>
-                                Jeremy Anderton
+                                KAMARUNGSEB STUDIO
                             </h3>
                             <p>
-                                Singer, Dancer
+                                Jalan Kaloran No.9, Mangkukusuman, Kec. Tegal Tim., Kota Tegal, Jawa Tengah 52131
                             </p>
                         </div>
                     </div>
@@ -160,10 +157,10 @@
                         </div>
                         <div class="info">
                             <h3>
-                                Joe Walker
+                                VILLA MUSIK STUDIO
                             </h3>
                             <p>
-                                Lead Vocals, Guitars
+                                Jalan Pala Raya, Griya Mejasem Baru, Mejasem Bar., Kec. Kramat, Tegal, Jawa Tengah 52181
                             </p>
                         </div>
                     </div>
