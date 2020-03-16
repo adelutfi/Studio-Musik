@@ -14,7 +14,7 @@
                           <div class="col-lg-4">
                               <div class="tabilContainer table-responsive">
                               	 <div class="comment-form-area">
-                                   <form action="" class="comments-entry-form">
+                                   <form action="" class="comments-entry-form mb-3">
                                       <div class="form-group">
                                           <label for=""><strong>Email</strong></label>
                                           <input type="email" class="form-control" placeholder="Masukan Email anda">
@@ -23,9 +23,21 @@
                                             <label for=""><strong>Password</strong></label>
                                           <input type="password" class="form-control" placeholder="Masukan password anda">
                                       </div>
-
+                                      <div class="form-group">
+                                      <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" value="pemilik" id="pemilik" name="keterangan" class="custom-control-input">
+                                        <label class="custom-control-label" for="pemilik"><strong>Pemilik</strong></label>
+                                      </div>
+                                      <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" value="penyewa" id="penyewa" name="keterangan" class="custom-control-input">
+                                        <label class="custom-control-label" for="penyewa"><strong>Penyewa</strong></label>
+                                      </div>
+                                    </div>
                                       <button class="submit" type="submit">Login</button>
                                   </form>
+
+                                  <a href="#" class="text-white">Lupa password ?</a>
+                                  <a href="{{url('register')}}" style="display: block;" class="text-white">Belum punya akun ?</a>
                               </div>
                               </div>
                           </div>

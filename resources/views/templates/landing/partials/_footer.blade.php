@@ -6,10 +6,9 @@
                         <div class="footer-widget logo">
                             <div class="widget-body">
                                 <div class="footer-logo">
-                                    <a href="{{url('/')}}">
+                                    <!-- <a href="{{url('/')}}">
                                       <img src="{{asset('public/studio2.png')}}" alt="logo image">
-                                    </a>
-                                    <p></p>
+                                    </a> -->
                                 </div>
                             </div>
                         </div>

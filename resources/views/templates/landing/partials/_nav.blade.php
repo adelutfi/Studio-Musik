@@ -12,15 +12,19 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
+                    <li class="nav-item @if(Request::is('/')) active @endif">
                         <a class="nav-link" href="{{url('/')}}">Beranda <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">Studio</a>
+                    <li class="nav-item @if(Request::is('semua-studio')) active @endif">
+                        <a class="nav-link" href="{{url('semua-studio')}}">Studio</a>
                     </li>
-                     <li class="nav-item">
+                     <li class="nav-item @if(Request::is('kontak')) active @endif">
                         <a class="nav-link" href="contact.html">Kontak</a>
                     </li>
+
+                    <li class="nav-item">
+                       <a class="nav-link" href="contact.html">Penyewaan</a>
+                   </li>
 
                     @auth('web')
                     <li class="nav-item dropdown">
@@ -32,14 +36,12 @@
                             <a class="dropdown-item" href="blog-details.html">Keluar</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                       <a class="nav-link" href="contact.html">Penyewaan</a>
-                   </li>
+
                     @else
-                     <li class="nav-item">
+                     <li class="nav-item @if(Request::is('login')) active @endif">
                         <a class="nav-link" href="{{route('login')}}">Login</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item @if(Request::is('register')) active @endif">
                         <a class="nav-link" href="{{route('register')}}">Register</a>
                     </li>
                     @endauth
