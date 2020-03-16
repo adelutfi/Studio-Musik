@@ -168,7 +168,7 @@
             </div>
         </div>
         <div class="text-center mt-5">
-          <button class="submit" type="submit">Lihat Selengkapnya</button>
+          <button class="submit" onclick="window.location='{{url('semua-studio')}}'" type="submit">Lihat Selengkapnya</button>
         </div>
     </section>
     <!-- Brand Member Section End -->
@@ -182,7 +182,7 @@
                            Cara Pemesanan
                        </h2>
                        <p class="subtitle">
-                           Mudah & Cepat Degan 4 Langkah 
+                           Mudah & Cepat Degan 4 Langkah
                        </p>
                    </div>
                </div>
