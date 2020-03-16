@@ -185,7 +185,7 @@
                            Cara Pemesanan
                        </h2>
                        <p class="subtitle">
-                           New Album Available Everywhere
+                           Mudah & Cepat Degan 4 Langkah 
                        </p>
                    </div>
                </div>
@@ -193,23 +193,23 @@
            <div class="row">
                <div class="col-md-6 col-lg-3 text-center">
                  <img class="img-icon" src="{{asset('public/assets/landing/img/shop.png')}}" alt="">
-                 <h5>Jeremy Anderton</h5>
-                 <p align="justify">Singer, Dancer</p>
+                 <h5>Temukan Studio Musik Sesuai Kebutuhan</h5>
+                 <p align="justify">Temukan studio yang anda butuhkan, dari beberapa pilihan yang tersedia di website studio.</p>
                </div>
                <div class="col-md-6 col-lg-3 text-center">
                  <img class="img-icon" src="{{asset('public/assets/landing/img/contract.png')}}" alt="">
-                 <h5>Jeremy Anderton</h5>
-                 <p align="justify" class="text-content-justify">Lorem </p>
+                 <h5>Pesan Tempat & Sewa Alat</h5>
+                 <p align="justify" class="text-content-justify">Pesan tempat sesuai tanggal dan waktu, tambhakn fasilitas untuk mendukung kegiatan anda.</p>
                </div>
                <div class="col-md-6 col-lg-3 text-center">
                   <img class="img-icon" src="{{asset('public/assets/landing/img/money.png')}}" alt="">
-                  <h5>Jeremy Anderton</h5>
-                  <p align="justify">Singer, Dancer</p>
+                  <h5>Pembayaran Via Transfer</h5>
+                  <p align="justify">Lakukan Pembayaran untuk mengkonfirmasi pemesanan anda, kemudian anda dapat langsung menggunakan tempat.</p>
                </div>
                <div class="col-md-6 col-lg-3 text-center">
                   <img class="img-icon" src="{{asset('public/assets/landing/img/delivery-truck.png')}}" alt="">
-                  <h5>Jeremy Anderton</h5>
-                  <p align="justify">Singer, Dancer</p>
+                  <h5>Angkut Alat Sewa</h5>
+                  <p align="justify">Penyewaan barang cepat & mudah dengan jasa angkut barang.</p>
                </div>
            </div>
        </div>
