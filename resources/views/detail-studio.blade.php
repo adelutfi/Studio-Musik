@@ -66,10 +66,10 @@
                         </div>
                     </div><!-- //. entry footer -->
                     <div class="entry-comment">
-                        <h3 class="title">(06) Comments</h3>
+                        <h3 class="title">(0) Komentar</h3>
                         <ul class="comment-list">
-                            <li>
-                                <div class="single-comment-item"><!-- single comment item -->
+                            <!-- <li>
+                                <div class="single-comment-item"><!-- single comment item
                                     <div class="thumb">
                                         <img src="assets/img/comments/01.jpg" alt="comments image">
                                     </div>
@@ -79,26 +79,17 @@
                                         <span class="time"><i class="far fa-clock"></i> 17 Aug 2018</span>
                                         <p>nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
                                     </div>
-                                </div><!-- //. single comment item -->
-                            </li>
+                                </div>
+                            </li> -->
                         </ul>
                     </div>
                     <div class="comment-form-area">
-                        <h3 class="title">Leave a Comment</h3>
+                        <h3 class="title">Masukan Komentar</h3>
                         <form action="blog-details.html" class="comments-entry-form">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter your name">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter your website">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Enter your email">
-                            </div>
                             <div class="form-group textarea">
-                                <textarea class="form-control" placeholder="Enter your message" cols="30" rows="5"></textarea>
+                                <textarea class="form-control" placeholder="Masukan pesan kamu" cols="30" rows="5"></textarea>
                             </div>
-                            <button type="submit" class="submit-btn">Submit</button>
+                            <button type="submit" class="submit-btn">Simpan</button>
                         </form>
                     </div>
                 </div><!-- //. blog details content -->

@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/studio', function () {
-    return view('templates.studio.default');
+    return view('home.studio.beranda');
 });
 
 Route::get('/detail-studio', function () {
