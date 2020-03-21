@@ -9,15 +9,11 @@
   <div class="navigation-background"></div>
   <div class="main-menu-content">
     <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-      <li class="active nav-item">
-        <a href="index.html">
-        <i class="ft-airplay"></i><span class="menu-title" data-i18n="">Beranda</span>
-        </a>
+      <li class=" nav-item"><a href="index.html"><i class="ft-home">
+      </i><span class="menu-title" data-i18n="">Beranda</span></a>
       </li>
-      <li class="nav-item">
-        <a href="index.html">
-        <i class="ft-home"></i><span class="menu-title" data-i18n="">Studio</span>
-        </a>
+      <li class=" nav-item"><a href="index.html"><i class="ft-home">
+      </i><span class="menu-title" data-i18n="">Beranda</span></a>
       </li>
     </ul>
   </div>

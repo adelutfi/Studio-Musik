@@ -19,6 +19,10 @@ Route::get('/studio', function () {
     return view('home.studio.beranda');
 });
 
+Route::get('/admin', function () {
+    return view('home.admin.beranda');
+});
+
 Route::get('/detail-studio', function () {
     return view('detail-studio');
 });
