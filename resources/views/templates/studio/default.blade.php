@@ -6,27 +6,44 @@
   <!-- END: Head-->
 
   <!-- BEGIN: Body-->
-  <body class="vertical-layout vertical-menu 2-columns   fixed-navbar" data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="2-columns">
+  <body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
     <!-- BEGIN: Header-->
     @include('templates.studio.partials._navbar')
     <!-- END: Header-->
+
+
     <!-- BEGIN: Main Menu-->
-    @yield('sidebar')
-      <!-- END: Main Menu-->
+    @include('templates.studio.partials._sidebar')
+    <!-- END: Main Menu-->
 
     <!-- BEGIN: Content-->
     <div class="app-content content">
+      <div class="content-overlay"></div>
+      <div class="header-navbar-shadow"></div>
       <div class="content-wrapper">
-        <div class="content-wrapper-before"></div>
-          @yield('content')
+
       </div>
     </div>
     <!-- END: Content-->
+
+
+    <!-- BEGIN: Customizer-->
+
+    <!-- End: Customizer-->
+
+    <!-- Buynow Button-->
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+
     <!-- BEGIN: Footer-->
     @include('templates.studio.partials._footer')
     <!-- END: Footer-->
-    @include('templates.studio.partials._script')
+
+
+    <!-- BEGIN: Vendor JS-->
+  @include('templates.studio.partials._script')
+
   </body>
   <!-- END: Body-->
 </html>

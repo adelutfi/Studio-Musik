@@ -1,5 +1,5 @@
 /*!
- * Date picker for pickadate.js v3.5.6
+ * Date picker for pickadate.js v3.6.4
  * http://amsul.github.io/pickadate.js/date.htm
  */
 
@@ -7,7 +7,7 @@
 
     // AMD.
     if ( typeof define == 'function' && define.amd )
-        define( ['picker', 'jquery'], factory )
+        define( ['./picker', 'jquery'], factory )
 
     // Node.js/browserify.
     else if ( typeof exports == 'object' )
@@ -396,20 +396,20 @@ DatePicker.prototype.normalize = function( value/*, options*/ ) {
 DatePicker.prototype.measure = function( type, value/*, options*/ ) {
 
     var calendar = this
+    
+    // If it's an integer, get a date relative to today.
+    if ( _.isInteger( value ) ) {
+        value = calendar.now( type, value, { rel: value } )
+    }
 
     // If it’s anything false-y, remove the limits.
-    if ( !value ) {
+    else if ( !value ) {
         value = type == 'min' ? -Infinity : Infinity
     }
 
     // If it’s a string, parse it.
     else if ( typeof value == 'string' ) {
         value = calendar.parse( type, value )
-    }
-
-    // If it's an integer, get a date relative to today.
-    else if ( _.isInteger( value ) ) {
-        value = calendar.now( type, value, { rel: value } )
     }
 
     return value
@@ -648,7 +648,7 @@ DatePicker.prototype.formats = (function() {
 
         // Grab the first word from the string.
         // Regex pattern from http://stackoverflow.com/q/150033
-        var word = string.match( /[^\x00-\x7F]+|\w+/ )[ 0 ]
+        var word = string.match( /[^\x00-\x7F]+|[a-zA-Z0-9_\u0080-\u00FF]+/ )[ 0 ]
 
         // If there's no month index, add it to the date object
         if ( !dateObject.mm && !dateObject.m ) {
@@ -661,7 +661,7 @@ DatePicker.prototype.formats = (function() {
 
     // Get the length of the first word in a string.
     function getFirstWordLength( string ) {
-        return string.match( /\w+/ )[ 0 ].length
+        return string.match( /[a-zA-Z0-9_\u0080-\u00FF]+/ )[ 0 ].length
     }
 
     return {
@@ -1031,7 +1031,7 @@ DatePicker.prototype.nodes = function( isOpen ) {
                     ( !next && viewsetObject.year <= minLimitObject.year && viewsetObject.month <= minLimitObject.month ) ?
                     ' ' + settings.klass.navDisabled : ''
                 ),
-                'data-nav=' + ( next || -1 ) + ' ' +
+                'data-nav=' + ( next || -1 ) + ' ' + 'tabindex="0" ' +
                 _.ariaAttr({
                     role: 'button',
                     controls: calendar.$node[0].id + '_table'
@@ -1189,7 +1189,8 @@ DatePicker.prototype.nodes = function( isOpen ) {
                                 var isSelected = selectedObject && selectedObject.pick == targetDate.pick,
                                     isHighlighted = highlightedObject && highlightedObject.pick == targetDate.pick,
                                     isDisabled = disabledCollection && calendar.disabled( targetDate ) || targetDate.pick < minLimitObject.pick || targetDate.pick > maxLimitObject.pick,
-                                    formattedDate = _.trigger( calendar.formats.toString, calendar, [ settings.format, targetDate ] )
+                                    formattedDate = _.trigger( calendar.formats.toString, calendar, [ settings.format, targetDate ] ),
+                                    calendarNodeUniqueId = settings.id + '_' + targetDate.pick
 
                                 return [
                                     _.node(
@@ -1222,16 +1223,15 @@ DatePicker.prototype.nodes = function( isOpen ) {
 
                                             return klasses.join( ' ' )
                                         })([ settings.klass.day ]),
-                                        'data-pick=' + targetDate.pick + ' ' + _.ariaAttr({
+                                        'data-pick=' + targetDate.pick + ' id=' + calendarNodeUniqueId + ' tabindex="0" ' + _.ariaAttr({
                                             role: 'gridcell',
                                             label: formattedDate,
                                             selected: isSelected && calendar.$node.val() === formattedDate ? true : null,
-                                            activedescendant: isHighlighted ? true : null,
+                                            activedescendant: isHighlighted ? targetDate.pick : null,
                                             disabled: isDisabled ? true : null
                                         })
                                     ),
-                                    '',
-                                    _.ariaAttr({ role: 'presentation' })
+                                    ''
                                 ] //endreturn
                             }
                         })
@@ -1298,6 +1298,9 @@ DatePicker.defaults = (function( prefix ) {
         // Picker close behavior
         closeOnSelect: true,
         closeOnClear: true,
+
+        // Update input value on select/clear
+        updateInput: true,
 
         // The format to show on the `input` element
         format: 'd mmmm, yyyy',
