@@ -19,8 +19,6 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/css/bootstrap-extended.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/css/colors.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/css/components.min.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/css/themes/dark-layout.min.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/css/themes/semi-dark-layout.min.css')}}">
 
   <!-- BEGIN: Page CSS-->
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/css/core/menu/menu-types/vertical-menu.min.css')}}">
