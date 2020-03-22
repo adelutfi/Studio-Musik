@@ -13,8 +13,9 @@
   <!-- BEGIN: Vendor CSS-->
   @if(config('app.env') === 'production')
     <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/vendors2.min.css')}}">
-  @endif
+  @else
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/vendors.min.css')}}">
+  @endif
 
   <!-- END: Vendor CSS-->
 
