@@ -11,7 +11,11 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
   <!-- BEGIN: Vendor CSS-->
+  @if(config('app.env') === 'production')
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/vendors2.min.css')}}">
+  @endif
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/vendors.min.css')}}">
+
   <!-- END: Vendor CSS-->
 
   <!-- BEGIN: Theme CSS-->
