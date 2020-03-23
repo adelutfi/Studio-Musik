@@ -14,7 +14,7 @@
 
 
     <!-- BEGIN: Main Menu-->
-    @include('templates.studio.partials._sidebar')
+    @yield('sidebar')
     <!-- END: Main Menu-->
 
     <!-- BEGIN: Content-->

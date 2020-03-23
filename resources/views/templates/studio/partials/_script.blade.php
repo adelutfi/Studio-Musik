@@ -2,6 +2,8 @@
 <!-- BEGIN Vendor JS-->
 
 <!-- BEGIN: Page Vendor JS-->
+
+<script src="{{ asset('public/assets/studio/vendors/js/charts/apexcharts.min.js')}}"></script>
 <!-- END: Page Vendor JS-->
 
 <!-- BEGIN: Theme JS-->
@@ -13,5 +15,6 @@
 <!-- END: Theme JS-->
 
 <!-- BEGIN: Page JS-->
-<script src="{{ asset('public/assets/studio/js/scripts/pages/faq-kb.min.js')}}"></script>
+
+    <script src="{{ asset('public/assets/studio/js/scripts/pages/dashboard-ecommerce.min.js')}}"></script>
 <!-- END: Page JS-->

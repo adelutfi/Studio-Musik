@@ -5,17 +5,13 @@
   <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
   <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
   <meta name="author" content="PIXINVENT">
-  <title>Knowledge-base - Vuexy - Bootstrap HTML admin template</title>
-  <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
-  <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
+  <title>Studio Musik</title>
+  <link rel="shortcut icon" type="image/x-icon" href="{{asset('public/assets/landing/favicon.ico')}}">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
   <!-- BEGIN: Vendor CSS-->
-  @if(config('app.env') === 'production')
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/vendors2.min.css')}}">
-  @else
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/vendors.min.css')}}">
-  @endif
+  <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/charts/apexcharts.css')}}">
 
   <!-- END: Vendor CSS-->
 
@@ -28,7 +24,8 @@
   <!-- BEGIN: Page CSS-->
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/css/core/menu/menu-types/vertical-menu.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/css/core/colors/palette-gradient.min.css')}}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/css/pages/knowledge-base.min.css')}}">
+  <link rel="stylesheet" type="text/css" href=".{{ asset('public/assets/studio/css/pages/dashboard-ecommerce.min.css')}}">
+
   <!-- END: Page CSS-->
 
   <!-- BEGIN: Custom CSS-->
