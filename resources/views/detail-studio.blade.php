@@ -62,6 +62,9 @@
                                   <label class="custom-control-label" for="alat"><strong>Sewa Alat</strong></label>
                                 </div>
                                 </li>
+                                <li>
+                                  <a href="#" id="sewa" style="display: none">Sewa</a>
+                                </li>
                             </ul>
                         </div>
                     </div><!-- //. entry footer -->
@@ -94,9 +97,9 @@
                     </div>
                 </div><!-- //. blog details content -->
             </div>
-            <div class="col-lg-4">
+            <!-- <div class="col-lg-4">
                     <div class="sidebar">
-                            <div class="widget-area category"><!-- widget area -->
+                            <div class="widget-area category">
                                 <div class="widget-title">
                                     <h4 class="title">Stduio Lainnya</h4>
                                 </div>
@@ -109,11 +112,27 @@
                                         <li><a href="#"><i class="fas fa-angle-right"></i> Advertisement</a></li>
                                     </ul>
                                 </div>
-                            </div><!-- //.widget area -->
+                            </div>
                         </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
+<script>
+  const sewa = document.querySelector('#sewa');
+  const alat = document.querySelector('#alat');
+  const tempat = document.querySelector('#tempat');
+
+  alat.addEventListener('change', function(){
+    sewa.style.display = ''
+    sewa.href = 'pemesanan/sewa-alat';
+  });
+
+  tempat.addEventListener('change', function(){
+    sewa.style.display = ''
+    sewa.href = 'pemesanan/sewa-tempat';
+  });
+
+</script>
 
 @endsection

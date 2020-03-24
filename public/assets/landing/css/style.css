@@ -1161,7 +1161,7 @@ ul {
   width: 100%;
   z-index: 2;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  background: none; }
+  background-image: linear-gradient(0deg, rgb(101, 1, 161) 0%, rgb(167, 48, 178) 100%); }
   .navbar-area .navbar-collapse {
     -webkit-box-pack: end;
     -ms-flex-pack: end;
@@ -2424,7 +2424,8 @@ Blog Details Page
   .contact-area .title {
     font-size: 50px;
     line-height: 60px;
-    margin-bottom: 45px;
+    margin-bottom: 20px;
+    margin-top: 25px;
     text-transform: uppercase; }
   .contact-area .left-content-area .info-list li {
     display: block;
@@ -2437,6 +2438,27 @@ Blog Details Page
       .contact-area .left-content-area .info-list li .single-info-item:hover .icon {
         background-color: #a730b2;
         color: #fff; }
+        .contact-area .left-content-area .info-list li .single-info-item button {
+          width: 100px;
+          height: 30px;
+          border: none;
+          font-size: 16px;
+          text-transform: uppercase;
+          font-weight: 600;
+          border-radius: 3px;
+          cursor: pointer;
+          color: #fff;
+          background: -moz-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          background: -webkit-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          background: -ms-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          background: -webkit-gradient(linear, left bottom, left top, from(#6501a1), to(#a730b2));
+          background: -webkit-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
+          background: -o-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
+          background: linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          -webkit-transition: all 0.3s ease-in;
+          -moz-transition: all 0.3s ease-in;
+          -o-transition: all 0.3s ease-in;
+          transition: all 0.3s ease-in; }
       .contact-area .left-content-area .info-list li .single-info-item .icon {
         position: absolute;
         left: 0;

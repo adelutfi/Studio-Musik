@@ -31,6 +31,10 @@ Route::get('/semua-studio', function () {
     return view('studio');
 });
 
+Route::get('/pemesanan/{keterangan}', function () {
+    return view('pemesanan');
+});
+
 
 
 Route::get('/login', function(){
