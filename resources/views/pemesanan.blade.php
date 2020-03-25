@@ -50,21 +50,38 @@
                            </div>
                         </li>
                         <li>
+                          @php($start = now())
                            <div class="single-info-item">
-                                <div class="icon">
-                                  <img src="{{asset('public/assets/landing/img/money.png')}}" style="width: 20px" alt="">
-                                </div>
-                                <div class="content d-flex align-self-center">
-                                        <div class="box align-self-center">
-                                                <br>
-                                                <span id="jumlah" data-jumlah="80000" class="details">Rp. 80.000</span>
-                                        </div>
-                                </div>
+                             <div class="row">
+                               <div class="col-6 form-group">
+                                <label>Tanggal</label>
+                                <input class="date form-control" type="date" value="{{now()->format('Y-m-d')}}" onkeypress="return false;"
+                                max="{{now()->addDays(14)->format('Y-m-d')}}" min="{{now()->format('Y-m-d')}}" />
+                              </div>
+                              <div class="col-3 form-group">
+                                  <label>Waktu</label>
+                                  <select class="form-control" name="">
+                                    @for($hours = 8; $hours < 22; $hours++)
+                                        @for($min = 0; $min < 60; $min+=30)
+                                        <option value="">{{str_pad($hours,2,'0',STR_PAD_LEFT)}}:{{str_pad($min,2,'0',STR_PAD_LEFT)}}</option>
+                                        @endfor
+                                    @endfor
+                                  </select>
+                              </div>
+                              <div class="col-3 form-group">
+                                  <label>Durasi/Jam</label>
+                                  <select class="form-control" id="durasi" name="durasi">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                  </select>
+                              </div>
+                            </div>
                            </div>
                         </li>
                         <li>
                            <div class="single-info-item">
-                            <p>Alat Tambahan</p>
+                            <p class="mb-2">Alat Tambahan</p>
                             <div class="form-check">
                               <label class="form-check-label">
                                 <input type="checkbox" data-harga="20000" name="tambahan[]" class="tambahan form-check-input" value="">
@@ -77,6 +94,20 @@
                                 Suling Rp 10.000
                               </label>
                             </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="single-info-item">
+                                <div class="icon">
+                                  <img src="{{asset('public/assets/landing/img/money.png')}}" style="width: 20px" alt="">
+                                </div>
+                                <div class="content d-flex align-self-center">
+                                        <div class="box align-self-center">
+                                                <br>
+                                                <span id="jumlah-awal" style="display: none;" data-jumlah="80000" class="details"></span>
+                                                <span id="jumlah-akhir" data-jumlah="80000" class="details">Rp. 80.000</span>
+                                        </div>
+                                </div>
                            </div>
                         </li>
                         <li>
@@ -111,24 +142,40 @@
   </section>
 
   <script>
-    const jumlah = document.querySelector('#jumlah');
+    const jumlahAwal = document.querySelector('#jumlah-awal');
+    const jumlahAkhir = document.querySelector('#jumlah-akhir');
+    const durasi = document.querySelector('#durasi');
     const tambahan = document.querySelectorAll('.tambahan');
+    let totalAwal = +jumlahAwal.dataset.jumlah;
+    let totalAkhir = +jumlahAkhir.dataset.jumlah;
+    durasi.addEventListener('change', function(){
+      totalAkhir = +totalAwal * +this.value
+      tambahan.forEach(t => {
+        if(t.checked){
+          totalAkhir += +t.dataset.harga
+        }
+      })
+      jumlahAkhir.innerText = 'Rp. '+rupiah(totalAkhir)
+      jumlahAkhir.dataset.jumlah = totalAkhir
+    })
+
     if (tambahan.length > 0) {
       tambahan.forEach(t => {
         t.addEventListener('change', function(){
-          let total = +jumlah.dataset.jumlah;
           if(this.checked){
-            total = +this.dataset.harga + total
-            jumlah.innerText = 'Rp. '+rupiah(total)
-            jumlah.dataset.jumlah = total
+            totalAkhir = totalAkhir + +this.dataset.harga
+            jumlahAkhir.innerText = 'Rp. '+rupiah(totalAkhir)
+            jumlahAkhir.dataset.jumlah = totalAkhir
           }else if(!this.checked) {
-            total = total - +this.dataset.harga
-            jumlah.innerText = 'Rp. '+rupiah(total)
-            jumlah.dataset.jumlah = total
+            totalAkhir = totalAkhir - +this.dataset.harga
+            jumlahAkhir.innerText = 'Rp. '+rupiah(totalAkhir)
+            jumlahAkhir.dataset.jumlah = totalAkhir
           }
         })
       })
     }
+
+
 
     function rupiah(angka){
       var reverse = angka.toString().split('').reverse().join(''),
