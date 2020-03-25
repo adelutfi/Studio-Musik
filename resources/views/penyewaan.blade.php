@@ -24,6 +24,7 @@
                                    <tr>
                                        <td>28 Maret 2019</td>
                                        <td>STUDIO 33</td>
+                                       <td>Sewa Tempat</td>
                                        <td><a href="#">Info</a></td>
                                    </tr>
                                </tbody>
