@@ -35,6 +35,10 @@ Route::get('/pemesanan/{keterangan}', function () {
     return view('pemesanan');
 });
 
+Route::get('/penyewaan', function () {
+    return view('penyewaan');
+});
+
 
 
 Route::get('/login', function(){

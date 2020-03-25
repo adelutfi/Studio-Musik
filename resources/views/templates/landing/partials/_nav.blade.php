@@ -22,8 +22,8 @@
                         <a class="nav-link" href="contact.html">Kontak</a>
                     </li>
 
-                    <li class="nav-item">
-                       <a class="nav-link" href="contact.html">Penyewaan</a>
+                    <li class="nav-item @if(Request::is('penyewaan')) active @endif">
+                       <a class="nav-link" href="{{url('/penyewaan')}}">Penyewaan</a>
                    </li>
 
                      <li class="nav-item @if(Request::is('login')) active @endif">

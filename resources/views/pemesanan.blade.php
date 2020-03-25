@@ -15,7 +15,7 @@
 </section> -->
 <section class="contact-area" >
       <div class="container">
-        <form id="contactform" class="contact-form">
+        <!-- <form id="contactform" class="contact-form"> -->
           <div class="row">
               <div class="col-lg-7">
                 <div class="right-content-area">
@@ -98,7 +98,7 @@
                         </li>
                         <li>
                           <div class="single-info-item">
-                              <button class="submit-btn">Simpan</button>
+                              <button class="submit-btn" onclick="window.location='{{url("penyewaan")}}'">Simpan</button>
                           </div>
                         </li>
                     </ul>
@@ -106,7 +106,7 @@
                 </div>
               </div>
           </div>
-          </form>
+          <!-- </form> -->
       </div>
   </section>
 
