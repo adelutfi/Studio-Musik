@@ -32,6 +32,13 @@
                                     <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
                                     <a href="{{url('detail-studio')}}"><h3 class="title">MIXPACK STUDIO RECORD</h3></a>
                                     <p>Jalan Mangkukusuman, Tegal Timur, Tegal City, Central Java 52131.</p>
+                                    <div>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                  </div>
                                     <a href="#" class="readmore">Read More</a>
                                 </div>
                             </div><!-- //. single blog item -->

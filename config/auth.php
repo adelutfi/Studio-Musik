@@ -36,9 +36,19 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'penyewa' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'penyewa',
+        ],
+
+        'pemilik' => [
+            'driver' => 'session',
+            'provider' => 'pemilik',
+        ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
         ],
 
         'api' => [
@@ -66,9 +76,19 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'penyewa' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Penyewa::class,
+        ],
+
+        'pemilik' => [
+            'driver' => 'eloquent',
+            'model' => App\Pemilik::class,
+        ],
+
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
         ],
 
         // 'users' => [

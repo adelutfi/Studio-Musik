@@ -11,6 +11,8 @@
 |
 */
 
+Route::post('admin/login','Admin\AuthAdminController@login')->name('admin.login');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,6 +23,10 @@ Route::get('/studio', function () {
 
 Route::get('/admin', function () {
     return view('home.admin.beranda');
+});
+
+Route::get('/admin/login', function () {
+    return view('auth.admin-login');
 });
 
 Route::get('/detail-studio', function () {
