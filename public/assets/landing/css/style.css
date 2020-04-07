@@ -1161,7 +1161,7 @@ ul {
   width: 100%;
   z-index: 2;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  background: none; }
+  background-image: linear-gradient(0deg, rgb(101, 1, 161) 0%, rgb(167, 48, 178) 100%); }
   .navbar-area .navbar-collapse {
     -webkit-box-pack: end;
     -ms-flex-pack: end;
@@ -1256,7 +1256,7 @@ Hero Area Css Start
     margin-bottom: 18px;
     line-height: 90px;
    }
-   
+
   .heroArea .maintitle p {
     font-size: 18px;
     line-height: normal;
@@ -1563,12 +1563,16 @@ Album Area Css Start
     background: -webkit-linear-gradient(130deg, #6501a1 0%, #a730b2 100%);
     background: -o-linear-gradient(130deg, #6501a1 0%, #a730b2 100%);
     background: linear-gradient(-40deg, #6501a1 0%, #a730b2 100%);
-    position: absolute;
+    position: fixed;
     left: 0px;
     top: 0px;
     width: 100%;
     height: 100%;
     opacity: 0.8; }
+  .concert .container {
+    position: relative;
+    min-height: 56.7vh;
+  }
   .concert .tabilContainer {
     background: rgba(107, 5, 163, 0.6);
     padding: 25px 50px 10px;
@@ -1646,6 +1650,7 @@ Album Area Css Start
 /*---------------------------
 ** Concert Section End
 ---------------------------*/
+
 /*---------------------------
 ** Concert Section End
 ---------------------------*/
@@ -2020,6 +2025,7 @@ Blog Page start
 -----------------------*/
 .footer-area {
   padding: 10px 0px 10px;
+  width: 100%;
   background: -moz-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
   background: -webkit-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
   background: -ms-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
@@ -2424,7 +2430,8 @@ Blog Details Page
   .contact-area .title {
     font-size: 50px;
     line-height: 60px;
-    margin-bottom: 45px;
+    margin-bottom: 20px;
+    margin-top: 25px;
     text-transform: uppercase; }
   .contact-area .left-content-area .info-list li {
     display: block;
@@ -2437,6 +2444,27 @@ Blog Details Page
       .contact-area .left-content-area .info-list li .single-info-item:hover .icon {
         background-color: #a730b2;
         color: #fff; }
+        .contact-area .left-content-area .info-list li .single-info-item button {
+          width: 100px;
+          height: 30px;
+          border: none;
+          font-size: 16px;
+          text-transform: uppercase;
+          font-weight: 600;
+          border-radius: 3px;
+          cursor: pointer;
+          color: #fff;
+          background: -moz-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          background: -webkit-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          background: -ms-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          background: -webkit-gradient(linear, left bottom, left top, from(#6501a1), to(#a730b2));
+          background: -webkit-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
+          background: -o-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
+          background: linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          -webkit-transition: all 0.3s ease-in;
+          -moz-transition: all 0.3s ease-in;
+          -o-transition: all 0.3s ease-in;
+          transition: all 0.3s ease-in; }
       .contact-area .left-content-area .info-list li .single-info-item .icon {
         position: absolute;
         left: 0;
@@ -2516,3 +2544,15 @@ Blog Details Page
     width: auto;
     margin-bottom: 10px;
   }
+
+  .checked {
+  color: orange;
+  }
+
+  input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+  }
+  /* ::-webkit-datetime-edit-day-field { pointer-events: none; }
+  ::-webkit-datetime-edit-month-field { pointer-events: none;} */
+  input[type="date"]::-webkit-clear-button { display: none; }

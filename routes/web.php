@@ -16,7 +16,11 @@ Route::get('/', function () {
 });
 
 Route::get('/studio', function () {
-    return view('templates.studio.default');
+    return view('home.studio.beranda');
+});
+
+Route::get('/admin', function () {
+    return view('home.admin.beranda');
 });
 
 Route::get('/detail-studio', function () {
@@ -25,6 +29,14 @@ Route::get('/detail-studio', function () {
 
 Route::get('/semua-studio', function () {
     return view('studio');
+});
+
+Route::get('/pemesanan/{keterangan}', function () {
+    return view('pemesanan');
+});
+
+Route::get('/penyewaan', function () {
+    return view('penyewaan');
 });
 
 
