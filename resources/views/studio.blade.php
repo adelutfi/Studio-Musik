@@ -30,7 +30,7 @@
                         </div>
                                 <div class="content">
                                     <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
-                                    <a href="#"><h3 class="title">MIXPACK STUDIO RECORD</h3></a>
+                                    <a href="{{url('detail-studio')}}"><h3 class="title">MIXPACK STUDIO RECORD</h3></a>
                                     <p>Jalan Mangkukusuman, Tegal Timur, Tegal City, Central Java 52131.</p>
                                     <a href="#" class="readmore">Read More</a>
                                 </div>
@@ -43,7 +43,7 @@
                         </div>
                                 <div class="content">
                                     <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
-                                    <a href="#"><h3 class="title">STUDIO MUSIK REBO STAR</h3></a>
+                                    <a href="{{url('detail-studio')}}><h3 class="title">STUDIO MUSIK REBO STAR</h3></a>
                                     <p>Jalan Projosumarto 1 No.15, Kocro, Kemantran, Kec. Kramat, Tegal, Jawa Tengah 52181.</p>
                                     <a href="#" class="readmore">Read More</a>
                                 </div>
@@ -56,7 +56,7 @@
                         </div>
                                 <div class="content">
                                     <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
-                                    <a href="#"><h3 class="title">RIZA MUSIK TEGAL</h3></a>
+                                    <a href="{{url('detail-studio')}}"><h3 class="title">RIZA MUSIK TEGAL</h3></a>
                                     <p>Jalan Pangeran Antasari No.53, Keturen, Kec. Tegal Sel., Kota Tegal, Jawa Tengah 52134.</p>
                                     <a href="#" class="readmore">Read More</a>
                                 </div>
@@ -69,7 +69,7 @@
                         </div>
                                 <div class="content">
                                     <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
-                                    <a href="#"><h3 class="title">PUTRA MUSIK STUDIO</h3></a>
+                                    <a href="{{url('detail-studio')}}"><h3 class="title">PUTRA MUSIK STUDIO</h3></a>
                                     <p>Jalan  Bulakwaru, Tarub, Tegal, Central Java 52184.</p>
                                     <a href="#" class="readmore">Read More</a>
                                 </div>
@@ -82,7 +82,7 @@
                         </div>
                                 <div class="content">
                                     <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
-                                    <a href="#"><h3 class="title">MAGENTA MUSIK STUDIO</h3></a>
+                                    <a href="{{url('detail-studio')}}"><h3 class="title">MAGENTA MUSIK STUDIO</h3></a>
                                     <p> jalan ghozali no 153 RT 03/02, Kalibakung, Kec. Balapulang, Tegal, Jawa Tengah 52464.</p>
                                     <a href="#" class="readmore">Read More</a>
                                 </div>
@@ -95,7 +95,7 @@
                         </div>
                                 <div class="content">
                                     <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
-                                    <a href="#"><h3 class="title">IRAMA MUSIK STUDIO</h3></a>
+                                    <a href="{{url('detail-studio')}}"><h3 class="title">IRAMA MUSIK STUDIO</h3></a>
                                     <p>Jalan Kesuben No 04 C, Desa, RT.04/RW.03, Kademangan, Kesuben, Kec. Lebaksiu, Tegal, Jawa Tengah 52461.</p>
                                     <a href="#" class="readmore">Read More</a>
                                 </div>

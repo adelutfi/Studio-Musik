@@ -33,7 +33,6 @@
                         <li><i class="fas fa-comments"></i> 22 Comments</li>
                     </ul>
                     <div class="entry-content">
-                        <p>Cultivated who resolution connection motionless did occasional. Journey promise if it colonel. Can all mirth abode nor hills added. Them men does for body pure. Far end not horses remain sister. Mr parish is to he answer roused piqued afford sussex. It abode words began enjoy years no do ﻿no. Tried spoil as heart visit blush or. Boy possible blessing sensible set but margaret interest. Off tears are day blind smile alone had. </p>
                         <blockquote class="blockquote">
                             <p>Conveying has concealed necessary furnished bed zealously immediate get but. Terminated as middletons or by instrument. Bred do four so your felt with. No shameless principle dependent household do. </p>
                             <span class="author-name">- Abir Khan</span>
