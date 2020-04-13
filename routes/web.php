@@ -47,11 +47,10 @@ Route::group(['prefix' => 'admin'], function(){
     Route::post('logout','Admin\AuthAdminController@logout')->name('admin.logout');
 });
 
+// Routing lingkup sebelum login
+Route::group(['prefix' => '/'], function(){
+  Route::get('register','Auth\AuthUserController@showRegister')->name('register');
+  Route::get('login','Auth\AuthUserController@showLogin')->name('login');
+  Route::post('register','Auth\AuthUserController@register')->name('user.register');
 
-
-Route::get('/login', function(){
-	return view('auth.login');
-})->name('login');
-Route::get('/register', function(){
-	return view('auth.register');
-})->name('register');
+});

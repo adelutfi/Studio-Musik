@@ -34,18 +34,20 @@
                                         <th>Email</th>
                                         <th>No Telepon</th>
                                         <th>Alamat</th>
-                                        <td>Aksi</td>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                  @foreach($pemilik as $p)
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$p->nama}}</td>
+                                        <td>{{$p->email}}</td>
+                                        <td>{{$p->no_telp}}</td>
+                                        <td>{{$p->alamat}}</td>
                                         <td></td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
