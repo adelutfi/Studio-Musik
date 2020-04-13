@@ -5,9 +5,16 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Pemilik;
+use Auth;
 
 class AuthUserController extends Controller
 {
+  public function __construct()
+    {
+      $this->middleware('guest:pemilik')->except(['logoutPemilik']);
+    }
+
+
     public function showRegister(){
       return view('auth.register');
     }
@@ -48,6 +55,26 @@ class AuthUserController extends Controller
 
     public function showLogin(){
       return view('auth.login');
+    }
+
+    public function login(Request $request){
+      $credentials = [
+        'email' => $request->email,
+        'password' => $request->password
+      ];
+
+      if($request->keterangan == 'pemilik'){
+        if(Auth::guard('pemilik')->attempt($credentials)){
+          return redirect()->route('pemilik.beranda');
+        }else {
+          return redirect()->back()->with('message','Gagal Login');
+        }
+      }
+    }
+
+    public function logoutPemilik(){
+      Auth::guard('pemilik')->logout();
+      return redirect()->route('login');
     }
 
 

@@ -52,5 +52,12 @@ Route::group(['prefix' => '/'], function(){
   Route::get('register','Auth\AuthUserController@showRegister')->name('register');
   Route::get('login','Auth\AuthUserController@showLogin')->name('login');
   Route::post('register','Auth\AuthUserController@register')->name('user.register');
+  Route::post('login','Auth\AuthUserController@login')->name('user.login');
+});
+
+// Routing lingkup pemilik
+Route::group(['prefix' => 'pemilik'], function(){
+  Route::get('beranda','Pemilik\HomeController@beranda')->name('pemilik.beranda');
+  Route::post('logout','Auth\AuthUserController@logoutPemilik')->name('pemilik.logout');
 
 });

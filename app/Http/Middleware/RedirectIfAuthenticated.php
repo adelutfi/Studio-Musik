@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
        break;
        case 'pemilik':
            if (Auth::guard($guard)->check()) {
-               return redirect('/studio');
+               return redirect()->route('pemilik.beranda');
            }
        break;
        default:

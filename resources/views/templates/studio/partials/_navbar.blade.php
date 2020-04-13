@@ -56,13 +56,20 @@
           </li>
           <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
               <div class="user-nav d-sm-flex d-none">
-                <span class="user-name text-bold-600">John Doe</span>
-                  <span class="user-status">Available</span>
+                <span class="user-name text-bold-600">{{Auth::user()->nama}}</span>
+                  <span class="user-status">{{Auth::user()->email}}</span>
                 </div><span><img class="round" src="{{ asset('public/assets/studio/images/boy.png')}}" alt="avatar" height="40" width="40"></span></a>
                 <div class="dropdown-menu dropdown-menu-right">
                   <a class="dropdown-item" href="page-user-profile.html"><i class="feather icon-user"></i> Edit Profile</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="auth-login.html"><i class="feather icon-power"></i> Logout</a>
+              <a class="dropdown-item" href="{{route('pemilik.logout')}}" onclick="event.preventDefault();
+                           document.getElementById('logout-admin-form').submit();">
+                <i class="feather icon-power"></i>
+                 Logout
+               </a>
+                  <form id="logout-admin-form" action="{{ route('pemilik.logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
           </li>
         </ul>

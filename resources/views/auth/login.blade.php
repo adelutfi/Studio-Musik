@@ -14,14 +14,15 @@
                           <div class="col-lg-4">
                               <div class="tabilContainer table-responsive">
                               	 <div class="comment-form-area">
-                                   <form action="" class="comments-entry-form mb-3">
+                                   <form action="{{route('user.login')}}" method="post" class="comments-entry-form mb-3">
+                                     @csrf
                                       <div class="form-group">
                                           <label for=""><strong>Email</strong></label>
-                                          <input type="email" class="form-control" placeholder="Masukan Email anda">
+                                          <input name="email" type="email" class="form-control" placeholder="Masukan Email anda">
                                       </div>
                                       <div class="form-group">
                                             <label for=""><strong>Password</strong></label>
-                                          <input type="password" class="form-control" placeholder="Masukan password anda">
+                                          <input name="password" type="password" class="form-control" placeholder="Masukan password anda">
                                       </div>
                                       <div class="form-group">
                                       <div class="custom-control custom-radio custom-control-inline">
