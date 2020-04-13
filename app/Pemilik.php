@@ -21,6 +21,8 @@ class Pemilik extends Authenticatable
 
   public $timestamps = false;
 
+  const CREATED_AT = 'di_buat';
+  const UPDATED_AT = 'di_ubah';
   /**
    * The attributes that should be hidden for arrays.
    *

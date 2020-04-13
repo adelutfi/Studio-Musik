@@ -23,8 +23,8 @@ class CreatePemilikTable extends Migration
             $table->char('no_telp',13)->unique()->nullable();
             $table->char('no_rek', 16)->unique()->nullable();
             $table->boolean('status')->default(true);
-            $table->timestamp('di_buat')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('di_ubah')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('di_buat')->useCurrent();
+            $table->timestamp('di_ubah')->useCurrent();
         });
     }
 
