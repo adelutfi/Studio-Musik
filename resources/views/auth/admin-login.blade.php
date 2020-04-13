@@ -76,7 +76,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>
                         <div class="card-content">
                             <div class="card-body pt-1">
-                                <form action="{{route('admin.login')}}" method="post">
+                                <form action="{{route('admin.to.login')}}" method="post">
                                   @csrf
                                     <fieldset class="form-label-group form-group position-relative has-icon-left">
                                         <input type="text" class="form-control" name="username" placeholder="Username" required>

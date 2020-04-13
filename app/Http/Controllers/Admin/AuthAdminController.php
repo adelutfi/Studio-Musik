@@ -9,6 +9,12 @@ use Auth;
 
 class AuthAdminController extends Controller
 {
+
+  public function __construct()
+    {
+      $this->middleware('guest:admin')->except(['logout']);
+    }
+
     public function login(Request $request){
       $dataInput = [
         'username' => $request->username,
@@ -16,8 +22,17 @@ class AuthAdminController extends Controller
       ];
 
       if(Auth::guard('admin')->attempt($dataInput)){
-        return redirect('/admin');
+        return redirect()->route('admin.beranda');
       }
       return redirect()->back();
+    }
+
+    public function showLogin(){
+      return view('auth.admin-login');
+    }
+
+    public function logout(){
+      Auth::guard('admin')->logout();
+      return redirect()->route('admin.login');
     }
 }

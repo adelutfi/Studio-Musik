@@ -34,7 +34,17 @@
                     </ul> -->
                     <div class="entry-content">
                         <blockquote class="blockquote">
-                            <p>Conveying has concealed necessary furnished bed zealously immediate get but. Terminated as middletons or by instrument. Bred do four so your felt with. No shameless principle dependent household do. </p>
+                            <p>Keterangan : <p>
+                            Overview -> Alat band digunakan sebagai pelengkap kemegahan sound yang disajikan dalam suatu acara. <p>
+                            Harga main -> (Rp) 50.0000 <p>
+                            Studio buka -> <p>
+                            Kamis 10 pagi - 11:30 malam <p> Jumat 10 pagi - 11:30 malam <p>
+                            Sabtu 10 pagi - 11:30 malam <p> Minggu 10 pagi - 11:30 malam <p>
+                            Senin 10 pagi - 11:30 malam <p>Selasa 10 pagi - 11:30 malam <p>
+                            Rabu 10 pagi - 11:30 malam <p>
+                            Harga Paket Sewa Alat -> (Rp) 9.000.000 <p>
+                            Alat band yang disewakan mencakup -> 1 set drum (St. Fe), 2 unit amplifier gitar RG-30, 1 unit amplifier bass RB-90, 2 unit gitar (Rockwell, Fender), 1 unit bass (Rockwell, Warwick), 1 mic Shure <p>
+                            Kondisi -> Baru,. </p>
                             <span class="author-name">- Jalan Mangkukusuman, Tegal Timur, Tegal City, Central Java 52131.</span>
                         </blockquote>
                         <div>
