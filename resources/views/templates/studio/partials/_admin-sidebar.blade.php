@@ -10,17 +10,29 @@
   <div class="shadow-bottom"></div>
   <div class="main-menu-content">
     <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-      <li class="active nav-item">
-        <a href="index.html"><i class="feather icon-airplay"></i><span class="menu-title" data-i18n="Dashboard">Beranda</span></a>
+      <li class="@if(Request::is('admin/beranda')) active @endif nav-item">
+        <a href="{{route('admin.beranda')}}">
+          <i class="feather icon-airplay"></i>
+            <span class="menu-title" data-i18n="Dashboard">Beranda</span>
+        </a>
+      </li>
+      <li class="@if(Request::is('admin/pemilik')) active @endif nav-item">
+        <a href="{{route('admin.pemilik')}}">
+          <i class="feather icon-user"></i>
+            <span class="menu-title" data-i18n="Dashboard">Pemilik</span>
+        </a>
       </li>
       <li class="nav-item">
-        <a href="index.html"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Dashboard">Pemilik</span></a>
+        <a href="index.html">
+          <i class="feather icon-users"></i>
+          <span class="menu-title" data-i18n="Dashboard">Penyewa</span>
+        </a>
       </li>
       <li class="nav-item">
-        <a href="index.html"><i class="feather icon-users"></i><span class="menu-title" data-i18n="Dashboard">Penyewa</span></a>
-      </li>
-      <li class="nav-item">
-        <a href="index.html"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Studio</span></a>
+        <a href="index.html">
+          <i class="feather icon-home"></i>
+          <span class="menu-title" data-i18n="Dashboard">Studio</span>
+        </a>
       </li>
     </ul>
   </div>

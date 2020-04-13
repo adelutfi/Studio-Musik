@@ -13,6 +13,8 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/vendors.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/charts/apexcharts.css')}}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/tables/datatable/datatables.min.css')}}">
+
   <!-- END: Vendor CSS-->
 
   <!-- BEGIN: Theme CSS-->

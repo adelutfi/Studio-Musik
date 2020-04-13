@@ -15,5 +15,9 @@ class HomeController extends Controller
   	public function beranda(){
   		return view('home.admin.beranda');
   	}
+    
+  	public function pemilik(){
+  		return view('home.admin.data-pemilik');
+  	}
 
 }

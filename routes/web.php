@@ -43,6 +43,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/login','Admin\AuthAdminController@showLogin')->name('admin.login');
     Route::post('login','Admin\AuthAdminController@login')->name('admin.to.login');
     Route::get('/beranda','Admin\HomeController@beranda')->name('admin.beranda');
+    Route::get('/pemilik','Admin\HomeController@pemilik')->name('admin.pemilik');
     Route::post('logout','Admin\AuthAdminController@logout')->name('admin.logout');
 });
 
