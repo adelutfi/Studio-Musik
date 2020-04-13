@@ -11,7 +11,6 @@
 |
 */
 
-Route::post('admin/login','Admin\AuthAdminController@login')->name('admin.login');
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,15 +18,8 @@ Route::get('/', function () {
 
 Route::get('/studio', function () {
     return view('home.studio.beranda');
-});
+})->middleware('auth:pemilik');
 
-Route::get('/admin', function () {
-    return view('home.admin.beranda');
-});
-
-Route::get('/admin/login', function () {
-    return view('auth.admin-login');
-});
 
 Route::get('/detail-studio', function () {
     return view('detail-studio');
@@ -43,6 +35,15 @@ Route::get('/pemesanan/{keterangan}', function () {
 
 Route::get('/penyewaan', function () {
     return view('penyewaan');
+});
+
+
+// Routing lingkup Admin
+Route::group(['prefix' => 'admin'], function(){
+    Route::get('/login','Admin\AuthAdminController@showLogin')->name('admin.login');
+    Route::post('login','Admin\AuthAdminController@login')->name('admin.to.login');
+    Route::get('/beranda','Admin\HomeController@beranda')->name('admin.beranda');
+    Route::post('logout','Admin\AuthAdminController@logout')->name('admin.logout');
 });
 
 

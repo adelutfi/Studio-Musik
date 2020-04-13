@@ -17,10 +17,23 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/home');
-        }
-
-        return $next($request);
+         switch($guard){
+       case 'admin':
+           if (Auth::guard($guard)->check()) {
+               return redirect()->route('admin.beranda');
+           }
+       break;
+       case 'pemilik':
+           if (Auth::guard($guard)->check()) {
+               return redirect('/studio');
+           }
+       break;
+       default:
+           if (Auth::guard($guard)->check()) {
+               return redirect()->route('/');
+           }
+       break;
+       }
+         return $next($request);
     }
 }

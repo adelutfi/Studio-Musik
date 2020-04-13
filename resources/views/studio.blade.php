@@ -46,11 +46,12 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="single-blog-item"><!-- single blog item -->
                                 <div class="thumb">
-                            <img class="img-fluid" src="{{asset('public/images/studio/studio-7.jpeg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/images/studio/studio-12.jpg')}}" alt="">
                         </div>
                                 <div class="content">
                                     <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
                                     <a href="{{url('detail-studio')}}><h3 class="title">STUDIO MUSIK REBO STAR</h3></a>
+                                    
                                     <p>Jalan Projosumarto 1 No.15, Kocro, Kemantran, Kec. Kramat, Tegal, Jawa Tengah 52181.</p>
                                     <a href="#" class="readmore">Read More</a>
                                 </div>
@@ -59,7 +60,7 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="single-blog-item"><!-- single blog item -->
                                 <div class="thumb">
-                            <img class="img-fluid" src="{{asset('public/images/studio/studio-7.jpeg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/images/studio/studio-8.jpg')}}" alt="">
                         </div>
                                 <div class="content">
                                     <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
@@ -72,7 +73,7 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="single-blog-item"><!-- single blog item -->
                                 <div class="thumb">
-                            <img class="img-fluid" src="{{asset('public/images/studio/studio-7.jpeg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/images/studio/studio-9.jpg')}}" alt="">
                         </div>
                                 <div class="content">
                                     <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
@@ -85,7 +86,7 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="single-blog-item"><!-- single blog item -->
                                 <div class="thumb">
-                            <img class="img-fluid" src="{{asset('public/images/studio/studio-7.jpeg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/images/studio/studio-10.jpg')}}" alt="">
                         </div>
                                 <div class="content">
                                     <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
@@ -98,7 +99,7 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="single-blog-item"><!-- single blog item -->
                                 <div class="thumb">
-                            <img class="img-fluid" src="{{asset('public/images/studio/studio-7.jpeg')}}" alt="">
+                            <img class="img-fluid" src="{{asset('public/images/studio/studio-11.jpg')}}" alt="">
                         </div>
                                 <div class="content">
                                     <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
