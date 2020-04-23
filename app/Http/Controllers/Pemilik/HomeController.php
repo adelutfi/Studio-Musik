@@ -13,6 +13,10 @@ class HomeController extends Controller
   }
 
   public function beranda(){
-    return view('home.studio.beranda');
+    return view('home.pemilik.beranda');
+  }
+
+  public function profil(){
+    return view('home.pemilik.profil');
   }
 }

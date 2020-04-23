@@ -18,19 +18,19 @@
                                      @csrf
                                       <div class="form-group">
                                           <label for=""><strong>Email</strong></label>
-                                          <input name="email" type="email" class="form-control" placeholder="Masukan Email anda">
+                                          <input name="email" type="email" class="form-control" placeholder="Masukan Email anda" required>
                                       </div>
                                       <div class="form-group">
                                             <label for=""><strong>Password</strong></label>
-                                          <input name="password" type="password" class="form-control" placeholder="Masukan password anda">
+                                          <input name="password" type="password" class="form-control" placeholder="Masukan password anda" required>
                                       </div>
                                       <div class="form-group">
                                       <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" value="pemilik" id="pemilik" name="keterangan" class="custom-control-input">
+                                        <input type="radio" value="pemilik" id="pemilik" name="keterangan" class="custom-control-input" required>
                                         <label class="custom-control-label" for="pemilik"><strong>Pemilik</strong></label>
                                       </div>
                                       <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" value="penyewa" id="penyewa" name="keterangan" class="custom-control-input">
+                                        <input type="radio" value="penyewa" id="penyewa" name="keterangan" class="custom-control-input" required>
                                         <label class="custom-control-label" for="penyewa"><strong>Penyewa</strong></label>
                                       </div>
                                     </div>

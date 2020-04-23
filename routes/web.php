@@ -58,6 +58,9 @@ Route::group(['prefix' => '/'], function(){
 // Routing lingkup pemilik
 Route::group(['prefix' => 'pemilik'], function(){
   Route::get('beranda','Pemilik\HomeController@beranda')->name('pemilik.beranda');
+  Route::get('studio','Pemilik\StudioController@index')->name('pemilik.studio');
+  Route::get('studio/tambah-studio','Pemilik\StudioController@tambah')->name('pemilik.tambah.studio');
   Route::post('logout','Auth\AuthUserController@logoutPemilik')->name('pemilik.logout');
+  Route::get('profil','Pemilik\HomeController@profil')->name('pemilik.profil');
 
 });

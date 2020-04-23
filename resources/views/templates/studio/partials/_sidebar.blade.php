@@ -14,8 +14,19 @@
   <div class="shadow-bottom"></div>
   <div class="main-menu-content">
     <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-      <li class=" nav-item"><a href="app-email.html"><i class="feather icon-mail"></i><span class="menu-title" data-i18n="Email">Email</span></a>
-           </li>
+      <li class=" navigation-header"><span>Menu</span></li>
+      <li class="@if(Request::is('pemilik/beranda')) active @endif nav-item">
+        <a href="{{route('pemilik.beranda')}}">
+          <i class="feather icon-airplay"></i>
+          <span class="menu-title" data-i18n="Beranda">Beranda</span>
+        </a>
+      </li>
+      <li class="@if(Request::is('pemilik/studio') || Request::is('pemilik/studio/*') ) active @endif nav-item">
+        <a href="{{route('pemilik.studio')}}">
+          <i class="feather icon-home"></i>
+          <span class="menu-title">Studio</span>
+        </a>
+      </li>
     </ul>
   </div>
 </div>

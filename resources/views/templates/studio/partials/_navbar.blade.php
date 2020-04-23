@@ -8,6 +8,14 @@
           </ul>
         </div>
         <ul class="nav navbar-nav float-right">
+          <li>
+            @if(!Auth::user()->verifikasi_email)
+            <div id="error-email"></div>
+            @endif
+            @if(!Auth::user()->no_rek)
+            <div id="error-profile"></div>
+            @endif
+          </li>
           <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon feather icon-bell"></i><span class="badge badge-pill badge-primary badge-up">5</span></a>
             <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
               <li class="dropdown-menu-header">
@@ -60,7 +68,7 @@
                   <span class="user-status">{{Auth::user()->email}}</span>
                 </div><span><img class="round" src="{{ asset('public/assets/studio/images/boy.png')}}" alt="avatar" height="40" width="40"></span></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" href="page-user-profile.html"><i class="feather icon-user"></i> Edit Profile</a>
+                  <a class="dropdown-item" href="{{route('pemilik.profil')}}"><i class="feather icon-user"></i>Profil</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{route('pemilik.logout')}}" onclick="event.preventDefault();
                            document.getElementById('logout-admin-form').submit();">

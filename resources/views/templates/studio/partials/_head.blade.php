@@ -13,7 +13,8 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/vendors.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/charts/apexcharts.css')}}">
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/tables/datatable/datatables.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/tables/datatable/datatables.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/extensions/sweetalert2.min.css')}}">
 
   <!-- END: Vendor CSS-->
 
@@ -22,11 +23,12 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/css/bootstrap-extended.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/css/colors.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/css/components.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/extensions/toastr.css')}}">
 
   <!-- BEGIN: Page CSS-->
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/css/core/menu/menu-types/vertical-menu.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/css/core/colors/palette-gradient.min.css')}}">
-  <link rel="stylesheet" type="text/css" href=".{{ asset('public/assets/studio/css/pages/dashboard-ecommerce.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/css/pages/dashboard-ecommerce.min.css')}}">
 
   <!-- END: Page CSS-->
 

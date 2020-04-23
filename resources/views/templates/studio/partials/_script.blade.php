@@ -12,6 +12,8 @@
 <script src="{{ asset('public/assets/studio/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
 <script src="{{ asset('public/assets/studio/vendors/js/tables/datatable/buttons.bootstrap.min.js')}}"></script>
 <script src="{{ asset('public/assets/studio/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('public/assets/studio/vendors/js/extensions/toastr.min.js')}}"></script>
+<script src="{{ asset('public/assets/studio/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
 <!-- END: Page Vendor JS-->
 
 <!-- BEGIN: Theme JS-->
@@ -26,4 +28,5 @@
 
 <script src="{{ asset('public/assets/studio/js/scripts/pages/dashboard-ecommerce.min.js')}}"></script>
 <script src="{{ asset('public/assets/studio/js/scripts/datatables/datatable.min.js')}}"></script>
+<script src="{{ asset('public/assets/studio/js/toast-validasi.js')}}"></script>
 <!-- END: Page JS-->
