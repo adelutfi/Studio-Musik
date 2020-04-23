@@ -3,7 +3,7 @@ const errorProfile = document.querySelector('#error-profile');
 
 
 
-if(errorProfile !== undefined){
+if(errorProfile !== null){
   toastr.error("<strong>Tolong lengkapi profil anda</strong>", "", {
      timeOut: 0,
      positionClass: "toast-bottom-right",

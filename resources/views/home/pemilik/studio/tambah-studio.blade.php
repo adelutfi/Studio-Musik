@@ -65,6 +65,7 @@
                                 <div class="custom-file">
                                         <input type="file" class="custom-file-input" accept="image/jpeg,image/png,image/jpg">
                                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                        <small>Gambar Maksimal 2 MB</small>
                                     </div>
                                 </div>
                               </div>

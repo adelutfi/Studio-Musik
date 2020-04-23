@@ -61,6 +61,7 @@ Route::group(['prefix' => 'pemilik'], function(){
   Route::get('studio','Pemilik\StudioController@index')->name('pemilik.studio');
   Route::get('studio/tambah-studio','Pemilik\StudioController@tambah')->name('pemilik.tambah.studio');
   Route::post('logout','Auth\AuthUserController@logoutPemilik')->name('pemilik.logout');
-  Route::get('profil','Pemilik\HomeController@profil')->name('pemilik.profil');
-
+  Route::get('profil','Pemilik\ProfilController@index')->name('pemilik.profil');
+  Route::patch('profil/umum','Pemilik\ProfilController@updateProfil')->name('pemilik.update.profil');
+  Route::patch('profil/pribadi','Pemilik\ProfilController@updatePersonal')->name('pemilik.update.personal');
 });

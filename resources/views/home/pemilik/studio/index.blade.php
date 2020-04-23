@@ -16,7 +16,7 @@
         <h2 class="content-header-title float-left mb-0">Data Studio</h2>
       </div>
       <div class="col-6">
-        <button type="button" onclick="check({{Auth::user()->verifikasi_email ? true : false,Auth::user()->no_rek}})" name="button" class="float-right btn btn-info"><i class="feather icon-plus"></i> Tambah</button>
+        <button type="button" onclick="check({{Auth::user()->verifikasi_email != null ? "true" : "false" }} , {{ Auth::user()->no_rek != null ? "true" : "false" }})" name="button" class="float-right btn btn-info"><i class="feather icon-plus"></i> Tambah</button>
       </div>
     </div>
   </div>
@@ -50,8 +50,10 @@
 </section>
 
 <script>
+
   function check(email,profil){
-    if(profil === undefined){
+    console.log(email,profil);
+    if(!profil){
       Swal.fire({
            title: "Gagal!",
            text: "Silahkan Lengkapi Profil Anda!",
@@ -61,7 +63,7 @@
        })
     }
 
-    if(email === undefined){
+    if(!email){
       Swal.fire({
         title: "Gagal!",
         text: "Silahkan Verifikasi Email Anda!",
@@ -70,6 +72,12 @@
         buttonsStyling: !1
       })
     }
+
+    else {
+      window.location = 'studio/tambah-studio'
+    }
+
+
   }
 </script>
 
