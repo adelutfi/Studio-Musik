@@ -32,18 +32,32 @@
            <img class="card-img img-fluid mb-1" src="{{asset('public/'.$s->gambar)}}"
              alt="Card image cap">
            <h5 class="mt-1">{{$s->nama}}</h5>
-           <h6>{{$s->alamat}}</h6>
+           <div class="row">
+             <div class="col-md-6">
+               <h6>{{$s->alamat}}</h6>
+             </div>
+             @php($total = ceil($s->ratings->sum('nilai')/count($s->ratings)) )
+             <div class="col-md-6 text-warning">
+               @for($i = 0; $i < 5; $i++)
+                @if($total <= $i)
+                <i class="fa fa-star-o fa-lg"></i>
+                @else
+                <i class="fa fa-star fa-lg"></i>
+                @endif
+               @endfor
+             </div>
+           </div>
            <hr class="my-1">
-           <div class="d-flex justify-content-between mt-2">
+           <div class="d-flex">
+             @if($s->status)
              <div class="float-left">
-               @if($s->status)
                <div class="badge badge-success badge-lg mr-1 mb-1">Diterima</div>
                @elseif($s->status == 0 && $s->status != null)
                <div class="badge badge-danger badge-lg mr-1 mb-1">Ditolak</div>
                @else
                <div class="badge badge-info badge-lg mr-1 mb-1">Menunggu</div>
-               @endif
              </div>
+             @endif
              <div class="float-right">
                <p class="font-medium-2 mb-0">12 June 2019</p>
                <p class="">Delivery Date</p>
