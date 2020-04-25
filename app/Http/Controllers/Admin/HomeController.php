@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Pemilik;
+use App\Studio;
+use App\Rating;
 
 class HomeController extends Controller
 {
@@ -21,5 +23,20 @@ class HomeController extends Controller
       $pemilik = Pemilik::orderBy('id', 'DESC')->get();
   		return view('home.admin.data-pemilik', compact('pemilik'));
   	}
+
+  	public function studio(){
+      $studio = Studio::orderBy('id', 'DESC')->get();
+  		return view('home.admin.data-studio', compact('studio'));
+  	}
+
+    public function terimaStudio(Request $request, Studio $studio){
+      $studio->update([ 'status' => 1 ]);
+      Rating::create([
+        'id_studio' => $studio->id,
+        'nilai' => $request->rating
+      ]);
+
+      return redirect()->back()->with('message','Berhasil');
+    }
 
 }

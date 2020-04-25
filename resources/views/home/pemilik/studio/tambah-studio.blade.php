@@ -22,14 +22,15 @@
   <div class="card">
     <div class="card-content">
       <div class="card-body">
-          <form class="form form-vertical">
+          <form class="form form-vertical" action="{{route('pemilik.simpan.studio')}}" method="post" enctype="multipart/form-data">
+            @csrf
               <div class="form-body">
                   <div class="row">
                       <div class="col-12">
                           <div class="form-group">
                               <label for="first-name-icon"><h4>Nama Studio</h4></label>
                               <div class="position-relative has-icon-left">
-                                  <input type="text" id="first-name-icon" class="form-control form-control-lg" name="nama" placeholder="">
+                                  <input type="text" class="form-control form-control-lg" name="nama" placeholder="" required>
                                   <div class="form-control-position">
                                   <i class="feather icon-bookmark"></i>
                                 </div>
@@ -40,7 +41,7 @@
                           <div class="form-group">
                               <label for="first-name-icon"><h4>Alamat</h4></label>
                               <div class="position-relative has-icon-left">
-                                  <textarea class="form-control form-control-lg" name="nama" rows="4" placeholder=""></textarea>
+                                  <textarea class="form-control form-control-lg" name="alamat" rows="4" placeholder="" required></textarea>
                                   <div class="form-control-position">
                                   <i class="feather icon-map-pin"></i>
                                 </div>
@@ -51,7 +52,7 @@
                           <div class="form-group">
                               <label for="first-name-icon"><h4>Deskripsi</h4></label>
                               <div class="position-relative has-icon-left">
-                                  <textarea class="form-control form-control-lg" name="nama" rows="10" placeholder=""></textarea>
+                                  <textarea class="form-control form-control-lg" name="deskripsi" rows="10" placeholder="" required></textarea>
                                   <div class="form-control-position">
                                   <i class="feather icon-book-open"></i>
                                 </div>
@@ -63,7 +64,7 @@
                               <label for="first-name-icon"><h4>Gambar</h4></label>
                               <div class="position-relative has-icon-left">
                                 <div class="custom-file">
-                                        <input type="file" class="custom-file-input" accept="image/jpeg,image/png,image/jpg">
+                                        <input type="file" class="custom-file-input" name="gambar" accept="image/jpeg,image/png,image/jpg" required>
                                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                         <small>Gambar Maksimal 2 MB</small>
                                     </div>

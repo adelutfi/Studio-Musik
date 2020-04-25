@@ -29,4 +29,9 @@
 <script src="{{ asset('public/assets/studio/js/scripts/pages/dashboard-ecommerce.min.js')}}"></script>
 <script src="{{ asset('public/assets/studio/js/scripts/datatables/datatable.min.js')}}"></script>
 <script src="{{ asset('public/assets/studio/js/toast-validasi.js')}}"></script>
+<script>
+$(':radio').change(function() {
+console.log('New star rating: ' + this.value);
+});
+</script>
 <!-- END: Page JS-->

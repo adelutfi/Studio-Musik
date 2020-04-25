@@ -19,7 +19,7 @@ class CreateStudioTable extends Migration
             $table->string('gambar');
             $table->text('alamat');
             $table->text('deskripsi');
-            $table->boolean('status')->default(null);
+            $table->boolean('status')->nullable();
             $table->bigInteger('id_pemelik')->unsigned();
             $table->timestamp('di_buat')->useCurrent();
             $table->timestamp('di_ubah')->useCurrent();

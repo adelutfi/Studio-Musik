@@ -23,19 +23,26 @@
 </div>
 <section id="basic-examples">
   <div class="row match-height">
+
+    @foreach($studio as $s)
     <div class="col-xl-4 col-md-6 col-sm-6">
      <div class="card">
        <div class="card-content">
          <div class="card-body">
-           <img class="card-img img-fluid mb-1" src="{{asset('public/images/studio/studio-7.jpeg')}}"
+           <img class="card-img img-fluid mb-1" src="{{asset('public/'.$s->gambar)}}"
              alt="Card image cap">
-           <h5 class="mt-1">Vuexy Admin</h5>
-           <p class="card-text">By Pixinvent Creative Studio</p>
+           <h5 class="mt-1">{{$s->nama}}</h5>
+           <h6>{{$s->alamat}}</h6>
            <hr class="my-1">
            <div class="d-flex justify-content-between mt-2">
              <div class="float-left">
-               <p class="font-medium-2 mb-0">$ 4785.78</p>
-               <p class="">Income</p>
+               @if($s->status)
+               <div class="badge badge-success badge-lg mr-1 mb-1">Diterima</div>
+               @elseif($s->status == 0 && $s->status != null)
+               <div class="badge badge-danger badge-lg mr-1 mb-1">Ditolak</div>
+               @else
+               <div class="badge badge-info badge-lg mr-1 mb-1">Menunggu</div>
+               @endif
              </div>
              <div class="float-right">
                <p class="font-medium-2 mb-0">12 June 2019</p>
@@ -46,6 +53,8 @@
        </div>
      </div>
    </div>
+    @endforeach
+
   </div>
 </section>
 

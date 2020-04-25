@@ -58,7 +58,7 @@
               <div class="user-nav d-sm-flex d-none">
                 <span class="user-name text-bold-600">{{Auth::user()->nama}}</span>
                   <span class="user-status">Admin</span>
-                </div><span><img class="round" src="{{ asset('public/assets/studio/images/boy.png')}}" alt="avatar" height="40" width="40"></span></a>
+                </div><span><img class="round" src="{{ asset('public/gambar/foto.png')}}" alt="avatar" height="40" width="40"></span></a>
                 <div class="dropdown-menu dropdown-menu-right">
                   <a class="dropdown-item" href="page-user-profile.html"><i class="feather icon-user"></i> Edit Profile</a>
               <div class="dropdown-divider"></div>

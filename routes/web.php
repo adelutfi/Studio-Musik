@@ -44,6 +44,9 @@ Route::group(['prefix' => 'admin'], function(){
     Route::post('login','Admin\AuthAdminController@login')->name('admin.to.login');
     Route::get('/beranda','Admin\HomeController@beranda')->name('admin.beranda');
     Route::get('/pemilik','Admin\HomeController@pemilik')->name('admin.pemilik');
+    Route::get('/studio','Admin\HomeController@studio')->name('admin.studio');
+    Route::patch('/studio/{studio}','Admin\HomeController@terimaStudio')->name('admin.studio.terima');
+
     Route::post('logout','Admin\AuthAdminController@logout')->name('admin.logout');
 });
 
@@ -59,7 +62,8 @@ Route::group(['prefix' => '/'], function(){
 Route::group(['prefix' => 'pemilik'], function(){
   Route::get('beranda','Pemilik\HomeController@beranda')->name('pemilik.beranda');
   Route::get('studio','Pemilik\StudioController@index')->name('pemilik.studio');
-  Route::get('studio/tambah-studio','Pemilik\StudioController@tambah')->name('pemilik.tambah.studio');
+  Route::get('studio/tambah-studio','Pemilik\StudioController@create')->name('pemilik.tambah.studio');
+  Route::post('studio/tambah-studio','Pemilik\StudioController@store')->name('pemilik.simpan.studio');
   Route::post('logout','Auth\AuthUserController@logoutPemilik')->name('pemilik.logout');
   Route::get('profil','Pemilik\ProfilController@index')->name('pemilik.profil');
   Route::patch('profil/umum','Pemilik\ProfilController@updateProfil')->name('pemilik.update.profil');

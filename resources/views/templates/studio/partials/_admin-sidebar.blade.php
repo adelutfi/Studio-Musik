@@ -28,8 +28,8 @@
           <span class="menu-title" data-i18n="Dashboard">Penyewa</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a href="index.html">
+      <li class="@if(Request::is('admin/studio')) active @endif nav-item">
+        <a href="{{route('admin.studio')}}">
           <i class="feather icon-home"></i>
           <span class="menu-title" data-i18n="Dashboard">Studio</span>
         </a>
