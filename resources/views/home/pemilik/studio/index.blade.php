@@ -36,6 +36,7 @@
              <div class="col-md-6">
                <h6>{{$s->alamat}}</h6>
              </div>
+             @if($s->ratings)
              @php($total = ceil($s->ratings->sum('nilai')/count($s->ratings)) )
              <div class="col-md-6 text-warning">
                @for($i = 0; $i < 5; $i++)
@@ -46,6 +47,7 @@
                 @endif
                @endfor
              </div>
+             @endif
            </div>
            <hr class="my-1">
            <div class="d-flex justify-content-between">
