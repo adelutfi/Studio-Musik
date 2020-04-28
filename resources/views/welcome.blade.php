@@ -113,11 +113,11 @@
          <div class="row">
            @foreach($studio as $s)
            @php($total = ceil($s->ratings->sum('nilai')/count($s->ratings)) )
-             <div class="col-lg-3 col-md-6 col-12">
+             <div class="col-lg-4 col-md-6 col-12">
                  <div class="single-blog-item">
                      <!-- single blog item -->
                      <div class="thumb">
-                         <img src="{{asset('public/'.$s->gambar)}}" alt="blog single image">
+                         <img src="{{asset('public/'.$s->gambar)}}" width="350" height="300" alt="blog single image">
                      </div>
                      <div class="content">
                          <span class="date">
@@ -130,7 +130,7 @@
                           @endfor
                          </span>
                          <a href="{{route('detail.studio', $s)}}">
-                             <h3 class="title">{{$s->nama}}</h3>
+                             <h5 class="title">{{$s->nama}}</h5>
                          </a>
                          <p>{{str_limit($s->alamat,20,'....')}}</p>
                          <a href="{{route('detail.studio', $s)}}" class="readmore">Selengkapnya  <i class="fab fa-icon-arrow-right"></i> </a>

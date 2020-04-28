@@ -29,16 +29,17 @@
      <div class="card shadow-lg">
        <div class="card-content">
          <div class="card-body">
-           <img class="card-img img-fluid mb-1" src="{{asset('public/'.$s->gambar)}}"
-             alt="Card image cap">
-           <h5 class="mt-1">{{$s->nama}}</h5>
-           <div class="row">
-             <div class="col-md-6">
-               <h6>{{$s->alamat}}</h6>
+           <img class="card-img mb-1" src="{{asset('public/'.$s->gambar)}}"
+             alt="Card image cap" width="200" height="200">
+           <h5 class="mt-1 text-center"><b>{{$s->nama}}</b></h5>
+           <div class="row mt-2 mb-1">
+             <div class="col-md-12">
+               <h6>{{str_limit($s->alamat, 50, '....')}}</h6>
              </div>
-             @if($s->ratings)
+             
+             @if(count($s->ratings) > 0) 
              @php($total = ceil($s->ratings->sum('nilai')/count($s->ratings)) )
-             <div class="col-md-6 text-warning">
+             <div class="col-md-6 text-warning mt-2">
                @for($i = 0; $i < 5; $i++)
                 @if($total <= $i)
                 <i class="fa fa-star-o fa-lg"></i>
