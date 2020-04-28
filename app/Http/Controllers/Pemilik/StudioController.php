@@ -15,7 +15,7 @@ class StudioController extends Controller
     }
 
     public function index(){
-      $studio = Studio::orderBy('id','DESC')->where('id_pemelik',Auth::user()->id)->get();
+      $studio = Studio::orderBy('id','DESC')->where('id_pemilik',Auth::user()->id)->get();
 
       return view('home.pemilik.studio.index', compact('studio'));
     }
@@ -53,7 +53,7 @@ class StudioController extends Controller
         'alamat' => $request->alamat,
         'deskripsi' => $request->deskripsi,
         'gambar' => $gambar,
-        'id_pemelik' => Auth::user()->id
+        'id_pemilik' => Auth::user()->id
       ]);
 
       return redirect()->route('pemilik.studio')->with('message','Studio berhasil ditambahkan, Tunggu konfirmasi dari admin');
