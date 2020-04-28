@@ -28,12 +28,9 @@
                                     <div class="left">
                                         <div class="img">
                                             <img class="img-fluid" src="{{asset('public/'.$r->gambar)}}" alt="">
-                                            <!-- <a class="venobox" data-vbtype="video" data-autoplay="true" href="https://www.youtube.com/watch?v=R-1wBk3H2LI">
-                                                <i class="fas fa-play"></i>
-                                            </a> -->
                                         </div>
                                         <div class="text">
-                                            <a href="{{url('detail-studio')}}">
+                                            <a href="{{route('detail.studio', $r)}}">
                                             <h4 class="secondaryTitle">
                                                 {{$r->nama}}
                                             </h4>

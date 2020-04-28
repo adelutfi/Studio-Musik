@@ -8,7 +8,7 @@ use App\Studio;
 class DataStudioController extends Controller
 {
     public function index(){
-      $studio = Studio::where('status',1)->limit(3)->get();
+      $studio = Studio::where('status',1)->orderBy('id','DESC')->limit(3)->get();
       $rating = [];
       $semuaStudio = Studio::all();
       foreach ($semuaStudio as $data) {
