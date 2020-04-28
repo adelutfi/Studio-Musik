@@ -26,7 +26,8 @@
                     <div class="thumb">
                         <img src="{{asset('public/images/studio/studio-5.jpeg')}}" height="500px" width="800px" alt="blog detials image">
                     </div>
-                    <h4 class="title">STUDIO MUSIK REBO STAR</h4>
+                    
+                    <h4 class="title">{{$studio->nama}}</h4>
                     <!-- <ul class="post-meta">
                         <li><i class="fas fa-clock"></i> Aug 21,2018</li>
                         <li><a href="#"><i class="fas fa-tags"></i> Painting</a></li>

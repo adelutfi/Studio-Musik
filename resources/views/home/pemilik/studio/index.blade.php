@@ -26,7 +26,7 @@
 
     @foreach($studio as $s)
     <div class="col-xl-4 col-md-6 col-sm-6">
-     <div class="card">
+     <div class="card shadow-lg">
        <div class="card-content">
          <div class="card-body">
            <img class="card-img img-fluid mb-1" src="{{asset('public/'.$s->gambar)}}"
@@ -48,19 +48,19 @@
              </div>
            </div>
            <hr class="my-1">
-           <div class="d-flex">
-             @if($s->status)
+           <div class="d-flex justify-content-between">
              <div class="float-left">
+               @if($s->status)
                <div class="badge badge-success badge-lg mr-1 mb-1">Diterima</div>
                @elseif($s->status == 0 && $s->status != null)
                <div class="badge badge-danger badge-lg mr-1 mb-1">Ditolak</div>
                @else
                <div class="badge badge-info badge-lg mr-1 mb-1">Menunggu</div>
+               @endif
              </div>
-             @endif
-             <div class="float-right">
-               <p class="font-medium-2 mb-0">12 June 2019</p>
-               <p class="">Delivery Date</p>
+             <div class="float-right mt-2">
+               <button type="button" class="btn btn-icon btn-icon rounded-circle btn-warning waves-effect waves-light"><i class="feather icon-edit"></i></button>
+               <button type="button" class="btn btn-icon btn-icon rounded-circle btn-danger waves-effect waves-light"><i class="feather icon-trash"></i></button>
              </div>
            </div>
          </div>

@@ -96,87 +96,51 @@
     <!-- Hero Area End -->
 
     <!-- Brand Member Section Start -->
-      <section class="member">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2 class="title">
-                            STUDIO MUSIK
-                        </h2>
-                        <p class="subtitle">
-                            pilih studio musik yang anda inginkan
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-3">
-                    <div class="memberBox">
-                        <div class="img">
-                            <img class="img-fluid" src="{{asset('public/images/studio/studio-4.jpeg')}}" alt="">
-                        </div>
-                        <div class="info">
-                            <a href="{{url('detail-studio')}}"><h3 class="title">
-                                MIGHT STUDIO
-                            </h3></a>
-                            <p>
-                                Jalan Professor Muhammad Yamin, Kudaile, Kec. Slawi, Tegal, Jawa Tengah 52413.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="memberBox">
-                        <div class="img">
-                            <img class="img-fluid" src="{{asset('public/images/studio/studio-5.jpeg')}}" alt="">
-                        </div>
-                        <div class="info">
-                            <a href="{{url('detail-studio')}}"><h3 class="title">
-                                STUDIO 10 (JI-SONG)
-                            </h3></a>
-                            <p>
-                                Jalan Werkudoro No.118, Pengabean, Slerok, Kec. Tegal Tim., Kota Tegal, Jawa Tengah 52192
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="memberBox">
-                        <div class="img">
-                            <img class="img-fluid" src="{{asset('public/images/studio/studio-6.jpeg')}}" alt="">
-                        </div>
-                        <div class="info">
-                            <a href="{{url('detail-studio')}}"><h3 class="title">
-                                KAMARUNGSEB STUDIO
-                            </h3></a>
-                            <p>
-                                Jalan Kaloran No.9, Mangkukusuman, Kec. Tegal Tim., Kota Tegal, Jawa Tengah 52131
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="memberBox">
-                        <div class="img">
-                            <img class="img-fluid" src="{{asset('public/images/studio/studio-7.jpeg')}}" alt="">
-                        </div>
-                        <div class="info">
-                            <a href="{{url('detail-studio')}}"><h3 class="title">
-                                VILLA MUSIK STUDIO
-                            </h3></a>
-                            <p>
-                                Jalan Pala Raya, Griya Mejasem Baru, Mejasem Bar., Kec. Kramat, Tegal, Jawa Tengah 52181
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-5">
-          <button class="submit" onclick="window.location='{{url('semua-studio')}}'" type="submit">Lihat Selengkapnya</button>
-        </div>
-    </section>
+    <section class="blog-area blog-bg" id="blog">
+     <div class="container">
+         <div class="row">
+             <div class="col-12">
+                 <div class="section-title">
+                     <h2 class="title">
+                         Latest News
+                     </h2>
+                     <p class="subtitle">
+                         New Album Available Everywhere
+                     </p>
+                 </div>
+             </div>
+         </div>
+         <div class="row">
+           @foreach($studio as $s)
+           @php($total = ceil($s->ratings->sum('nilai')/count($s->ratings)) )
+             <div class="col-lg-3 col-md-6 col-12">
+                 <div class="single-blog-item">
+                     <!-- single blog item -->
+                     <div class="thumb">
+                         <img src="{{asset('public/'.$s->gambar)}}" alt="blog single image">
+                     </div>
+                     <div class="content">
+                         <span class="date">
+                           @for($i = 0; $i < 5; $i++)
+                            @if($total <= $i)
+                             <span class="fa fa-star fa-xs"></span>
+                            @else
+                           <span class="fa fa-star checked fa-xs"></span>
+                          @endif
+                          @endfor
+                         </span>
+                         <a href="{{route('detail.studio', $s)}}">
+                             <h3 class="title">{{$s->nama}}</h3>
+                         </a>
+                         <p>{{str_limit($s->alamat,20,'....')}}</p>
+                         <a href="{{route('detail.studio', $s)}}" class="readmore">Selengkapnya  <i class="fab fa-icon-arrow-right"></i> </a>
+                     </div>
+                 </div>
+             </div>
+             @endforeach
+         </div>
+     </div>
+ </section>
     <!-- Brand Member Section End -->
      <!-- Album Area Start -->
      <section class="member">

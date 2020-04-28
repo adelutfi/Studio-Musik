@@ -12,18 +12,14 @@
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','DataStudioController@index')->name('welcome');
 
 Route::get('/studio', function () {
     return view('home.studio.beranda');
 })->middleware('auth:pemilik');
 
 
-Route::get('/detail-studio', function () {
-    return view('detail-studio');
-});
+Route::get('/detail/{studio}','DataStudioController@show')->name('detail.studio');
 
 Route::get('/semua-studio', function () {
     return view('studio');
