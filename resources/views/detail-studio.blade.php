@@ -24,10 +24,22 @@
             <div class="col-lg-8">
                 <div class="blog-details-content"><!-- blog details content  -->
                     <div class="thumb">
-                        <img src="{{asset('public/images/studio/studio-5.jpeg')}}" height="500px" width="800px" alt="blog detials image">
+                        <img src="{{asset('public/'.$studio->gambar)}}" class="img-fluid" height="400px" width="800px" alt="blog detials image">
                     </div>
-                    
-                    <h4 class="title">{{$studio->nama}}</h4>
+                    <div class="row">
+                      <div class="col-md-9 col-6">
+                        <h4 class="title">{{$studio->nama}}</h4>
+                      </div>
+                      <div class="col-md-3 col-6">
+                        <span class="fa fa-star fa-lg checked"></span>
+                        <span class="fa fa-star fa-lg checked"></span>
+                        <span class="fa fa-star fa-lg checked"></span>
+                        <span class="fa fa-star fa-lg"></span>
+                        <span class="fa fa-star fa-lg"></span>
+                      </div>
+                    </div>
+
+
                     <!-- <ul class="post-meta">
                         <li><i class="fas fa-clock"></i> Aug 21,2018</li>
                         <li><a href="#"><i class="fas fa-tags"></i> Painting</a></li>
@@ -36,24 +48,12 @@
                     <div class="entry-content">
                         <blockquote class="blockquote">
                             <p>Keterangan : <p>
-                            Overview -> Alat band digunakan sebagai pelengkap kemegahan sound yang disajikan dalam suatu acara. <p>
-                            Harga main -> (Rp) 50.0000 <p>
-                            Studio buka -> <p>
-                            Kamis 10 pagi - 11:30 malam <p> Jumat 10 pagi - 11:30 malam <p>
-                            Sabtu 10 pagi - 11:30 malam <p> Minggu 10 pagi - 11:30 malam <p>
-                            Senin 10 pagi - 11:30 malam <p>Selasa 10 pagi - 11:30 malam <p>
-                            Rabu 10 pagi - 11:30 malam <p>
-                            Harga Paket Sewa Alat -> (Rp) 9.000.000 <p>
-                            Alat band yang disewakan mencakup -> 1 set drum (St. Fe), 2 unit amplifier gitar RG-30, 1 unit amplifier bass RB-90, 2 unit gitar (Rockwell, Fender), 1 unit bass (Rockwell, Warwick), 1 mic Shure <p>
-                            Kondisi -> Baru,. </p>
-                            <span class="author-name">- Jalan Mangkukusuman, Tegal Timur, Tegal City, Central Java 52131.</span>
+                              <p>{{$studio->deskripsi}}</p>
+                            <span class="author-name"><i class="fas fa-map-marker-alt mr-3"></i>{{$studio->alamat}}</span>
+                            <span class="author-name"><i class="fas fa-phone mr-3"></i>{{$studio->pemilik->no_telp}}</span>
                         </blockquote>
                         <div>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
+
                       </div>
                         <!-- <p>Sing long her way size. Waited end mutual missed myself the little sister one. So in pointed or chicken cheered neither spirits invited. Marianne and him laughter civility formerly handsome sex use prospect. Hence we doors is given rapid scale above am. Difficult ye mr delivered behaviour by an. If their woman could do wound on. You folly taste hoped their above are and but. </p> -->
                     </div>

@@ -19,4 +19,8 @@ class Studio extends Model
       return $this->hasMany(Rating::class,'id_studio','id');
     }
 
+    public function pemilik(){
+      return $this->belongsTo(Pemilik::class,'id_pemilik','id');
+    }
+
 }

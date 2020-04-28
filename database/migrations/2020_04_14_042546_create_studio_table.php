@@ -20,11 +20,11 @@ class CreateStudioTable extends Migration
             $table->text('alamat');
             $table->text('deskripsi');
             $table->boolean('status')->nullable();
-            $table->bigInteger('id_pemelik')->unsigned();
+            $table->bigInteger('id_pemilik')->unsigned();
             $table->timestamp('di_buat')->useCurrent();
             $table->timestamp('di_ubah')->useCurrent();
 
-            $table->foreign('id_pemelik')->references('id')->on('pemilik')->onDelete('cascade');
+            $table->foreign('id_pemilik')->references('id')->on('pemilik')->onDelete('cascade');
         });
     }
 

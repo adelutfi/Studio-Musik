@@ -21,11 +21,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="misicSliderClass owl-carousel">
+                          @foreach($rating as $r)
+                          @php($totalRating = ceil($r->ratings->sum('nilai')/count($r->ratings)) )
                             <div class="item">
                                 <div class="contentBox">
                                     <div class="left">
                                         <div class="img">
-                                            <img class="img-fluid" src="{{asset('public/images/studio/studio-1.jpeg')}}" alt="">
+                                            <img class="img-fluid" src="{{asset('public/'.$r->gambar)}}" alt="">
                                             <!-- <a class="venobox" data-vbtype="video" data-autoplay="true" href="https://www.youtube.com/watch?v=R-1wBk3H2LI">
                                                 <i class="fas fa-play"></i>
                                             </a> -->
@@ -33,60 +35,24 @@
                                         <div class="text">
                                             <a href="{{url('detail-studio')}}">
                                             <h4 class="secondaryTitle">
-                                                ACORD MUSIC STUDIO TEGAL
+                                                {{$r->nama}}
                                             </h4>
+                                            @for($i = 0; $i < 5; $i++)
+                                             @if($totalRating <= $i)
+                                              <span class="fa fa-star fa-xs"></span>
+                                             @else
+                                            <span class="fa fa-star checked fa-xs"></span>
+                                           @endif
+                                           @endfor
                                             </a>
                                             <p>
-                                                Jalan Sumbodro Gg. Asri lll, Slerok, Tegal Timur, Slerok, Tegal, Kota Tegal, Jawa Tengah 52124
+                                                {{$r->alamat}}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="contentBox">
-                                    <div class="left">
-                                        <div class="img">
-                                            <img class="img-fluid" src="{{asset('public/images/studio/studio-2.jpeg')}}" alt="">
-                                            <!-- <a class="venobox" data-vbtype="video" data-autoplay="true" href="https://www.youtube.com/watch?v=R-1wBk3H2LI">
-                                                <i class="fas fa-play"></i>
-                                            </a> -->
-                                        </div>
-                                        <div class="text">
-                                            <a href="{{url('detail-studio')}}">
-                                            <h4 class="secondaryTitle">
-                                                4GIVENSTUDIO MUSIC TEGAL
-                                            </h4>
-                                            </a>
-                                            <p>
-                                                Jalan Werkudoro No.140 RT/RW 004/006, Slerok, Kec. Tegal Tim., Kota Tegal, Jawa Tengah 52125
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="contentBox">
-                                    <div class="left">
-                                        <div class="img">
-                                            <img class="img-fluid" src="{{asset('public/images/studio/studio-3.jpeg')}}" alt="">
-                                            <!-- <a class="venobox" data-vbtype="video" data-autoplay="true" href="https://www.youtube.com/watch?v=R-1wBk3H2LI">
-                                                <i class="fas fa-play"></i>
-                                            </a> -->
-                                        </div>
-                                        <div class="text">
-                                            <a href="{{url('detail-studio')}}">
-                                            <h4 class="secondaryTitle">
-                                                PURWA CARAKA MUSIC STUDIO
-                                            </h4>
-                                            </a>
-                                            <p>
-                                                Jalan Jalak Barat No.69, Pekauman, Kec. Tegal Bar., Kota Tegal, Jawa Tengah 52125
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -133,7 +99,10 @@
                              <h5 class="title">{{$s->nama}}</h5>
                          </a>
                          <p>{{str_limit($s->alamat,20,'....')}}</p>
-                         <a href="{{route('detail.studio', $s)}}" class="readmore">Selengkapnya  <i class="fab fa-icon-arrow-right"></i> </a>
+                         <a href="{{route('detail.studio', $s)}}" class="readmore">
+                           <div class="float-right">
+                            <i class="fas fa-arrow-right fa-lg text-info"></i> </a>
+                            </div>
                      </div>
                  </div>
              </div>
