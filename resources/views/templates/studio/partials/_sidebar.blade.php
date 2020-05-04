@@ -27,6 +27,22 @@
           <span class="menu-title">Studio</span>
         </a>
       </li>
+      <li class=" nav-item"><a href="#"><i class="feather icon-file-text"></i><span class="menu-title" data-i18n="Icons">Penyewaan</span></a>
+          <ul class="menu-content">
+            <li class="@if(Request::is('pemilik/penyewaan/sewa-tempat') || Request::is('pemilik/penyewaan/sewa-tempat/*') ) active @endif">
+              <a href="{{route('pemilik.sewa-tempat')}}">
+              <i class="feather icon-home"></i>
+              <span class="menu-item" data-i18n="Feather">Sewa Tempat</span>
+              </a>
+            </li>
+            <li>
+              <a href="icons-font-awesome.html">
+                <i class="feather icon-truck"></i>
+                <span class="menu-item" data-i18n="Font Awesome">Sewa Alat</span>
+              </a>
+            </li>
+          </ul>
+        </li>
     </ul>
   </div>
 </div>

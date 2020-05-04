@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Studio;
+use Storage;
 
 class StudioController extends Controller
 {
@@ -57,5 +58,44 @@ class StudioController extends Controller
       ]);
 
       return redirect()->route('pemilik.studio')->with('message','Studio berhasil ditambahkan, Tunggu konfirmasi dari admin');
+    }
+
+    public function edit(Studio $studio){
+      return view('home.pemilik.studio.edit-studio', compact('studio'));
+    }
+
+    public function update(Request $request, Studio $studio){
+      $rule = [
+        'nama' => 'required|min:3',
+        'alamat' => 'required|min:5',
+        'gambar' => 'image|max:2048|mimes:jpg,png,jpeg',
+        'deskripsi' => 'required|min:5'
+      ];
+
+      $message = [
+        'required' => ':attribute tidak boleh kosong.',
+        'image.max' => 'Gambar Maksimal 2 MB',
+        'min' => 'terlaku pendek',
+        'max' => 'dengan benar'
+      ];
+
+      $this->validate($request, $rule, $message);
+
+      $gambar = $studio->gambar;
+      if($request->gambar){
+        if (Storage::exists($gambar)) {
+           Storage::delete($gambar);
+       }
+      $gambar = $request->file('gambar')->store('images/studio');
+      }
+
+      $studio->update([
+        'nama' => $request->nama,
+        'alamat' => $request->alamat,
+        'deskripsi' => $request->deskripsi,
+        'gambar' => $gambar
+      ]);
+
+      return redirect()->route('pemilik.studio')->with('message','Studio berhasil diubah');
     }
 }

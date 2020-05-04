@@ -16,6 +16,8 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/tables/datatable/datatables.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/extensions/sweetalert2.min.css')}}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/studio/vendors/css/forms/select/select2.min.css')}}">
+
   <!-- END: Vendor CSS-->
 
   <!-- BEGIN: Theme CSS-->

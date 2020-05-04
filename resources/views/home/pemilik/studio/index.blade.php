@@ -36,8 +36,8 @@
              <div class="col-md-12">
                <h6>{{str_limit($s->alamat, 50, '....')}}</h6>
              </div>
-             
-             @if(count($s->ratings) > 0) 
+
+             @if(count($s->ratings) > 0)
              @php($total = ceil($s->ratings->sum('nilai')/count($s->ratings)) )
              <div class="col-md-6 text-warning mt-2">
                @for($i = 0; $i < 5; $i++)
@@ -62,7 +62,7 @@
                @endif
              </div>
              <div class="float-right mt-2">
-               <button type="button" class="btn btn-icon btn-icon rounded-circle btn-warning waves-effect waves-light"><i class="feather icon-edit"></i></button>
+               <button type="button" onclick="window.location='{{route('pemilik.edit.studio', $s)}}'" class="btn btn-icon btn-icon rounded-circle btn-warning waves-effect waves-light"><i class="feather icon-edit"></i></button>
                <button type="button" class="btn btn-icon btn-icon rounded-circle btn-danger waves-effect waves-light"><i class="feather icon-trash"></i></button>
              </div>
            </div>
