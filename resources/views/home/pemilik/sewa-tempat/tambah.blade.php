@@ -27,7 +27,8 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form">
+                        <form class="form" method="post" action="{{route('pemilik.simpan.sewa-tempat')}}">
+                            @csrf
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-12">
@@ -43,7 +44,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-label-group input-group">
-                                            <input type="email" id="harga" class="form-control form-control-lg" name="harga" placeholder="Harga">
+                                            <input type="number" id="harga" class="form-control form-control-lg" name="harga" placeholder="Harga">
                                             <div class="input-group-append">
                                             <span class="input-group-text" id="harga"> / Jam</span>
                                           </div>
@@ -59,21 +60,56 @@
                                             <textarea name="keterangan" class="form-control form-control-lg" rows="4" cols="60" placeholder="Keterangan"></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-12">
-                                      <label for="">Jadwal</label>
-                                        <div class="form-group">
-                                          <select class="select2 form-control form-control-lg text-dark" multiple="multiple">
-                                            <option value="square" class=""> <span class="text-dark">Senin</span> </option>
-                                            <option value="square" class="">Selasa</option>
-                                            <option value="square" class="">Rabu</option>
-                                            <option value="square" class="">Kamis</option>
-                                            <option value="square" class="">Jum'at</option>
-                                            <option value="square" class="">Sabtu</option>
-                                            <option value="square" class="">Minggu</option>
+
+                                    <div class="col-12 text-center">
+                                    <h4>Jadwal</h4>
+                                    </div>
+
+
+                                <div class="row justify-content-center mt-2 mb-2">
+                                   @php($hari = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'])
+
+                                    @for($i = 0; $i < count($hari); $i++)
+                                     <div class="col-4">
+                                       <div class="form-label-group">
+                                        <div class="vs-checkbox-con vs-checkbox-success">
+                                        <input type="checkbox" id="jadwal" name="jadwal[]" data-id="{{$i}}" value="{{$hari[$i]}}">
+                                        <span class="vs-checkbox">
+                                          <span class="vs-checkbox--check">
+                                            <i class="vs-icon feather icon-check"></i>
+                                          </span>
+                                        </span>
+                                        <span class="text-dark">{{$hari[$i]}}</span>
+                                      </div>
+                                     </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-label-group">
+                                         <select class="form-control" id="jam-buka" data-id="{{$i}}" name="jam_buka[]" placeholder="Jam Buka" disabled="">
+                                            @for($hours = 6; $hours < 13; $hours++)
+                                                @for($min = 0; $min < 60; $min+=60)
+                                                <option value="{{str_pad($hours,2,'0',STR_PAD_LEFT)}}:{{str_pad($min,2,'0',STR_PAD_LEFT)}}">
+                                                {{str_pad($hours,2,'0',STR_PAD_LEFT)}}:{{str_pad($min,2,'0',STR_PAD_LEFT)}}</option>
+                                                @endfor
+                                            @endfor
                                           </select>
                                         </div>
                                     </div>
-
+                                    <div class="col-3">
+                                        <div class="form-label-group">
+                                            <select id="jam-tutup" data-id="{{$i}}" class="form-control" name="jam_tutup[]" placeholder="Jam Tutup" disabled="">
+                                             @for($hours = 12; $hours < 25; $hours++)
+                                                @for($min = 0; $min < 60; $min+=60)
+                                                <option value="{{str_pad($hours,2,'0',STR_PAD_LEFT)}}:{{str_pad($min,2,'0',STR_PAD_LEFT)}}">
+                                                {{str_pad($hours,2,'0',STR_PAD_LEFT)}}:{{str_pad($min,2,'0',STR_PAD_LEFT)}}
+                                            </option>
+                                                @endfor
+                                            @endfor
+                                            </select>
+                                        </div>
+                                    </div>
+                                    @endfor
+                                    </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
                                         <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button>
@@ -91,12 +127,31 @@
 
 @section('script')
 <script>
-  ! function(t, e, o) {
-    o(".select2").select2({
-       dropdownAutoWidth: !0,
-       width: "100%"
-   })
-  }(window, document, jQuery);
+    const jadwal = document.querySelectorAll('#jadwal');
+    const jamBuka = document.querySelectorAll('#jam-buka'); 
+    const jamTutup = document.querySelectorAll('#jam-tutup');
+
+    jadwal.forEach(j => {
+        // const id = this.dataset.id;
+        //  if (this.checked) {
+        //         jamTutup.forEach(t => t.dataset.id === id ? t.disabled = false : '' );
+        //         jamBuka.forEach(t => t.dataset.id === id ? t.disabled = false : '' );
+        //     }else{
+        //          jamTutup.forEach(t => t.dataset.id === id ? t.disabled = true : '' );
+        //         jamBuka.forEach(t => t.dataset.id === id ? t.disabled = true : '' );
+        //     }
+
+        j.addEventListener('change', function(){
+            const changeId = this.dataset.id;
+            if (this.checked) {
+                jamTutup.forEach(t => t.dataset.id === changeId ? t.disabled = false : '' );
+                jamBuka.forEach(t => t.dataset.id === changeId ? t.disabled = false : '' );
+            }else{
+                 jamTutup.forEach(t => t.dataset.id === changeId ? t.disabled = true : '' );
+                jamBuka.forEach(t => t.dataset.id === changeId ? t.disabled = true : '' );
+            }
+        })
+    });
 </script>
 
 @endsection

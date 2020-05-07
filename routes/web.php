@@ -64,6 +64,7 @@ Route::group(['prefix' => 'pemilik'], function(){
 
   Route::get('penyewaan/sewa-tempat','Pemilik\SewaTempatController@index')->name('pemilik.sewa-tempat');
   Route::get('penyewaan/sewa-tempat/tambah','Pemilik\SewaTempatController@create')->name('pemilik.tambah.sewa-tempat');
+  Route::post('penyewaan/sewa-tempat/tambah','Pemilik\SewaTempatController@store')->name('pemilik.simpan.sewa-tempat');
 
   Route::post('logout','Auth\AuthUserController@logoutPemilik')->name('pemilik.logout');
   Route::get('profil','Pemilik\ProfilController@index')->name('pemilik.profil');

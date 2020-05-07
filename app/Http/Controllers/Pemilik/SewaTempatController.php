@@ -22,4 +22,8 @@ class SewaTempatController extends Controller
       $studio = Studio::orderBy('id','DESC')->where('id_pemilik',Auth::user()->id)->where('status', 1)->get();
       return view('home.pemilik.sewa-tempat.tambah', compact('studio'));
     }
+
+    public function store(Request $request){
+      dd($request->all());
+    }
 }
