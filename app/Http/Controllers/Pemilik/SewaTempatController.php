@@ -24,6 +24,21 @@ class SewaTempatController extends Controller
     }
 
     public function store(Request $request){
+      $rule = [
+        'harga' => 'required|',
+        'foto' => 'image|max:1024|mimes:jpg,png,jpeg',
+        'alamat' => 'required|min:3'
+      ];
+
+      $message = [
+        'required' => ':attribute tidak boleh kosong.',
+        'min' => 'terlaku pendek',
+        'max' => 'dengan benar'
+      ];
+
+      $this->validate($request, $rule, $message);
+
       dd($request->all());
+
     }
 }
