@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Pemilik;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Studio;
+use App\SewaTempat;
 use Auth;
 
 class SewaTempatController extends Controller
@@ -15,30 +16,42 @@ class SewaTempatController extends Controller
     }
 
     public function index(){
-      return view('home.pemilik.sewa-tempat.index');
+      $sewaTempat = SewaTempat::orderBy('id', 'DESC')->get();
+      return view('home.pemilik.sewa-tempat.index',compact('sewaTempat'));
     }
 
     public function create(){
       $studio = Studio::orderBy('id','DESC')->where('id_pemilik',Auth::user()->id)->where('status', 1)->get();
+
       return view('home.pemilik.sewa-tempat.tambah', compact('studio'));
     }
 
     public function store(Request $request){
       $rule = [
         'harga' => 'required|',
-        'foto' => 'image|max:1024|mimes:jpg,png,jpeg',
-        'alamat' => 'required|min:3'
+        'jam_tutup.*' => 'required',
+        'jam_buka.*' => 'required',
+        'jam_jadwal.*' => 'required',
+        'jumlah_ruangan' => 'required',
+        'keterangan' => 'required'
       ];
 
       $message = [
         'required' => ':attribute tidak boleh kosong.',
-        'min' => 'terlaku pendek',
-        'max' => 'dengan benar'
       ];
 
       $this->validate($request, $rule, $message);
 
-      dd($request->all());
+      SewaTempat::create([
+        'id_studio' => $request->id_studio,
+        'harga' => $request->harga,
+        'jumlah_ruangan' => $request->jumlah_ruangan,
+        'keterangan' => $request->keterangan,
+        'jadwal' => implode(',',$request->jadwal),
+        'jam_buka' => implode(',',$request->jam_buka),
+        'jam_tutup' => implode(',',$request->jam_tutup),
+      ]);
 
+      return redirect()->route('pemilik.sewa-tempat');
     }
 }

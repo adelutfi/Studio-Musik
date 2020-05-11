@@ -33,10 +33,12 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-label-group">
-                                          <select class="form-control form-control-lg" name="id_studio" id="id_studio">
+                                          <select class="form-control form-control-lg" name="id_studio" id="id_studio" required>
                                             <option>Pilih Studio</option>
                                             @foreach($studio as $s)
+                                            @if(!$s->sewaTempat)
                                             <option value="{{$s->id}}">{{$s->nama}}</option>
+                                            @endif
                                             @endforeach
                                            </select>
                                             <label for="id_studio">Pilih Studio</label>
@@ -44,7 +46,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-label-group input-group">
-                                            <input type="number" id="harga" class="form-control form-control-lg" name="harga" placeholder="Harga">
+                                            <input type="tel" id="harga" maxlength="6" minlength="4" class="form-control form-control-lg" name="harga" placeholder="Harga" required>
                                             <div class="input-group-append">
                                             <span class="input-group-text" id="harga"> / Jam</span>
                                           </div>
@@ -52,7 +54,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-label-group">
-                                            <input type="number" id="jumlah_ruangan" class="form-control form-control-lg" name="jumlah_ruangan" placeholder="Jumlah Ruangan">
+                                            <input type="tel" id="jumlah_ruangan" maxlength="1" minlength="1" class="form-control form-control-lg" name="jumlah_ruangan" placeholder="Jumlah Ruangan" required>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -68,7 +70,6 @@
 
                                 <div class="row justify-content-center mt-2 mb-2">
                                    @php($hari = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'])
-
                                     @for($i = 0; $i < count($hari); $i++)
                                      <div class="col-4">
                                        <div class="form-label-group">
@@ -109,10 +110,25 @@
                                         </div>
                                     </div>
                                     @endfor
+                                    <div class="col-12 text-center mb-2 mt-2">
+                                    <h4>Alat Tambahan</h4>
                                     </div>
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
-                                        <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button>
+
+                                      <div class="col-4">
+                                        <input type="text" id="nama-alat" maxlength="1" minlength="1" class="form-control" name="nama_alat" placeholder="Nama Alat">
+                                      </div>
+                                      <div class="col-3">
+                                        <input type="tel" id="harga-alat" maxlength="1" minlength="1" class="form-control" name="harga_alat" placeholder="Harga Alat">
+                                      </div>
+                                      <div class="col-2 mb-3">
+                                        <button type="button" class="btn btn-success" name="button"> <i class="feather icon-plus"></i> </button>
+                                      </div>
+
+                                    </div>
+
+                                    <div class="col-12 text-center">
+                                        <button type="submit" class="btn btn-primary mr-1 mb-1 btn-lg">Simpan</button>
+                                        <!-- <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button> -->
                                     </div>
                                 </div>
                             </div>
@@ -128,18 +144,16 @@
 @section('script')
 <script>
     const jadwal = document.querySelectorAll('#jadwal');
-    const jamBuka = document.querySelectorAll('#jam-buka'); 
+    const jamBuka = document.querySelectorAll('#jam-buka');
     const jamTutup = document.querySelectorAll('#jam-tutup');
 
     jadwal.forEach(j => {
-        // const id = this.dataset.id;
-        //  if (this.checked) {
-        //         jamTutup.forEach(t => t.dataset.id === id ? t.disabled = false : '' );
-        //         jamBuka.forEach(t => t.dataset.id === id ? t.disabled = false : '' );
-        //     }else{
-        //          jamTutup.forEach(t => t.dataset.id === id ? t.disabled = true : '' );
-        //         jamBuka.forEach(t => t.dataset.id === id ? t.disabled = true : '' );
-        //     }
+        const id = j.dataset.id;
+        console.log(j.checked);
+        if (j.checked) {
+               jamTutup.forEach(t => t.dataset.id === id ? t.disabled = false : '' );
+               jamBuka.forEach(t => t.dataset.id === id ? t.disabled = false : '' );
+           }
 
         j.addEventListener('change', function(){
             const changeId = this.dataset.id;
@@ -150,7 +164,7 @@
                  jamTutup.forEach(t => t.dataset.id === changeId ? t.disabled = true : '' );
                 jamBuka.forEach(t => t.dataset.id === changeId ? t.disabled = true : '' );
             }
-        })
+        });
     });
 </script>
 

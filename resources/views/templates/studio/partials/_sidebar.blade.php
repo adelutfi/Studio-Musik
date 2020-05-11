@@ -31,7 +31,7 @@
           <ul class="menu-content">
             <li class="@if(Request::is('pemilik/penyewaan/sewa-tempat') || Request::is('pemilik/penyewaan/sewa-tempat/*') ) active @endif">
               <a href="{{route('pemilik.sewa-tempat')}}">
-              <i class="feather icon-home"></i>
+              <i class="feather icon-music"></i>
               <span class="menu-item" data-i18n="Feather">Sewa Tempat</span>
               </a>
             </li>

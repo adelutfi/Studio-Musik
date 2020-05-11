@@ -37,12 +37,31 @@
                                         <th>Harga</th>
                                         <th>Jum. Ruangan</th>
                                         <th>Jadwal</th>
-                                        <th>Jam Buka/Tutup</th>
+
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                  @foreach($sewaTempat as $s)
+                                  <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$s->studio->nama}}</td>
+                                    <td>{{$s->harga}}</td>
+                                    <td>{{$s->jumlah_ruangan}}</td>
+                                    @php($jadwal = explode(',',$s->jadwal))
+                                    @php($jamBuka = explode(',',$s->jam_buka))
+                                    @php($jamTutup = explode(',',$s->jam_tutup))
+                                    <td>
+                                      @for($i = 0; $i < count($jadwal); $i ++)
+                                        {{$jadwal[$i]}} : {{$jamBuka[$i]}} / {{$jamTutup[$i]}}<br>
+                                      @endfor
+                                    </td>
+                                    <td class="text-center">
+                                      <button type="button" class="btn btn-warning btn-sm" name="button"> <i class="feather icon-edit"></i> </button>
+                                      <button type="button" class="btn btn-danger btn-sm" name="button"> <i class="feather icon-trash"></i> </button>
+                                    </td>
+                                  </tr>
+                                  @endforeach
                                 </tbody>
                             </table>
                         </div>

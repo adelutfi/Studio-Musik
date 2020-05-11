@@ -23,4 +23,8 @@ class Studio extends Model
       return $this->belongsTo(Pemilik::class,'id_pemilik','id');
     }
 
+    public function sewaTempat(){
+      return $this->hasMany(SewaTempat::class,'id_studio','id');
+    }
+
 }
