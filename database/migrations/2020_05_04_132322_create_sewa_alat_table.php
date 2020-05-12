@@ -16,7 +16,7 @@ class CreateSewaAlatTable extends Migration
         Schema::create('sewa_alat', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('id_studio')->unsigned();
-            $table->integer('harga')->length(6)->unsigned();
+            $table->integer('harga')->length(8)->unsigned();
             $table->text('keterangan');
             $table->string('jadwal');
             $table->timestamp('di_buat')->useCurrent();

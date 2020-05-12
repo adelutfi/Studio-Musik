@@ -51,6 +51,7 @@ Route::group(['prefix' => '/'], function(){
   Route::get('login','Auth\AuthUserController@showLogin')->name('login');
   Route::post('register','Auth\AuthUserController@register')->name('user.register');
   Route::post('login','Auth\AuthUserController@login')->name('user.login');
+  Route::post('logout','Auth\AuthUserController@logoutPenyewa')->name('penyewa.logout');
 });
 
 // Routing lingkup pemilik
@@ -65,6 +66,10 @@ Route::group(['prefix' => 'pemilik'], function(){
   Route::get('penyewaan/sewa-tempat','Pemilik\SewaTempatController@index')->name('pemilik.sewa-tempat');
   Route::get('penyewaan/sewa-tempat/tambah','Pemilik\SewaTempatController@create')->name('pemilik.tambah.sewa-tempat');
   Route::post('penyewaan/sewa-tempat/tambah','Pemilik\SewaTempatController@store')->name('pemilik.simpan.sewa-tempat');
+
+  Route::get('penyewaan/sewa-alat','Pemilik\SewaAlatController@index')->name('pemilik.sewa-alat');
+  Route::get('penyewaan/sewa-alat/tambah','Pemilik\SewaAlatController@create')->name('pemilik.tambah.sewa-alat');
+  Route::post('penyewaan/sewa-alat/tambah','Pemilik\SewaAlatController@store')->name('pemilik.simpan.sewa-alat');
 
   Route::post('logout','Auth\AuthUserController@logoutPemilik')->name('pemilik.logout');
   Route::get('profil','Pemilik\ProfilController@index')->name('pemilik.profil');

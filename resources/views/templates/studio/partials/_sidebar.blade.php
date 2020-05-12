@@ -35,8 +35,8 @@
               <span class="menu-item" data-i18n="Feather">Sewa Tempat</span>
               </a>
             </li>
-            <li>
-              <a href="icons-font-awesome.html">
+            <li class="@if(Request::is('pemilik/penyewaan/sewa-alat') || Request::is('pemilik/penyewaan/sewa-alat/*') ) active @endif">
+              <a href="{{route('pemilik.sewa-alat')}}">
                 <i class="feather icon-truck"></i>
                 <span class="menu-item" data-i18n="Font Awesome">Sewa Alat</span>
               </a>

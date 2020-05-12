@@ -27,4 +27,8 @@ class Studio extends Model
       return $this->hasMany(SewaTempat::class,'id_studio','id');
     }
 
+    public function sewaAlat(){
+      return $this->hasMany(SewaAlat::class,'id_studio','id');
+    }
+
 }

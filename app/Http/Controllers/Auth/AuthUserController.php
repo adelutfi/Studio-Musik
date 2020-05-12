@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Pemilik;
+use App\Penyewa;
 use Auth;
 
 class AuthUserController extends Controller
 {
   public function __construct()
     {
-      $this->middleware('guest:pemilik')->except(['logoutPemilik']);
+      $this->middleware('guest:pemilik')->except(['logoutPemilik', 'logoutPenyewa']);
     }
 
 
@@ -34,10 +35,10 @@ class AuthUserController extends Controller
 
       $this->validate($request, $rule, $message);
 
-      if($request->keterangan == 'pemilik'){
+    if($request->keterangan == 'pemilik'){
         $emailPemilik = Pemilik::where('email', $request->email)->first();
         if($emailPemilik){
-          return redirect()->back()->with('message','Email sudah ada.');
+          return redirect()->back()->with('message','Email pemilik sudah ada.');
         }else {
           Pemilik::create([
             'nama' => $request->nama,
@@ -48,7 +49,18 @@ class AuthUserController extends Controller
           return redirect()->route('login');
         }
       }else {
+         $emailPenyewa = Penyewa::where('email', $request->email)->first();
+        if($emailPenyewa){
+          return redirect()->back()->with('message','Email penyewa sudah ada.');
+        }else {
+          Penyewa::create([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+          ]);
 
+          return redirect()->route('login');
+        }
       }
 
     }
@@ -69,11 +81,22 @@ class AuthUserController extends Controller
         }else {
           return redirect()->back()->with('message','Gagal Login');
         }
+      }else{
+         if(Auth::guard('penyewa')->attempt($credentials)){
+          return redirect('/');
+        }else {
+          return redirect()->back()->with('message','Gagal Login');
+        }
       }
     }
 
     public function logoutPemilik(){
       Auth::guard('pemilik')->logout();
+      return redirect()->route('login');
+    }
+
+     public function logoutPenyewa(){
+      Auth::guard('penyewa')->logout();
       return redirect()->route('login');
     }
 

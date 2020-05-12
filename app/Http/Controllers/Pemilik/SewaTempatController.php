@@ -31,7 +31,7 @@ class SewaTempatController extends Controller
         'harga' => 'required|',
         'jam_tutup.*' => 'required',
         'jam_buka.*' => 'required',
-        'jam_jadwal.*' => 'required',
+        'jadwal.*' => 'required',
         'jumlah_ruangan' => 'required',
         'keterangan' => 'required'
       ];

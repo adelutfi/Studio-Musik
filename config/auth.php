@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'penyewa',
+        'passwords' => 'penyewas',
     ],
 
     /*
@@ -38,24 +38,18 @@ return [
     'guards' => [
         'penyewa' => [
             'driver' => 'session',
-            'provider' => 'penyewa',
+            'provider' => 'penyewas',
         ],
 
         'pemilik' => [
             'driver' => 'session',
-            'provider' => 'pemilik',
+            'provider' => 'pemiliks',
         ],
 
         'admin' => [
             'driver' => 'session',
-            'provider' => 'admin',
-        ],
-
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
-        ],
+            'provider' => 'admins',
+        ]
     ],
 
     /*
@@ -76,25 +70,20 @@ return [
     */
 
     'providers' => [
-        'penyewa' => [
+        'penyewas' => [
             'driver' => 'eloquent',
             'model' => App\Penyewa::class,
         ],
 
-        'pemilik' => [
+        'pemiliks' => [
             'driver' => 'eloquent',
             'model' => App\Pemilik::class,
         ],
 
-        'admin' => [
+        'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
-        ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        ]
     ],
 
     /*
@@ -113,8 +102,13 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'penyewas' => [
+            'provider' => 'penyewas',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'pemiliks' => [
+            'provider' => 'pemiliks',
             'table' => 'password_resets',
             'expire' => 60,
         ],
