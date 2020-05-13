@@ -19,6 +19,14 @@
                             </div>
                           </div>
                           @endif
+                          @if(Session::has('success'))
+                          <div class="col-4">
+                            <div class="alert alert-success" role="alert">
+                              <i class="fas fa-check-circle"></i>
+                                  {{Session::get('success')}}
+                            </div>
+                          </div>
+                          @endif
                         </div>
 
                         <div class="row justify-content-center">

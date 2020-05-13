@@ -49,7 +49,7 @@ class AuthUserController extends Controller
             'password' => bcrypt($request->password)
           ]);
 
-          return redirect()->route('login')->with('message','Login gagal!');
+          return redirect()->route('login')->with('success','register berhasil!');
         }
       }else {
          $emailPenyewa = Penyewa::where('email', $request->email)->first();
@@ -65,7 +65,7 @@ class AuthUserController extends Controller
             'password' => bcrypt($request->password)
           ]);
 
-          return redirect()->route('login')->with('message','Login gagal!');
+          return redirect()->route('login')->with('success','register berhasil!');
         }
       }
 
