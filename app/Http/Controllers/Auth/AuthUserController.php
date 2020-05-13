@@ -10,9 +10,9 @@ use Auth;
 
 class AuthUserController extends Controller
 {
-  public function __construct()
+   public function __construct()
     {
-      $this->middleware('guest:pemilik')->except(['logoutPemilik', 'logoutPenyewa']);
+      $this->middleware(['guest:pemilik','guest:penyewa'])->except(['logoutPemilik', 'logoutPenyewa']);
     }
 
 
