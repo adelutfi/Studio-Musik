@@ -7,12 +7,17 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2 class="title title2">
-                            Register
-                            @if(Session::has('message'))
-                            <p>{{ Session::get('message') }}</p>
-                            @endif
-                        </h2>
+                        <h2 class="title title2">Register</h2>
+                        <div class="row justify-content-center">
+                          @if(Session::has('message'))
+                          <div class="col-4">
+                            <div class="alert alert-danger" role="alert">
+                              <i class="fas fa-exclamation-circle"></i>
+                                  {{Session::get('message')}}
+                            </div>
+                          </div>
+                          @endif
+                        </div>
                         <div class="row justify-content-center">
                           <div class="col-lg-4">
                               <div class="tabilContainer table-responsive">
@@ -25,7 +30,12 @@
                                       </div>
                                       <div class="form-group">
                                           <label for="">Email</label>
-                                          <input type="email" name="email" value="{{old('email')}}" class="form-control" placeholder="Masukan Email anda" required>
+                                          <input type="email" name="email" value="{{old('email')}}" class="form-control @if(Session::has('email')) is-invalid @endif" placeholder="Masukan Email anda" required>
+                                          @if (Session::has('email'))
+                                          <span class="invalid-feedback text-white" role="alert">
+                                            <strong>{{ Session::get('email') }}</strong>
+                                          </span>
+                                          @endif
                                       </div>
                                       <div class="form-group">
                                             <label for="">Password</label>

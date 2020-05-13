@@ -11,6 +11,17 @@
                             Login
                         </h2>
                         <div class="row justify-content-center">
+                          @if(Session::has('message'))
+                          <div class="col-4">
+                            <div class="alert alert-danger" role="alert">
+                              <i class="fas fa-exclamation-circle"></i>
+                                  {{Session::get('message')}}
+                            </div>
+                          </div>
+                          @endif
+                        </div>
+
+                        <div class="row justify-content-center">
                           <div class="col-lg-4">
                               <div class="tabilContainer table-responsive">
                               	 <div class="comment-form-area">
@@ -18,7 +29,7 @@
                                      @csrf
                                       <div class="form-group">
                                           <label for=""><strong>Email</strong></label>
-                                          <input name="email" type="email" class="form-control" placeholder="Masukan Email anda" required>
+                                          <input name="email" type="email" class="form-control" value="{{old('email')}}" placeholder="Masukan Email anda" required>
                                       </div>
                                       <div class="form-group">
                                             <label for=""><strong>Password</strong></label>

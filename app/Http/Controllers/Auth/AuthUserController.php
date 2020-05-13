@@ -38,7 +38,10 @@ class AuthUserController extends Controller
     if($request->keterangan == 'pemilik'){
         $emailPemilik = Pemilik::where('email', $request->email)->first();
         if($emailPemilik){
-          return redirect()->back()->with('message','Email pemilik sudah ada.');
+          return redirect()->back()
+          ->withInput($request->input())
+          ->with('message','Email pemilik sudah terdaftar!')
+          ->with('email','Email sudah terdaftar!');
         }else {
           Pemilik::create([
             'nama' => $request->nama,
@@ -46,12 +49,15 @@ class AuthUserController extends Controller
             'password' => bcrypt($request->password)
           ]);
 
-          return redirect()->route('login');
+          return redirect()->route('login')->with('message','Login gagal!');
         }
       }else {
          $emailPenyewa = Penyewa::where('email', $request->email)->first();
         if($emailPenyewa){
-          return redirect()->back()->with('message','Email penyewa sudah ada.');
+          return redirect()->back()
+          ->withInput($request->input())
+          ->with('message','Email penyewa sudah terdaftar!')
+          ->with('email','Email sudah terdaftar!');
         }else {
           Penyewa::create([
             'nama' => $request->nama,
@@ -59,7 +65,7 @@ class AuthUserController extends Controller
             'password' => bcrypt($request->password)
           ]);
 
-          return redirect()->route('login');
+          return redirect()->route('login')->with('message','Login gagal!');
         }
       }
 
@@ -79,13 +85,13 @@ class AuthUserController extends Controller
         if(Auth::guard('pemilik')->attempt($credentials)){
           return redirect()->route('pemilik.beranda');
         }else {
-          return redirect()->back()->with('message','Gagal Login');
+          return redirect()->back()->with('message','Gagal Login')->withInput($request->input());
         }
       }else{
          if(Auth::guard('penyewa')->attempt($credentials)){
           return redirect('/');
         }else {
-          return redirect()->back()->with('message','Gagal Login');
+          return redirect()->back()->with('message','Gagal Login')->withInput($request->input());
         }
       }
     }
