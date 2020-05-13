@@ -1461,7 +1461,7 @@ Album Area Css Start
 ---------------------------*/
 .member {
   padding: 0px 0px 0px;
-  margin-top: 50px;
+  margin-top: 10px;
   margin-bottom: 20px;
  }
   .concert .comment-form-area form button.submit {
@@ -1658,7 +1658,7 @@ Album Area Css Start
     Blog  area
 --------------------*/
 .blog-area {
-  padding: 110px 0px 120px; }
+  padding: 50px 0px 60px; }
   .blog-area.blog-page {
     padding-top: 120px; }
     .blog-area.blog-page:after {

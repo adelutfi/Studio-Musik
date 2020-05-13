@@ -54,31 +54,56 @@
                         </blockquote>
                         <div>
 
-                      </div>
-                        <!-- <p>Sing long her way size. Waited end mutual missed myself the little sister one. So in pointed or chicken cheered neither spirits invited. Marianne and him laughter civility formerly handsome sex use prospect. Hence we doors is given rapid scale above am. Difficult ye mr delivered behaviour by an. If their woman could do wound on. You folly taste hoped their above are and but. </p> -->
-                    </div>
-                    <div class="entry-footer"><!-- entry footer -->
-                        <div class="left-content">
-                            <ul>
-                                <li class="title">Pilih:</li>
-                                <li>
-                                  <div class="custom-control custom-radio custom-control-inline">
-                                  <input type="radio" value="sewa-tempat" id="tempat" name="keterangan" class="custom-control-input">
-                                  <label class="custom-control-label" for="tempat"><strong>Sewa Tempat</strong></label>
-                                </div>
-                              </li>
-                                <li>
-                                  <div class="custom-control custom-radio custom-control-inline">
-                                  <input type="radio" value="sewa-alat" id="alat" name="keterangan" class="custom-control-input">
-                                  <label class="custom-control-label" for="alat"><strong>Sewa Alat</strong></label>
-                                </div>
-                                </li>
-                                <li>
-                                  <a href="#" id="sewa" style="display: none">Sewa</a>
-                                </li>
-                            </ul>
                         </div>
-                    </div><!-- //. entry footer -->
+                        <!-- <p>Sing long her way size. Waited end mutual missed myself the little sister one. So in pointed or chicken cheered neither spirits invited. Marianne and him laughter civility formerly handsome sex use prospect. Hence we doors is given rapid scale above am. Difficult ye mr delivered behaviour by an. If their woman could do wound on. You folly taste hoped their above are and but. </p> -->
+                        </div>
+                    <div>
+                         @if(count($studio->sewaTempat) < 1 && count($studio->sewaAlat) < 1)
+                          <div class="alert alert-dark" role="alert">
+                           <strong>Maaf</strong> Penyewaan belum tersedia
+                        </div>    
+                        @endif
+                <p>
+                   @if(count($studio->sewaTempat) > 0)                         
+                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-tempat" aria-expanded="false" aria-controls="collapseExample">
+                    Sewa Tempat
+                  </button>
+                  @endif
+                   @if(count($studio->sewaAlat) > 0)
+                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-alat" aria-expanded="false" aria-controls="collapseExample">
+                    Sewa Alat
+                  </button>
+                  @endif
+                </p>
+
+                @if(count($studio->sewaTempat) > 0)
+                <div class="collapse" id="sewa-tempat">
+                  <div class="card card-body">
+                    @foreach($studio->sewaTempat as $tempat)
+                        {{$tempat->jadwal}}
+                        {{$tempat->harga}}
+                        {{$tempat->ruangan}}
+                    @endforeach
+                    <div class="text-right">
+                    <button class="btn btn-secondary">Sewa</button>
+                    </div>
+                  </div>
+                </div>
+                @endif
+                 @if(count($studio->sewaAlat) > 0)
+                <div class="collapse" id="sewa-alat">
+                  <div class="card card-body">
+                     @foreach($studio->sewaAlat as $alat)
+                        {{$alat->jadwal}}
+                        {{$alat->harga}}
+                    @endforeach
+                    <div class="text-right">
+                    <button class="btn btn-secondary">Sewa</button>
+                    </div>
+                  </div>
+                 </div>
+                </div>
+                @endif
                     <div class="entry-comment">
                         <h3 class="title">(0) Komentar</h3>
                         <ul class="comment-list">

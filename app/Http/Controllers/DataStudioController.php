@@ -8,16 +8,18 @@ use App\Studio;
 class DataStudioController extends Controller
 {
     public function index(){
-      $studio = Studio::where('status',1)->orderBy('id','DESC')->limit(3)->get();
+      $studio = Studio::where('status',1)->orderBy('id','DESC')->limit(6)->get();
       $rating = [];
       $semuaStudio = Studio::all();
-      foreach ($semuaStudio as $data) {
+      if($semuaStudio){
+        foreach ($semuaStudio as $data) {
         $total = ceil($data->ratings->sum('nilai')/count($data->ratings));
-        if($total > 2){
-          $rating[] = $data;
-        }
+          if($total > 2){
+            $rating[] = $data;
+          }
+        }  
       }
-
+      
       $rating = array_splice($rating, 0, 4);
 
       return view('welcome', compact('studio','rating'));
@@ -25,5 +27,10 @@ class DataStudioController extends Controller
 
     public function show(Studio $studio){
       return view('detail-studio', compact('studio'));
+    }
+
+    public function semuaStudio(){
+       $studio = Studio::where('status',1)->orderBy('id','DESC')->paginate(8);
+       return view('studio', compact('studio'));
     }
 }

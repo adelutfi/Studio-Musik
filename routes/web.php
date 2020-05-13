@@ -21,9 +21,7 @@ Route::get('/studio', function () {
 
 Route::get('/detail/{studio}','DataStudioController@show')->name('detail.studio');
 
-Route::get('/semua-studio', function () {
-    return view('studio');
-});
+Route::get('/semua-studio','DataStudioController@semuaStudio')->name('semua.studio');
 
 Route::get('/pemesanan/{keterangan}', function () {
     return view('pemesanan');

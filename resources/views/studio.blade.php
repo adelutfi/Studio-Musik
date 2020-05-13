@@ -23,116 +23,40 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="row">
+                        @foreach($studio as $s)
+                         @php($totalRating = ceil($s->ratings->sum('nilai')/count($s->ratings)))
                         <div class="col-lg-6 col-md-6">
                             <div class="single-blog-item"><!-- single blog item -->
                                 <div class="thumb">
-                            <img class="img-fluid" src="{{asset('public/images/studio/studio-7.jpeg')}}" alt="">
-                        </div>
+                            <img src="{{asset('public/'.$s->gambar)}}" width="350" height="250" alt="">
+                                </div>
                                 <div class="content">
-                                    <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
-                                    <a href="{{url('detail-studio')}}"><h3 class="title">MIXPACK STUDIO RECORD</h3></a>
-                                    <p>Jalan Mangkukusuman, Tegal Timur, Tegal City, Central Java 52131.</p>
+                                   {{--  <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span> --}}
+                                    <a href="{{route('detail.studio', $s)}}">
+                                        <h3 class="title">{{$s->nama}}</h3>
+                                    </a>
+                                    <p class="mb-2">{{$s->alamat}}</p>
                                     <div>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
+                                       @for($i = 0; $i < 5; $i++)
+                                             @if($totalRating <= $i)
+                                              <span class="fa fa-star fa-xs"></span>
+                                             @else
+                                            <span class="fa fa-star checked fa-xs"></span>
+                                           @endif
+                                           @endfor
                                   </div>
-                                    <a href="#" class="readmore">Read More</a>
+                                    <a href="{{route('detail.studio', $s)}}" class="readmore">Selengkapnya</a>
                                 </div>
                             </div><!-- //. single blog item -->
                         </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-blog-item"><!-- single blog item -->
-                                <div class="thumb">
-                            <img class="img-fluid" src="{{asset('public/images/studio/studio-12.jpg')}}" alt="">
-                        </div>
-                                <div class="content">
-                                    <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
-                                    <a href="{{url('detail-studio')}}><h3 class="title">STUDIO MUSIK REBO STAR</h3></a>
-                                    
-                                    <p>Jalan Projosumarto 1 No.15, Kocro, Kemantran, Kec. Kramat, Tegal, Jawa Tengah 52181.</p>
-                                    <a href="#" class="readmore">Read More</a>
-                                </div>
-                            </div><!-- //. single blog item -->
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-blog-item"><!-- single blog item -->
-                                <div class="thumb">
-                            <img class="img-fluid" src="{{asset('public/images/studio/studio-8.jpg')}}" alt="">
-                        </div>
-                                <div class="content">
-                                    <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
-                                    <a href="{{url('detail-studio')}}"><h3 class="title">RIZA MUSIK TEGAL</h3></a>
-                                    <p>Jalan Pangeran Antasari No.53, Keturen, Kec. Tegal Sel., Kota Tegal, Jawa Tengah 52134.</p>
-                                    <a href="#" class="readmore">Read More</a>
-                                </div>
-                            </div><!-- //. single blog item -->
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-blog-item"><!-- single blog item -->
-                                <div class="thumb">
-                            <img class="img-fluid" src="{{asset('public/images/studio/studio-9.jpg')}}" alt="">
-                        </div>
-                                <div class="content">
-                                    <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
-                                    <a href="{{url('detail-studio')}}"><h3 class="title">PUTRA MUSIK STUDIO</h3></a>
-                                    <p>Jalan  Bulakwaru, Tarub, Tegal, Central Java 52184.</p>
-                                    <a href="#" class="readmore">Read More</a>
-                                </div>
-                            </div><!-- //. single blog item -->
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-blog-item"><!-- single blog item -->
-                                <div class="thumb">
-                            <img class="img-fluid" src="{{asset('public/images/studio/studio-10.jpg')}}" alt="">
-                        </div>
-                                <div class="content">
-                                    <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
-                                    <a href="{{url('detail-studio')}}"><h3 class="title">MAGENTA MUSIK STUDIO</h3></a>
-                                    <p> jalan ghozali no 153 RT 03/02, Kalibakung, Kec. Balapulang, Tegal, Jawa Tengah 52464.</p>
-                                    <a href="#" class="readmore">Read More</a>
-                                </div>
-                            </div><!-- //. single blog item -->
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-blog-item"><!-- single blog item -->
-                                <div class="thumb">
-                            <img class="img-fluid" src="{{asset('public/images/studio/studio-11.jpg')}}" alt="">
-                        </div>
-                                <div class="content">
-                                    <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span>
-                                    <a href="{{url('detail-studio')}}"><h3 class="title">IRAMA MUSIK STUDIO</h3></a>
-                                    <p>Jalan Kesuben No 04 C, Desa, RT.04/RW.03, Kademangan, Kesuben, Kec. Lebaksiu, Tegal, Jawa Tengah 52461.</p>
-                                    <a href="#" class="readmore">Read More</a>
-                                </div>
-                            </div><!-- //. single blog item -->
-                        </div>
+                        @endforeach
                     </div>
                     <div class="col-lg-12">
                         <div class="blog-pagination">
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination">
-                                  <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                      <span aria-hidden="true">&laquo;</span>
-                                      <span class="sr-only">Previous</span>
-                                    </a>
-                                  </li>
-                                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                  <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                  <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                      <span aria-hidden="true">&raquo;</span>
-                                      <span class="sr-only">Next</span>
-                                    </a>
-                                  </li>
-                                </ul>
-                            </nav>
+                            {{$studio->links()}}
                         </div>
                     </div>
+
                 </div>
                 <div class="col-lg-4">
                     <div class="sidebar">
