@@ -17,6 +17,7 @@ class CreateRatingTable extends Migration
 
             $table->bigInteger('id_studio')->unsigned();
             $table->integer('nilai')->length(1)->unsigned();
+            $table->integer('jumlah')->length(1)->unsigned()->default(1);
 
             $table->foreign('id_studio')->references('id')->on('studio')->onDelete('CASCADE');
         });

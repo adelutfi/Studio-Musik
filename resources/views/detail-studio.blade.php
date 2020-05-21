@@ -30,12 +30,15 @@
                       <div class="col-md-9 col-6">
                         <h4 class="title">{{$studio->nama}}</h4>
                       </div>
+                       @php($total = $studio->ratings->nilai/$studio->ratings->jumlah )
                       <div class="col-md-3 col-6">
-                        <span class="fa fa-star fa-lg checked"></span>
-                        <span class="fa fa-star fa-lg checked"></span>
-                        <span class="fa fa-star fa-lg checked"></span>
-                        <span class="fa fa-star fa-lg"></span>
-                        <span class="fa fa-star fa-lg"></span>
+                          @for($i = 0; $i < 5; $i++)
+                            @if($total <= $i)
+                            <span class="fa fa-star fa-lg"></span>
+                            @else
+                           <span class="fa fa-star fa-lg checked"></span>
+                           @endif
+                        @endfor
                       </div>
                     </div>
 
@@ -58,45 +61,70 @@
                         <!-- <p>Sing long her way size. Waited end mutual missed myself the little sister one. So in pointed or chicken cheered neither spirits invited. Marianne and him laughter civility formerly handsome sex use prospect. Hence we doors is given rapid scale above am. Difficult ye mr delivered behaviour by an. If their woman could do wound on. You folly taste hoped their above are and but. </p> -->
                         </div>
                     <div>
-                         @if(count($studio->sewaTempat) < 1 && count($studio->sewaAlat) < 1)
+                         @if(!$studio->sewaTempat && !$studio->sewaAlat )
                           <div class="alert alert-dark" role="alert">
                            <strong>Maaf</strong> Penyewaan belum tersedia
                         </div>    
                         @endif
                 <p>
-                   @if(count($studio->sewaTempat) > 0)                         
+                   @if($studio->sewaTempat)                         
                   <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-tempat" aria-expanded="false" aria-controls="collapseExample">
                     Sewa Tempat
                   </button>
                   @endif
-                   @if(count($studio->sewaAlat) > 0)
+                   @if($studio->sewaAlat)
                   <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-alat" aria-expanded="false" aria-controls="collapseExample">
                     Sewa Alat
                   </button>
                   @endif
                 </p>
 
-                @if(count($studio->sewaTempat) > 0)
+                @if($studio->sewaTempat)
                 <div class="collapse" id="sewa-tempat">
                   <div class="card card-body">
-                    @foreach($studio->sewaTempat as $tempat)
-                        {{$tempat->jadwal}}
-                        {{$tempat->harga}}
-                        {{$tempat->ruangan}}
-                    @endforeach
+                    <div class="text-right mb-2">
+                       <h4><strong>Rp. {{number_format($studio->sewaTempat->harga, 0, ',','.')}}</strong> </h4>
+                    </div>
+                    @php($jadwal = explode(',',$studio->sewaTempat->jadwal))
+                    @php($buka = explode(',',$studio->sewaTempat->jam_buka))
+                    @php($tutup = explode(',',$studio->sewaTempat->jam_tutup))
+                    <div class="row">
+                    @for($i = 0; $i < count($jadwal); $i++)
+                    <div class="col-6">
+                     <ol class="breadcrumb">
+                        <li class="breadcrumb-item">{{$jadwal[$i]}} </li>
+                        <li class="breadcrumb-item">{{$buka[$i]}} - {{$tutup[$i]}}</li>
+                      </ol>
+                      </div>
+                      @endfor
+                      </div>
+                      
+                      <button class="btn btn-dark">
+                        Jumlah Ruangan <span class="badge badge-light"> <strong class="h5"> {{$studio->sewaTempat->jumlah_ruangan}}</strong></button>
+                    </button>
                     <div class="text-right">
                     <button class="btn btn-secondary">Sewa</button>
                     </div>
                   </div>
                 </div>
                 @endif
-                 @if(count($studio->sewaAlat) > 0)
+                 @if($studio->sewaAlat)
                 <div class="collapse" id="sewa-alat">
                   <div class="card card-body">
-                     @foreach($studio->sewaAlat as $alat)
-                        {{$alat->jadwal}}
-                        {{$alat->harga}}
-                    @endforeach
+                     <div class="text-right mb-2">
+                       <h4><strong>Rp. {{number_format($studio->sewaAlat->harga, 0, ',','.')}}</strong> </h4>
+                    </div>
+                      @php($jadwal = explode(',',$studio->sewaAlat->jadwal))
+                       <div class="row">
+                    @for($i = 0; $i < count($jadwal); $i++)
+                    <div class="col-2">
+                     <ol class="breadcrumb">
+                        <li class="breadcrumb-item">{{$jadwal[$i]}} </li>
+                      </ol>
+                      </div>
+                      @endfor
+                      </div>
+                      
                     <div class="text-right">
                     <button class="btn btn-secondary">Sewa</button>
                     </div>

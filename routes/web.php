@@ -61,6 +61,7 @@ Route::group(['prefix' => 'pemilik'], function(){
   Route::get('studio/edit/{studio}', 'Pemilik\StudioController@edit')->name('pemilik.edit.studio');
   Route::patch('studio/edit/{studio}','Pemilik\StudioController@update')->name('pemilik.update.studio');
 
+// Routing lingkup penyewa 
   Route::get('penyewaan/sewa-tempat','Pemilik\SewaTempatController@index')->name('pemilik.sewa-tempat');
   Route::get('penyewaan/sewa-tempat/tambah','Pemilik\SewaTempatController@create')->name('pemilik.tambah.sewa-tempat');
   Route::post('penyewaan/sewa-tempat/tambah','Pemilik\SewaTempatController@store')->name('pemilik.simpan.sewa-tempat');

@@ -16,7 +16,7 @@ class Studio extends Model
     const UPDATED_AT = 'di_ubah';
 
     public function ratings(){
-      return $this->hasMany(Rating::class,'id_studio','id');
+      return $this->hasOne(Rating::class,'id_studio','id');
     }
 
     public function pemilik(){
@@ -24,11 +24,11 @@ class Studio extends Model
     }
 
     public function sewaTempat(){
-      return $this->hasMany(SewaTempat::class,'id_studio','id');
+      return $this->hasOne(SewaTempat::class,'id_studio','id');
     }
 
     public function sewaAlat(){
-      return $this->hasMany(SewaAlat::class,'id_studio','id');
+      return $this->hasOne(SewaAlat::class,'id_studio','id');
     }
 
 }

@@ -37,8 +37,8 @@
                <h6>{{str_limit($s->alamat, 50, '....')}}</h6>
              </div>
 
-             @if(count($s->ratings) > 0)
-             @php($total = ceil($s->ratings->sum('nilai')/count($s->ratings)) )
+             @if($s->ratings)
+             @php($total = $s->ratings->nilai/$s->ratings->jumlah)
              <div class="col-md-6 text-warning mt-2">
                @for($i = 0; $i < 5; $i++)
                 @if($total <= $i)

@@ -24,7 +24,7 @@
                 <div class="col-lg-8">
                     <div class="row">
                         @foreach($studio as $s)
-                         @php($totalRating = ceil($s->ratings->sum('nilai')/count($s->ratings)))
+                         @php($totalRating = $s->ratings->nilai/$s->ratings->jumlah )
                         <div class="col-lg-6 col-md-6">
                             <div class="single-blog-item"><!-- single blog item -->
                                 <div class="thumb">

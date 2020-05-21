@@ -13,7 +13,7 @@ class DataStudioController extends Controller
       $semuaStudio = Studio::all();
       if($semuaStudio){
         foreach ($semuaStudio as $data) {
-        $total = ceil($data->ratings->sum('nilai')/count($data->ratings));
+        $total = $data->ratings->nilai/$data->ratings->jumlah;
           if($total > 2){
             $rating[] = $data;
           }

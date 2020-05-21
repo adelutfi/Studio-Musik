@@ -36,7 +36,7 @@
                                           <select class="form-control form-control-lg" name="id_studio" id="id_studio" required>
                                             <option>Pilih Studio</option>
                                             @foreach($studio as $s)
-                                            @if(count($s->sewaAlat) <= 0)
+                                            @if($s->sewaAlat)
                                             <option value="{{$s->id}}">{{$s->nama}}</option>
                                             @endif
                                             @endforeach

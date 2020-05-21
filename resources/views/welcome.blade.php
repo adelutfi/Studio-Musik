@@ -22,7 +22,7 @@
                     <div class="col-12">
                         <div class="misicSliderClass owl-carousel">
                           @foreach($rating as $r)
-                          @php($totalRating = ceil($r->ratings->sum('nilai')/count($r->ratings)) )
+                          @php($totalRating = $r->ratings->nilai/$r->ratings->jumlah )
                             <div class="item">
                                 <div class="contentBox">
                                     <div class="left">
@@ -72,7 +72,7 @@
          </div>
          <div class="row">
            @foreach($studio as $s)
-           @php($total = ceil($s->ratings->sum('nilai')/count($s->ratings)) )
+           @php($total = $r->ratings->nilai/$r->ratings->jumlah )
              <div class="col-lg-4 col-md-6 col-12 mt-4">
                  <div class="single-blog-item">
                      <!-- single blog item -->
