@@ -11,26 +11,15 @@
 |
 */
 
-
+Route::group(['prefix' => '/'], function(){
 Route::get('/','DataStudioController@index')->name('welcome');
+Route::get('detail/{studio}','DataStudioController@show')->name('detail.studio');
+Route::get('semua-studio','DataStudioController@semuaStudio')->name('semua.studio');
+Route::get('s={studio}/ket={keterangan}/pemesanan','PemesananController@index')->name('pemesanan');
+Route::get('profil','PenyewaController@index')->name('profil');
+Route::patch('profil','PenyewaController@update')->name('profil.update');
 
-Route::get('/studio', function () {
-    return view('home.studio.beranda');
-})->middleware('auth:pemilik');
-
-
-Route::get('/detail/{studio}','DataStudioController@show')->name('detail.studio');
-
-Route::get('/semua-studio','DataStudioController@semuaStudio')->name('semua.studio');
-
-Route::get('/pemesanan/{keterangan}', function () {
-    return view('pemesanan');
 });
-
-Route::get('/penyewaan', function () {
-    return view('penyewaan');
-});
-
 
 // Routing lingkup Admin
 Route::group(['prefix' => 'admin'], function(){
@@ -61,7 +50,6 @@ Route::group(['prefix' => 'pemilik'], function(){
   Route::get('studio/edit/{studio}', 'Pemilik\StudioController@edit')->name('pemilik.edit.studio');
   Route::patch('studio/edit/{studio}','Pemilik\StudioController@update')->name('pemilik.update.studio');
 
-// Routing lingkup penyewa 
   Route::get('penyewaan/sewa-tempat','Pemilik\SewaTempatController@index')->name('pemilik.sewa-tempat');
   Route::get('penyewaan/sewa-tempat/tambah','Pemilik\SewaTempatController@create')->name('pemilik.tambah.sewa-tempat');
   Route::post('penyewaan/sewa-tempat/tambah','Pemilik\SewaTempatController@store')->name('pemilik.simpan.sewa-tempat');

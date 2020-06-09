@@ -17,29 +17,29 @@
       <div class="container">
         <!-- <form id="contactform" class="contact-form"> -->
           <div class="row">
-              <div class="col-lg-7">
+              <div class="col-lg-5">
                 <div class="right-content-area">
-                     <h4 class="title">Data Pengguna</h4>
+                     <h4 class="title text-center">Data Pemesan</h4>
                          <div class="form-group">
-                             <input type="text" name="nama" class="form-control" placeholder="Nama">
+                             <input type="text" name="nama" value="{{Auth::user()->nama}}" class="form-control" placeholder="Nama">
                          </div>
                          <div class="form-group">
-                             <input type="text" name="email" class="form-control" placeholder="Email">
-                         </div>
-                         <div class="form-group">
-                             <input type="text" name="no_telp" class="form-control" placeholder="No telephon">
+                             <input type="text" name="no_telp"  value="{{Auth::user()->no_telp}}" class="form-control" placeholder="No Telephon">
                          </div>
                          <div class="form-group text-area">
-                             <textarea class="form-control" rows="5" placeholder="Alamat" placeholder="Enter your message"></textarea>
+                             <textarea class="form-control" rows="5" placeholder="Alamat"> {{Auth::user()->alamat}}</textarea>
                          </div>
                 </div>
 
               </div>
-              <div class="col-lg-5">
+              <div class="col-lg-7">
                 <div class="left-content-area">
-                    <h4 class="title">Studio</h4>
+                    <h4 class="title text-center">Studio</h4>
+                    <h4 class="text-center">{{$studio->nama}}</h4>
+
+
                     <ul class="info-list">
-                        <li>
+                       {{--  <li>
                            <div class="single-info-item">
                                 <div class="icon">
                                     <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
@@ -48,7 +48,7 @@
                                     <span class="details">2523 Grand Avenue Orlando, FL 32803 <br/> New York , United States</span>
                                 </div>
                            </div>
-                        </li>
+                        </li> --}}
                         <li>
                           @php($start = now())
                            <div class="single-info-item">

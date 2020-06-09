@@ -17,11 +17,18 @@
             </div>
         </div>
     </section>
-
     <section class="blog-details-page-content-area">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
+              @if(Session::has('message'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Gagal</strong> {{Session::get('message')}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif
                 <div class="blog-details-content"><!-- blog details content  -->
                     <div class="thumb">
                         <img src="{{asset('public/'.$studio->gambar)}}" class="img-fluid" height="400px" width="800px" alt="blog detials image">
@@ -103,7 +110,7 @@
                         Jumlah Ruangan <span class="badge badge-light"> <strong class="h5"> {{$studio->sewaTempat->jumlah_ruangan}}</strong></button>
                     </button>
                     <div class="text-right">
-                    <button class="btn btn-secondary">Sewa</button>
+                    <button class="btn btn-secondary" onclick="window.location='{{route("pemesanan", [$studio,'sewa-tempat'])}}'">Sewa</button>
                     </div>
                   </div>
                 </div>
@@ -126,7 +133,7 @@
                       </div>
                       
                     <div class="text-right">
-                    <button class="btn btn-secondary">Sewa</button>
+                     <button class="btn btn-secondary" onclick="window.location='{{route("pemesanan", [$studio,'sewa-alat'])}}'">Sewa</button>
                     </div>
                   </div>
                  </div>

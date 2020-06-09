@@ -22,3 +22,5 @@
     <script src="{{asset('public/assets/landing/js/timer.js')}}"></script>
     <!-- main -->
     <script src="{{asset('public/assets/landing/js/main.js')}}"></script>
+
+    @yield('script')

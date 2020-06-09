@@ -33,7 +33,7 @@
                            {{Auth::user()->nama}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="blog.html">Profil</a>
+                            <a class="dropdown-item" href="{{route('profil')}}">Profil</a>
                             <a class="dropdown-item" href="{{route('penyewa.logout')}}" onclick="event.preventDefault();
                            document.getElementById('logout-penyewa-form').submit();">Keluar</a>
                             <form id="logout-penyewa-form" action="{{ route('penyewa.logout') }}" method="POST" style="display: none;">
