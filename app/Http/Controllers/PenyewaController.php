@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Penyewa;
+use Storage;
 
 class PenyewaController extends Controller
 {
