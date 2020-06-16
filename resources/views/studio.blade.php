@@ -44,6 +44,17 @@
                                             <span class="fa fa-star checked fa-xs"></span>
                                            @endif
                                            @endfor
+
+                                            @if($s->sewaAlat)
+                                           <span class="badge badge-success float-right ml-2">Sewa Alat</span>
+                                           @endif
+                                           @if($s->sewaTempat)
+                                           <span class="badge badge-primary float-right">Sewa Tempat</span>
+                                           @endif
+                                           
+                                             @if(!$s->sewaAlat && !$s->sewaTempat)
+                                           <span class="badge badge-danger float-right">Belum Tersedia</span>
+                                           @endif
                                   </div>
                                     <a href="{{route('detail.studio', $s)}}" class="readmore">Selengkapnya</a>
                                 </div>

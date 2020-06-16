@@ -98,4 +98,17 @@ class StudioController extends Controller
 
       return redirect()->route('pemilik.studio')->with('message','Studio berhasil diubah');
     }
+
+
+    public function destroy(Studio $studio){
+      $gambar = $studio->gambar;
+      
+      if (Storage::exists($gambar)) {
+          Storage::delete($gambar);
+       }
+       $studio->delete();
+
+      return redirect()->route('pemilik.studio')->with('message','Studio berhasil dihapus');
+      
+    }
 }

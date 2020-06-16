@@ -24,6 +24,10 @@ class Penyewa extends Authenticatable
     const CREATED_AT = 'di_buat';
     const UPDATED_AT = 'di_ubah';
 
+    public function pemesanan(){
+        return $this->hasMany(Pemesanan::class, 'id_penyewa', 'id');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

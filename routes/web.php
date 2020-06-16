@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::post('login','Admin\AuthAdminController@login')->name('admin.to.login');
     Route::get('/beranda','Admin\HomeController@beranda')->name('admin.beranda');
     Route::get('/pemilik','Admin\HomeController@pemilik')->name('admin.pemilik');
+    Route::get('/penyewa','Admin\HomeController@penyewa')->name('admin.penyewa');
     Route::get('/studio','Admin\HomeController@studio')->name('admin.studio');
     Route::patch('/studio/{studio}','Admin\HomeController@terimaStudio')->name('admin.studio.terima');
     Route::post('logout','Admin\AuthAdminController@logout')->name('admin.logout');
@@ -49,6 +50,8 @@ Route::group(['prefix' => 'pemilik'], function(){
   Route::post('studio/tambah-studio','Pemilik\StudioController@store')->name('pemilik.simpan.studio');
   Route::get('studio/edit/{studio}', 'Pemilik\StudioController@edit')->name('pemilik.edit.studio');
   Route::patch('studio/edit/{studio}','Pemilik\StudioController@update')->name('pemilik.update.studio');
+
+  Route::delete('studio/hapus/{studio}','Pemilik\StudioController@destroy')->name('pemilik.hapus.studio');
 
   Route::get('penyewaan/sewa-tempat','Pemilik\SewaTempatController@index')->name('pemilik.sewa-tempat');
   Route::get('penyewaan/sewa-tempat/tambah','Pemilik\SewaTempatController@create')->name('pemilik.tambah.sewa-tempat');

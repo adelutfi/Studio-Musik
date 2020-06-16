@@ -20,11 +20,11 @@
            <div class="card-body">
              <div class="avatar bg-rgba-info p-50 m-0 mb-1">
                <div class="avatar-content">
-                 <i class="feather icon-eye text-info font-medium-5"></i>
+                 <i class="feather icon-user text-info font-medium-5"></i>
                </div>
              </div>
-             <h2 class="text-bold-700">36.9k</h2>
-             <p class="mb-0 line-ellipsis">Views</p>
+             <h2 class="text-bold-700">{{$pemilik}}</h2>
+             <p class="mb-0 text-dark">Pemilik</p>
            </div>
          </div>
        </div>
@@ -36,11 +36,11 @@
            <div class="card-body">
              <div class="avatar bg-rgba-info p-50 m-0 mb-1">
                <div class="avatar-content">
-                 <i class="feather icon-eye text-info font-medium-5"></i>
+                 <i class="feather icon-users text-info font-medium-5"></i>
                </div>
              </div>
-             <h2 class="text-bold-700">36.9k</h2>
-             <p class="mb-0 line-ellipsis">Views</p>
+             <h2 class="text-bold-700">{{$penyewa}}</h2>
+             <p class="mb-0 text-dark">Penyewa</p>
            </div>
          </div>
        </div>
@@ -52,11 +52,11 @@
            <div class="card-body">
              <div class="avatar bg-rgba-info p-50 m-0 mb-1">
                <div class="avatar-content">
-                 <i class="feather icon-eye text-info font-medium-5"></i>
+                 <i class="feather icon-home text-info font-medium-5"></i>
                </div>
              </div>
-             <h2 class="text-bold-700">36.9k</h2>
-             <p class="mb-0 line-ellipsis">Views</p>
+             <h2 class="text-bold-700">{{$studio}}</h2>
+             <p class="mb-0 text-dark">Studio</p>
            </div>
          </div>
        </div>

@@ -13,24 +13,24 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item @if(Request::is('/')) active @endif">
-                        <a class="nav-link" href="{{url('/')}}">Beranda <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{url('/')}}"><strong>Beranda</strong> <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item @if(Request::is('semua-studio')) active @endif">
-                        <a class="nav-link" href="{{url('semua-studio')}}">Studio</a>
+                    <li class="nav-item @if(Request::is('semua-studio') || Request::is('detail/*')) active @endif">
+                        <a class="nav-link" href="{{url('semua-studio')}}"> <strong>Studio</strong> </a>
                     </li>
                      <li class="nav-item @if(Request::is('kontak')) active @endif">
-                        <a class="nav-link" href="contact.html">Kontak</a>
+                        <a class="nav-link" href="contact.html"><strong>Kontak</strong></a>
                     </li>
 
                     <li class="nav-item @if(Request::is('penyewaan')) active @endif">
-                       <a class="nav-link" href="{{url('/penyewaan')}}">Penyewaan</a>
+                       <a class="nav-link" href="{{url('/penyewaan')}}"><strong>Pemesanan</strong></a>
                    </li>
 
                     
                     @auth('penyewa')
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           {{Auth::user()->nama}}
+                        <strong>{{Auth::user()->nama}}</strong>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('profil')}}">Profil</a>

@@ -62,32 +62,29 @@
                             <span class="author-name"><i class="fas fa-map-marker-alt mr-3"></i>{{$studio->alamat}}</span>
                             <span class="author-name"><i class="fas fa-phone mr-3"></i>{{$studio->pemilik->no_telp}}</span>
                         </blockquote>
-                        <div>
+                    </div>
 
-                        </div>
-                        <!-- <p>Sing long her way size. Waited end mutual missed myself the little sister one. So in pointed or chicken cheered neither spirits invited. Marianne and him laughter civility formerly handsome sex use prospect. Hence we doors is given rapid scale above am. Difficult ye mr delivered behaviour by an. If their woman could do wound on. You folly taste hoped their above are and but. </p> -->
-                        </div>
-                    <div>
+                   
                          @if(!$studio->sewaTempat && !$studio->sewaAlat )
                           <div class="alert alert-dark" role="alert">
                            <strong>Maaf</strong> Penyewaan belum tersedia
                         </div>    
                         @endif
-                <p>
-                   @if($studio->sewaTempat)                         
-                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-tempat" aria-expanded="false" aria-controls="collapseExample">
-                    Sewa Tempat
-                  </button>
-                  @endif
-                   @if($studio->sewaAlat)
-                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-alat" aria-expanded="false" aria-controls="collapseExample">
-                    Sewa Alat
-                  </button>
-                  @endif
-                </p>
 
-                @if($studio->sewaTempat)
-                <div class="collapse" id="sewa-tempat">
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        @if($studio->sewaTempat)                         
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-tempat" aria-expanded="true" aria-controls="collapseOne" data-parent="#accordion">
+            Sewa Tempat
+          </button>
+        @endif
+      </h5>
+    </div>
+
+            @if($studio->sewaTempat)
+                <div class="collapse" aria-labelledby="headingOne" data-parent="#accordion" id="sewa-tempat">
                   <div class="card card-body">
                     <div class="text-right mb-2">
                        <h4><strong>Rp. {{number_format($studio->sewaTempat->harga, 0, ',','.')}}</strong> </h4>
@@ -115,8 +112,22 @@
                   </div>
                 </div>
                 @endif
-                 @if($studio->sewaAlat)
-                <div class="collapse" id="sewa-alat">
+            </div>
+
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+       
+                   @if($studio->sewaAlat)
+                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-alat" aria-expanded="true" aria-controls="collapseOne" data-parent="#accordion">
+                    Sewa Alat
+                  </button>
+                  @endif
+      </h5>
+    </div>
+  
+      @if($studio->sewaAlat)
+                <div class="collapse" aria-labelledby="headingTwo" data-parent="#accordion" id="sewa-alat">
                   <div class="card card-body">
                      <div class="text-right mb-2">
                        <h4><strong>Rp. {{number_format($studio->sewaAlat->harga, 0, ',','.')}}</strong> </h4>
@@ -137,8 +148,16 @@
                     </div>
                   </div>
                  </div>
-                </div>
                 @endif
+  </div>
+            
+                  
+                
+
+
+                
+
+
                     <div class="entry-comment">
                         <h3 class="title">(0) Komentar</h3>
                         <ul class="comment-list">

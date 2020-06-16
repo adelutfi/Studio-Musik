@@ -22,8 +22,8 @@
             <span class="menu-title" data-i18n="Dashboard">Pemilik</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a href="index.html">
+      <li class="@if(Request::is('admin/penyewa')) active @endif nav-item">
+        <a href="{{route('admin.penyewa')}}">
           <i class="feather icon-users"></i>
           <span class="menu-title" data-i18n="Dashboard">Penyewa</span>
         </a>

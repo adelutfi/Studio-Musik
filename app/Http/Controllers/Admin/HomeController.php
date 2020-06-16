@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Pemilik;
 use App\Studio;
+use App\Penyewa;
 use App\Rating;
 
 class HomeController extends Controller
@@ -16,13 +17,22 @@ class HomeController extends Controller
   	}
 
   	public function beranda(){
-  		return view('home.admin.beranda');
+      $penyewa = count(Penyewa::all());
+      $pemilik = count(Pemilik::all());
+      $studio = count(Studio::all());
+
+  		return view('home.admin.beranda', compact('penyewa','pemilik','studio'));
   	}
 
   	public function pemilik(){
       $pemilik = Pemilik::orderBy('id', 'DESC')->get();
   		return view('home.admin.data-pemilik', compact('pemilik'));
   	}
+
+    public function penyewa(){
+      $penyewa = Penyewa::orderBy('id', 'DESC')->get();
+      return view('home.admin.data-penyewa', compact('penyewa'));
+    }
 
   	public function studio(){
       $studio = Studio::orderBy('id', 'DESC')->get();

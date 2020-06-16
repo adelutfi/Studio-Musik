@@ -23,6 +23,10 @@ class Pemilik extends Authenticatable
 
   const CREATED_AT = 'di_buat';
   const UPDATED_AT = 'di_ubah';
+
+  public function studio(){
+    return $this->hasMany(Studio::class,'id_pemilik', 'id');
+  }
   /**
    * The attributes that should be hidden for arrays.
    *

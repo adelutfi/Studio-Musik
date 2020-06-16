@@ -36,7 +36,6 @@
              <div class="col-md-12">
                <h6>{{str_limit($s->alamat, 50, '....')}}</h6>
              </div>
-
              @if($s->ratings)
              @php($total = $s->ratings->nilai/$s->ratings->jumlah)
              <div class="col-md-6 text-warning mt-2">
@@ -63,13 +62,38 @@
              </div>
              <div class="float-right mt-2">
                <button type="button" onclick="window.location='{{route('pemilik.edit.studio', $s)}}'" class="btn btn-icon btn-icon rounded-circle btn-warning waves-effect waves-light"><i class="feather icon-edit"></i></button>
-               <button type="button" class="btn btn-icon btn-icon rounded-circle btn-danger waves-effect waves-light"><i class="feather icon-trash"></i></button>
+               <button type="button" class="btn btn-icon btn-icon rounded-circle btn-danger waves-effect waves-light" data-toggle="modal" data-target="#hapus{{$s->id}}"><i class="feather icon-trash"></i></button>
              </div>
            </div>
          </div>
        </div>
      </div>
    </div>
+
+   <div class="modal fade" id="hapus{{$s->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #EA5455;">
+        <h5 class="modal-title text-white" id="exampleModalLongTitle">Hapus Studio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>Apakah anda yakin akan menghapus Studio <b>{{$s->nama}}</b> </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="button"  onclick="event.preventDefault();
+                           document.getElementById('hapus-studio').submit();" class="btn btn-danger">Hapus</button>
+           <form id="hapus-studio" action="{{ route('pemilik.hapus.studio', $s) }}" method="POST" style="display: none;">
+                    @csrf
+                    @method('DELETE')
+                </form>
+      </div>
+    </div>
+  </div>
+</div>
     @endforeach
 
   </div>
