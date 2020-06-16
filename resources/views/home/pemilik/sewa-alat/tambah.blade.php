@@ -22,9 +22,6 @@
     <div class="row match-height">
         <div class="col-md-12 col-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Form With Label Placeholder</h4>
-                </div>
                 <div class="card-content">
                     <div class="card-body">
                         <form class="form" method="post" action="{{route('pemilik.simpan.sewa-alat')}}">
@@ -36,7 +33,7 @@
                                           <select class="form-control form-control-lg" name="id_studio" id="id_studio" required>
                                             <option>Pilih Studio</option>
                                             @foreach($studio as $s)
-                                            @if($s->sewaAlat)
+                                            @if(!$s->sewaAlat)
                                             <option value="{{$s->id}}">{{$s->nama}}</option>
                                             @endif
                                             @endforeach

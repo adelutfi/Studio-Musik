@@ -69,7 +69,7 @@
                         for="account-upload">Upload foto baru</label>
                       <input type="file" name="foto" id="account-upload" accept="image/jpeg,image/png,image/jpg" hidden>
                     </div>
-                    <p class="text-muted ml-75 mt-50"><small> JPG,PNG, JPEG. Max 1MB</small></p>
+                    <p class="text-dark ml-75 mt-50"><small> JPG,PNG, JPEG. Max 1MB</small></p>
                   </div>
                 </div>
                 <hr>

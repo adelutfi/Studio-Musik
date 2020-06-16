@@ -14,7 +14,7 @@
         padding: 120px 0px 130px;
     }
     .member {
-        padding: 120px 0px 130px;
+        padding: 10px 0px 10px;
     }
     .member .memberBox .info h3 {
         font-size: 24px;
@@ -147,11 +147,12 @@ nav.navbar{
 .dropdown-item {
     padding: 0px 30px 0px;
 }
+
 .heroArea .maintitle h1 {
     font-size: 80px;
 }
 .navbar-brand.logo img {
-    width: 100px;
+    width: 180px;
 }
 
 .navbar-light .navbar-toggler-icon {
@@ -172,13 +173,13 @@ nav.navbar{
     margin-bottom: 30px;
 }
 .member {
-    padding: 120px 0px 100px;
+    padding: 20px 0px 10px;
 }
 .single-blog-item {
     margin-bottom: 30px;
 }
 .blog-area {
-    padding: 120px 0px 100px;
+    padding: 20px 0px 50px;
 }
 .breadcumb-area {
     padding: 184px 0 124px 0;
@@ -214,7 +215,7 @@ nav.navbar{
     margin-top: 50px;
 }
 .blog-area.blog-page {
-    padding: 130px 0px 100px;
+    padding: 20px 0px 20px;
 }
 
 .sidebar .widget-area.tag .widget-body ul li a {
@@ -258,7 +259,7 @@ nav.navbar{
     }
     .blog-area.blog-page {
         padding-bottom: 80px;
-        padding-top: 120px;
+        padding-top: 30px;
     }
 
 }
@@ -285,12 +286,17 @@ nav.navbar{
 .joinus .bottomArea {
     margin-top: 54px;
 }
+.heroArea .maintitle {
+    margin-top: -180px;
+    margin-bottom: -60px;
+}
 .heroArea .maintitle h1 {
     font-size: 50px;
 }
 .heroArea .maintitle p {
     letter-spacing: 2px;
 }
+
 .heroArea .maintitle h1 {
     margin-top: 305px;
 }
@@ -336,7 +342,7 @@ nav.navbar{
     margin-top: 50px;
 }
 .blog-details-page-content-area {
-    padding: 130px 0 90px 0;
+    padding: 20px 0 10px 0;
 }
 .contact-area {
     padding: 79px 0 130px 0;
@@ -363,6 +369,11 @@ nav.navbar {
 
 
 @media (max-width: 575px) {
+    .heroArea .maintitle {
+        margin-top: -100px;
+        margin-bottom: -150px;
+    }
+
     .heroArea .maintitle h1 {
         letter-spacing: 8px;
         margin-top: 233px;
@@ -371,7 +382,7 @@ nav.navbar {
         margin-bottom: 173px;
     }
     .blog-area.blog-page {
-        padding: 130px 0px 90px;
+        padding: 30px 0px 20px;
     }
     .footer-area {
         text-align: center;
@@ -484,7 +495,7 @@ nav.navbar {
 @media (max-width: 460px) {
     .heroArea .maintitle h1 {
         letter-spacing: 0px;
-        margin-top: 237px;
+        margin-top: 200px;
         font-size: 50px;
     }
     .heroArea .maintitle p {
@@ -506,13 +517,13 @@ nav.navbar {
         padding: 116px 0px 130px;
     }
     .member {
-        padding: 116px 0px 100px;
+        padding: 20px 0px 10px;
     }
     .concert {
         padding: 116px 0px 130px;
     }
     .blog-area {
-        padding: 116px 0px 100px;
+        padding: 20px 0px 10px;
     }
     .ucevent {
         padding: 116px 0px 130px;
@@ -765,7 +776,7 @@ nav.navbar {
         padding-bottom: 115px;
     }
     .member {
-        padding-top: 105px;
+        padding-top: 5px;
     }
     .album .right .secondaryTitle {
         margin-bottom: 20px;
@@ -821,6 +832,10 @@ nav.navbar {
 }
 
 @media only screen and (max-width:330px){
+    .heroArea .maintitle {
+        margin-top: -100px;
+    }
+
     .heroArea .maintitle h1 {
         font-size: 40px;
     }
@@ -856,6 +871,6 @@ nav.navbar {
         font-weight: 600;
     }
     .blog-details-page-content-area {
-        padding-top: 120px;
+        padding-top: 30px;
     }
 }

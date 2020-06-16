@@ -27,7 +27,7 @@
                                 <div class="contentBox">
                                     <div class="left">
                                         <div class="img">
-                                            <img class="img-fluid" src="{{asset('public/'.$r->gambar)}}" alt="">
+                                            <img src="{{asset('public/'.$r->gambar)}}" alt="">
                                         </div>
                                         <div class="text">
                                             <a href="{{route('detail.studio', $r)}}">
@@ -102,7 +102,9 @@
              </div>
              @endforeach
              <div class="col-12 text-center mt-4">
-                 <button type="button" onclick="window.location='{{route("semua.studio")}}'" class="btn btn-info">Lihat Selengkapnya</button>
+                 <button type="button" onclick="window.location='{{route("semua.studio")}}'" class="submit">
+                   Lihat Selengkapnya
+                 </button>
              </div>
          </div>
      </div>
@@ -147,4 +149,18 @@
            </div>
        </div>
    </section>
+@endsection
+@section('script')
+<script type="text/javascript">
+$(".owl-carousel").owlCarousel({
+    autoPlay: 3000,
+    items : 1, // THIS IS IMPORTANT
+    responsive : {
+          440 : { items : 1  }, // from zero to 480 screen width 4 items
+          768 : { items : 2  }, // from 480 screen widthto 768 6 items
+          1024 : { items : 3   // from 768 screen width to 1024 8 items
+          }
+      },
+});
+</script>
 @endsection

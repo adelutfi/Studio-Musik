@@ -64,24 +64,29 @@
                         </blockquote>
                     </div>
 
-                   
+
                          @if(!$studio->sewaTempat && !$studio->sewaAlat )
                           <div class="alert alert-dark" role="alert">
                            <strong>Maaf</strong> Penyewaan belum tersedia
-                        </div>    
+                        </div>
                         @endif
 
-<div id="accordion">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        @if($studio->sewaTempat)                         
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-tempat" aria-expanded="true" aria-controls="collapseOne" data-parent="#accordion">
-            Sewa Tempat
-          </button>
-        @endif
-      </h5>
-    </div>
+      <div id="accordion">
+
+          <div id="headingOne">
+            <h5 class="mb-0">
+              @if($studio->sewaTempat)
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-tempat" aria-expanded="true" aria-controls="collapseOne" data-parent="#accordion">
+                  Sewa Tempat
+                </button>
+              @endif
+              @if($studio->sewaAlat)
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-alat" aria-expanded="true" aria-controls="collapseOne" data-parent="#accordion">
+                  Sewa Alat
+                </button>
+              @endif
+            </h5>
+          </div>
 
             @if($studio->sewaTempat)
                 <div class="collapse" aria-labelledby="headingOne" data-parent="#accordion" id="sewa-tempat">
@@ -92,6 +97,7 @@
                     @php($jadwal = explode(',',$studio->sewaTempat->jadwal))
                     @php($buka = explode(',',$studio->sewaTempat->jam_buka))
                     @php($tutup = explode(',',$studio->sewaTempat->jam_tutup))
+                    <h4>Jadwal :</h4>
                     <div class="row">
                     @for($i = 0; $i < count($jadwal); $i++)
                     <div class="col-6">
@@ -102,7 +108,6 @@
                       </div>
                       @endfor
                       </div>
-                      
                       <button class="btn btn-dark">
                         Jumlah Ruangan <span class="badge badge-light"> <strong class="h5"> {{$studio->sewaTempat->jumlah_ruangan}}</strong></button>
                     </button>
@@ -112,50 +117,40 @@
                   </div>
                 </div>
                 @endif
+
+        @if($studio->sewaAlat)
+          <div class="collapse" aria-labelledby="headingTwo" data-parent="#accordion" id="sewa-alat">
+            <div class="card card-body">
+               <div class="text-right mb-2">
+                 <h4><strong>Rp. {{number_format($studio->sewaAlat->harga, 0, ',','.')}}</strong> </h4>
+              </div>
+                @php($jadwal = explode(',',$studio->sewaAlat->jadwal))
+              <h4>Jadwal :</h4>
+              <div class="row">
+              @for($i = 0; $i < count($jadwal); $i++)
+              <div class="col-2">
+               <ol class="breadcrumb">
+                  <li class="breadcrumb-item">{{$jadwal[$i]}} </li>
+                </ol>
+                </div>
+                @endfor
+                </div>
+
+              <div class="text-right">
+               <button class="btn btn-secondary" onclick="window.location='{{route("pemesanan", [$studio,'sewa-alat'])}}'">Sewa</button>
+              </div>
             </div>
+           </div>
+          @endif
 
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-       
-                   @if($studio->sewaAlat)
-                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-alat" aria-expanded="true" aria-controls="collapseOne" data-parent="#accordion">
-                    Sewa Alat
-                  </button>
-                  @endif
-      </h5>
-    </div>
-  
-      @if($studio->sewaAlat)
-                <div class="collapse" aria-labelledby="headingTwo" data-parent="#accordion" id="sewa-alat">
-                  <div class="card card-body">
-                     <div class="text-right mb-2">
-                       <h4><strong>Rp. {{number_format($studio->sewaAlat->harga, 0, ',','.')}}</strong> </h4>
-                    </div>
-                      @php($jadwal = explode(',',$studio->sewaAlat->jadwal))
-                       <div class="row">
-                    @for($i = 0; $i < count($jadwal); $i++)
-                    <div class="col-2">
-                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">{{$jadwal[$i]}} </li>
-                      </ol>
-                      </div>
-                      @endfor
-                      </div>
-                      
-                    <div class="text-right">
-                     <button class="btn btn-secondary" onclick="window.location='{{route("pemesanan", [$studio,'sewa-alat'])}}'">Sewa</button>
-                    </div>
-                  </div>
-                 </div>
-                @endif
-  </div>
-            
-                  
-                
+        </div>
 
 
-                
+
+
+
+
+
 
 
                     <div class="entry-comment">

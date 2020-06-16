@@ -21,13 +21,10 @@
                      <li class="nav-item @if(Request::is('kontak')) active @endif">
                         <a class="nav-link" href="contact.html"><strong>Kontak</strong></a>
                     </li>
-
-                    <li class="nav-item @if(Request::is('penyewaan')) active @endif">
-                       <a class="nav-link" href="{{url('/penyewaan')}}"><strong>Pemesanan</strong></a>
-                   </li>
-
-                    
                     @auth('penyewa')
+                    <li class="nav-item @if(Request::is('pemesanan')) active @endif">
+                       <a class="nav-link" href="{{url('/pemesanan')}}"><strong>Pemesanan</strong></a>
+                   </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <strong>{{Auth::user()->nama}}</strong>
@@ -43,10 +40,10 @@
                     </li>
                     @else
                      <li class="nav-item @if(Request::is('login')) active @endif">
-                        <a class="nav-link" href="{{route('login')}}">Login</a>
+                        <a class="nav-link" href="{{route('login')}}"><strong>Login</strong></a>
                     </li>
                     <li class="nav-item @if(Request::is('register')) active @endif">
-                        <a class="nav-link" href="{{route('register')}}">Register</a>
+                        <a class="nav-link" href="{{route('register')}}"><strong>Register</strong></a>
                     </li>
                     @endauth
 

@@ -63,7 +63,7 @@
 ** Global Scss
 ---------------------------*/
 .section-title {
-  margin-bottom: 52px;
+  margin-bottom: 20px;
   text-align: center; }
   .section-title .subtitle {
     color: #252e59;
@@ -541,7 +541,7 @@ textarea:focus {
 ----------------------*/
 .breadcumb-area {
   position: relative;
-  padding: 212px 0 115px 0;
+  padding: 150px 0 100px 0;
   z-index: 0; }
   .breadcumb-area.faq-page {
     padding: 118px 0 127px 0; }
@@ -553,7 +553,7 @@ textarea:focus {
     position: absolute;
     left: 0;
     top: 0;
-    width: 100%;
+    width: 90%;
     height: 100%;
     background-color: rgba(19, 18, 34, 0.6);
     content: '';
@@ -561,7 +561,9 @@ textarea:focus {
   .breadcumb-area.breadcrumb-bg {
     background-image: url(../img/breadcrumb-bg.jpg);
     background-position: center;
-    background-size: cover; }
+    background-size: cover;
+    height: 0px;
+   }
     .breadcumb-area.breadcrumb-bg .overlay {
       background: -moz-linear-gradient(-40deg, #6501a1 0%, #a730b2 100%);
       background: -webkit-linear-gradient(-40deg, #6501a1 0%, #a730b2 100%);
@@ -580,10 +582,46 @@ textarea:focus {
     font-weight: 700;
     color: #fff;
     line-height: 60px;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    margin-top: -30px;
+
+  }
   .breadcumb-area .breadcumb-inner .page-lists {
-    margin: 0;
-    padding: 0; }
+
+    padding: 0;
+  }
+
+  .breadcumb-area .breadcumb-inner .page-lists .serach-widget-form {
+    /* position: relative; */
+    margin-top: -40px;
+
+  }
+    .breadcumb-area .breadcumb-inner .page-lists .widget-area.search .serach-widget-form .form-group .form-control {
+      width: 100%;
+      height: 50px;
+      border: 2px solid rgba(25, 23, 23, 0.1);
+    }
+    .breadcumb-area .breadcumb-inner .page-lists .widget-area.search .serach-widget-form .submit-btn {
+      display: inline-block;
+      width: 60px;
+      height: 50px;
+      position: absolute;
+      margin-top: -40px;
+      right: 8px;
+      top: 0;
+      border: none;
+      cursor: pointer;
+      -webkit-transition: all 0.3s ease-in;
+      -moz-transition: all 0.3s ease-in;
+      -o-transition: all 0.3s ease-in;
+      transition: all 0.3s ease-in;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      background-color: #a730b2; }
+      .breadcumb-area .breadcumb-inner .page-lists .widget-area.search .serach-widget-form .submit-btn:hover {
+        background-color: #191717;
+      }
+
     .breadcumb-area .breadcumb-inner .page-lists li {
       display: inline-block;
       margin: 0 12px;
@@ -597,7 +635,8 @@ textarea:focus {
         -webkit-transition: all 0.3s ease-in;
         -moz-transition: all 0.3s ease-in;
         -o-transition: all 0.3s ease-in;
-        transition: all 0.3s ease-in; }
+        transition: all 0.3s ease-in;
+      }
         .breadcumb-area .breadcumb-inner .page-lists li a:hover {
           color: #fff; }
       .breadcumb-area .breadcumb-inner .page-lists li a.active {
@@ -610,7 +649,8 @@ textarea:focus {
         font-family: "Font Awesome 5 Free";
         font-weight: 900; }
       .breadcumb-area .breadcumb-inner .page-lists li:first-child {
-        margin-left: 0; }
+        margin-left: 0;
+      }
 
 /*-------------------------
     Preloader Css
@@ -901,7 +941,7 @@ button {
 
 .musicSlider .owl-nav i {
   font-size: 30px;
-  width: 20px;
+  width: 40px;
   height: auto;
   left: -200px;
   line-height: 50px;
@@ -1039,7 +1079,9 @@ a i {
   padding: 0 2px; }
 
 img {
-  max-width: 100%; }
+  max-width: 100%;
+  margin-bottom: 20px;
+ }
 
 /*input and button type focus outline disable*/
 input[type="text"]:focus,
@@ -1230,7 +1272,8 @@ Hero Area Css Start
   background: url(../img/bg/header-bg.jpg) no-repeat center;
   background-size: cover;
   position: relative;
-  text-align: center; }
+  text-align: center;
+}
   .heroArea .overlay {
     background: -moz-linear-gradient(-40deg, #6501a1 0%, #a730b2 100%);
     background: -webkit-linear-gradient(-40deg, #6501a1 0%, #a730b2 100%);
@@ -1279,7 +1322,12 @@ Hero Area Css Start
         display: flex; }
         .heroArea .musicSlider .item .contentBox .left .img {
           position: relative;
-          margin-right: 30px; }
+          margin-right: 30px;
+        }
+        .heroArea .musicSlider .item .contentBox .left .img img {
+          /* position: relative; */
+          max-width: 350px;
+        }
           .heroArea .musicSlider .item .contentBox .left .img a {
             position: absolute;
             top: 50%;
@@ -1461,8 +1509,8 @@ Album Area Css Start
 ---------------------------*/
 .member {
   padding: 0px 0px 0px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: 10px;
  }
   .concert .comment-form-area form button.submit {
     /* position: absolute; */
@@ -1658,7 +1706,7 @@ Album Area Css Start
     Blog  area
 --------------------*/
 .blog-area {
-  padding: 50px 0px 60px; }
+  padding: 30px 0px 15px; }
   .blog-area.blog-page {
     padding-top: 120px; }
     .blog-area.blog-page:after {
@@ -1716,11 +1764,43 @@ Album Area Css Start
       .blog-area .single-blog-item .content .readmore:hover {
         color: #a730b2; }
 
+        .blog-area button.submit {
+          position: center;
+          top: 0;
+          right: 0px;
+          border: 0px;
+          font-size: 16px;
+          width: 180px;
+          height: 30px;
+          border-radius: 5px;
+          background: -moz-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          background: -webkit-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          background: -ms-linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          background: -webkit-gradient(linear, left bottom, left top, from(#6501a1), to(#a730b2));
+          background: -webkit-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
+          background: -o-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
+          background: linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+          font-weight: 800;
+          -webkit-transition: 0.3s ease-out;
+          -moz-transition: 0.3s ease-out;
+          -o-transition: 0.3s ease-out;
+          transition: 0.3s ease-out;
+          cursor: pointer;
+        }
+          .blog-area button.submit:hover {
+            background: -moz-linear-gradient(90deg, #6501a1 0%, #a730b2 100%);
+            background: -webkit-linear-gradient(90deg, #6501a1 0%, #a730b2 100%);
+            background: -ms-linear-gradient(90deg, #6501a1 0%, #a730b2 100%);
+            background: -webkit-gradient(linear, left top, right top, from(#6501a1), to(#a730b2));
+            background: -webkit-linear-gradient(left, #6501a1 0%, #a730b2 100%);
+            background: -o-linear-gradient(left, #6501a1 0%, #a730b2 100%);
+            background: linear-gradient(90deg, #6501a1 0%, #a730b2 100%); }
+
 .blog-pagination {
   margin-top: 30px; }
 
 .blog-area.blog-page {
-  padding: 120px 0px 120px; }
+  padding: 50px 0px 50px; }
 
 .pagination {
   display: block;
@@ -2227,7 +2307,7 @@ Blog Page End
 Blog Details Page
 ---------------------------------*/
 .blog-details-page-content-area {
-  padding: 120px 0 120px 0; }
+  padding: 20px 0 20px 0; }
   .blog-details-page-content-area .blog-details-content .thumb {
     margin-bottom: 30px;
     width: 100%;
