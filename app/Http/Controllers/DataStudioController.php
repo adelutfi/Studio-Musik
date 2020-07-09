@@ -17,9 +17,9 @@ class DataStudioController extends Controller
           if($total > 2){
             $rating[] = $data;
           }
-        }  
+        }
       }
-      
+
       $rating = array_splice($rating, 0, 4);
 
       return view('welcome', compact('studio','rating'));

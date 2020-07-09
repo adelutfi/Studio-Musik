@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Pemilik;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Pemilik;
+use App\Penyewa;
 use Auth;
+use App\Mail\NewUserNotification;
+use Mail;
+use Crypt;
 
 class AuthPemilikController extends Controller
 {
@@ -63,6 +67,30 @@ class AuthPemilikController extends Controller
     public function logout(){
       Auth::guard('pemilik')->logout();
       return redirect()->route('pemilik.show.login');
+    }
+
+    public function testEmail(){
+      $nama = "Yona";
+      $email = "yona@mail.com";
+      $token = Crypt::encrypt($email);
+
+      Mail::to($email)->send(new NewUserNotification($nama,$token));
+      return 'Success';
+    }
+
+    public function confirmEmail($token){
+      try {
+        $email = Crypt::decrypt($token);
+        $penyewa = Penyewa::where('email', $email)->where('verifikasi_email', null)->first();
+        if($penyewa){
+          $penyewa->update(['verifikasi_email' => now()]);
+          return redirect('/')->with('emailSuccess', '');
+        }else {
+          return redirect('/')->with('emailFailed', '');
+        }
+      } catch (\Exception $e) {
+        return redirect('/');
+      }
     }
 
 }

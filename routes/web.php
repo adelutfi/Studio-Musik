@@ -1,5 +1,9 @@
   <?php
 
+Route::get('/email','Pemilik\AuthPemilikController@testEmail');
+Route::get('konfirmasi/email/{token}','Pemilik\AuthPemilikController@confirmEmail');
+
+
 Route::group(['prefix' => '/'], function(){
   Route::get('register','Penyewa\AuthPenyewaController@showRegister')->name('register');
   Route::post('register','Penyewa\AuthPenyewaController@register')->name('penyewa.register');

@@ -75,6 +75,7 @@
          <div class="row">
            @foreach($studio as $s)
            @php($total = $r->ratings->nilai/$r->ratings->jumlah )
+            @if($s->sewaAlat || $s->sewaTempat)
              <div class="col-lg-4 col-md-6 col-12 mt-4">
                  <div class="single-blog-item">
                      <!-- single blog item -->
@@ -106,11 +107,19 @@
                      </div>
                  </div>
              </div>
+             @endif
              @endforeach
              <div class="col-12 text-center mt-4">
                  <button type="button" onclick="window.location='{{route("semua.studio")}}'" class="submit">
                    Lihat Selengkapnya
                  </button>
+
+                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                   Launch demo modal
+                 </button> -->
+
+<!-- Modal -->
+
              </div>
          </div>
      </div>
@@ -155,9 +164,42 @@
            </div>
        </div>
    </section>
+
+   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+       <div class="modal-content">
+         <div class="modal-header bg-info">
+           <h5 class="modal-title text-white" id="exampleModalLabel">Email Konfirmasi</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body text-center">
+           @if(Session::has('emailSuccess'))
+           <i class="fa fa-check-square mb-2 text-success" aria-hidden="true" style="font-size: 60px"></i>
+           <h3 class="text-success mt-2">Email anda berhasil di konfirmasi </h3>
+           <button type="button" class="btn btn-primary mt-5" data-dismiss="modal">OK</button>
+           @endif
+           @if(Session::has('emailFailed'))
+           <i class="fa fa-window-close text-danger" aria-hidden="true" style="font-size: 60px"></i>
+           <h3 class="text-danger mt-2">Email anda sudah di konfirmasi </h3>
+           <button type="button" class="btn btn-primary mt-5" data-dismiss="modal">OK</button>
+           @endif
+
+         </div>
+       </div>
+     </div>
+   </div>
 @endsection
 @section('script')
 <script type="text/javascript">
+
+@if(Session::has('emailSuccess') || Session::has('emailFailed'))
+  console.log("hahahaha");
+  $('#exampleModal').modal('show');
+@endif
+
+
 $(".owl-carousel").owlCarousel({
     autoPlay: 3000,
     items : 1, // THIS IS IMPORTANT
