@@ -23,4 +23,11 @@
     <!-- main -->
     <script src="{{asset('public/assets/landing/js/main.js')}}"></script>
 
+    @auth('penyewa')
+    <script>
+      const notify = document.querySelector('#notify');
+      console.log(notify);
+    </script>
+    @endauth
+
     @yield('script')

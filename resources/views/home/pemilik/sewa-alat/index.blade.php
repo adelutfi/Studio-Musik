@@ -48,11 +48,11 @@
                                     @php($jadwal = explode(',',$s->jadwal))
                                     <td>
                                       @for($i = 0; $i < count($jadwal); $i ++)
-                                        {{$jadwal[$i]}} 
+                                        {{$jadwal[$i]}}
                                       @endfor
                                     </td>
                                     <td class="text-center">
-                                      <button type="button" class="btn btn-warning btn-sm" name="button"> <i class="feather icon-edit"></i> </button>
+                                      <button type="button" onclick="window.location='{{route("pemilik.edit.sewa-alat", $s)}}'" class="btn btn-warning btn-sm" name="button"> <i class="feather icon-edit"></i> </button>
                                       <button type="button" class="btn btn-danger btn-sm" name="button"> <i class="feather icon-trash"></i> </button>
                                     </td>
                                   </tr>

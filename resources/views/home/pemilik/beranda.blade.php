@@ -52,7 +52,7 @@
                  <i class="feather icon-log-in text-info font-medium-5"></i>
                </div>
              </div>
-             <h2 class="text-bold-700">0</h2>
+             <h2 class="text-bold-700">{{count($sewaTempat)}}</h2>
              <p class="mb-0 text-dark">Sewa Tempat</p>
            </div>
          </div>
@@ -67,7 +67,7 @@
                  <i class="feather icon-truck text-info font-medium-5"></i>
                </div>
              </div>
-             <h2 class="text-bold-700">0</h2>
+             <h2 class="text-bold-700">{{count($sewaAlat)}}</h2>
              <p class="mb-0 text-dark">Sewa Alat</p>
            </div>
          </div>

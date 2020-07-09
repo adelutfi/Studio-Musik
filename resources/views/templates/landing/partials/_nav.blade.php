@@ -25,17 +25,45 @@
                     <li class="nav-item @if(Request::is('pemesanan')) active @endif">
                        <a class="nav-link" href="{{url('/pemesanan')}}"><strong>Pemesanan</strong></a>
                    </li>
+                   <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <strong>
+                        Notifications
+                       </strong>
+                       <span class="badge badge-info" id="notify">0</span>
+                       </a>
+                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <div class="card" style="width: 370px">
+                              <!-- <a href="#"> -->
+                            <div id="show-notify" class="">
+                              <div class="card-header bg-transparent">
+                                <i class="fa fa-circle" style="color: blue"></i>
+                                <span class="" style="font-size: 13px">
+                                  Admin telah mem-verifikasi akun anda
+                                </span>
+                              </div>
+                              <!-- </a> -->
+                            </div>
+                            <div class="card-footer">
+                            <h6 class="text-center">Lihat Semua</h6>
+                            </div>
+                          </div>
+                           <!-- <a class="dropdown-item" href="{{route('profil')}}">Profil</a> -->
+                       </ul>
+                   </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <strong>{{Auth::user()->nama}}</strong>
+                        <strong>
+                          {{Auth::user()->nama}}
+                        </strong>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('profil')}}">Profil</a>
+                            <a class="dropdown-item" href="{{route('profil')}}"> <i class="fa fa-user"></i> Profil</a>
                             <a class="dropdown-item" href="{{route('penyewa.logout')}}" onclick="event.preventDefault();
-                           document.getElementById('logout-penyewa-form').submit();">Keluar</a>
+                           document.getElementById('logout-penyewa-form').submit();"> <i class="fa fa-power-off"></i> Keluar</a>
                             <form id="logout-penyewa-form" action="{{ route('penyewa.logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+                              @csrf
+                            </form>
                         </div>
                     </li>
                     @else

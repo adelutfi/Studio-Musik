@@ -1,24 +1,19 @@
-<?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+  <?php
 
 Route::group(['prefix' => '/'], function(){
-Route::get('/','DataStudioController@index')->name('welcome');
-Route::get('detail/{studio}','DataStudioController@show')->name('detail.studio');
-Route::get('semua-studio','DataStudioController@semuaStudio')->name('semua.studio');
-Route::get('s={studio}/ket={keterangan}/pemesanan','PemesananController@index')->name('pemesanan');
-Route::get('profil','PenyewaController@index')->name('profil');
-Route::patch('profil','PenyewaController@update')->name('profil.update');
+  Route::get('register','Penyewa\AuthPenyewaController@showRegister')->name('register');
+  Route::post('register','Penyewa\AuthPenyewaController@register')->name('penyewa.register');
+  Route::get('login','Penyewa\AuthPenyewaController@showLogin')->name('login');
+  Route::post('login','Penyewa\AuthPenyewaController@login')->name('penyewa.login');
+  Route::post('logout','Penyewa\AuthPenyewaController@logout')->name('penyewa.logout');
+  Route::get('lupa-password','Penyewa\ForgotPasswordController@index')->name('penyewa.lupa-password');
 
+  Route::get('/','DataStudioController@index')->name('welcome');
+  Route::get('detail/{studio}','DataStudioController@show')->name('detail.studio');
+  Route::get('semua-studio','DataStudioController@semuaStudio')->name('semua.studio');
+  Route::get('s={studio}/ket={keterangan}/pemesanan','PemesananController@index')->name('pemesanan');
+  Route::get('profil','PenyewaController@index')->name('profil');
+  Route::patch('profil','PenyewaController@update')->name('profil.update');
 });
 
 // Routing lingkup Admin
@@ -33,35 +28,37 @@ Route::group(['prefix' => 'admin'], function(){
     Route::post('logout','Admin\AuthAdminController@logout')->name('admin.logout');
 });
 
-// Routing lingkup sebelum login
-Route::group(['prefix' => '/'], function(){
-  Route::get('register','Auth\AuthUserController@showRegister')->name('register');
-  Route::get('login','Auth\AuthUserController@showLogin')->name('login');
-  Route::post('register','Auth\AuthUserController@register')->name('user.register');
-  Route::post('login','Auth\AuthUserController@login')->name('user.login');
-  Route::post('logout','Auth\AuthUserController@logoutPenyewa')->name('penyewa.logout');
-});
 
 // Routing lingkup pemilik
 Route::group(['prefix' => 'pemilik'], function(){
+  // authentication
+  Route::get('register','Pemilik\AuthPemilikController@showRegister')->name('pemilik.show.register');
+  Route::post('register','Pemilik\AuthPemilikController@register')->name('pemilik.register');
+  Route::get('login','Pemilik\AuthPemilikController@showLogin')->name('pemilik.show.login');
+  Route::post('login','Pemilik\AuthPemilikController@login')->name('pemilik.login');
+  Route::post('logout','Pemilik\AuthPemilikController@logout')->name('pemilik.logout');
+  Route::get('lupa-password','Pemilik\ForgotPasswordController@index')->name('pemilik.lupa-password');
+
+  // Home
   Route::get('beranda','Pemilik\HomeController@beranda')->name('pemilik.beranda');
   Route::get('studio','Pemilik\StudioController@index')->name('pemilik.studio');
   Route::get('studio/tambah-studio','Pemilik\StudioController@create')->name('pemilik.tambah.studio');
   Route::post('studio/tambah-studio','Pemilik\StudioController@store')->name('pemilik.simpan.studio');
   Route::get('studio/edit/{studio}', 'Pemilik\StudioController@edit')->name('pemilik.edit.studio');
   Route::patch('studio/edit/{studio}','Pemilik\StudioController@update')->name('pemilik.update.studio');
-
   Route::delete('studio/hapus/{studio}','Pemilik\StudioController@destroy')->name('pemilik.hapus.studio');
 
   Route::get('penyewaan/sewa-tempat','Pemilik\SewaTempatController@index')->name('pemilik.sewa-tempat');
   Route::get('penyewaan/sewa-tempat/tambah','Pemilik\SewaTempatController@create')->name('pemilik.tambah.sewa-tempat');
   Route::post('penyewaan/sewa-tempat/tambah','Pemilik\SewaTempatController@store')->name('pemilik.simpan.sewa-tempat');
+  Route::get('penyewaan/sewa-tempat/edit/{sewaTempat}','Pemilik\SewaTempatController@edit')->name('pemilik.edit.sewa-tempat');
+  Route::patch('penyewaan/sewa-tempat/edit/{sewaTempat}','Pemilik\SewaTempatController@update')->name('pemilik.update.sewa-tempat');
 
   Route::get('penyewaan/sewa-alat','Pemilik\SewaAlatController@index')->name('pemilik.sewa-alat');
   Route::get('penyewaan/sewa-alat/tambah','Pemilik\SewaAlatController@create')->name('pemilik.tambah.sewa-alat');
   Route::post('penyewaan/sewa-alat/tambah','Pemilik\SewaAlatController@store')->name('pemilik.simpan.sewa-alat');
+  Route::get('penyewaan/sewa-alat/edit/{sewaAlat}','Pemilik\SewaAlatController@edit')->name('pemilik.edit.sewa-alat');
 
-  Route::post('logout','Auth\AuthUserController@logoutPemilik')->name('pemilik.logout');
   Route::get('profil','Pemilik\ProfilController@index')->name('pemilik.profil');
   Route::patch('profil/umum','Pemilik\ProfilController@updateProfil')->name('pemilik.update.profil');
   Route::patch('profil/pribadi','Pemilik\ProfilController@updatePersonal')->name('pemilik.update.personal');

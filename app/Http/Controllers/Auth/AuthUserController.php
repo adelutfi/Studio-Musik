@@ -12,7 +12,7 @@ class AuthUserController extends Controller
 {
    public function __construct()
     {
-      $this->middleware(['guest:pemilik','guest:penyewa'])->except(['logoutPemilik', 'logoutPenyewa']);
+      $this->middleware('guest:penyewa')->except(['logoutPemilik', 'logoutPenyewa']);
     }
 
 

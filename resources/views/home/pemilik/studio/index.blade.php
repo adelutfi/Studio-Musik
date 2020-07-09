@@ -21,6 +21,14 @@
     </div>
   </div>
 </div>
+@if(Session::has('message'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <p class="mb-0"><i class="feather icon-check-circle"></i><strong> Sukses! </strong> {{Session::get('message')}}</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+@endif
 <section id="basic-examples">
   <div class="row match-height">
 
@@ -80,7 +88,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <h5>Apakah anda yakin akan menghapus Studio <b>{{$s->nama}}</b> </h5>
+        <h5>Apakah anda yakin akan menghapus <b>{{$s->nama}}</b> ? </h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

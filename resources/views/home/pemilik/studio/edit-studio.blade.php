@@ -31,7 +31,7 @@
                           <div class="form-group">
                               <label for="first-name-icon"><h4>Nama Studio</h4></label>
                               <div class="position-relative has-icon-left">
-                                  <input type="text" class="form-control form-control-lg" value="{{$studio->nama}}" name="nama" placeholder="" required>
+                                  <input type="text" class="form-control form-control-lg" maxlength="30" minlength="5" value="{{old('nama',$studio->nama)}}" name="nama" placeholder="" required>
                                   <div class="form-control-position">
                                   <i class="feather icon-bookmark"></i>
                                 </div>
@@ -42,7 +42,7 @@
                           <div class="form-group">
                               <label for="first-name-icon"><h4>Alamat</h4></label>
                               <div class="position-relative has-icon-left">
-                                  <textarea class="form-control form-control-lg" name="alamat" rows="4" placeholder="" required>{{$studio->alamat}}</textarea>
+                                  <textarea class="form-control form-control-lg" minlength="10" name="alamat" rows="4" placeholder=""  required>{{old('alamat',$studio->alamat)}}</textarea>
                                   <div class="form-control-position">
                                   <i class="feather icon-map-pin"></i>
                                 </div>
@@ -53,7 +53,7 @@
                           <div class="form-group">
                               <label for="first-name-icon"><h4>Deskripsi</h4></label>
                               <div class="position-relative has-icon-left">
-                                  <textarea class="form-control form-control-lg" name="deskripsi" rows="10" placeholder="" required>{{$studio->deskripsi}}</textarea>
+                                  <textarea class="form-control form-control-lg" minlength="10" name="deskripsi" rows="10" placeholder="" required>{{old('deskripsi',$studio->deskripsi)}}</textarea>
                                   <div class="form-control-position">
                                   <i class="feather icon-book-open"></i>
                                 </div>
@@ -79,8 +79,8 @@
                           </div>
                       </div>
                     <div class="col-12">
-                      <button type="submit" class="btn btn-primary mr-1 mb-1">Simpan</button>
                       <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Kembali</button>
+                      <button type="submit" class="btn btn-primary mr-1 mb-1">Simpan</button>
               </div>
             </div>
           </div>

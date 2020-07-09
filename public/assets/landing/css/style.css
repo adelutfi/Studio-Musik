@@ -2048,6 +2048,9 @@ Sidebar Area
         .sidebar .widget-area.tag .widget-body ul li a:hover {
           background-color: #a730b2;
           color: #fff; }
+        .sidebar .widget-area.tag .widget-body .active {
+          background-color: #a730b2;
+          color: #fff; }
   .sidebar .widget-area.search .serach-widget-form {
     position: relative;
     margin-bottom: 37px; }
@@ -2636,3 +2639,20 @@ Blog Details Page
   /* ::-webkit-datetime-edit-day-field { pointer-events: none; }
   ::-webkit-datetime-edit-month-field { pointer-events: none;} */
   input[type="date"]::-webkit-clear-button { display: none; }
+
+  .item {
+    position:relative;
+    padding-top:20px;
+    display:inline-block;
+}
+.notify-badge{
+    position: absolute;
+    right:-20px;
+    top:10px;
+    background:blue;
+    text-align: center;
+    border-radius: 30px 30px 30px 30px;
+    color:white;
+    /* padding:5px 10px; */
+    font-size:5px;
+}

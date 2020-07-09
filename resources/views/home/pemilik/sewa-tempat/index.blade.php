@@ -11,6 +11,7 @@
 @section('content')
 <div class="content-header row">
   <div class="content-header-left col-md-12 col-12 mb-2">
+
     <div class="row breadcrumbs-top">
       <div class="col-6">
         <h2 class="content-header-title float-left mb-0">Data Sewa Tempat</h2>
@@ -21,6 +22,14 @@
     </div>
   </div>
 </div>
+@if(Session::has('message'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <p class="mb-0"><i class="feather icon-check-circle"></i><strong> Sukses! </strong> {{Session::get('message')}}</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+@endif
 <section id="basic-datatable">
     <div class="row">
         <div class="col-12">
@@ -46,7 +55,7 @@
                                   <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$s->studio->nama}}</td>
-                                    <td>{{$s->harga}}</td>
+                                    <td>Rp. {{number_format($s->harga, 0,',','.')}}</td>
                                     <td>{{$s->jumlah_ruangan}}</td>
                                     @php($jadwal = explode(',',$s->jadwal))
                                     @php($jamBuka = explode(',',$s->jam_buka))
@@ -57,7 +66,7 @@
                                       @endfor
                                     </td>
                                     <td class="text-center">
-                                      <button type="button" class="btn btn-warning btn-sm" name="button"> <i class="feather icon-edit"></i> </button>
+                                      <button type="button" onclick="window.location='{{route("pemilik.edit.sewa-tempat", $s)}}'" class="btn btn-warning btn-sm" name="button"> <i class="feather icon-edit"></i> </button>
                                       <button type="button" class="btn btn-danger btn-sm" name="button"> <i class="feather icon-trash"></i> </button>
                                     </td>
                                   </tr>

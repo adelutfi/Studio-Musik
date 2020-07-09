@@ -52,6 +52,46 @@ class SewaTempatController extends Controller
         'jam_tutup' => implode(',',$request->jam_tutup),
       ]);
 
-      return redirect()->route('pemilik.sewa-tempat');
+      return redirect()->route('pemilik.sewa-tempat')->with('message','Sewa Tempat berhasil ditambahkan');
     }
+
+    public function edit(SewaTempat $sewaTempat){
+      $studio = Studio::orderBy('id','DESC')->where('id_pemilik',Auth::user()->id)->where('status', 1)->get();
+      $jadwal = explode(',',$sewaTempat->jadwal);
+      $jamBuka = explode(',',$sewaTempat->jam_buka);
+      $jamTutup = explode(',',$sewaTempat->jam_tutup);
+      // dd($jadwal);
+      return view('home.pemilik.sewa-tempat.edit', compact('sewaTempat', 'studio', 'jadwal','jamBuka','jamTutup'));
+    }
+
+    public function update(Request $request, SewaTempat $sewaTempat){
+      $rule = [
+        'harga' => 'required|',
+        'jam_tutup.*' => 'required',
+        'jam_buka.*' => 'required',
+        'jadwal.*' => 'required',
+        'jumlah_ruangan' => 'required',
+        'keterangan' => 'required'
+      ];
+
+      $message = [
+        'required' => ':attribute tidak boleh kosong.',
+      ];
+
+      $this->validate($request, $rule, $message);
+
+      $sewaTempat->update([
+        'id_studio' => $request->id_studio,
+        'harga' => $request->harga,
+        'jumlah_ruangan' => $request->jumlah_ruangan,
+        'keterangan' => $request->keterangan,
+        'jadwal' => implode(',',$request->jadwal),
+        'jam_buka' => implode(',',$request->jam_buka),
+        'jam_tutup' => implode(',',$request->jam_tutup),
+      ]);
+
+      return redirect()->route('pemilik.sewa-tempat')->with('message','Sewa Tempat berhasil diubah');;
+    }
+
+
 }

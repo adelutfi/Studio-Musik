@@ -48,4 +48,33 @@ class SewaAlatController extends Controller
 
       return redirect()->route('pemilik.sewa-alat');
     }
+
+    public function edit(SewaAlat $sewaAlat){
+      $studio = Studio::orderBy('id','DESC')->where('id_pemilik',Auth::user()->id)->where('status', 1)->get();
+      $jadwal = explode(',',$sewaAlat->jadwal);
+      return view('home.pemilik.sewa-alat.edit', compact('sewaAlat','studio','jadwal'));
+    }
+
+    public function update(Request $request, SewaAlat $sewaAlat){
+      $rule = [
+        'harga' => 'required|',
+        'jadwal.*' => 'required',
+        'keterangan' => 'required'
+      ];
+
+      $message = [
+        'required' => ':attribute tidak boleh kosong.',
+      ];
+
+      $this->validate($request, $rule, $message);
+
+      $sewaAlat->update([
+        'id_studio' => $request->id_studio,
+        'harga' => $request->harga,
+        'keterangan' => $request->keterangan,
+        'jadwal' => implode(',',$request->jadwal),
+      ]);
+
+      return redirect()->route('pemilik.sewa-alat');
+    }
 }

@@ -30,7 +30,7 @@
                           <div class="form-group">
                               <label for="first-name-icon"><h4>Nama Studio</h4></label>
                               <div class="position-relative has-icon-left">
-                                  <input type="text" class="form-control form-control-lg" name="nama" placeholder="" required>
+                                  <input type="text" class="form-control form-control-lg" value="{{old('nama')}}" maxlength="30" minlength="5" name="nama" placeholder="" required>
                                   <div class="form-control-position">
                                   <i class="feather icon-bookmark"></i>
                                 </div>
@@ -41,7 +41,7 @@
                           <div class="form-group">
                               <label for="first-name-icon"><h4>Alamat</h4></label>
                               <div class="position-relative has-icon-left">
-                                  <textarea class="form-control form-control-lg" name="alamat" rows="4" placeholder="" required></textarea>
+                                  <textarea class="form-control form-control-lg" minlength="10" name="alamat" rows="4" placeholder="" required>{{old('alamat')}}</textarea>
                                   <div class="form-control-position">
                                   <i class="feather icon-map-pin"></i>
                                 </div>
@@ -52,7 +52,7 @@
                           <div class="form-group">
                               <label for="first-name-icon"><h4>Deskripsi</h4></label>
                               <div class="position-relative has-icon-left">
-                                  <textarea class="form-control form-control-lg" name="deskripsi" rows="10" placeholder="" required></textarea>
+                                  <textarea class="form-control form-control-lg" minlength="10" name="deskripsi" rows="10" placeholder="" required>{{old('deskripsi')}}</textarea>
                                   <div class="form-control-position">
                                   <i class="feather icon-book-open"></i>
                                 </div>

@@ -22,7 +22,8 @@
                     <div class="col-12">
                         <div class="misicSliderClass owl-carousel">
                           @foreach($rating as $r)
-                          @php($totalRating = $r->ratings->nilai/$r->ratings->jumlah )
+                          @php($totalRating = $r->ratings->nilai/$r->ratings->jumlah)
+                            @if($r->sewaAlat || $r->sewaTempat)
                             <div class="item">
                                 <div class="contentBox">
                                     <div class="left">
@@ -42,13 +43,14 @@
                                            @endif
                                            @endfor
                                             </a>
-                                            <p>
-                                                {{$r->alamat}}
-                                            </p>
+                                            <p>{{$r->alamat}}</p>
+                                           <p><strong> {{$r->sewaTempat ? 'Sewa Tempat Rp. '.number_format($r->sewaTempat->harga,0,',','.') : ''}} </strong></p>
+                                            <p><strong>{{$r->sewaAlat ? 'Sewa Alat Rp. '.number_format($r->sewaAlat->harga,0,',','.') : ''}} </strong></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @endif
                             @endforeach
                         </div>
                     </div>
@@ -77,7 +79,9 @@
                  <div class="single-blog-item">
                      <!-- single blog item -->
                      <div class="thumb">
+                       <a href="{{route('detail.studio', $s)}}">
                          <img src="{{asset('public/'.$s->gambar)}}" width="350" height="300" alt="blog single image">
+                         </a>
                      </div>
                      <div class="content">
                          <span class="date">
@@ -93,6 +97,8 @@
                              <h5 class="title">{{$s->nama}}</h5>
                          </a>
                          <p>{{str_limit($s->alamat,20,'....')}}</p>
+                         <p><strong> {{$s->sewaTempat ? 'Sewa Tempat Rp. '.number_format($s->sewaTempat->harga,0,',','.') : ''}} </strong></p>
+                          <p><strong>{{$s->sewaAlat ? 'Sewa Alat Rp. '.number_format($s->sewaAlat->harga,0,',','.') : ''}} </strong></p>
                          <a href="{{route('detail.studio', $s)}}" class="readmore">
                            <div class="float-right">
                             <i class="fas fa-arrow-right fa-lg text-info"></i> </a>
@@ -158,8 +164,7 @@ $(".owl-carousel").owlCarousel({
     responsive : {
           440 : { items : 1  }, // from zero to 480 screen width 4 items
           768 : { items : 2  }, // from 480 screen widthto 768 6 items
-          1024 : { items : 3   // from 768 screen width to 1024 8 items
-          }
+          1024 : { items : 2 }
       },
 });
 </script>

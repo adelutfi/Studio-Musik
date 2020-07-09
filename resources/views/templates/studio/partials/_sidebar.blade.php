@@ -43,6 +43,18 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item">
+          <a href="#">
+            <i class="feather icon-book"></i>
+            <span class="menu-title">Pemesanan</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#">
+            <i class="feather icon-clock"></i>
+            <span class="menu-title">Riwayat</span>
+          </a>
+        </li>
     </ul>
   </div>
 </div>
