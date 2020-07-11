@@ -28,6 +28,14 @@ class Penyewa extends Authenticatable
         return $this->hasMany(Pemesanan::class, 'id_penyewa', 'id');
     }
 
+    public function sendNotifyAdmin($message){
+      return event(new Events\AdminNotification($message));
+    }
+
+    public function sendNotifyPemilik($message, $penyewa){
+      return event(new Events\PemilikNotification($message, $penyewa));
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

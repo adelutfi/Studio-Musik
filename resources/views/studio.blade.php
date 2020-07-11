@@ -43,10 +43,13 @@
                     <div class="row">
                         @foreach($studio as $s)
                          @php($totalRating = $s->ratings->nilai/$s->ratings->jumlah )
+                           @if($s->sewaAlat || $s->sewaTempat)
                         <div class="col-lg-6 col-md-6">
                             <div class="single-blog-item"><!-- single blog item -->
                                 <div class="thumb">
-                            <img src="{{asset('public/'.$s->gambar)}}" width="350" height="250" alt="">
+                                   <a href="{{route('detail.studio', $s)}}">
+                                  <img src="{{asset('public/'.$s->gambar)}}" width="350" height="250" alt="">
+                                  </a>
                                 </div>
                                 <div class="content">
                                    {{--  <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span> --}}
@@ -59,24 +62,23 @@
                                          @if($totalRating <= $i)
                                           <span class="fa fa-star fa-xs"></span>
                                          @else
-                                            <span class="fa fa-star checked fa-xs"></span>
-                                          @endif
-                                           @endfor
-                                            @if($s->sewaAlat)
-                                           <span class="badge badge-success float-right ml-2">Sewa Alat</span>
-                                           @endif
-                                           @if($s->sewaTempat)
-                                           <span class="badge badge-primary float-right">Sewa Tempat</span>
-                                           @endif
-
-                                             @if(!$s->sewaAlat && !$s->sewaTempat)
-                                           <span class="badge badge-danger float-right">Belum Tersedia</span>
-                                           @endif
+                                          <span class="fa fa-star checked fa-xs"></span>
+                                        @endif
+                                      @endfor
+                                      <div class="row mt-2">
+                                        <div class="col-6">
+                                         <p><strong>{!!$s->sewaAlat ? 'Sewa Tempat <br> Rp. '.number_format($s->sewaTempat->harga,0,',','.') : ''!!} </strong></p>
+                                        </div>
+                                        <div class="col-6">
+                                          <p><strong>{!!$s->sewaAlat ? 'Sewa Alat <br> Rp. '.number_format($s->sewaAlat->harga,0,',','.') : ''!!} </strong></p>
+                                        </div>
+                                      </div>
                                   </div>
                                     <a href="{{route('detail.studio', $s)}}" class="readmore">Selengkapnya</a>
                                 </div>
                             </div><!-- //. single blog item -->
                         </div>
+                        @endif
                         @endforeach
                     </div>
                     <div class="col-lg-12">

@@ -1,17 +1,6 @@
 
 <!DOCTYPE html>
-<!--
-Template Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
-Author: PixInvent
-Website: http://www.pixinvent.com/
-Contact: hello@pixinvent.com
-Follow: www.twitter.com/pixinvents
-Like: www.facebook.com/pixinvents
-Purchase: https://1.envato.market/vuexy_admin
-Renew Support: https://1.envato.market/vuexy_admin
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
 
--->
 <html class="loading" lang="en" data-textdirection="ltr">
   <!-- BEGIN: Head-->
   <head>
@@ -21,7 +10,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Admin Login | Studio Musik</title>
+    <title>Pemilik Register | Studio Musik</title>
     <link rel="shortcut icon" href="{{asset('public/assets/landing/favicon.ico')}}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 

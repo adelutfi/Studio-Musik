@@ -30,9 +30,28 @@
 <script src="{{ asset('public/assets/studio/js/scripts/pages/dashboard-ecommerce.min.js')}}"></script>
 <script src="{{ asset('public/assets/studio/js/scripts/datatables/datatable.min.js')}}"></script>
 <script src="{{ asset('public/assets/studio/js/toast-validasi.js')}}"></script>
+<script src="//js.pusher.com/3.1/pusher.min.js"></script>
 <script>
-$(':radio').change(function() {
-console.log('New star rating: ' + this.value);
-});
+const user = '{{Auth::user()->id}}'
+console.log(user);
+if (!window.Notification) {
+  console.log('Browser does not support notifications.');
+} else {
+    // check if permission is already granted
+    if (Notification.permission === 'granted') {
+    
+    } else {
+        // request permission from user
+        Notification.requestPermission().then(function(p) {
+           if(p === 'granted') {
+               // show notification here
+           } else {
+               console.log('User blocked notifications.');
+           }
+        }).catch(function(err) {
+            console.error(err);
+        });
+    }
+}
 </script>
 <!-- END: Page JS-->

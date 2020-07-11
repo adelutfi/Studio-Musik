@@ -20,28 +20,31 @@ class PenyewaController extends Controller
 
   public function update(Request $request){
   	$penyewa = Auth::user();
-  	// $rule = [
-   //      'nama' => 'required|min:3',
-   //      'email' => 'required|email|unique:penyewa,email,'.$penyewa->id,
-   //      'no_telp' => 'required|unique:penyewa,no_telp,'.$penyewa->id,
-   //      'foto' => 'image|max:1024|mimes:jpg,png,jpeg',
-   //      'alamat' => 'required|min:3'
-   //    ];
+  	$rule = [
+        'nama' => 'required|regex:/^[\pL\s\-]+$/u',
+        'email' => 'required|email|unique:penyewa,email,'.$penyewa->id,
+        'no_telp' => 'required|unique:penyewa,no_telp,'.$penyewa->id,
+        'foto' => 'image|max:1024|mimes:jpg,png,jpeg',
+        'ktp' => 'image|max:1024|mimes:jpg,png,jpeg',
+        'alamat' => 'required|min:10'
+      ];
 
-   //    $message = [
-   //      'required' => ':attribute tidak boleh kosong.',
-   //      'min' => 'terlaku pendek',
-   //      'max' => 'dengan benar',
-   //      'email.unique' => 'Email sudah terdaftar di akun lain',
-   //      'email.no_telp' => 'No Telepon sudah terdaftar di akun lain', 
-   //    ];
+      $message = [
+        'required' => ':attribute tidak boleh kosong.',
+        'nama.regex' => 'Masukan nama dengan benar',
+        'foto.max' => 'Foto Terlalu Besar maks 2MB',
+        'ktp.max' => 'Ktp Terlalu Besar maks 2MB',
+        'email.unique' => 'Email sudah terdaftar di akun lain',
+        'email.no_telp' => 'No Telepon sudah terdaftar di akun lain',
+        'alamat.min' => 'Alamat terlalu pendek'
+      ];
 
-   //    $this->validate($request, $rule, $message);
-  		 // dd($request->all());
+      $this->validate($request, $rule, $message);
 
   		$foto = $penyewa->foto;
+  		$ktp = $penyewa->ktp;
 
-       if($request->foto){
+      if($request->foto){
         if($foto != 'gambar/foto.png'){
           if (Storage::exists($foto)) {
              Storage::delete($foto);
@@ -50,16 +53,19 @@ class PenyewaController extends Controller
         $foto = $request->file('foto')->store('gambar');
       }
 
-      // dd($request->all());
+      if($request->ktp){
+        $ktp = $request->file('ktp')->store('gambar/ktp');
+      }
 
       $penyewa->update([
         'nama' => $request->nama,
         'email' => $request->email,
         'foto' => $foto,
+        'ktp' => $ktp,
         'alamat' => trim($request->alamat),
         'no_telp' => $request->no_telp
       ]);
 
-  	  return redirect()->back()->with('message', 'Profil berhasil diubah');
+  	  return redirect()->back()->with('success', 'Profil berhasil diubah');
   }
 }

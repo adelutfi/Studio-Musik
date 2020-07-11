@@ -24,9 +24,70 @@
     <script src="{{asset('public/assets/landing/js/main.js')}}"></script>
 
     @auth('penyewa')
+    <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
     <script>
-      const notify = document.querySelector('#notify');
-      console.log(notify);
+    const user = '{{Auth::user()->id}}'
+    const userChannel = 'penyewa-notification-'+user;
+    const pusher = new Pusher('a77ce5183186534996b9', {
+      cluster: 'ap1',
+      encrypted: true
+    });
+
+    const channel = pusher.subscribe(userChannel);
+    const icon = '{{asset('public/assets/landing/favicon.ico')}}';
+    const notifyText = document.querySelector('#notify');
+    const showNotify = document.querySelector('#show-notify');
+    const notifyData = [];
+
+    if (!window.Notification) {
+       alert('Maaf anda tidak akan menerima notifikasi');
+    } else {
+        // check if permission is already granted
+        if (Notification.permission === 'granted') {
+          getNotification()
+        }
+        else {
+            Notification.requestPermission().then(function(p) {
+               if(p === 'granted') {
+                 getNotification()
+               } else {
+                   alert('Maaf anda tidak akan menerima notifikasi');
+               }
+            }).catch(function(err) {
+                console.error(err);
+            });
+        }
+    }
+
+    function getNotification(){
+      channel.bind('App\\Events\\PenyewaNotification', function(data) {
+        let show = ``;
+        notifyText.innerText = +notifyText.innerText+1;
+        notifyData.push(data.message);
+        notifyData.map(m => show += showDataNotification(m));
+        show += `<div class="card-footer">
+        <h6 class="text-center">Lihat Semua</h6>
+        </div>`
+        showNotify.innerHTML = show;
+        const notify = new Notification('Notifikasi Baru', {
+          body: data.message,
+          icon: icon,
+        });
+      });
+    }
+
+    function showDataNotification(m){
+      return `  <!-- <a href="#"> -->
+        <div class="card-header bg-transparent">
+          <i class="fa fa-circle" style="color: blue"></i>
+          <span class="" style="font-size: 13px">
+            ${m}
+          </span>
+        </div>
+        <!-- </a> -->`
+    }
+
+
     </script>
     @endauth
 

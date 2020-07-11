@@ -36,7 +36,7 @@ class AuthPemilikController extends Controller
         'email' => 'Masukan email dengan benar.',
         'min' => ':attributes minimal 6.',
         'confirmed' => 'Password tidak sama.',
-        'nama.regex' => 'Masukan nanma dengan benar',
+        'nama.regex' => 'Masukan nama dengan benar',
         'unique' => 'Email sudah terdaftar'
       ];
 

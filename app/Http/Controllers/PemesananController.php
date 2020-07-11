@@ -15,10 +15,10 @@ class PemesananController extends Controller
 
   public function index(Request $request, Studio $studio){
   	if($request->keterangan == 'sewa-alat'){
-  		if(Auth::user()->ktp){
+  		if(Auth::user()->konfirmasi_ktp){
   			return view('pemesanan', compact('studio'));
   		}else{
-  		return redirect()->back()->with('message','Tolong lengkapi data diri anda');
+  		return redirect()->back()->with('message','Sepertinya Ktp anda belum di konfirmasi oleh admin');
   		}
   	}
   	// dd($request->keterangan);

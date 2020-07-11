@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <!-- Hero Area Start -->
     <div class="heroArea">
         <div class="overlay"></div>
@@ -98,8 +97,14 @@
                              <h5 class="title">{{$s->nama}}</h5>
                          </a>
                          <p>{{str_limit($s->alamat,20,'....')}}</p>
-                         <p><strong> {{$s->sewaTempat ? 'Sewa Tempat Rp. '.number_format($s->sewaTempat->harga,0,',','.') : ''}} </strong></p>
-                          <p><strong>{{$s->sewaAlat ? 'Sewa Alat Rp. '.number_format($s->sewaAlat->harga,0,',','.') : ''}} </strong></p>
+                         <div class="row">
+                           <div class="col-6">
+                            <p><strong>{!!$s->sewaAlat ? 'Sewa Tempat <br> Rp. '.number_format($s->sewaTempat->harga,0,',','.') : ''!!} </strong></p>
+                           </div>
+                           <div class="col-6">
+                             <p><strong>{!!$s->sewaAlat ? 'Sewa Alat <br> Rp. '.number_format($s->sewaAlat->harga,0,',','.') : ''!!} </strong></p>
+                           </div>
+                         </div>
                          <a href="{{route('detail.studio', $s)}}" class="readmore">
                            <div class="float-right">
                             <i class="fas fa-arrow-right fa-lg text-info"></i> </a>

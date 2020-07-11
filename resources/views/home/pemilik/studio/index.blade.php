@@ -92,8 +92,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button"  onclick="event.preventDefault();
-                           document.getElementById('hapus-studio').submit();" class="btn btn-danger">Hapus</button>
+        <a type="button" href="{{route('pemilik.hapus.studio', $s)}}" onclick="event.preventDefault(); 
+                           document.getElementById('hapus-studio').submit();" class="btn btn-danger">Hapus</a>
            <form id="hapus-studio" action="{{ route('pemilik.hapus.studio', $s) }}" method="POST" style="display: none;">
                     @csrf
                     @method('DELETE')

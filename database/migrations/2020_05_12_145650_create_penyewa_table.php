@@ -20,7 +20,7 @@ class CreatePenyewaTable extends Migration
             $table->string('password');
             $table->string('foto')->default('gambar/foto.png');
             $table->string('ktp')->nullable();
-            $table->boolean('verifikasi_ktp')->default(true);
+            $table->boolean('konfirmasi_ktp')->default(false);
             $table->timestamp('verifikasi_email')->nullable();
             $table->text('alamat')->nullable();
             $table->char('no_telp',13)->unique()->nullable();

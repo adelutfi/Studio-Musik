@@ -17,18 +17,16 @@
             </div>
         </div>
     </section>
-    <section class="blog-details-page-content-area">
+  <section class="blog-details-page-content-area">
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
           @if(Session::has('message'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <strong>Gagal</strong> {{Session::get('message')}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              @endif
+            </div>
+          @endif
+          
               <div class="blog-details-content"><!-- blog details content  -->
                 <div class="thumb">
                   <img src="{{asset('public/'.$studio->gambar)}}" class="img-fluid" height="400px" width="800px" alt="blog detials image">
@@ -57,9 +55,8 @@
     <div class="entry-content">
         <blockquote class="blockquote">
             <p>Keterangan : <p>
-              <p>{{$studio->deskripsi}}</p>
-            <span class="author-name"><i class="fas fa-map-marker-alt mr-3"></i>{{$studio->alamat}}</span>
-            <span class="author-name"><i class="fas fa-phone mr-3"></i>{{$studio->pemilik->no_telp}}</span>
+            <p>{{$studio->deskripsi}}</p>
+            <span class="author-name"><i class="fa fa-map-marker mr-3" aria-hidden="true"></i></i><strong> {{$studio->alamat}}</strong></span>
             <span class="author-name"><i class="fas fa-music mr-3"></i><strong> {{$studio->sewaTempat ? 'Sewa Tempat Rp. '.number_format($studio->sewaTempat->harga,0,',','.') : ''}} </strong></span>
             <span class="author-name"><i class="fa fa-truck mr-3" aria-hidden="true"></i><strong>{{$studio->sewaAlat ? 'Sewa Alat Rp. '.number_format($studio->sewaAlat->harga,0,',','.') : ''}} </strong></span>
         </blockquote>
@@ -160,6 +157,7 @@
             </li> -->
         </ul>
     </div>
+    @auth('penyewa')
       <div class="comment-form-area">
           <h3 class="title">Masukan Komentar</h3>
           <form action="blog-details.html" class="comments-entry-form">
@@ -169,26 +167,40 @@
               <button type="submit" class="submit-btn">Simpan</button>
           </form>
       </div>
+      @endauth
   </div><!-- //. blog details content -->
 </div>
-  <!-- <div class="col-lg-4">
-          <div class="sidebar">
-                  <div class="widget-area category">
-                      <div class="widget-title">
-                          <h4 class="title">Stduio Lainnya</h4>
-                      </div>
-                      <div class="widget-body">
-                          <ul>
-                              <li><a href="#"><i class="fas fa-angle-right"></i> Technology And IT</a></li>
-                              <li><a href="#"><i class="fas fa-angle-right"></i> Corporate And Business</a></li>
-                              <li><a href="#"><i class="fas fa-angle-right"></i> Innovation Invention</a></li>
-                              <li><a href="#"><i class="fas fa-angle-right"></i> Marketing</a></li>
-                              <li><a href="#"><i class="fas fa-angle-right"></i> Advertisement</a></li>
-                          </ul>
-                      </div>
+  <div class="col-lg-4">
+      <div class="card mb-5">
+        <div class="card-header bg-info">
+          <h5 class="card-title text-white">Detail Pemilik Studio</h5>
+        </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12"><strong>Nama : {{$studio->pemilik->nama}}</strong></div>
+              <div class="col-12"><strong>No HP : {{$studio->pemilik->no_telp}}</strong></div>
+              <div class="col-12"><strong>Alamat : {{$studio->pemilik->alamat}}</strong></div>
+            </div>
+
+          </div>
+        </div>
+          <!-- <div class="sidebar">
+            <div class="widget-area category">
+              <div class="widget-title">
+                <h4 class="title">Stduio Lainnya</h4>
                   </div>
+                    <div class="widget-body">
+                        <ul>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Technology And IT</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Corporate And Business</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Innovation Invention</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Marketing</a></li>
+                            <li><a href="#"><i class="fas fa-angle-right"></i> Advertisement</a></li>
+                        </ul>
+                      </div>
+                  </div> -->
               </div>
-  </div> -->
+            </div>
         </div>
     </div>
 </section>

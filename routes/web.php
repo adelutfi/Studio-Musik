@@ -1,5 +1,11 @@
   <?php
 
+
+  Route::get('test', function () {
+    event(new App\Events\PenyewaNotification('Someone',1));
+    return "Event has been sent!";
+  });
+
 Route::get('/email','Pemilik\AuthPemilikController@testEmail');
 Route::get('konfirmasi/email/{token}','Pemilik\AuthPemilikController@confirmEmail');
 
@@ -30,6 +36,11 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/studio','Admin\HomeController@studio')->name('admin.studio');
     Route::patch('/studio/{studio}','Admin\HomeController@terimaStudio')->name('admin.studio.terima');
     Route::post('logout','Admin\AuthAdminController@logout')->name('admin.logout');
+
+    Route::patch('/penyewa/status/{penyewa}','Admin\PenyewaController@status')->name('admin.penyewa.status');
+    Route::patch('/penyewa/ktp/{penyewa}','Admin\PenyewaController@ktp')->name('admin.penyewa.ktp');
+
+
 });
 
 
