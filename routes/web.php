@@ -53,6 +53,7 @@ Route::group(['prefix' => 'pemilik'], function(){
   Route::post('login','Pemilik\AuthPemilikController@login')->name('pemilik.login');
   Route::post('logout','Pemilik\AuthPemilikController@logout')->name('pemilik.logout');
   Route::get('lupa-password','Pemilik\ForgotPasswordController@index')->name('pemilik.lupa-password');
+  Route::get('konfirmasi/email/{token}','Pemilik\AuthPemilikController@confirmEmail');
 
   // Home
   Route::get('beranda','Pemilik\HomeController@beranda')->name('pemilik.beranda');
@@ -68,6 +69,7 @@ Route::group(['prefix' => 'pemilik'], function(){
   Route::post('penyewaan/sewa-tempat/tambah','Pemilik\SewaTempatController@store')->name('pemilik.simpan.sewa-tempat');
   Route::get('penyewaan/sewa-tempat/edit/{sewaTempat}','Pemilik\SewaTempatController@edit')->name('pemilik.edit.sewa-tempat');
   Route::patch('penyewaan/sewa-tempat/edit/{sewaTempat}','Pemilik\SewaTempatController@update')->name('pemilik.update.sewa-tempat');
+  Route::delete('penyewaan/sewa-tempat/hapus/{sewaTempat}','Pemilik\SewaTempatController@destroy')->name('pemilik.hapus.sewa-tempat');
 
   Route::get('penyewaan/sewa-alat','Pemilik\SewaAlatController@index')->name('pemilik.sewa-alat');
   Route::get('penyewaan/sewa-alat/tambah','Pemilik\SewaAlatController@create')->name('pemilik.tambah.sewa-alat');

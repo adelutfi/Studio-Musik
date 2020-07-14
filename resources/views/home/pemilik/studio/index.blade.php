@@ -120,7 +120,7 @@
        })
     }
 
-    if(!email){
+    else if(!email){
       Swal.fire({
         title: "Gagal!",
         text: "Silahkan Verifikasi Email Anda!",

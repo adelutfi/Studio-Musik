@@ -49,21 +49,18 @@
         <div class="content-body">
           <section class="row flexbox-container">
               @if(Session::has('success'))
-              <div class="col-xl-7 col-7 justify-content-center">
+              <div class="col-xl-8 col-8 justify-content-center" style="margin-bottom: -100px">
                 <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                  <p class="mb-0">
                    <strong>Sukses!</strong> Registrasi berhasil
                    <p>Silahkan cek email anda</p>
                  </p>
-                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                   <span aria-hidden="true">&times;</span>
-                 </button>
                </div>
                 </div>
-              @endif
+                @endif
 
               @if(Session::has('failed'))
-              <div class="col-xl-7 col-7 justify-content-center">
+            <div class="col-xl-8 col-8 justify-content-center" style="margin-bottom: -100px">
                 <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
                  <p class="mb-0">
                    <strong>Login Gagal!</strong> Silahkan cek email & password anda
@@ -88,7 +85,7 @@
                         </div>
                         <div class="card-content mb-3">
                             <div class="card-body pt-1">
-                                <form action="#" method="post">
+                                <form action="{{route('pemilik.login')}}" method="post">
                                   @csrf
                                     <fieldset class="form-label-group form-group">
                                         <input type="email" class="form-control form-control-lg" name="email" id="email" value="{{old('email')}}" placeholder="Email" required>

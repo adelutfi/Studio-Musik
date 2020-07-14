@@ -67,7 +67,9 @@ class ProfilController extends Controller
       $message = [
         'required' => ':attribute tidak boleh kosong.',
         'min' => 'terlaku pendek',
-        'max' => 'dengan benar'
+        'max' => 'dengan benar',
+        'no_telp.unique' => 'No Telepon sudah terdaftar',
+        'no_rek.unique' => 'No Rekening sudah terdaftar',
       ];
 
     $this->validate($request, $rule, $message);

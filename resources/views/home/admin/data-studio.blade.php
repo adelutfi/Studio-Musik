@@ -32,6 +32,7 @@
                                         <th>No</th>
                                         <th>Gambar</th>
                                         <th>Nama</th>
+                                        <th>Pemilik</th>
                                         <th>Alamat</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
@@ -43,6 +44,7 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td> <img src="{{asset('public/'.$s->gambar)}}" alt="" width="100" height="100"> </td>
                                         <td>{{$s->nama}}</td>
+                                        <td>{{$s->pemilik->nama}}</td>
                                         <td>{{$s->alamat}}</td>
                                         <td>
                                           @if($s->status)

@@ -12,16 +12,17 @@ class NewUserNotification extends Mailable
     use Queueable, SerializesModels;
     public $nama;
     public $token;
-
+    public $guard;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($nama, $token)
+    public function __construct($nama, $token, $guard)
     {
         $this->nama = $nama;
         $this->token = $token;
+        $this->guard = $guard;
     }
 
     /**
@@ -31,7 +32,7 @@ class NewUserNotification extends Mailable
      */
     public function build()
     {
-      return $this->from('studio.musik.tegal@mail.com')
-      ->view('auth.email.verif-email', compact('nama', 'token'));
+      return $this->from('studiotegal123@gmail.com')
+      ->view('auth.email.verif-email', compact('nama', 'token', 'guard'));
     }
 }

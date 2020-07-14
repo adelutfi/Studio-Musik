@@ -42,11 +42,16 @@ class AuthPemilikController extends Controller
 
       $this->validate($request, $rule, $message);
 
-      Pemilik::create([
+      $pemilik = Pemilik::create([
         'nama' => $request->nama,
         'email' => $request->email,
         'password' => bcrypt($request->password)
       ]);
+      $token = Crypt::encrypt($pemilik->email);
+      $nama = $pemilik->nama;
+      $guard = 'pemilik';
+
+      Mail::to($pemilik->email)->send(new NewUserNotification($nama,$token, $guard));
 
       return redirect()->route('pemilik.show.login')->with('success','register berhasil!');
     }
@@ -74,19 +79,19 @@ class AuthPemilikController extends Controller
       $email = "yona@mail.com";
       $token = Crypt::encrypt($email);
 
-      Mail::to($email)->send(new NewUserNotification($nama,$token));
+
       return 'Success';
     }
 
     public function confirmEmail($token){
       try {
         $email = Crypt::decrypt($token);
-        $penyewa = Penyewa::where('email', $email)->where('verifikasi_email', null)->first();
-        if($penyewa){
-          $penyewa->update(['verifikasi_email' => now()]);
-          return redirect('/')->with('emailSuccess', '');
+        $pemilik = Pemilik::where('email', $email)->where('verifikasi_email', null)->first();
+        if($pemilik){
+          $pemilik->update(['verifikasi_email' => now()]);
+          return redirect('/pemilik/login')->with('emailSuccess', '');
         }else {
-          return redirect('/')->with('emailFailed', '');
+          return redirect('/pemilik/login')->with('emailFailed', '');
         }
       } catch (\Exception $e) {
         return redirect('/');

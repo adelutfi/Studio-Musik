@@ -31,24 +31,34 @@
           <ul class="menu-content">
             <li class="@if(Request::is('pemilik/penyewaan/sewa-tempat') || Request::is('pemilik/penyewaan/sewa-tempat/*') ) active @endif">
               <a href="{{route('pemilik.sewa-tempat')}}">
-              <i class="feather icon-music"></i>
-              <span class="menu-item" data-i18n="Feather">Sewa Tempat</span>
+              <i class="fa fa-home"></i>
+              <span class="menu-item">Tempat</span>
               </a>
             </li>
             <li class="@if(Request::is('pemilik/penyewaan/sewa-alat') || Request::is('pemilik/penyewaan/sewa-alat/*') ) active @endif">
               <a href="{{route('pemilik.sewa-alat')}}">
-                <i class="feather icon-truck"></i>
-                <span class="menu-item" data-i18n="Font Awesome">Sewa Alat</span>
+                <i class="fa fa-truck"></i>
+                <span class="menu-item" data-i18n="Font Awesome">Alat</span>
               </a>
             </li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a href="#">
-            <i class="feather icon-book"></i>
-            <span class="menu-title">Pemesanan</span>
-          </a>
-        </li>
+        <li class=" nav-item"><a href="#"><i class="feather icon-clipboard"></i><span class="menu-title" data-i18n="Icons">Pemesanan</span></a>
+            <ul class="menu-content">
+              <li class="">
+                <a href="#">
+                <i class="fa fa-home"></i>
+                <span class="menu-item" data-i18n="Feather">Tempat</span>
+                </a>
+              </li>
+              <li class="">
+                <a href="#">
+                  <i class="fa fa-truck"></i>
+                  <span class="menu-item">Alat</span>
+                </a>
+              </li>
+            </ul>
+          </li>
         <!-- <li class="nav-item">
           <a href="#">
             <i class="feather icon-clock"></i>

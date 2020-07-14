@@ -5,7 +5,7 @@
   <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
   <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
   <meta name="author" content="PIXINVENT">
-  <title>Studio Musik</title>
+  <title> @if (Request::is('admin/*')) Admin @else Pemilik @endif | Studio Musik </title>
   <link rel="shortcut icon" type="image/x-icon" href="{{asset('public/assets/landing/favicon.ico')}}">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 

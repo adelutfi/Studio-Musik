@@ -375,7 +375,7 @@ ul.social li a{
             				<h3 style="color: white"> <strong>Selamat Datang di Studio Musik Tegal</strong></h3>
             				<h2 style="margin-bottom: 60px">{{$nama}}</h2>
             				<p> <strong>Silahkan konfirmasi email anda dengan menekan tombol dibawah.</strong></p>
-            				<p><a href="{{url('/konfirmasi/email', $token)}}" class="btn btn-primary">Konfirmasi Email</a></p>
+            				<p><a href="{{url('/'.$guard.'/konfirmasi/email', $token)}}" class="btn btn-primary">Konfirmasi Email</a></p>
             			</div>
             		</td>
             	</tr>

@@ -26,6 +26,14 @@
   </button>
 </div>
 @endif
+@if($errors->all())
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <p class="mb-0"><i class="feather icon-check-circle"></i><strong> Gagal! </strong> Profil Gagal diubah</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+@endif
 @if(Session::has('message'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
   <p class="mb-0"><i class="feather icon-check-circle"></i><strong> Sukses! </strong> {{Session::get('message')}}</p>
@@ -40,14 +48,14 @@
     <div class="col-md-3 mb-2 mb-md-0">
       <ul class="nav nav-pills flex-column mt-md-0 mt-1">
         <li class="nav-item">
-          <a class="nav-link d-flex py-75 @if(Session::has('pribadi')) @else active @endif" id="account-pill-general" data-toggle="pill"
+          <a class="nav-link d-flex py-75 @if(Session::has('pribadi') || $errors->has('no_telp') || $errors->has('no_rek')) @else active @endif" id="account-pill-general" data-toggle="pill"
             href="#account-vertical-general" aria-expanded="true">
             <i class="feather icon-globe mr-50 font-medium-3"></i>
             Umum
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex py-75 @if(Session::has('pribadi')) active @else @endif" id="account-pill-info" data-toggle="pill" href="#account-vertical-info"
+          <a class="nav-link d-flex py-75 @if(Session::has('pribadi') || $errors->has('no_telp') || $errors->has('no_rek')) active @else @endif" id="account-pill-info" data-toggle="pill" href="#account-vertical-info"
             aria-expanded="false">
             <i class="feather icon-info mr-50 font-medium-3"></i>
             Pribadi
@@ -69,7 +77,7 @@
         <div class="card-content">
           <div class="card-body">
             <div class="tab-content">
-              <div role="tabpanel" class="tab-pane @if(Session::has('pribadi')) fade @else active @endif" id="account-vertical-general"
+              <div role="tabpanel" class="tab-pane @if(Session::has('pribadi') || $errors->has('no_telp') || $errors->has('no_rek')) fade @else active @endif" id="account-vertical-general"
                 aria-labelledby="account-pill-general" aria-expanded="true">
               <form action="{{route('pemilik.update.profil')}}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -150,7 +158,7 @@
                 </form>
               </div>
 
-              <div class="tab-pane @if(Session::has('pribadi')) active @else fade @endif" id="account-vertical-info" role="tabpanel" aria-labelledby="account-pill-info"
+              <div class="tab-pane @if(Session::has('pribadi') || $errors->has('no_telp') || $errors->has('no_rek')) active @else fade @endif" id="account-vertical-info" role="tabpanel" aria-labelledby="account-pill-info"
               aria-expanded="false">
               <form action="{{route('pemilik.update.personal')}}" method="post">
                 @csrf
@@ -159,7 +167,7 @@
                   <div class="col-6">
                     <div class="form-group">
                       <label for="accountTextarea">No Telepon</label>
-                      <input type="tel" name="no_telp" class="form-control{{ $errors->has('no_telp') ? ' is-invalid' : '' }} form-control-lg" minlength="11" maxlength="13" value="{{Auth::user()->no_telp}}" required>
+                      <input type="tel" name="no_telp" value="{{old('no_telp')}}" class="form-control{{ $errors->has('no_telp') ? ' is-invalid' : '' }} form-control-lg" minlength="11" maxlength="13" value="{{Auth::user()->no_telp}}" required>
                       @if ($errors->has('no_telp'))
                       <span class="invalid-feedback text-danger" role="alert">
                         <strong>{{ $errors->first('no_telp') }}</strong>
@@ -171,7 +179,7 @@
                     <div class="form-group">
                       <div class="controls">
                         <label for="account-birth-date">No Rekening</label>
-                        <input type="tel" name="no_rek" class="form-control{{ $errors->has('no_rek') ? ' is-invalid' : '' }} form-control-lg" minlength="16" maxlength="16" value="{{Auth::user()->no_rek}}" required>
+                        <input type="tel" name="no_rek" value="{{old('no_rek')}}" class="form-control{{ $errors->has('no_rek') ? ' is-invalid' : '' }} form-control-lg" minlength="16" maxlength="16" value="{{Auth::user()->no_rek}}" required>
                         @if ($errors->has('no_rek'))
                         <span class="invalid-feedback text-danger" role="alert">
                           <strong>{{ $errors->first('no_rek') }}</strong>

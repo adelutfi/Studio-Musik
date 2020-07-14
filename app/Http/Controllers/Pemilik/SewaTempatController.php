@@ -90,7 +90,12 @@ class SewaTempatController extends Controller
         'jam_tutup' => implode(',',$request->jam_tutup),
       ]);
 
-      return redirect()->route('pemilik.sewa-tempat')->with('message','Sewa Tempat berhasil diubah');;
+      return redirect()->route('pemilik.sewa-tempat')->with('message','Sewa Tempat berhasil diubah');
+    }
+
+    public function destroy(SewaTempat $sewaTempat){
+      $sewaTempat->delete();
+      return redirect()->route('pemilik.sewa-tempat')->with('message','Sewa Tempat berhasil dihapus');
     }
 
 
