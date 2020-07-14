@@ -18,20 +18,36 @@
     </div>
   </div>
 </div>
+@if(Session::has('pribadi'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <p class="mb-0"><i class="feather icon-check-circle"></i><strong> Sukses! </strong> {{Session::get('pribadi')}}</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+@endif
+@if(Session::has('message'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <p class="mb-0"><i class="feather icon-check-circle"></i><strong> Sukses! </strong> {{Session::get('message')}}</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+@endif
 <section id="page-account-settings">
   <div class="row">
     <!-- left menu section -->
     <div class="col-md-3 mb-2 mb-md-0">
       <ul class="nav nav-pills flex-column mt-md-0 mt-1">
         <li class="nav-item">
-          <a class="nav-link d-flex py-75 active" id="account-pill-general" data-toggle="pill"
+          <a class="nav-link d-flex py-75 @if(Session::has('pribadi')) @else active @endif" id="account-pill-general" data-toggle="pill"
             href="#account-vertical-general" aria-expanded="true">
             <i class="feather icon-globe mr-50 font-medium-3"></i>
             Umum
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex py-75" id="account-pill-info" data-toggle="pill" href="#account-vertical-info"
+          <a class="nav-link d-flex py-75 @if(Session::has('pribadi')) active @else @endif" id="account-pill-info" data-toggle="pill" href="#account-vertical-info"
             aria-expanded="false">
             <i class="feather icon-info mr-50 font-medium-3"></i>
             Pribadi
@@ -53,7 +69,7 @@
         <div class="card-content">
           <div class="card-body">
             <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="account-vertical-general"
+              <div role="tabpanel" class="tab-pane @if(Session::has('pribadi')) fade @else active @endif" id="account-vertical-general"
                 aria-labelledby="account-pill-general" aria-expanded="true">
               <form action="{{route('pemilik.update.profil')}}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -79,7 +95,12 @@
                       <div class="form-group">
                         <div class="controls">
                           <label for="account-username">Nama</label>
-                          <input type="text" class="form-control" name="nama" placeholder="Masukan nama anda" value="{{Auth::user()->nama}}" required>
+                          <input type="text" class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }}" name="nama" placeholder="Masukan nama anda" value="{{Auth::user()->nama}}" required>
+                          @if ($errors->has('nama'))
+                          <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ $errors->first('nama') }}</strong>
+                          </span>
+                          @endif
                         </div>
                       </div>
                     </div>
@@ -87,12 +108,17 @@
                       <div class="form-group">
                         <div class="controls">
                           <label for="account-username">Email</label>
-                          <input type="email" class="form-control" name="email" placeholder="Masukan email anda" value="{{Auth::user()->email}}" required>
+                          <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="Masukan email anda" value="{{Auth::user()->email}}" required>
+                          @if ($errors->has('nama'))
+                          <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ $errors->first('nama') }}</strong>
+                          </span>
+                          @endif
                         </div>
                       </div>
                     </div>
                     @if(!Auth::user()->verifikasi_email)
-                    <div class="col-12">
+                    <!-- <div class="col-12">
                       <div class="alert alert-warning alert-dismissible mb-2" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">×</span>
@@ -102,13 +128,18 @@
                         </p>
                         <a href="javascript: void(0);">Resend confirmation</a>
                       </div>
-                    </div>
+                    </div> -->
                     @endif
                     <div class="col-12">
                       <div class="form-group">
                         <div class="controls">
                           <label for="account-username">Alamat</label>
-                          <textarea name="alamat" class="form-control" rows="4" cols="80">{{Auth::user()->alamat}}</textarea>
+                          <textarea name="alamat" class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" rows="4" cols="80">{{Auth::user()->alamat}}</textarea>
+                          @if ($errors->has('alamat'))
+                          <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ $errors->first('alamat') }}</strong>
+                          </span>
+                          @endif
                         </div>
                       </div>
                     </div>
@@ -119,23 +150,33 @@
                 </form>
               </div>
 
-              <div class="tab-pane fade" id="account-vertical-info" role="tabpanel" aria-labelledby="account-pill-info"
+              <div class="tab-pane @if(Session::has('pribadi')) active @else fade @endif" id="account-vertical-info" role="tabpanel" aria-labelledby="account-pill-info"
               aria-expanded="false">
               <form action="{{route('pemilik.update.personal')}}" method="post">
                 @csrf
                 @method('PATCH')
                 <div class="row">
-                  <div class="col-12">
+                  <div class="col-6">
                     <div class="form-group">
                       <label for="accountTextarea">No Telepon</label>
-                      <input type="tel" name="no_telp" class="form-control" minlength="11" maxlength="13" value="{{Auth::user()->no_telp}}" required>
+                      <input type="tel" name="no_telp" class="form-control{{ $errors->has('no_telp') ? ' is-invalid' : '' }} form-control-lg" minlength="11" maxlength="13" value="{{Auth::user()->no_telp}}" required>
+                      @if ($errors->has('no_telp'))
+                      <span class="invalid-feedback text-danger" role="alert">
+                        <strong>{{ $errors->first('no_telp') }}</strong>
+                      </span>
+                      @endif
                     </div>
                   </div>
-                  <div class="col-12">
+                  <div class="col-6">
                     <div class="form-group">
                       <div class="controls">
                         <label for="account-birth-date">No Rekening</label>
-                        <input type="tel" name="no_rek" class="form-control" minlength="16" maxlength="16" value="{{Auth::user()->no_rek}}" required>
+                        <input type="tel" name="no_rek" class="form-control{{ $errors->has('no_rek') ? ' is-invalid' : '' }} form-control-lg" minlength="16" maxlength="16" value="{{Auth::user()->no_rek}}" required>
+                        @if ($errors->has('no_rek'))
+                        <span class="invalid-feedback text-danger" role="alert">
+                          <strong>{{ $errors->first('no_rek') }}</strong>
+                        </span>
+                        @endif
                       </div>
                     </div>
                   </div>
@@ -153,7 +194,7 @@
                     <div class="col-12">
                       <div class="form-group">
                         <div class="controls">
-                          <label for="account-old-password">Old Password</label>
+                          <label for="account-old-password">Password Lama</label>
                           <input type="password" class="form-control" id="account-old-password" required
                             placeholder="Old Password"
                             data-validation-required-message="This old password field is required">
@@ -163,7 +204,7 @@
                     <div class="col-12">
                       <div class="form-group">
                         <div class="controls">
-                          <label for="account-new-password">New Password</label>
+                          <label for="account-new-password">Password Baru</label>
                           <input type="password" name="password" id="account-new-password" class="form-control"
                             placeholder="New Password" required
                             data-validation-required-message="The password field is required" minlength="6">
@@ -173,8 +214,7 @@
                     <div class="col-12">
                       <div class="form-group">
                         <div class="controls">
-                          <label for="account-retype-new-password">Retype New
-                            Password</label>
+                          <label for="account-retype-new-password">Ulangi Password Baru</label>
                           <input type="password" name="con-password" class="form-control" required
                             id="account-retype-new-password" data-validation-match-match="password"
                             placeholder="New Password"

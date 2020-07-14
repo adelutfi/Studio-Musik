@@ -40,7 +40,7 @@
     const notifyData = [];
 
     if (!window.Notification) {
-       alert('Maaf anda tidak akan menerima notifikasi');
+       // alert('Maaf anda tidak akan menerima notifikasi');
     } else {
         // check if permission is already granted
         if (Notification.permission === 'granted') {
@@ -51,7 +51,7 @@
                if(p === 'granted') {
                  getNotification()
                } else {
-                   alert('Maaf anda tidak akan menerima notifikasi');
+                   // alert('Maaf anda tidak akan menerima notifikasi');
                }
             }).catch(function(err) {
                 console.error(err);

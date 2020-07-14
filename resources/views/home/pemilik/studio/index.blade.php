@@ -81,24 +81,23 @@
    <div class="modal fade" id="hapus{{$s->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #EA5455;">
+      <div class="modal-header bg-danger">
         <h5 class="modal-title text-white" id="exampleModalLongTitle">Hapus Studio</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <form action="{{ route('pemilik.hapus.studio', $s) }}" method="POST">
+        @csrf
+        @method('DELETE')
       <div class="modal-body">
         <h5>Apakah anda yakin akan menghapus <b>{{$s->nama}}</b> ? </h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <a type="button" href="{{route('pemilik.hapus.studio', $s)}}" onclick="event.preventDefault(); 
-                           document.getElementById('hapus-studio').submit();" class="btn btn-danger">Hapus</a>
-           <form id="hapus-studio" action="{{ route('pemilik.hapus.studio', $s) }}" method="POST" style="display: none;">
-                    @csrf
-                    @method('DELETE')
-                </form>
+        <button type="submit" class="btn btn-danger">Hapus</a>
       </div>
+    </form>
     </div>
   </div>
 </div>

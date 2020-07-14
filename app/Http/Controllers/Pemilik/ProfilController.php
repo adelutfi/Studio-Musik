@@ -70,13 +70,13 @@ class ProfilController extends Controller
         'max' => 'dengan benar'
       ];
 
-      $this->validate($request, $rule, $message);
+    $this->validate($request, $rule, $message);
 
     $pemilik->update([
       'no_telp' => $request->no_telp,
       'no_rek' => $request->no_rek
     ]);
 
-    return redirect()->back()->with('message','Profil berhasil dirubah');
+    return redirect()->back()->with('pribadi','Data Pribadi berhasil diubah');
   }
 }

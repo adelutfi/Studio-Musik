@@ -26,7 +26,7 @@
               <strong>Gagal</strong> {{Session::get('message')}}
             </div>
           @endif
-          
+
               <div class="blog-details-content"><!-- blog details content  -->
                 <div class="thumb">
                   <img src="{{asset('public/'.$studio->gambar)}}" class="img-fluid" height="400px" width="800px" alt="blog detials image">
@@ -54,11 +54,18 @@
     </ul> -->
     <div class="entry-content">
         <blockquote class="blockquote">
-            <p>Keterangan : <p>
-            <p>{{$studio->deskripsi}}</p>
+            <h5 class="text-white">Keterangan : <h5>
+            <h5 class="text-white">{{$studio->deskripsi}}</h5>
+            <hr>
+              <div class="text-center">
             <span class="author-name"><i class="fa fa-map-marker mr-3" aria-hidden="true"></i></i><strong> {{$studio->alamat}}</strong></span>
-            <span class="author-name"><i class="fas fa-music mr-3"></i><strong> {{$studio->sewaTempat ? 'Sewa Tempat Rp. '.number_format($studio->sewaTempat->harga,0,',','.') : ''}} </strong></span>
+          </div>
+            <div class="text-center">
+              <span class="author-name"><i class="fas fa-music mr-3"></i><strong> {!!$studio->sewaTempat ? 'Sewa Tempat Rp. '.number_format($studio->sewaTempat->harga,0,',','.') : ''!!} </strong></span>
+            </div>
+              <div class="text-center">
             <span class="author-name"><i class="fa fa-truck mr-3" aria-hidden="true"></i><strong>{{$studio->sewaAlat ? 'Sewa Alat Rp. '.number_format($studio->sewaAlat->harga,0,',','.') : ''}} </strong></span>
+          </div>
         </blockquote>
     </div>
     @if(!$studio->sewaTempat && !$studio->sewaAlat )
@@ -69,18 +76,18 @@
 
       <div id="accordion">
           <div id="headingOne">
-            <h5 class="mb-0">
-              @if($studio->sewaTempat)
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-tempat" aria-expanded="true" aria-controls="collapseOne" data-parent="#accordion">
-                  Ket. Sewa Tempat
-                </button>
-              @endif
-              @if($studio->sewaAlat)
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-alat" aria-expanded="true" aria-controls="collapseOne" data-parent="#accordion">
-                  Ket. Sewa Alat
-                </button>
-              @endif
-            </h5>
+            <!-- <h5 class="mb-0"> -->
+            @if($studio->sewaTempat)
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-tempat" aria-expanded="true" aria-controls="collapseOne" data-parent="#accordion">
+                Ket. Sewa Tempat
+              </button>
+            @endif
+            @if($studio->sewaAlat)
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sewa-alat" aria-expanded="true" aria-controls="collapseOne" data-parent="#accordion">
+                Ket. Sewa Alat
+              </button>
+            @endif
+            <!-- </h5> -->
           </div>
 
             @if($studio->sewaTempat)
@@ -158,7 +165,7 @@
         </ul>
     </div>
     @auth('penyewa')
-      <div class="comment-form-area">
+      <div class="comment-form-area mb-5">
           <h3 class="title">Masukan Komentar</h3>
           <form action="blog-details.html" class="comments-entry-form">
               <div class="form-group textarea">

@@ -1,6 +1,12 @@
 @extends('templates.landing.default')
 
 @section('content')
+<style media="screen">
+.borderless td, .borderless th {
+  border: none;
+}
+
+</style>
 <!-- <section class="breadcumb-area breadcrumb-bg">
     <div class="overlay"></div>
     <div class="container">
@@ -34,85 +40,71 @@
               </div>
               <div class="col-lg-7">
                 <div class="left-content-area">
-                    <h4 class="title text-center">Studio</h4>
+                    <h5 class="title text-center">Studio {{$keterangan === 'sewa-alat' ? 'Sewa Alat' : 'Sewa Tempat'}}</h5>
                     <h4 class="text-center">{{$studio->nama}}</h4>
+                    <h4 class="text-center mb-2">{{$studio->alamat}}</h4>
+                    <div class="text-center">
+                      @foreach($jadwal as $j)
+                      <h4 style="display: inline-block"><span class="badge badge-primary">{{$j}}</span></h4>
+                      @endforeach
+                    </div>
 
-
-                    <ul class="info-list">
-                       {{--  <li>
-                           <div class="single-info-item">
-                                <div class="icon">
-                                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                                </div>
-                                <div class="content">
-                                    <span class="details">2523 Grand Avenue Orlando, FL 32803 <br/> New York , United States</span>
-                                </div>
-                           </div>
-                        </li> --}}
+                    <ul class="info-list mt-5">
+                      @if($keterangan == 'sewa-tempat')
                         <li>
                           @php($start = now())
                            <div class="single-info-item">
                              <div class="row">
-                               <div class="col-6 form-group">
-                                <label>Tanggal</label>
-                                <input class="date form-control" type="date" value="{{now()->format('Y-m-d')}}" onkeypress="return false;"
-                                max="{{now()->addDays(14)->format('Y-m-d')}}" min="{{now()->format('Y-m-d')}}" />
+                               <div class="col-6 col-md-4 form-group">
+                                <label>Hari & Tanggal</label>
+                                <input type="text" class="form-control" id="datepicker-13" name="tanggal" value="" placeholder="Pilih Tanggal">
                               </div>
-                              <div class="col-3 form-group">
+                              <div class="col-6 col-md-3 form-group">
                                   <label>Waktu</label>
-                                  <select class="form-control" name="">
-                                    @for($hours = 8; $hours < 22; $hours++)
-                                        @for($min = 0; $min < 60; $min+=30)
-                                        <option value="">{{str_pad($hours,2,'0',STR_PAD_LEFT)}}:{{str_pad($min,2,'0',STR_PAD_LEFT)}}</option>
-                                        @endfor
+                                  <select class="form-control" name="waktu" disabled></select>
+                              </div>
+                              <div class="col-6 col-md-3 form-group">
+                                  <label>Durasi/Jam</label>
+                                  <select class="form-control" name="durasi" disabled>
+
+                                  </select>
+                              </div>
+                              <div class="col-6 col-md-2 form-group">
+                                  <label>Ruangan</label>
+                                  <select class="form-control" id="durasi" name="ruangan" disabled>
+                                    @for($i = 1; $i <= $studio->sewaTempat->jumlah_ruangan; $i++)
+                                    <option value="{{$i}}">{{$i}}</option>
                                     @endfor
                                   </select>
                               </div>
-                              <div class="col-3 form-group">
-                                  <label>Durasi/Jam</label>
-                                  <select class="form-control" id="durasi" name="durasi">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                  </select>
+                              <div class="col-12">
+                                <p id="keterangan-jadwal" style="display: none">  </p>
                               </div>
                             </div>
                            </div>
                         </li>
                         <li>
-                           <div class="single-info-item">
-                            <p class="mb-2">Alat Tambahan</p>
-                            <div class="form-check">
-                              <label class="form-check-label">
-                                <input type="checkbox" data-harga="20000" name="tambahan[]" class="tambahan form-check-input" value="">
-                                Piano Rp. 20.000
-                              </label>
-                            </div>
-                            <div class="form-check">
-                              <label class="form-check-label">
-                                <input type="checkbox" data-harga="10000" name="tambahan[]" class="tambahan form-check-input" value="">
-                                Suling Rp 10.000
-                              </label>
-                            </div>
-                           </div>
+                          <table class="table table-sm borderless">
+                            <tbody>
+                              <tr>
+                                <td><h4>Harga / jam </h4></td>
+                                <td> <h4>: Rp. {{number_format($studio->sewaTempat->harga,0,',','.')}}</h4> </td>
+                              </tr>
+                              <tr>
+                                <td><h4>Durasi </h4></td>
+                                <td> <h4>: <span id="total-durasi">1</span> Jam</h4> </td>
+                              </tr>
+                              <tr>
+                                <td><h4>Total </h4></td>
+                                <td> <h4>: Rp. <span id="total-harga">{{number_format($studio->sewaTempat->harga,0,',','.')}}</span> </h4> </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </li>
+                          @endif
                         <li>
                            <div class="single-info-item">
-                                <div class="icon">
-                                  <img src="{{asset('public/assets/landing/img/money.png')}}" style="width: 20px" alt="">
-                                </div>
-                                <div class="content d-flex align-self-center">
-                                        <div class="box align-self-center">
-                                                <br>
-                                                <span id="jumlah-awal" style="display: none;" data-jumlah="80000" class="details"></span>
-                                                <span id="jumlah-akhir" data-jumlah="80000" class="details">Rp. 80.000</span>
-                                        </div>
-                                </div>
-                           </div>
-                        </li>
-                        <li>
-                           <div class="single-info-item">
-                             <p>Pembayaran</p>
+                             <h5 class="mb-2">Pembayaran</h5>
                              <div class="custom-control custom-radio custom-control-inline">
                              <input type="radio" value="alfamart" id="alfamart" name="pembayaran" class="custom-control-input">
                              <label class="custom-control-label" for="alfamart"> <img src="{{asset('public/alfamart.png')}}" width="70" alt=""> </label>
@@ -140,50 +132,94 @@
           <!-- </form> -->
       </div>
   </section>
+@endsection
+@section('script')
+<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+@if($keterangan == 'sewa-tempat')
+<script>
+const tanggal = document.querySelector('#datepicker-13');
+const waktu = document.querySelector('select[name="waktu"]');
+const durasi = document.querySelector('select[name="durasi"]');
+const ruangan = document.querySelector('select[name="ruangan"]');
+const keteranganJadwal = document.querySelector('#keterangan-jadwal');
+const harga = '{{$studio->sewaTempat->harga}}';
+const totalDurasi = document.querySelector('#total-durasi');
+const totalHarga = document.querySelector('#total-harga');
+const jadwalData = @json($tanggal);
+let closed = ``;
+const jadwalTanggal = jadwalData.map(j => j.date);
 
-  <script>
-    const jumlahAwal = document.querySelector('#jumlah-awal');
-    const jumlahAkhir = document.querySelector('#jumlah-akhir');
-    const durasi = document.querySelector('#durasi');
-    const tambahan = document.querySelectorAll('.tambahan');
-    let totalAwal = +jumlahAwal.dataset.jumlah;
-    let totalAkhir = +jumlahAkhir.dataset.jumlah;
-    durasi.addEventListener('change', function(){
-      totalAkhir = +totalAwal * +this.value
-      tambahan.forEach(t => {
-        if(t.checked){
-          totalAkhir += +t.dataset.harga
+$( "#datepicker-13" ).datepicker({
+  dateFormat: 'd-m-yy',
+  dayNamesMin: ['Min', 'Sen', 'Sel', 'Rab', "Kam", 'Jum', 'Sab'],
+  autoclose: true,
+  beforeShowDay: enableDays
+});
+
+function enableDays(date){
+  var sdate = $.datepicker.formatDate( 'd-m-yy', date)
+        if($.inArray(sdate, jadwalTanggal) != -1) {
+            return [true];
         }
-      })
-      jumlahAkhir.innerText = 'Rp. '+rupiah(totalAkhir)
-      jumlahAkhir.dataset.jumlah = totalAkhir
-    })
+        return [false];
+}
 
-    if (tambahan.length > 0) {
-      tambahan.forEach(t => {
-        t.addEventListener('change', function(){
-          if(this.checked){
-            totalAkhir = totalAkhir + +this.dataset.harga
-            jumlahAkhir.innerText = 'Rp. '+rupiah(totalAkhir)
-            jumlahAkhir.dataset.jumlah = totalAkhir
-          }else if(!this.checked) {
-            totalAkhir = totalAkhir - +this.dataset.harga
-            jumlahAkhir.innerText = 'Rp. '+rupiah(totalAkhir)
-            jumlahAkhir.dataset.jumlah = totalAkhir
-          }
-        })
-      })
+$( "#datepicker-13" ).on('change', function(){
+  let op = ``;
+  let opDurasi = ``;
+
+  if(this.value !== ''){
+    waktu.disabled = false;
+    durasi.disabled = false;
+    ruangan.disabled = false;
+    const waktuData = jadwalData.filter(j => j.date == this.value);
+    const optionWaktu = Object.assign({},...waktuData);
+    for (let i = optionWaktu.opened.replace(':00', ''); i < optionWaktu.closed.replace(':00', ''); i++) {
+      op += `<option value="${('0' + i).slice(-2) + ':00'}">${('0' + i).slice(-2) + ':00'}</option>`;
     }
-
-
-
-    function rupiah(angka){
-      var reverse = angka.toString().split('').reverse().join(''),
-      ribuan = reverse.match(/\d{1,3}/g);
-      ribuan = ribuan.join('.').split('').reverse().join('');
-      return ribuan;
+    for (let i = 1; i <= optionWaktu.closed.replace(':00', '') - optionWaktu.opened.replace(':00', ''); i++) {
+      opDurasi += `<option value="${i}">${i}</option>`;
     }
+    waktu.innerHTML = op;
+    durasi.innerHTML = opDurasi;
+    closed = optionWaktu.closed.replace(':00', '');
+    keteranganJadwal.style.display = ``;
+    keteranganJadwal.innerHTML = `<strong>keterangan : Buka dari jam ${optionWaktu.opened} - ${optionWaktu.closed}</strong>`;
+    totalDurasi.innerText = 1;
+    totalHarga.innerText = rupiah(harga);
+  }else {
+    waktu.disabled = true;
+    durasi.disabled = true;
+    ruangan.disabled = true;
+    waktu.innerHTML = '';
+    durasi.innerHTML = '';
+    keteranganJadwal.style.display = 'none';
+  }
+});
 
-  </script>
+waktu.addEventListener('change', function(){
+  let newOpDurasi = ``;
+  for (let i = 1; i <= closed - this.value.replace(':00', ''); i++) {
+    newOpDurasi += `<option value="${i}">${i}</option>`;
+  }
+  durasi.innerHTML = newOpDurasi;
+  totalDurasi.innerText = 1;
+  totalHarga.innerText = rupiah(harga);
+});
 
+durasi.addEventListener('change', function(){
+  totalDurasi.innerText = this.value;
+  totalHarga.innerText = rupiah(this.value * harga);
+});
+
+  function rupiah(angka){
+    var reverse = angka.toString().split('').reverse().join(''),
+    ribuan = reverse.match(/\d{1,3}/g);
+    ribuan = ribuan.join('.').split('').reverse().join('');
+    return ribuan;
+  }
+</script>
+@endif
 @endsection

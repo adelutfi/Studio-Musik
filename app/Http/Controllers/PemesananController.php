@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Studio;
 use Auth;
+use Carbon\Carbon;
 
 class PemesananController extends Controller
 {
@@ -16,15 +17,40 @@ class PemesananController extends Controller
   public function index(Request $request, Studio $studio){
   	if($request->keterangan == 'sewa-alat'){
   		if(Auth::user()->konfirmasi_ktp){
-  			return view('pemesanan', compact('studio'));
+        $keterangan = "sewa-alat";
+        $jadwal = explode(',',$studio->sewaAlat->jadwal);
+  			return view('pemesanan', compact('studio','keterangan','jadwal'));
   		}else{
   		return redirect()->back()->with('message','Sepertinya Ktp anda belum di konfirmasi oleh admin');
   		}
-  	}
-  	// dd($request->keterangan);
-  	// if(!$studio->sewaTempat || !$studio->sewaAlat){
-  	// 	return redirect()->back();
-  	// }
-  	return view('pemesanan', compact('studio'));
+  	}elseif ($request->keterangan == 'sewa-tempat') {
+      $keterangan = "sewa-tempat";
+      $jadwal = explode(',',$studio->sewaTempat->jadwal);
+      $jamBuka = explode(',',$studio->sewaTempat->jam_buka);
+      $jamTutup = explode(',',$studio->sewaTempat->jam_tutup);
+      $tanggal = [];
+
+      foreach ($jadwal as $key => $value) {
+        for ($i=0; $i < 23 ; $i++) {
+            $carbon = Carbon::now();
+          if($carbon->add($i, 'day')->isoFormat('dddd') == $value){
+            $tanggal[] = (object) [
+              'date' => $carbon->isoFormat('D-M-Y'),
+              'day' => $carbon->isoFormat('dddd'),
+              'opened' => $jamBuka[$key],
+              'closed' => $jamTutup[$key],
+             ];
+          }
+        }
+      }
+      usort($tanggal, function($a, $b) {
+        return strtotime($a->date) - strtotime($b->date);
+      });
+
+      return view('pemesanan', compact('studio','keterangan', 'tanggal','jamBuka','jamTutup','jadwal'));
+    }else {
+      return redirect('detail/'.$studio->id);
+    }
   }
+
 }

@@ -24,8 +24,9 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form" method="post" action="{{route('pemilik.simpan.sewa-alat')}}">
+                        <form class="form" method="post" action="{{route('pemilik.update.sewa-alat', $sewaAlat)}}">
                             @csrf
+                            @method('PATCH')
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-12">

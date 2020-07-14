@@ -46,7 +46,7 @@ class SewaAlatController extends Controller
         'jadwal' => implode(',',$request->jadwal),
       ]);
 
-      return redirect()->route('pemilik.sewa-alat');
+    return redirect()->route('pemilik.sewa-alat')->with('message','Studio berhasil ditambah');
     }
 
     public function edit(SewaAlat $sewaAlat){
@@ -75,6 +75,11 @@ class SewaAlatController extends Controller
         'jadwal' => implode(',',$request->jadwal),
       ]);
 
-      return redirect()->route('pemilik.sewa-alat');
+      return redirect()->route('pemilik.sewa-alat')->with('message','Studio berhasil diubah');
+    }
+
+    public function destroy(SewaAlat $sewaAlat){
+      $sewaAlat->delete();
+      return redirect()->route('pemilik.sewa-alat')->with('message','Studio berhasil dihapus');
     }
 }

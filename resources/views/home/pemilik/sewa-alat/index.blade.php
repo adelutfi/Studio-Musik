@@ -21,6 +21,14 @@
     </div>
   </div>
 </div>
+@if(Session::has('message'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <p class="mb-0"><i class="feather icon-check-circle"></i><strong> Sukses! </strong> {{Session::get('message')}}</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+@endif
 <section id="basic-datatable">
     <div class="row">
         <div class="col-12">
@@ -53,9 +61,33 @@
                                     </td>
                                     <td class="text-center">
                                       <button type="button" onclick="window.location='{{route("pemilik.edit.sewa-alat", $s)}}'" class="btn btn-warning btn-sm" name="button"> <i class="feather icon-edit"></i> </button>
-                                      <button type="button" class="btn btn-danger btn-sm" name="button"> <i class="feather icon-trash"></i> </button>
+                                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus{{$s->id}}"> <i class="feather icon-trash"></i> </button>
                                     </td>
                                   </tr>
+
+                                  <div class="modal fade" id="hapus{{$s->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                 <div class="modal-dialog modal-dialog-centered" role="document">
+                                   <div class="modal-content">
+                                     <div class="modal-header bg-danger">
+                                       <h5 class="modal-title text-white" id="exampleModalLongTitle">Hapus Sewa Alat</h5>
+                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                         <span aria-hidden="true">&times;</span>
+                                       </button>
+                                     </div>
+                                     <form action="{{ route('pemilik.hapus.sewa-alat', $s) }}" method="POST">
+                                       @csrf
+                                       @method('DELETE')
+                                     <div class="modal-body">
+                                       <h5>Apakah anda yakin akan menghapus sewa alat di <b>{{$s->studio->nama}}</b> ? </h5>
+                                     </div>
+                                     <div class="modal-footer">
+                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                       <button type="submit" class="btn btn-danger">Hapus</a>
+                                     </div>
+                                   </form>
+                                   </div>
+                                 </div>
+                               </div>
                                   @endforeach
                                 </tbody>
                             </table>

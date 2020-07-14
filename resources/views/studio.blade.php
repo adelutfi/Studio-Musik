@@ -97,7 +97,6 @@
                             <div class="widget-body">
                                 <ul>
                                     <li><a class="@if(Request::is('semua-studio')) active @endif" href="#">Semua</a></li>
-                                    <li><a href="#">Tersedia</a></li>
                                     <li><a href="#">Sewa Tempat</a></li>
                                     <li><a href="#">Sewa Alat</a></li>
                                 </ul>
