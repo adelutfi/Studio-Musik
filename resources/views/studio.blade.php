@@ -67,10 +67,10 @@
                                       @endfor
                                       <div class="row mt-2">
                                         <div class="col-6">
-                                         <p><strong>{!!$s->sewaAlat ? 'Sewa Tempat <br> Rp. '.number_format($s->sewaTempat->harga,0,',','.') : ''!!} </strong></p>
+                                         <p><strong>{!! $s->sewaTempat ? 'Sewa Tempat <br> Rp. '.number_format($s->sewaTempat->harga,0,',','.') : ''!!} </strong></p>
                                         </div>
                                         <div class="col-6">
-                                          <p><strong>{!!$s->sewaAlat ? 'Sewa Alat <br> Rp. '.number_format($s->sewaAlat->harga,0,',','.') : ''!!} </strong></p>
+                                          <p><strong>{!! $s->sewaAlat ? 'Sewa Alat <br> Rp. '.number_format($s->sewaAlat->harga,0,',','.') : ''!!} </strong></p>
                                         </div>
                                       </div>
                                   </div>

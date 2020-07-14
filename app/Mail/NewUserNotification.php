@@ -31,6 +31,8 @@ class NewUserNotification extends Mailable
      */
     public function build()
     {
+        $nama = $this->nama;
+        $token = $this->token;
       return $this->from('studio.musik.tegal@mail.com')
       ->view('auth.email.verif-email', compact('nama', 'token'));
     }

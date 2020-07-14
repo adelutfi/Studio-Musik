@@ -73,7 +73,7 @@
          </div>
          <div class="row">
            @foreach($studio as $s)
-           @php($total = $r->ratings->nilai/$r->ratings->jumlah )
+           @php($total = $s->ratings->nilai/$s->ratings->jumlah )
             @if($s->sewaAlat || $s->sewaTempat)
              <div class="col-lg-4 col-md-6 col-12 mt-4">
                  <div class="single-blog-item">
@@ -99,10 +99,10 @@
                          <p>{{str_limit($s->alamat,20,'....')}}</p>
                          <div class="row">
                            <div class="col-6">
-                            <p><strong>{!!$s->sewaAlat ? 'Sewa Tempat <br> Rp. '.number_format($s->sewaTempat->harga,0,',','.') : ''!!} </strong></p>
+                            <p><strong>{!! $s->sewaTempat ? 'Sewa Tempat <br> Rp. '.number_format($s->sewaTempat->harga,0,',','.') : '' !!} </strong></p>
                            </div>
                            <div class="col-6">
-                             <p><strong>{!!$s->sewaAlat ? 'Sewa Alat <br> Rp. '.number_format($s->sewaAlat->harga,0,',','.') : ''!!} </strong></p>
+                             <p><strong>{!! $s->sewaAlat ? 'Sewa Alat <br> Rp. '.number_format($s->sewaAlat->harga,0,',','.') : '' !!} </strong></p>
                            </div>
                          </div>
                          <a href="{{route('detail.studio', $s)}}" class="readmore">
