@@ -8,7 +8,7 @@
                    <div class="col-12">
                        <div class="section-title">
                            <h2 class="title title2">
-                               Upcomming Concert
+                              Pemesanan Alat
                            </h2>
                            <p class="subtitle subtitle2">
                                New Album Available Everywhere

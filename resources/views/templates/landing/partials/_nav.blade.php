@@ -22,8 +22,16 @@
                         <a class="nav-link" href="contact.html"><strong>Kontak</strong></a>
                     </li>
                     @auth('penyewa')
-                    <li class="nav-item @if(Request::is('pemesanan')) active @endif">
-                       <a class="nav-link" href="{{url('/pemesanan')}}"><strong>Pemesanan</strong></a>
+                    <li class="nav-item dropdown @if(Request::is('pemesanan') || Request::is('pemesanan/*')) active @endif">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <strong>
+                        Pemesanan
+                      </strong>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="{{route('pemesanan.tempat')}}"> <i class="fa fa-home"></i> Tempat</a>
+                          <a class="dropdown-item" href="{{route('pemesanan.alat')}}"> <i class="fa fa-truck"></i> Alat</a>
+                      </div>
                    </li>
                    <li class="nav-item dropdown">
                        <a class="nav-link dropdown-toggle" onclick="document.querySelector('#notify').innerText = 0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
