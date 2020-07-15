@@ -45,8 +45,8 @@
         </li>
         <li class=" nav-item"><a href="#"><i class="feather icon-clipboard"></i><span class="menu-title" data-i18n="Icons">Pemesanan</span></a>
             <ul class="menu-content">
-              <li class="">
-                <a href="#">
+              <li class="@if(Request::is('pemilik/pemesanan/tempat')) active @endif">
+                <a href="{{route('pemilik.pemesanan.tempat')}}">
                 <i class="fa fa-home"></i>
                 <span class="menu-item" data-i18n="Feather">Tempat</span>
                 </a>

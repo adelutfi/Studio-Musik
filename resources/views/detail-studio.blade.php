@@ -60,12 +60,16 @@
               <div class="text-center">
             <span class="author-name"><i class="fa fa-map-marker mr-3" aria-hidden="true"></i></i><strong> {{$studio->alamat}}</strong></span>
           </div>
+          @if($studio->sewaTempat)
             <div class="text-center">
-              <span class="author-name"><i class="fas fa-music mr-3"></i><strong> {!!$studio->sewaTempat ? 'Sewa Tempat Rp. '.number_format($studio->sewaTempat->harga,0,',','.') : ''!!} </strong></span>
+              <span class="author-name"><i class="fas fa-music mr-3"></i><strong> Sewa Tempat Rp. {{number_format($studio->sewaTempat->harga,0,',','.') }} </strong></span>
             </div>
+            @endif
+            @if($studio->sewaAlat)
               <div class="text-center">
-            <span class="author-name"><i class="fa fa-truck mr-3" aria-hidden="true"></i><strong>{{$studio->sewaAlat ? 'Sewa Alat Rp. '.number_format($studio->sewaAlat->harga,0,',','.') : ''}} </strong></span>
+            <span class="author-name"><i class="fa fa-truck mr-3" aria-hidden="true"></i><strong>Sewa Alat Rp. {{number_format($studio->sewaAlat->harga,0,',','.') }} </strong></span>
           </div>
+          @endif
         </blockquote>
     </div>
     @if(!$studio->sewaTempat && !$studio->sewaAlat )

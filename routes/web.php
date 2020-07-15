@@ -23,9 +23,13 @@ Route::group(['prefix' => '/'], function(){
   Route::get('detail/{studio}','DataStudioController@show')->name('detail.studio');
   Route::get('semua-studio/cari','DataStudioController@search')->name('cari.studio');
   Route::get('semua-studio','DataStudioController@semuaStudio')->name('semua.studio');
+  Route::get('pemesanan/tempat','Penyewa\PemesananController@pemesananTempat')->name('pemesanan.tempat');
+  Route::get('pemesanan/alat','Penyewa\PemesananController@PemesananAlat')->name('pemesanan.alat');
   Route::get('s={studio}/ket={keterangan}/pemesanan','PemesananController@index')->name('pemesanan');
   Route::get('profil','PenyewaController@index')->name('profil');
   Route::patch('profil','PenyewaController@update')->name('profil.update');
+
+  Route::post('penyewa/pemesanan/{studio}','Penyewa\PemesananController@storePemesananTempat')->name('simpan.pemesanan.tempat');
 });
 
 // Routing lingkup Admin
@@ -79,6 +83,8 @@ Route::group(['prefix' => 'pemilik'], function(){
   Route::get('penyewaan/sewa-alat/edit/{sewaAlat}','Pemilik\SewaAlatController@edit')->name('pemilik.edit.sewa-alat');
   Route::patch('penyewaan/sewa-alat/edit/{sewaAlat}','Pemilik\SewaAlatController@update')->name('pemilik.update.sewa-alat');
   Route::delete('penyewaan/sewa-alat/hapus/{sewaAlat}','Pemilik\SewaAlatController@destroy')->name('pemilik.hapus.sewa-alat');
+
+  Route::get('pemesanan/tempat','Pemilik\PemesananController@pemesananTempat')->name('pemilik.pemesanan.tempat');
 
   Route::get('profil','Pemilik\ProfilController@index')->name('pemilik.profil');
   Route::patch('profil/umum','Pemilik\ProfilController@updateProfil')->name('pemilik.update.profil');

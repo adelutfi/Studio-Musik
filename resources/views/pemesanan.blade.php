@@ -21,19 +21,20 @@
 </section> -->
 <section class="contact-area" >
       <div class="container">
-        <!-- <form id="contactform" class="contact-form"> -->
+        <form action="{{$keterangan == 'sewa-tempat' ? route('simpan.pemesanan.tempat', $studio) : ''}}" method="post" class="contact-form">
+          @csrf
           <div class="row">
               <div class="col-lg-5">
                 <div class="right-content-area">
-                     <h4 class="title text-center">Data Pemesan</h4>
+                     <h4 class="title text-center">Data Pemesan </h4>
                          <div class="form-group">
-                             <input type="text" name="nama" value="{{Auth::user()->nama}}" class="form-control" placeholder="Nama">
+                             <input type="text" name="nama" value="{{Auth::user()->nama}}" class="form-control" placeholder="Nama" required>
                          </div>
                          <div class="form-group">
-                             <input type="text" name="no_telp"  value="{{Auth::user()->no_telp}}" class="form-control" placeholder="No Telephon">
+                             <input type="text" name="no_telp"  value="{{Auth::user()->no_telp}}" class="form-control" placeholder="No Telephon" required>
                          </div>
                          <div class="form-group text-area">
-                             <textarea class="form-control" rows="5" placeholder="Alamat"> {{Auth::user()->alamat}}</textarea>
+                             <textarea class="form-control" rows="5" placeholder="Alamat" required> {{Auth::user()->alamat}}</textarea>
                          </div>
                 </div>
 
@@ -57,21 +58,19 @@
                              <div class="row">
                                <div class="col-6 col-md-4 form-group">
                                 <label>Hari & Tanggal</label>
-                                <input type="text" class="form-control" id="datepicker-13" name="tanggal" value="" placeholder="Pilih Tanggal">
+                                <input type="text" class="form-control" id="datepicker-13" name="tanggal" value="" placeholder="Pilih Tanggal" required>
                               </div>
                               <div class="col-6 col-md-3 form-group">
                                   <label>Waktu</label>
-                                  <select class="form-control" name="waktu" disabled></select>
+                                  <select class="form-control" name="waktu" disabled required></select>
                               </div>
                               <div class="col-6 col-md-3 form-group">
                                   <label>Durasi/Jam</label>
-                                  <select class="form-control" name="durasi" disabled>
-
-                                  </select>
+                                  <select class="form-control" name="durasi" disabled required></select>
                               </div>
                               <div class="col-6 col-md-2 form-group">
                                   <label>Ruangan</label>
-                                  <select class="form-control" id="durasi" name="ruangan" disabled>
+                                  <select class="form-control" id="durasi" name="ruangan" required disabled>
                                     @for($i = 1; $i <= $studio->sewaTempat->jumlah_ruangan; $i++)
                                     <option value="{{$i}}">{{$i}}</option>
                                     @endfor
@@ -106,11 +105,11 @@
                            <div class="single-info-item">
                              <h5 class="mb-2">Pembayaran</h5>
                              <div class="custom-control custom-radio custom-control-inline">
-                             <input type="radio" value="alfamart" id="alfamart" name="pembayaran" class="custom-control-input">
+                             <input type="radio" value="alfamart" id="alfamart" name="pembayaran" class="custom-control-input" required>
                              <label class="custom-control-label" for="alfamart"> <img src="{{asset('public/alfamart.png')}}" width="70" alt=""> </label>
                            </div>
                            <div class="custom-control custom-radio custom-control-inline">
-                           <input type="radio" value="indomart" id="indomart" name="pembayaran" class="custom-control-input">
+                           <input type="radio" value="indomart" id="indomart" name="pembayaran" class="custom-control-input" required>
                            <label class="custom-control-label" for="indomart"> <img src="{{asset('public/indomart.png')}}"  width="70" alt=""></label>
                          </div>
                          <!-- <div class="custom-control custom-radio custom-control-inline">
@@ -121,7 +120,7 @@
                         </li>
                         <li>
                           <div class="single-info-item">
-                              <button class="submit-btn" onclick="window.location='{{url("penyewaan")}}'">Simpan</button>
+                              <button class="submit-btn" type="submit">Simpan</button>
                           </div>
                         </li>
                     </ul>
@@ -129,7 +128,7 @@
                 </div>
               </div>
           </div>
-          <!-- </form> -->
+          </form>
       </div>
   </section>
 @endsection
