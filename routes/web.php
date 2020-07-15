@@ -17,9 +17,11 @@ Route::group(['prefix' => '/'], function(){
   Route::post('login','Penyewa\AuthPenyewaController@login')->name('penyewa.login');
   Route::post('logout','Penyewa\AuthPenyewaController@logout')->name('penyewa.logout');
   Route::get('lupa-password','Penyewa\ForgotPasswordController@index')->name('penyewa.lupa-password');
+  Route::get('penyewa/konfirmasi/email/{token}','Pemilik\AuthPenyewaController@confirmEmail');
 
   Route::get('/','DataStudioController@index')->name('welcome');
   Route::get('detail/{studio}','DataStudioController@show')->name('detail.studio');
+  Route::get('semua-studio/cari','DataStudioController@search')->name('cari.studio');
   Route::get('semua-studio','DataStudioController@semuaStudio')->name('semua.studio');
   Route::get('s={studio}/ket={keterangan}/pemesanan','PemesananController@index')->name('pemesanan');
   Route::get('profil','PenyewaController@index')->name('profil');

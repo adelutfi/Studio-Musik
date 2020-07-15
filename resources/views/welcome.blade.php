@@ -26,9 +26,11 @@
                             <div class="item">
                                 <div class="contentBox">
                                     <div class="left">
+                                      <a href="{{route('detail.studio', $r)}}">
                                         <div class="img">
                                             <img src="{{asset('public/'.$r->gambar)}}" alt="">
                                         </div>
+                                      </a>
                                         <div class="text">
                                             <a href="{{route('detail.studio', $r)}}">
                                             <h4 class="secondaryTitle">
@@ -98,12 +100,17 @@
                          </a>
                          <p>{{str_limit($s->alamat,20,'....')}}</p>
                          <div class="row">
+                           @if($s->sewaTempat)
                            <div class="col-6">
-                            <p><strong>{!! $s->sewaTempat ? 'Sewa Tempat <br> Rp. '.number_format($s->sewaTempat->harga,0,',','.') : '' !!} </strong></p>
+                            <p><strong>Sewa Tempat <br> Rp. {{number_format($s->sewaTempat->harga,0,',','.') }} </strong></p>
                            </div>
+                           @endif
+                           @if($s->sewaAlat)
                            <div class="col-6">
-                             <p><strong>{!! $s->sewaAlat ? 'Sewa Alat <br> Rp. '.number_format($s->sewaAlat->harga,0,',','.') : '' !!} </strong></p>
+                            <p><strong>Sewa Alat <br> Rp. {{number_format($s->sewaAlat->harga,0,',','.') }} </strong></p>
                            </div>
+                           @endif
+
                          </div>
                          <a href="{{route('detail.studio', $s)}}" class="readmore">
                            <div class="float-right">
@@ -146,26 +153,56 @@
                </div>
            </div>
            <div class="row">
-               <div class="col-md-6 col-lg-3 text-center">
+             <div class="col-12 mb-4">
+                 <div class="section-title">
+                    <h4 class="text-info">Pemasanan Tempat Studio</h4>
+                 </div>
+             </div>
+               <div class="col-md-6 col-lg-3 text-center mb-3">
                  <img class="img-icon" src="{{asset('public/assets/landing/img/shop.png')}}" alt="">
                  <h5>Temukan Studio Musik Sesuai Kebutuhan</h5>
                  <p align="justify">Temukan studio yang anda butuhkan, dari beberapa pilihan yang tersedia di website studio.</p>
                </div>
-               <div class="col-md-6 col-lg-3 text-center">
+               <div class="col-md-6 col-lg-3 text-center mb-3">
                  <img class="img-icon" src="{{asset('public/assets/landing/img/contract.png')}}" alt="">
                  <h5>Pesan Tempat & Sewa Alat</h5>
                  <p align="justify" class="text-content-justify">Pesan tempat sesuai tanggal dan waktu, tambhakn fasilitas untuk mendukung kegiatan anda.</p>
                </div>
-               <div class="col-md-6 col-lg-3 text-center">
+               <div class="col-md-6 col-lg-3 text-center mb-3">
                   <img class="img-icon" src="{{asset('public/assets/landing/img/money.png')}}" alt="">
                   <h5>Pembayaran Via Transfer</h5>
                   <p align="justify">Lakukan Pembayaran untuk mengkonfirmasi pemesanan anda, kemudian anda dapat langsung menggunakan tempat.</p>
                </div>
-               <div class="col-md-6 col-lg-3 text-center">
+               <div class="col-md-6 col-lg-3 text-center mb-3">
                   <img class="img-icon" src="{{asset('public/assets/landing/img/delivery-truck.png')}}" alt="">
                   <h5>Angkut Alat Sewa</h5>
                   <p align="justify">Penyewaan barang cepat & mudah dengan jasa angkut barang.</p>
                </div>
+               <div class="col-12 mb-4 mt-5">
+                   <div class="section-title">
+                      <h4 class="text-info">Pemasanan Alat Studio</h4>
+                   </div>
+               </div>
+                 <div class="col-md-6 col-lg-3 text-center mb-3">
+                   <img class="img-icon" src="{{asset('public/assets/landing/img/shop.png')}}" alt="">
+                   <h5>Temukan Studio Musik Sesuai Kebutuhan</h5>
+                   <p align="justify">Temukan studio yang anda butuhkan, dari beberapa pilihan yang tersedia di website studio.</p>
+                 </div>
+                 <div class="col-md-6 col-lg-3 text-center mb-3">
+                   <img class="img-icon" src="{{asset('public/assets/landing/img/contract.png')}}" alt="">
+                   <h5>Pesan Tempat & Sewa Alat</h5>
+                   <p align="justify" class="text-content-justify">Pesan tempat sesuai tanggal dan waktu, tambhakn fasilitas untuk mendukung kegiatan anda.</p>
+                 </div>
+                 <div class="col-md-6 col-lg-3 text-center mb-3">
+                    <img class="img-icon" src="{{asset('public/assets/landing/img/money.png')}}" alt="">
+                    <h5>Pembayaran Via Transfer</h5>
+                    <p align="justify">Lakukan Pembayaran untuk mengkonfirmasi pemesanan anda, kemudian anda dapat langsung menggunakan tempat.</p>
+                 </div>
+                 <div class="col-md-6 col-lg-3 text-center mb-3">
+                    <img class="img-icon" src="{{asset('public/assets/landing/img/delivery-truck.png')}}" alt="">
+                    <h5>Angkut Alat Sewa</h5>
+                    <p align="justify">Penyewaan barang cepat & mudah dengan jasa angkut barang.</p>
+                 </div>
            </div>
        </div>
    </section>

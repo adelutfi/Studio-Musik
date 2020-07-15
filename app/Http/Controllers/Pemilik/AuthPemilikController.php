@@ -74,15 +74,6 @@ class AuthPemilikController extends Controller
       return redirect()->route('pemilik.show.login');
     }
 
-    public function testEmail(){
-      $nama = "Yona";
-      $email = "yona@mail.com";
-      $token = Crypt::encrypt($email);
-
-
-      return 'Success';
-    }
-
     public function confirmEmail($token){
       try {
         $email = Crypt::decrypt($token);

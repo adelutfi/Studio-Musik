@@ -33,4 +33,10 @@ class DataStudioController extends Controller
        $studio = Studio::where('status',1)->orderBy('id','DESC')->paginate(8);
        return view('studio', compact('studio'));
     }
+
+    public function search(Request $request){
+      $nama = $request->nama;
+      $studio = Studio::where('status',1)->where('nama','LIKE','%'.$nama.'%')->orderBy('id','DESC')->paginate(8);
+      return view('studio', compact('studio'));
+    }
 }

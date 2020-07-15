@@ -38,11 +38,17 @@ class AuthPenyewaController extends Controller
 
     $this->validate($request, $rule, $message);
 
-    Penyewa::create([
+    $penyewa = Penyewa::create([
       'nama' => $request->nama,
       'email' => $request->email,
       'password' => bcrypt($request->password)
     ]);
+
+    $token = Crypt::encrypt($pemilik->email);
+    $nama = $penyewa->nama;
+    $guard = 'penyewa';
+
+    Mail::to($pemilik->email)->send(new NewUserNotification($nama,$token, $guard));
 
     return redirect()->route('login')->with('success','register berhasil!');
     }
@@ -63,5 +69,20 @@ class AuthPenyewaController extends Controller
     public function logout(){
       Auth::guard('penyewa')->logout();
       return redirect()->route('login');
+    }
+
+    public function confirmEmail($token){
+      try {
+        $email = Crypt::decrypt($token);
+        $penyewa = Penyewa::where('email', $email)->where('verifikasi_email', null)->first();
+        if($penyewa){
+          $penyewa->update(['verifikasi_email' => now()]);
+          return redirect('/')->with('emailSuccess', '');
+        }else {
+          return redirect('/')->with('emailFailed', '');
+        }
+      } catch (\Exception $e) {
+        return redirect('/');
+      }
     }
 }

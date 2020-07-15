@@ -19,9 +19,9 @@
                             <div class="page-lists">
                               <div class="widget-area search"><!-- widget area -->
                                   <div class="widget-body">
-                                      <form action="" method="GET" class="serach-widget-form">
+                                      <form action="{{route('cari.studio')}}" method="GET" class="serach-widget-form">
                                           <div class="form-group">
-                                              <input type="text" class="form-control">
+                                              <input type="text" name="nama" value="{{request()->nama}}" class="form-control">
                                           </div>
                                           <button type="submit" class="submit-btn"><i class="fas fa-search"></i></button>
                                       </form>
@@ -66,12 +66,16 @@
                                         @endif
                                       @endfor
                                       <div class="row mt-2">
+                                        @if($s->sewaTempat)
                                         <div class="col-6">
-                                         <p><strong>{!! $s->sewaTempat ? 'Sewa Tempat <br> Rp. '.number_format($s->sewaTempat->harga,0,',','.') : ''!!} </strong></p>
+                                         <p><strong>Sewa Tempat <br> Rp. {{number_format($s->sewaTempat->harga,0,',','.') }} </strong></p>
                                         </div>
+                                        @endif
+                                        @if($s->sewaAlat)
                                         <div class="col-6">
-                                          <p><strong>{!! $s->sewaAlat ? 'Sewa Alat <br> Rp. '.number_format($s->sewaAlat->harga,0,',','.') : ''!!} </strong></p>
+                                         <p><strong>Sewa Alat <br> Rp. {{number_format($s->sewaAlat->harga,0,',','.') }} </strong></p>
                                         </div>
+                                        @endif
                                       </div>
                                   </div>
                                     <a href="{{route('detail.studio', $s)}}" class="readmore">Selengkapnya</a>
