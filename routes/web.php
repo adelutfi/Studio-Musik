@@ -17,7 +17,7 @@ Route::group(['prefix' => '/'], function(){
   Route::post('login','Penyewa\AuthPenyewaController@login')->name('penyewa.login');
   Route::post('logout','Penyewa\AuthPenyewaController@logout')->name('penyewa.logout');
   Route::get('lupa-password','Penyewa\ForgotPasswordController@index')->name('penyewa.lupa-password');
-  Route::get('penyewa/konfirmasi/email/{token}','Pemilik\AuthPenyewaController@confirmEmail');
+  Route::get('penyewa/konfirmasi/email/{token}','Penyewa\AuthPenyewaController@confirmEmail');
 
   Route::get('/','DataStudioController@index')->name('welcome');
   Route::get('detail/{studio}','DataStudioController@show')->name('detail.studio');
@@ -55,7 +55,7 @@ Route::group(['prefix' => 'pemilik'], function(){
   Route::post('login','Pemilik\AuthPemilikController@login')->name('pemilik.login');
   Route::post('logout','Pemilik\AuthPemilikController@logout')->name('pemilik.logout');
   Route::get('lupa-password','Pemilik\ForgotPasswordController@index')->name('pemilik.lupa-password');
-  Route::get('konfirmasi/email/{token}','Pemilik\AuthPemilikController@confirmEmail');
+  Route::get('/konfirmasi/email/{token}','Pemilik\AuthPemilikController@confirmEmail');
 
   // Home
   Route::get('beranda','Pemilik\HomeController@beranda')->name('pemilik.beranda');

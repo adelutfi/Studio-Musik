@@ -16,7 +16,9 @@ class SewaAlatController extends Controller
     }
 
     public function index(){
-      $sewaAlat = SewaAlat::orderBy('id', 'DESC')->get();
+      $sewaAlat = SewaAlat::with('studio')->whereHas('studio', function($query){
+        $query->where('id_pemilik', Auth::user()->id);
+      })->orderBy('id', 'DESC')->get();
       return view('home.pemilik.sewa-alat.index', compact('sewaAlat'));
     }
 

@@ -14,7 +14,7 @@ use Crypt;
 class AuthPemilikController extends Controller
 {
     public function __construct(){
-      $this->middleware('guest:pemilik')->except(['logout']);
+      $this->middleware('guest:pemilik')->except(['logout','confirmEmail']);
     }
 
     public function showLogin(){
@@ -85,7 +85,7 @@ class AuthPemilikController extends Controller
           return redirect('/pemilik/login')->with('emailFailed', '');
         }
       } catch (\Exception $e) {
-        return redirect('/');
+        return redirect('/pemilik/login');
       }
     }
 

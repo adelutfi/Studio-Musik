@@ -16,7 +16,9 @@ class SewaTempatController extends Controller
     }
 
     public function index(){
-      $sewaTempat = SewaTempat::orderBy('id', 'DESC')->get();
+      $sewaTempat = SewaTempat::with('studio')->whereHas('studio', function($query){
+        $query->where('id_pemilik', Auth::user()->id);
+      })->orderBy('id', 'DESC')->get();
       return view('home.pemilik.sewa-tempat.index',compact('sewaTempat'));
     }
 

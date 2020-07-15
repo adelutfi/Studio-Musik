@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Penyewa;
 use Auth;
+use App\Mail\NewUserNotification;
+use Mail;
+use Crypt;
 
 class AuthPenyewaController extends Controller
 {
   public function __construct(){
-    $this->middleware('guest:penyewa')->except(['logout']);
+    $this->middleware('guest:penyewa')->except(['logout','confirmEmail']);
   }
 
   public function showRegister(){
@@ -44,11 +47,11 @@ class AuthPenyewaController extends Controller
       'password' => bcrypt($request->password)
     ]);
 
-    $token = Crypt::encrypt($pemilik->email);
+    $token = Crypt::encrypt($penyewa->email);
     $nama = $penyewa->nama;
     $guard = 'penyewa';
 
-    Mail::to($pemilik->email)->send(new NewUserNotification($nama,$token, $guard));
+    Mail::to($penyewa->email)->send(new NewUserNotification($nama,$token, $guard));
 
     return redirect()->route('login')->with('success','register berhasil!');
     }
