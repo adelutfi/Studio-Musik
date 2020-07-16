@@ -85,6 +85,7 @@ Route::group(['prefix' => 'pemilik'], function(){
   Route::delete('penyewaan/sewa-alat/hapus/{sewaAlat}','Pemilik\SewaAlatController@destroy')->name('pemilik.hapus.sewa-alat');
 
   Route::get('pemesanan/tempat','Pemilik\PemesananController@pemesananTempat')->name('pemilik.pemesanan.tempat');
+  Route::get('pemesanan/alat','Pemilik\PemesananController@pemesananAlat')->name('pemilik.pemesanan.alat');
 
   Route::get('profil','Pemilik\ProfilController@index')->name('pemilik.profil');
   Route::patch('profil/umum','Pemilik\ProfilController@updateProfil')->name('pemilik.update.profil');

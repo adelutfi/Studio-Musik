@@ -56,51 +56,6 @@
                                     </div>
 
                                     <div class="col-12 text-center">
-                                    <h4>Jadwal</h4>
-                                    </div>
-
-
-                                <div class="row justify-content-center ml-2 mt-2 mb-2">
-                                   @php($hari = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'])
-                                    @for($i = 0; $i < count($hari); $i++)
-                                     <div class="col">
-                                       <div class="form-label-group">
-                                        <div class="vs-checkbox-con vs-checkbox-success">
-                                        <input type="checkbox" id="jadwal" name="jadwal[]" data-id="{{$i}}" value="{{$hari[$i]}}">
-                                        <span class="vs-checkbox">
-                                          <span class="vs-checkbox--check">
-                                            <i class="vs-icon feather icon-check"></i>
-                                          </span>
-                                        </span>
-                                        <span class="text-dark">{{$hari[$i]}}</span>
-                                      </div>
-                                     </div>
-                                    </div>
-                                    @endfor
-                                    <div class="col-12 text-center mb-2">
-                                      <div class="custom-control custom-switch custom-switch-success mr-2 mb-1">
-							            <p class="mb-0">Success</p>
-							              <input type="checkbox" class="custom-control-input" id="semua">
-							              <label class="custom-control-label" for="semua"></label>
-							          </div>
-                                    </div>
-                                    <div class="col-12 text-center mb-2 mt-2">
-                                    <h4>Alat Tambahan</h4>
-                                    </div>
-
-                                      <div class="col-4">
-                                        <input type="text" id="nama-alat" maxlength="1" minlength="1" class="form-control" name="nama_alat" placeholder="Nama Alat">
-                                      </div>
-                                      <div class="col-3">
-                                        <input type="tel" id="harga-alat" maxlength="1" minlength="1" class="form-control" name="harga_alat" placeholder="Harga Alat">
-                                      </div>
-                                      <div class="col-2 mb-3">
-                                        <button type="button" class="btn btn-success" name="button"> <i class="feather icon-plus"></i> </button>
-                                      </div>
-
-                                    </div>
-
-                                    <div class="col-12 text-center">
                                         <button type="submit" class="btn btn-primary mr-1 mb-1 btn-lg">Simpan</button>
                                         <!-- <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button> -->
                                     </div>
@@ -113,40 +68,4 @@
         </div>
       </div>
     </section>
-@endsection
-
-@section('script')
-<script>
-    const jadwal = document.querySelectorAll('#jadwal');
-    const semua = document.querySelector('#semua');
-
-    semua.addEventListener('change', function(){
-    	if(this.checked){
-    		jadwal.forEach(j => j.checked = true);
-    	}else{
-    		jadwal.forEach(j => j.checked = false);
-    	}
-    })
-
-    // jadwal.forEach(j => {
-    //     const id = j.dataset.id;
-    //     console.log(j.checked);
-    //     if (j.checked) {
-    //            jamTutup.forEach(t => t.dataset.id === id ? t.disabled = false : '' );
-    //            jamBuka.forEach(t => t.dataset.id === id ? t.disabled = false : '' );
-    //        }
-
-    //     j.addEventListener('change', function(){
-    //         const changeId = this.dataset.id;
-    //         if (this.checked) {
-    //             jamTutup.forEach(t => t.dataset.id === changeId ? t.disabled = false : '' );
-    //             jamBuka.forEach(t => t.dataset.id === changeId ? t.disabled = false : '' );
-    //         }else{
-    //              jamTutup.forEach(t => t.dataset.id === changeId ? t.disabled = true : '' );
-    //             jamBuka.forEach(t => t.dataset.id === changeId ? t.disabled = true : '' );
-    //         }
-    //     });
-    // });
-</script>
-
 @endsection

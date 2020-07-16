@@ -42,8 +42,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Studio</th>
+                                        <th>Keterangan</th>
                                         <th>Harga</th>
-                                        <th>Jadwal</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -51,14 +51,10 @@
                                  @foreach($sewaAlat as $s)
                                   <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$s->studio->nama}}</td>
+                                    <td width="20%">{{$s->studio->nama}}</td>
+                                    <td width="40%">{{$s->keterangan}}</td>
                                     <td>Rp. {{number_format($s->harga, 0, ',', '.')}}</td>
-                                    @php($jadwal = explode(',',$s->jadwal))
-                                    <td>
-                                      @for($i = 0; $i < count($jadwal); $i ++)
-                                        {{$jadwal[$i]}}
-                                      @endfor
-                                    </td>
+
                                     <td class="text-center">
                                       <button type="button" onclick="window.location='{{route("pemilik.edit.sewa-alat", $s)}}'" class="btn btn-warning btn-sm" name="button"> <i class="feather icon-edit"></i> </button>
                                       <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus{{$s->id}}"> <i class="feather icon-trash"></i> </button>

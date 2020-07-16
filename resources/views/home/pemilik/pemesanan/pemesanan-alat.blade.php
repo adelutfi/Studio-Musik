@@ -13,7 +13,7 @@
   <div class="content-header-left col-md-12 col-12 mb-2">
     <div class="row breadcrumbs-top">
       <div class="col-6">
-        <h2 class="content-header-title float-left mb-0">Data Pemesanan Tempat</h2>
+        <h2 class="content-header-title float-left mb-0">Data Pemesanan Alat</h2>
       </div>
     </div>
   </div>

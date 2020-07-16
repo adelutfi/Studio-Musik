@@ -31,7 +31,6 @@ class SewaAlatController extends Controller
     public function store(Request $request){
       $rule = [
         'harga' => 'required|',
-        'jadwal.*' => 'required',
         'keterangan' => 'required'
       ];
 
@@ -45,7 +44,6 @@ class SewaAlatController extends Controller
         'id_studio' => $request->id_studio,
         'harga' => $request->harga,
         'keterangan' => $request->keterangan,
-        'jadwal' => implode(',',$request->jadwal),
       ]);
 
     return redirect()->route('pemilik.sewa-alat')->with('message','Studio berhasil ditambah');
@@ -74,7 +72,6 @@ class SewaAlatController extends Controller
         'id_studio' => $request->id_studio,
         'harga' => $request->harga,
         'keterangan' => $request->keterangan,
-        'jadwal' => implode(',',$request->jadwal),
       ]);
 
       return redirect()->route('pemilik.sewa-alat')->with('message','Studio berhasil diubah');

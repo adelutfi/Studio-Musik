@@ -114,8 +114,14 @@
                       </div>
                       @endfor
                       </div>
-                      <button class="btn btn-dark">
-                        Jumlah Ruangan <span class="badge badge-light"> <strong class="h5"> {{$studio->sewaTempat->jumlah_ruangan}}</strong></button>
+                      <h4>Keterangan :</h4>
+                      <div class="row mb-3">
+                      <div class="col-md-12">
+                       {{$studio->sewaTempat->keterangan}}
+                        </div>
+                        </div>
+                      <button class="btn btn-info">
+                        Jumlah Ruangan <span class="badge badge-light"> <strong class="h6"> {{$studio->sewaTempat->jumlah_ruangan}}</strong></button>
                     </button>
                     <div class="text-right">
                     <button class="btn btn-secondary" onclick="window.location='{{route("pemesanan", [$studio,'sewa-tempat'])}}'">Sewa</button>
@@ -130,17 +136,12 @@
                <div class="text-right mb-2">
                  <h4><strong>Rp. {{number_format($studio->sewaAlat->harga, 0, ',','.')}}</strong> </h4>
               </div>
-                @php($jadwal = explode(',',$studio->sewaAlat->jadwal))
-              <h4>Jadwal :</h4>
-              <div class="row">
-              @for($i = 0; $i < count($jadwal); $i++)
-              <div class="col-2">
-               <ol class="breadcrumb">
-                  <li class="breadcrumb-item">{{$jadwal[$i]}} </li>
-                </ol>
+              <h4>Keterangan :</h4>
+              <div class="row mb-3">
+                <div class="col-md-12">
+                  {{$studio->sewaAlat->keterangan}}
                 </div>
-                @endfor
-                </div>
+              </div>
 
               <div class="text-right">
                <button class="btn btn-secondary" onclick="window.location='{{route("pemesanan", [$studio,'sewa-alat'])}}'">Sewa</button>

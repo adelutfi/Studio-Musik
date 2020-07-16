@@ -109,20 +109,6 @@
                                         </div>
                                     </div>
                                     @endfor
-                                    <!-- <div class="col-12 text-center mb-2 mt-2">
-                                    <h4>Alat Tambahan</h4>
-                                    </div>
-
-                                      <div class="col-4">
-                                        <input type="text" id="nama-alat" maxlength="1" minlength="1" class="form-control" name="nama_alat" placeholder="Nama Alat">
-                                      </div>
-                                      <div class="col-3">
-                                        <input type="tel" id="harga-alat" maxlength="1" minlength="1" class="form-control" name="harga_alat" placeholder="Harga Alat">
-                                      </div>
-                                      <div class="col-2 mb-3">
-                                        <button type="button" class="btn btn-success" name="button"> <i class="feather icon-plus"></i> </button>
-                                      </div> -->
-
                                     </div>
 
                                     <div class="col-12 text-center">

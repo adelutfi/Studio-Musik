@@ -45,9 +45,11 @@
                     <h4 class="text-center">{{$studio->nama}}</h4>
                     <h4 class="text-center mb-2">{{$studio->alamat}}</h4>
                     <div class="text-center">
-                      @foreach($jadwal as $j)
-                      <h4 style="display: inline-block"><span class="badge badge-primary">{{$j}}</span></h4>
-                      @endforeach
+                      @if($keterangan == 'sewa tempat')
+                        @foreach($jadwal as $j)
+                        <h4 style="display: inline-block"><span class="badge badge-primary">{{$j}}</span></h4>
+                        @endforeach
+                      @endif
                     </div>
 
                     <ul class="info-list mt-5">
@@ -100,7 +102,45 @@
                             </tbody>
                           </table>
                         </li>
-                          @endif
+                        @else
+                        <li>
+                          @php($start = now())
+                           <div class="single-info-item">
+                             <div class="row">
+                               <div class="col-6 col-md-4 form-group">
+                                <label>Tanggal Mulai</label>
+                                <input type="text" class="form-control" id="datepicker-13" name="tanggal" value="" placeholder="Pilih Tanggal" required>
+                              </div>
+                               <div class="col-6 col-md-4 form-group">
+                                <label>Tanggal Selesai</label>
+                                <input type="text" class="form-control" id="datepicker-14" name="tanggal" value="" placeholder="Pilih Tanggal" disabled required>
+                              </div>
+
+                              <div class="col-12">
+                                <p id="keterangan-jadwal" style="display: none">  </p>
+                              </div>
+                            </div>
+                           </div>
+                        </li>
+                        <li>
+                          <table class="table table-sm borderless">
+                            <tbody>
+                              <tr>
+                                <td><h4>Harga / jam </h4></td>
+                                <td> <h4>: Rp. {{number_format($studio->sewaAlat->harga,0,',','.')}}</h4> </td>
+                              </tr>
+                              <tr>
+                                <td><h4>Durasi </h4></td>
+                                <td> <h4>: <span id="total-durasi">1</span> Hari</h4> </td>
+                              </tr>
+                              <tr>
+                                <td><h4>Total </h4></td>
+                                <td> <h4>: Rp. <span id="total-harga">{{number_format($studio->sewaAlat->harga,0,',','.')}}</span> </h4> </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </li>
+                        @endif
                         <li>
                            <div class="single-info-item">
                              <h5 class="mb-2">Pembayaran</h5>
@@ -220,5 +260,72 @@ durasi.addEventListener('change', function(){
     return ribuan;
   }
 </script>
+@else
+
+<script type="text/javascript">
+const tanggalMulai = document.querySelector('#datepicker-13');
+const tanggalSelesai = document.querySelector('#datepicker-14');
+const date = new Date();
+const harga = '{{$studio->sewaAlat->harga}}';
+const totalDurasi = document.querySelector('#total-durasi');
+const totalHarga = document.querySelector('#total-harga');
+
+tanggalMulai.addEventListener('change', function(){
+    if(this.value === ''){
+      tanggalSelesai.disabled = true;
+    }
+})
+
+$( "#datepicker-13").datepicker({
+  dateFormat: 'dd-mm-yy',
+  dayNamesMin: ['Min', 'Sen', 'Sel', 'Rab', "Kam", 'Jum', 'Sab'],
+  autoclose: true,
+  minDate: date,
+  maxDate: '+90D',
+  onClose: function( selectedDate, inst ) {
+            $('#datepicker-14').datepicker('destroy');
+             const date1 = selectedDate.replace('-','/').replace('-','/').split('/')
+             const date2 = date1[1] + '/' +date1[0] +'/' +date1[2];
+             const newDate  = new Date(date2);
+             const maxDate  = new Date(date2);
+             const newMaxDate = new Date(maxDate.setDate(maxDate.getDate() + 3));
+             tanggalSelesai.disabled = false;
+             tanggalSelesai.value = '';
+             harga.innerText = rupiah(harga);
+             totalDurasi.innerText = 1;
+             totalHarga.innerText = rupiah(harga);
+
+              $( "#datepicker-14").datepicker({
+                dateFormat: 'dd-mm-yy',
+                dayNamesMin: ['Min', 'Sen', 'Sel', 'Rab', "Kam", 'Jum', 'Sab'],
+                autoclose: true,
+                beforeShow: function(){
+                    $( "#datepicker-14").datepicker('option',{
+                      minDate : newDate,
+                      maxDate : newMaxDate
+                    });
+                },
+                onClose: function(date){
+                  const dateFinish = date.replace('-','/').replace('-','/').split('/')
+                  const newDateFinish = new Date(dateFinish[1] + '/' +dateFinish[0] +'/' +dateFinish[2]);
+                  const diffTime = Math.abs(newDateFinish - newDate);
+                  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+                  totalDurasi.innerText = diffDays;
+                  totalHarga.innerText = rupiah(diffDays * harga.replace())
+                }
+              });
+        }
+
+});
+
+function rupiah(angka){
+  var reverse = angka.toString().split('').reverse().join(''),
+  ribuan = reverse.match(/\d{1,3}/g);
+  ribuan = ribuan.join('.').split('').reverse().join('');
+  return ribuan;
+}
+
+</script>
+
 @endif
 @endsection

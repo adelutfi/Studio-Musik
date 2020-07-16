@@ -51,8 +51,8 @@
                 <span class="menu-item" data-i18n="Feather">Tempat</span>
                 </a>
               </li>
-              <li class="">
-                <a href="#">
+              <li class="@if(Request::is('pemilik/pemesanan/alat')) active @endif">
+                <a href="{{route('pemilik.pemesanan.alat')}}">
                   <i class="fa fa-truck"></i>
                   <span class="menu-item">Alat</span>
                 </a>

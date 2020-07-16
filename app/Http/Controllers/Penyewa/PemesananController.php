@@ -48,4 +48,35 @@ class PemesananController extends Controller
       return redirect()->route('pemesanan.tempat');
 
     }
+    public function storePemesananAlat(Request $request, Studio $studio){
+
+      Auth::user()->update([
+        'nama' => $request->nama,
+        'no_telp' => $request->no_telp,
+        'alamat' => $request->alamat
+      ]);
+
+      $tanggalMulai = strtotime($request->tanggal_mulai);
+      $tanggalSelesai = strtotime($request->tanggal_selesai);
+
+      $tanggalMulai = date('Y-m-d',$tanggalMulai);
+      $tanggalSelesai = date('Y-m-d',$tanggalSelesai);
+
+      PemesananTempat::create([
+        'id_penyewa' => Auth::user()->id,
+        'id_studio' => $studio->id,
+        'harga' => $studio->sewaTempat->harga,
+        'tanggal_mulai' => $tanggalMulai,
+        'tanggal_selesai' => $tanggalMulai,
+        'pembayaran' => $request->pembayaran,
+        'nama' => $request->nama,
+        'no_telp' => $request->no_telp,
+        'alamat' => $request->alamat
+      ]);
+
+      return redirect()->route('pemesanan.tempat');
+
+    }
+
+
 }
