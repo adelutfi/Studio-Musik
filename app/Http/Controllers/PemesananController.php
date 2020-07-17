@@ -19,7 +19,7 @@ class PemesananController extends Controller
   		if(Auth::user()->konfirmasi_ktp){
         $keterangan = "sewa-alat";
 
-  			return view('pemesanan', compact('studio','keterangan','jadwal'));
+  			return view('pemesanan', compact('studio','keterangan'));
   		}else{
   		return redirect()->back()->with('message','Sepertinya Ktp anda belum di konfirmasi oleh admin');
   		}
