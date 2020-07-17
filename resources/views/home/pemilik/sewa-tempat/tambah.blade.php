@@ -50,9 +50,12 @@
                                         </div>
                                     </div>
                                     <div class="col-4">
-                                        <div class="form-label-group">
-                                            <input type="tel" id="jumlah_ruangan" maxlength="1" minlength="1" class="form-control form-control-lg" name="jumlah_ruangan" placeholder="Jumlah Ruangan" required>
+                                      <div class="form-label-group input-group">
+                                        <input type="tel" id="jumlah_ruangan" maxlength="1" minlength="1" class="form-control form-control-lg" name="jumlah_ruangan" placeholder="Jumlah Ruangan" required>
+                                          <div class="input-group-append">
+                                          <span class="input-group-text" id="harga"> / Ruang</span>
                                         </div>
+                                      </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-label-group">

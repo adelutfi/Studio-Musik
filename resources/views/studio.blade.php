@@ -41,6 +41,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="row">
+                      @php($hari = \Carbon\Carbon::now()->isoFormat('dddd'))
                         @foreach($studio as $s)
                          @php($totalRating = $s->ratings->nilai/$s->ratings->jumlah )
                            @if($s->sewaAlat || $s->sewaTempat)
@@ -67,12 +68,12 @@
                                       @endfor
                                       <div class="row mt-2">
                                         @if($s->sewaTempat)
-                                        <div class="col-6">
+                                        <div class="col-6" style="display: {{request()->get('ket') === 'sewa-alat' ? 'none' : ''}}">
                                          <p><strong>Sewa Tempat <br> Rp. {{number_format($s->sewaTempat->harga,0,',','.') }} </strong></p>
                                         </div>
                                         @endif
                                         @if($s->sewaAlat)
-                                        <div class="col-6">
+                                        <div class="col-6" style="display: {{request()->get('ket') === 'sewa-tempat' || request()->get('ket') === $hari ? 'none' : ''}}">
                                          <p><strong>Sewa Alat <br> Rp. {{number_format($s->sewaAlat->harga,0,',','.') }} </strong></p>
                                         </div>
                                         @endif
@@ -98,13 +99,75 @@
                             <div class="widget-title">
                                 <h4 class="title">Filter</h4>
                             </div>
+                            <form class="" action="index.html" method="post">
+                            <h6>Studio</h6>
+
                             <div class="widget-body">
                                 <ul>
-                                    <li><a class="@if(Request::is('semua-studio')) active @endif" href="#">Semua</a></li>
-                                    <li><a href="#">Sewa Tempat</a></li>
-                                    <li><a href="#">Sewa Alat</a></li>
+                                    <li><a class="@if(Request::is('semua-studio') || !request()->get('ket') && request()->get('rating')) active @endif" href="{{url('semua-studio')}}">Semua</a></li>
+                                    <li><a class="@if(request()->get('ket') == 'sewa-tempat') active @endif" href="{{url('semua-studio/filter?ket=sewa-tempat&rating='.request()->get('rating'))}}">Sewa Tempat</a></li>
+                                    <li><a class="@if(request()->get('ket') == 'sewa-alat') active @endif" href="{{url('semua-studio/filter?ket=sewa-alat&rating='.request()->get('rating'))}}">Sewa Alat</a></li>
+                                    <li><a class="@if(request()->get('ket') == $hari) active @endif" href="{{url('semua-studio/filter?ket='.$hari.'&rating='.request()->get('rating'))}}">Tersedia Hari Ini</a></li>
                                 </ul>
+
+                                <h6 class="mt-4">Rating</h6>
+
                             </div>
+                            <ul>
+                              <li class="mb-3">
+                                <a href="{{url('semua-studio/filter?ket='.request()->get('ket').'&rating=1')}}">
+                                  <span class="fa fa-star checked fa-lg"></span>
+                                  <span class="fa fa-star fa-lg"></span>
+                                  <span class="fa fa-star fa-lg"></span>
+                                  <span class="fa fa-star fa-lg"></span>
+                                  <span class="fa fa-star fa-lg"></span>
+                                  {!!request()->get('rating') == 1 ? '<span class="ml-2 fa fa-check text-info fa-lg"></span>' : ''!!}
+
+                                </a>
+                              </li>
+                              <li class="mb-3">
+                                <a href="{{url('semua-studio/filter?ket='.request()->get('ket').'&rating=2')}}">
+                                  <span class="fa fa-star checked fa-lg"></span>
+                                  <span class="fa fa-star checked fa-lg"></span>
+                                  <span class="fa fa-star fa-lg"></span>
+                                  <span class="fa fa-star fa-lg"></span>
+                                  <span class="fa fa-star fa-lg"></span>
+                                  {!!request()->get('rating') == 2 ? '<span class="ml-2 fa fa-check text-info fa-lg"></span>' : ''!!}
+                                </a>
+                              </li>
+                              <li class="mb-3">
+                                <a href="{{url('semua-studio/filter?ket='.request()->get('ket').'&rating=3')}}">
+                                  <span class="fa fa-star checked fa-lg"></span>
+                                  <span class="fa fa-star checked fa-lg"></span>
+                                  <span class="fa fa-star checked fa-lg"></span>
+                                  <span class="fa fa-star fa-lg"></span>
+                                  <span class="fa fa-star fa-lg"></span>
+                                  {!!request()->get('rating') == 3 ? '<span class="ml-2 fa fa-check text-info fa-lg"></span>' : ''!!}
+                                </a>
+                              </li>
+                              <li class="mb-3">
+                                <a href="{{url('semua-studio/filter?ket='.request()->get('ket').'&rating=4')}}">
+                                  <span class="fa fa-star checked fa-lg"></span>
+                                  <span class="fa fa-star checked fa-lg"></span>
+                                  <span class="fa fa-star checked fa-lg"></span>
+                                  <span class="fa fa-star checked fa-lg"></span>
+                                  <span class="fa fa-star fa-lg"></span>
+                                  {!!request()->get('rating') == 4 ? '<span class="ml-2 fa fa-check text-info fa-lg"></span>' : ''!!}
+                                </a>
+                              </li>
+                              <li class="mb-3">
+                                <a href="{{url('semua-studio/filter?ket='.request()->get('ket').'&rating=5')}}">
+                                  <span class="fa fa-star checked fa-lg"></span>
+                                  <span class="fa fa-star checked fa-lg"></span>
+                                  <span class="fa fa-star checked fa-lg"></span>
+                                  <span class="fa fa-star checked fa-lg"></span>
+                                  <span class="fa fa-star checked fa-lg"></span>
+                                  {!!request()->get('rating') == 5 ? '<span class="ml-2 fa fa-check text-info fa-lg"></span>' : ''!!}
+                                </a>
+                              </li>
+                            </ul>
+                          </form>
+
                         </div><!-- //.widget area -->
                     </div>
                 </div>

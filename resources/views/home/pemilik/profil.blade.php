@@ -91,7 +91,7 @@
                     <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
                       <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer"
                         for="account-upload">Upload foto baru</label>
-                      <input type="file" name="foto" id="account-upload" accept="image/jpeg,image/png,image/jpg" hidden>
+                      <input type="file" name="foto" id="account-upload" accept="image/jpeg, image/png, image/jpg" hidden>
                     </div>
                     <p class="text-dark ml-75 mt-50"><small> JPG,PNG, JPEG. Max 1MB</small></p>
                   </div>

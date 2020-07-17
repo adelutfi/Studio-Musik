@@ -13,7 +13,7 @@
   <div class="content-header-left col-md-12 col-12 mb-2">
     <div class="row breadcrumbs-top">
       <div class="col-6">
-        <h2 class="content-header-title float-left mb-0">Data Sewa Alat</h2>
+        <h2 class="content-header-title float-left mb-0">Data Penyewaan Alat</h2>
       </div>
       <div class="col-6 pull-right">
         <button type="button" onclick="window.location='{{route("pemilik.tambah.sewa-alat")}}'" class="float-right btn btn-primary" name="button"><i class="feather icon-plus"></i> Tambah</button>

@@ -66,19 +66,12 @@
             </div>
             @endif
             @if($studio->sewaAlat)
-              <div class="text-center">
+            <div class="text-center">
             <span class="author-name"><i class="fa fa-truck mr-3" aria-hidden="true"></i><strong>Sewa Alat Rp. {{number_format($studio->sewaAlat->harga,0,',','.') }} </strong></span>
           </div>
           @endif
-        </blockquote>
-    </div>
-    @if(!$studio->sewaTempat && !$studio->sewaAlat )
-      <div class="alert alert-dark" role="alert">
-        <strong>Maaf</strong> Penyewaan belum tersedia
-      </div>
-    @endif
 
-      <div id="accordion">
+      <div id="accordion" class="mt-5">
           <div id="headingOne">
             <!-- <h5 class="mb-0"> -->
             @if($studio->sewaTempat)
@@ -150,6 +143,8 @@
            </div>
           @endif
         </div>
+      </blockquote>
+  </div>
 
     <div class="entry-comment">
         <h3 class="title">(0) Komentar</h3>

@@ -15,7 +15,7 @@
                           <div class="col-4">
                             <div class="alert alert-danger" role="alert">
                               <i class="fas fa-exclamation-circle"></i>
-                                  <strong>Login Gagal</strong> Cek email & password anda
+                                  <strong>Login Gagal</strong> {{Session::get('failed')}}
                             </div>
                           </div>
                           @endif

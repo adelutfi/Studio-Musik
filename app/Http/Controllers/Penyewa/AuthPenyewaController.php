@@ -63,9 +63,14 @@ class AuthPenyewaController extends Controller
       ];
 
       if(Auth::guard('penyewa')->attempt($credentials)){
-        return redirect('/');
+        if(Auth::user()->verifikasi_email){
+          return redirect('/');
+        }else {
+          Auth::guard('penyewa')->logout();
+          return redirect()->back()->with('failed','konfirmasi email anda terlebih dahulu')->withInput($request->input());
+        }
       }else {
-        return redirect()->back()->with('failed','')->withInput($request->input());
+        return redirect()->back()->with('failed','Cek kembali email dan password anda')->withInput($request->input());
       }
     }
 
@@ -80,9 +85,9 @@ class AuthPenyewaController extends Controller
         $penyewa = Penyewa::where('email', $email)->where('verifikasi_email', null)->first();
         if($penyewa){
           $penyewa->update(['verifikasi_email' => now()]);
-          return redirect('/')->with('emailSuccess', '');
+          return redirect('/login')->with('emailSuccess', '');
         }else {
-          return redirect('/')->with('emailFailed', '');
+          return redirect('/login')->with('emailFailed', '');
         }
       } catch (\Exception $e) {
         return redirect('/');

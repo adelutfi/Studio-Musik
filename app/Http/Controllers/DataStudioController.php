@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Studio;
+use Carbon\Carbon;
+use DB;
 
 class DataStudioController extends Controller
 {
@@ -27,6 +29,61 @@ class DataStudioController extends Controller
 
     public function show(Studio $studio){
       return view('detail-studio', compact('studio'));
+    }
+
+    public function filter(Request $request){
+     $studio = Studio::where('status',1)->orderBy('id','DESC')->paginate(8);
+     $hari = Carbon::now()->isoFormat('dddd');
+     $rating = $request->get('rating');
+     // dd($rating);
+      if($request->get('ket') === 'sewa-tempat'){
+        if($rating){
+          $studio = Studio::whereHas('sewaTempat', function($query){
+            $query->where('di_buat', '<>', null);
+          })
+          ->whereHas('ratings', function($query) use ($rating){
+            $query->where(DB::raw('round(nilai/jumlah)'), $rating);
+          })
+          ->where('status',1)->orderBy('id','DESC')->paginate(8);
+        }else {
+          $studio = Studio::whereHas('sewaTempat', function($query){
+            $query->where('di_buat', '<>', null);
+          })->where('status',1)->orderBy('id','DESC')->paginate(8);
+        }
+      }
+
+      else if($request->get('ket') === 'sewa-alat') {
+        if($rating){
+          $studio = Studio::whereHas('sewaTempat', function($query){
+            $query->where('di_buat', '<>', null);
+          })
+          ->whereHas('ratings', function($query) use ($rating){
+            $query->where(DB::raw('round(nilai/jumlah)'), $rating);
+          })
+          ->where('status',1)->orderBy('id','DESC')->paginate(8);
+        }else {
+          $studio = Studio::whereHas('sewaAlat', function($query){
+            $query->where('di_buat', '<>', null);
+          })->where('status',1)->orderBy('id','DESC')->paginate(8);
+        }
+      }else {
+        if($rating){
+          $studio = Studio::whereHas('sewaTempat', function($query) use ($hari){
+            $query->where('di_buat', '<>', null)->where('jadwal','LIKE','%'.$hari.'%');
+          })
+          ->whereHas('ratings', function($query) use ($rating){
+            $query->where(DB::raw('round(nilai/jumlah)'), $rating);
+          })
+          ->where('status',1)->orderBy('id','DESC')->paginate(8);
+        }else {
+          $studio = Studio::whereHas('sewaTempat', function($query) use ($hari){
+            $query->where('di_buat', '<>', null)->where('jadwal','LIKE','%'.$hari.'%');
+          })->where('status',1)->orderBy('id','DESC')->paginate(8);
+        }
+      }
+
+
+       return view('studio', compact('studio'));
     }
 
     public function semuaStudio(){

@@ -1,13 +1,13 @@
   <?php
 
+  //
+  // Route::get('test', function () {
+  //   event(new App\Events\PenyewaNotification('Someone',1));
+  //   return "Event has been sent!";
+  // });
 
-  Route::get('test', function () {
-    event(new App\Events\PenyewaNotification('Someone',1));
-    return "Event has been sent!";
-  });
-
-Route::get('/email','Pemilik\AuthPemilikController@testEmail');
-Route::get('konfirmasi/email/{token}','Pemilik\AuthPemilikController@confirmEmail');
+// Route::get('/email','Pemilik\AuthPemilikController@testEmail');
+// Route::get('konfirmasi/email/{token}','Pemilik\AuthPemilikController@confirmEmail');
 
 
 Route::group(['prefix' => '/'], function(){
@@ -22,6 +22,8 @@ Route::group(['prefix' => '/'], function(){
   Route::get('/','DataStudioController@index')->name('welcome');
   Route::get('detail/{studio}','DataStudioController@show')->name('detail.studio');
   Route::get('semua-studio/cari','DataStudioController@search')->name('cari.studio');
+  Route::get('semua-studio/filter','DataStudioController@filter')->name('filter.studio');
+  // Route::get('semua-studio/filter/','DataStudioController@filter')->name('filter.studio');
   Route::get('semua-studio','DataStudioController@semuaStudio')->name('semua.studio');
   Route::get('pemesanan/tempat','Penyewa\PemesananController@pemesananTempat')->name('pemesanan.tempat');
   Route::get('pemesanan/alat','Penyewa\PemesananController@PemesananAlat')->name('pemesanan.alat');

@@ -27,18 +27,18 @@
           <span class="menu-title">Studio</span>
         </a>
       </li>
-      <li class=" nav-item"><a href="#"><i class="feather icon-file-text"></i><span class="menu-title" data-i18n="Icons">Penyewaan</span></a>
+      <li class=" nav-item"><a href="#"><i class="feather icon-file-text"></i><span class="menu-title" data-i18n="Icons">Pengaturan</span></a>
           <ul class="menu-content">
             <li class="@if(Request::is('pemilik/penyewaan/sewa-tempat') || Request::is('pemilik/penyewaan/sewa-tempat/*') ) active @endif">
               <a href="{{route('pemilik.sewa-tempat')}}">
               <i class="fa fa-home"></i>
-              <span class="menu-item">Tempat</span>
+              <span class="menu-item">Penyewaan Tempat</span>
               </a>
             </li>
             <li class="@if(Request::is('pemilik/penyewaan/sewa-alat') || Request::is('pemilik/penyewaan/sewa-alat/*') ) active @endif">
               <a href="{{route('pemilik.sewa-alat')}}">
                 <i class="fa fa-truck"></i>
-                <span class="menu-item" data-i18n="Font Awesome">Alat</span>
+                <span class="menu-item" data-i18n="Font Awesome">Penyewaan Alat</span>
               </a>
             </li>
           </ul>
