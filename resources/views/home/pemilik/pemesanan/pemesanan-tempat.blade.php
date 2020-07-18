@@ -119,7 +119,7 @@
                                            Waktu (Mulai - Selesai) :
                                            {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->format('h:i')}}
                                            -
-                                           {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->addHours($p->durasi)->format('h:i')}}
+                                           {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->addHours($p->durasi)->format('H:i')}}
                                          </li>
                                          <li class="list-group-item">
                                            Durasi : {{$p->durasi}} Jam

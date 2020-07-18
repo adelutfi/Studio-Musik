@@ -50,8 +50,88 @@
                                           Selesai
                                         @endif
                                        </td>
-                                       <td align="center"><a href="#">Detail</a></td>
+                                       <td align="center">
+                                         <a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#detail{{$p->id}}">Detail</a>
+                                       </td>
                                    </tr>
+
+                                   <div class="modal fade" id="detail{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <div class="row">
+                                          <div class="col-2">
+                                          @if($p->status == null)
+                                            <span class="badge badge-square badge-warning badge-md mb-2">
+                                              <strong class="text-white">Menunggu</strong>
+                                            </span>
+                                          @elseif($p->status == 0)
+                                              <span class="badge badge-square badge-danger badge-md mb-2">
+                                                  <strong>Gagal</strong>
+                                              </span>
+                                          @else
+                                            <span class="badge badge-square badge-success badge-md mb-2">
+                                                <strong>Seselai</strong>
+                                            </span>
+                                          @endif
+                                          </div>
+                                          <div class="col-4">
+                                            @if($p->pembayaran == 'indomart')
+                                            <img src="{{asset('public/indomart.png')}}"  width="90" alt="">
+                                            @else
+                                            <img src="{{asset('public/alfamart.png')}}"  width="90" alt="">
+                                            @endif
+                                          </div>
+                                          <div class="col-6">
+                                            @if($p->status == null)
+                                              <h6 class="text-dark">Kode Pembayaran</h6>
+                                              <h5 class="text-dark">HJYTGFFYYJJM</h5>
+                                            @endif
+                                          </div>
+                                          </div>
+                                          <ul class="list-group list-group-flush text-dark">
+                                            <li class="list-group-item">
+                                              Nama Studio : {{$p->studio->nama}}
+                                            </li>
+                                            <li class="list-group-item">
+                                              No Telp Pemilik : {{$p->studio->pemilik->no_telp}}
+                                            </li>
+                                            <li class="list-group-item">
+                                              Alamat : {{$p->studio->alamat}}
+                                            </li>
+                                            <li class="list-group-item">
+                                              Tanggal Sewa : {{date("d-m-Y", strtotime($p->tanggal)) }}
+                                            </li>
+                                            <li class="list-group-item">
+                                              Waktu (Mulai - Selesai) :
+                                              {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->format('h:i')}}
+                                              -
+                                              {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->addHours($p->durasi)->format('H:i')}}
+                                            </li>
+                                            <li class="list-group-item">
+                                              Durasi : {{$p->durasi}} Jam
+                                            </li>
+                                            <li class="list-group-item">
+                                              Harga : Rp. {{number_format($p->harga, 0,',','.')}}
+                                            </li>
+                                            <li class="list-group-item">
+                                              Total Harga : Rp. {{number_format($p->harga * $p->durasi, 0,',','.')}}
+                                            </li>
+
+                                          </ul>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                                    @endforeach
                                </tbody>
                            </table>
