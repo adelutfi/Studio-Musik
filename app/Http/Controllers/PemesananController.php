@@ -6,12 +6,68 @@ use Illuminate\Http\Request;
 use App\Studio;
 use Auth;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class PemesananController extends Controller
 {
      public function __construct()
   {
-    $this->middleware('auth:penyewa');
+    $this->middleware('auth:penyewa')->except(['notificationHandler']);
+  }
+
+  public function notificationHandler(){
+    $json = file_get_contents('php://input');
+    $action = json_decode($json, true);
+
+    return $action;
+  }
+
+  public function testPayment(){
+    $serverKey = config('app.midtrans_server');
+    $clientKey = config('app.midtrans_client');
+    $headers = [
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
+        'Authorization' => 'Basic '.base64_encode($serverKey.':'),
+    ];
+
+    $json = [
+      'transaction_details' => [
+        'order_id' => 'ORDER-103',
+        'gross_amount' => (int) 10000
+      ]
+    ];
+
+  // return $json;
+
+    // dd($body);
+
+    $client = new Client();
+    $response = $client->post('https://app.sandbox.midtrans.com/snap/v1/transactions', [
+      'headers' => $headers,
+      'json' => $json
+    ]);
+
+    return $response->getBody()->getContents();
+
+    // $req->setBody($json, 'application/json');
+
+// $req->setBody($body);
+// $response = $req->send();
+
+// return $req;
+// return $res;
+    // $res
+    // $request = new \GuzzleHttp\Psr7\Request('GET', 'http://resep-mau.herokuapp.com/api/users');
+    // $promise = $client->sendAsync($request)->then(function ($response) {
+    //   return $response->getBody()->getContents();
+    // });
+    // $promise->wait();
+    // dd();
+    return response()->json(json_decode($res->getBody()->getContents()));
+    // return $promise;
+
   }
 
   public function index(Request $request, Studio $studio){

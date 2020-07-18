@@ -28,6 +28,9 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    'midtrans_server' => env('MIDTRANS_SERVER_KEY', null),
+    'midtrans_client' => env('MIDTRANS_CLIENT_KEY', null), 
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode

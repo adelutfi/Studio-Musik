@@ -6,7 +6,7 @@
   //   return "Event has been sent!";
   // });
 
-// Route::get('/email','Pemilik\AuthPemilikController@testEmail');
+Route::get('/payment','PemesananController@testPayment');
 // Route::get('konfirmasi/email/{token}','Pemilik\AuthPemilikController@confirmEmail');
 
 
