@@ -41,8 +41,6 @@
                   <span class="user-status">Admin</span>
                 </div><span><img class="round" src="{{ asset('public/gambar/foto.png')}}" alt="avatar" height="40" width="40"></span></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" href="page-user-profile.html"><i class="feather icon-user"></i> Edit Profile</a>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{route('admin.logout')}}" onclick="event.preventDefault();
                            document.getElementById('logout-admin-form').submit();">
                 <i class="feather icon-power"></i>

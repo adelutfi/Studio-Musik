@@ -19,7 +19,7 @@
                         <a class="nav-link" href="{{url('semua-studio')}}"> <strong>Studio</strong> </a>
                     </li>
                      <li class="nav-item @if(Request::is('kontak')) active @endif">
-                        <a class="nav-link" href="contact.html"><strong>Kontak</strong></a>
+                        <a class="nav-link" href="{{route('kontak')}}"><strong>Kontak</strong></a>
                     </li>
                     @auth('penyewa')
                     <li class="nav-item dropdown @if(Request::is('pemesanan') || Request::is('pemesanan/*')) active @endif">

@@ -31,6 +31,9 @@ Route::group(['prefix' => '/'], function(){
   Route::get('s={studio}/ket={keterangan}/pemesanan','PemesananController@index')->name('pemesanan');
   Route::get('profil','PenyewaController@index')->name('profil');
   Route::patch('profil','PenyewaController@update')->name('profil.update');
+  Route::get('kontak', function(){
+    return view('kontak');
+  })->name('kontak');
 
   Route::post('penyewa/pemesanan/{studio}','Penyewa\PemesananController@storePemesananTempat')->name('simpan.pemesanan.tempat');
 });
