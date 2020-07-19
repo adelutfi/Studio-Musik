@@ -37,12 +37,13 @@ class PemesananController extends Controller
       PemesananTempat::create([
         'id_penyewa' => Auth::user()->id,
         'id_studio' => $studio->id,
+        'no_transaksi' => $request->no_transaksi,
         'harga' => $studio->sewaTempat->harga,
         'durasi' => $request->durasi,
         'tanggal' => $tanggal,
         'waktu' => $request->waktu,
         'ruangan' => $request->ruangan,
-        'pembayaran' => $request->pembayaran
+        'snap_token' => $request->snap_token
       ]);
 
       return redirect()->route('pemesanan.tempat');

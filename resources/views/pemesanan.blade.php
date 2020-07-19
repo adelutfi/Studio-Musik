@@ -21,7 +21,7 @@
 </section> -->
 <section class="contact-area" >
       <div class="container">
-        <form action="{{$keterangan == 'sewa-tempat' ? route('simpan.pemesanan.tempat', $studio) : ''}}" method="post" class="contact-form">
+        <form id="pemesanan-submit" action="{{$keterangan == 'sewa-tempat' ? route('simpan.pemesanan.tempat', $studio) : ''}}" method="post" class="contact-form">
           @csrf
           <div class="row">
               <div class="col-lg-5">
@@ -34,7 +34,7 @@
                              <input type="text" name="no_telp"  value="{{Auth::user()->no_telp}}" class="form-control" placeholder="No Telephon" required>
                          </div>
                          <div class="form-group text-area">
-                             <textarea class="form-control" rows="5" placeholder="Alamat" required> {{Auth::user()->alamat}}</textarea>
+                             <textarea name="alamat" class="form-control" rows="5" placeholder="Alamat" required> {{Auth::user()->alamat}}</textarea>
                          </div>
                 </div>
 
@@ -45,7 +45,7 @@
                     <h4 class="text-center">{{$studio->nama}}</h4>
                     <h4 class="text-center mb-2">{{$studio->alamat}}</h4>
                     <div class="text-center">
-                      @if($keterangan == 'sewa tempat')
+                      @if($keterangan == 'sewa-tempat')
                         @foreach($jadwal as $j)
                         <h4 style="display: inline-block"><span class="badge badge-primary">{{$j}}</span></h4>
                         @endforeach
@@ -53,6 +53,8 @@
                     </div>
 
                     <ul class="info-list mt-5">
+                      <input id="no-transaksi" type="hidden" name="no_transaksi" value="">
+                      <input id="token" type="hidden" name="snap_token" value="">
                       @if($keterangan == 'sewa-tempat')
                         <li>
                           @php($start = now())
@@ -141,26 +143,10 @@
                           </table>
                         </li>
                         @endif
-                        <li>
-                           <div class="single-info-item">
-                             <h5 class="mb-2">Pembayaran</h5>
-                             <div class="custom-control custom-radio custom-control-inline">
-                             <input type="radio" value="alfamart" id="alfamart" name="pembayaran" class="custom-control-input" required>
-                             <label class="custom-control-label" for="alfamart"> <img src="{{asset('public/alfamart.png')}}" width="70" alt=""> </label>
-                           </div>
-                           <div class="custom-control custom-radio custom-control-inline">
-                           <input type="radio" value="indomart" id="indomart" name="pembayaran" class="custom-control-input" required>
-                           <label class="custom-control-label" for="indomart"> <img src="{{asset('public/indomart.png')}}"  width="70" alt=""></label>
-                         </div>
-                         <!-- <div class="custom-control custom-radio custom-control-inline">
-                         <input type="radio" value="bayar-di-tempat" id="bayar-di-tempat" name="pembayaran" class="custom-control-input">
-                         <label class="custom-control-label" for="bayar-di-tempat"><strong> Bayar Ditempat </strong></label>
-                       </div> -->
-                           </div>
-                        </li>
+
                         <li>
                           <div class="single-info-item">
-                              <button class="submit-btn" type="submit">Simpan</button>
+                              <button type="button" class="submit-btn onclick="toMidtrans()"">Bayar</button>
                           </div>
                         </li>
                     </ul>
@@ -176,6 +162,11 @@
 <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
 <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<script type="text/javascript"
+        src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{config('app.midtrans_client')}}">
+</script>
 @if($keterangan == 'sewa-tempat')
 <script>
 const tanggal = document.querySelector('#datepicker-13');
@@ -187,8 +178,38 @@ const harga = '{{$studio->sewaTempat->harga}}';
 const totalDurasi = document.querySelector('#total-durasi');
 const totalHarga = document.querySelector('#total-harga');
 const jadwalData = @json($tanggal);
+const noTransaksi = document.querySelector('#no-transaksi');
+const token = document.querySelector('#token');
+const snapToken = document.querySelector('#token');
 let closed = ``;
 const jadwalTanggal = jadwalData.map(j => j.date);
+
+const bayar = document.querySelector('.submit-btn');
+const url = '{{config("app.url")}}';
+
+  async function toMidtrans(){
+    let amount = harga*durasi.value;
+    return fetch(url+'/pemesanan/payment-gateway?total='+amount).then(res => res.json()).then(res => res);
+  }
+
+bayar.addEventListener('click',async function(){
+  if(tanggal.value === ''){
+    alert('pilih tanggal terlebih dahulu');
+    tanggal.classList.add('border','border-danger')
+  }else {
+    const data = await toMidtrans();
+    if(data.status){
+      noTransaksi.value = data.no_transaksi;
+      snapToken.value = data.midtrans.token;
+      snap.pay(data.midtrans.token, {
+        onPending: function(result){
+          document.querySelector('#pemesanan-submit').submit();
+        },
+      })
+    }
+  }
+
+});
 
 $( "#datepicker-13" ).datepicker({
   dateFormat: 'd-m-yy',
@@ -324,8 +345,8 @@ function rupiah(angka){
   ribuan = ribuan.join('.').split('').reverse().join('');
   return ribuan;
 }
-
 </script>
+
 
 @endif
 @endsection

@@ -16,16 +16,15 @@ class PemesananController extends Controller
     $this->middleware('auth:penyewa')->except(['notificationHandler']);
   }
 
-  public function notificationHandler(){
-    $json = file_get_contents('php://input');
-    $action = json_decode($json, true);
+  // public function notificationHandler(){
+  //
+  // }
 
-    return $action;
-  }
-
-  public function testPayment(){
+  public function paymentGateway(Request $request){
     $serverKey = config('app.midtrans_server');
-    $clientKey = config('app.midtrans_client');
+    $noTransaksi = Carbon::now()->format('Ymdhis');
+    $total = $request->get('total');
+
     $headers = [
         'Accept' => 'application/json',
         'Content-Type' => 'application/json',
@@ -34,39 +33,25 @@ class PemesananController extends Controller
 
     $json = [
       'transaction_details' => [
-        'order_id' => 'ORDER-103',
-        'gross_amount' => (int) 10000
-      ]
+        'order_id' => $noTransaksi,
+        'gross_amount' => (int) $total
+      ],
+        'customer_details' => [
+          'first_name' => Auth::user()->nama,
+        ]
     ];
 
-  // return $json;
-
-    // dd($body);
-
     $client = new Client();
-    $response = $client->post('https://app.sandbox.midtrans.com/snap/v1/transactions', [
+    $res = $client->post('https://app.sandbox.midtrans.com/snap/v1/transactions', [
       'headers' => $headers,
       'json' => $json
     ]);
 
-    return $response->getBody()->getContents();
-
-    // $req->setBody($json, 'application/json');
-
-// $req->setBody($body);
-// $response = $req->send();
-
-// return $req;
-// return $res;
-    // $res
-    // $request = new \GuzzleHttp\Psr7\Request('GET', 'http://resep-mau.herokuapp.com/api/users');
-    // $promise = $client->sendAsync($request)->then(function ($response) {
-    //   return $response->getBody()->getContents();
-    // });
-    // $promise->wait();
-    // dd();
-    return response()->json(json_decode($res->getBody()->getContents()));
-    // return $promise;
+    return response()->json([
+      'status' => true,
+      'no_transaksi' => $noTransaksi,
+      'midtrans' => json_decode($res->getBody()->getContents())
+    ]);
 
   }
 

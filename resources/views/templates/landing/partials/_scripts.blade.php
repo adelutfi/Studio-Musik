@@ -28,7 +28,7 @@
     <script>
     const user = '{{Auth::user()->id}}'
     const userChannel = 'penyewa-notification-'+user;
-    const pusher = new Pusher('2c0ef60ac56e76072eee', {
+    const pusher = new Pusher('a77ce5183186534996b9', {
       cluster: 'ap1',
       encrypted: true
     });

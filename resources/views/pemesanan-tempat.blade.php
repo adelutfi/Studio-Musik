@@ -52,6 +52,9 @@
                                        </td>
                                        <td align="center">
                                          <a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#detail{{$p->id}}">Detail</a>
+                                         @if($p->status == null)
+                                         <a href="https://app.sandbox.midtrans.com/snap/v2/vtweb/{{$p->snap_token}}" target="_blank">Pembayaran</a>
+                                         @endif
                                        </td>
                                    </tr>
 
@@ -59,7 +62,7 @@
                                     <div class="modal-dialog" role="document">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                          <h5 class="modal-title" id="exampleModalLabel">Detail Pemesanan</h5>
                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                           </button>
@@ -81,20 +84,8 @@
                                             </span>
                                           @endif
                                           </div>
-                                          <div class="col-4">
-                                            @if($p->pembayaran == 'indomart')
-                                            <img src="{{asset('public/indomart.png')}}"  width="90" alt="">
-                                            @else
-                                            <img src="{{asset('public/alfamart.png')}}"  width="90" alt="">
-                                            @endif
                                           </div>
-                                          <div class="col-6">
-                                            @if($p->status == null)
-                                              <h6 class="text-dark">Kode Pembayaran</h6>
-                                              <h5 class="text-dark">HJYTGFFYYJJM</h5>
-                                            @endif
-                                          </div>
-                                          </div>
+
                                           <ul class="list-group list-group-flush text-dark">
                                             <li class="list-group-item">
                                               Nama Studio : {{$p->studio->nama}}
@@ -123,9 +114,9 @@
                                             <li class="list-group-item">
                                               Total Harga : Rp. {{number_format($p->harga * $p->durasi, 0,',','.')}}
                                             </li>
+                                            </ul>
+                                          </div>
 
-                                          </ul>
-                                        </div>
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
                                         </div>

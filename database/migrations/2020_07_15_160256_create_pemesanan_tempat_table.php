@@ -15,6 +15,7 @@ class CreatePemesananTempatTable extends Migration
     {
         Schema::create('pemesanan_tempat', function (Blueprint $table) {
           $table->bigIncrements('id');
+          $table->char('no_transaksi', 14)->unique();
           $table->bigInteger('id_penyewa')->unsigned();
           $table->bigInteger('id_studio')->unsigned();
           $table->integer('harga');

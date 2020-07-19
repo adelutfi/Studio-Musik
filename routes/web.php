@@ -6,7 +6,7 @@
   //   return "Event has been sent!";
   // });
 
-Route::get('/payment','PemesananController@testPayment');
+// Route::get('/payment','PemesananController@testPayment');
 // Route::get('konfirmasi/email/{token}','Pemilik\AuthPemilikController@confirmEmail');
 
 
@@ -25,6 +25,7 @@ Route::group(['prefix' => '/'], function(){
   Route::get('semua-studio/filter','DataStudioController@filter')->name('filter.studio');
   // Route::get('semua-studio/filter/','DataStudioController@filter')->name('filter.studio');
   Route::get('semua-studio','DataStudioController@semuaStudio')->name('semua.studio');
+  Route::get('pemesanan/payment-gateway','PemesananController@paymentGateway');
   Route::get('pemesanan/tempat','Penyewa\PemesananController@pemesananTempat')->name('pemesanan.tempat');
   Route::get('pemesanan/alat','Penyewa\PemesananController@PemesananAlat')->name('pemesanan.alat');
   Route::get('s={studio}/ket={keterangan}/pemesanan','PemesananController@index')->name('pemesanan');
