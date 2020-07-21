@@ -16,7 +16,7 @@ class StudioController extends Controller
     }
 
     public function index(){
-      $studio = Studio::orderBy('id','DESC')->where('id_pemilik',Auth::user()->id)->get();
+      $studio = Studio::where('id_pemilik',Auth::user()->id)->orderBy('id','DESC')->get();
 
       return view('home.pemilik.studio.index', compact('studio'));
     }

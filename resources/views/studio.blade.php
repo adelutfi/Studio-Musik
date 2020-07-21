@@ -73,7 +73,7 @@
                                         </div>
                                         @endif
                                         @if($s->sewaAlat)
-                                        <div class="col-6" style="display: {{request()->get('ket') === 'sewa-tempat' || request()->get('ket') === $hari ? 'none' : ''}}">
+                                        <div class="col-6" style="display: {{request()->get('ket') === 'sewa-tempat' ? 'none' : ''}}">
                                          <p><strong>Sewa Alat <br> Rp. {{number_format($s->sewaAlat->harga,0,',','.') }} </strong></p>
                                         </div>
                                         @endif
@@ -107,6 +107,15 @@
                                     <li><a class="@if(Request::is('semua-studio') || !request()->get('ket') && request()->get('rating')) active @endif" href="{{url('semua-studio')}}">Semua</a></li>
                                     <li><a class="@if(request()->get('ket') == 'sewa-tempat') active @endif" href="{{url('semua-studio/filter?ket=sewa-tempat&rating='.request()->get('rating'))}}">Sewa Tempat</a></li>
                                     <li><a class="@if(request()->get('ket') == 'sewa-alat') active @endif" href="{{url('semua-studio/filter?ket=sewa-alat&rating='.request()->get('rating'))}}">Sewa Alat</a></li>
+                                    <li><a class="@if(request()->get('ket') == 'Senin') active @endif" href="{{url('semua-studio/filter?ket=Senin&rating='.request()->get('rating'))}}">Senin</a></li>
+                                    <li><a class="@if(request()->get('ket') == 'Selasa') active @endif" href="{{url('semua-studio/filter?ket=Selasa&rating='.request()->get('rating'))}}">Selasa</a></li>
+                                    <li><a class="@if(request()->get('ket') == 'Rabu') active @endif" href="{{url('semua-studio/filter?ket=Rabu&rating='.request()->get('rating'))}}">Rabu</a></li>
+                                    <li><a class="@if(request()->get('ket') == 'Kamis') active @endif" href="{{url('semua-studio/filter?ket=Kamis&rating='.request()->get('rating'))}}">Kamis</a></li>
+                                    <li><a class="@if(request()->get('ket') == 'Jumat') active @endif" href="{{url('semua-studio/filter?ket=Jumat&rating='.request()->get('rating'))}}">Jum'at</a></li>
+                                    <li><a class="@if(request()->get('ket') == 'Sabtu') active @endif" href="{{url('semua-studio/filter?ket=Sabtu&rating='.request()->get('rating'))}}">Sabtu</a></li>
+
+                                    <li><a class="@if(request()->get('ket') == 'Minggu') active @endif" href="{{url('semua-studio/filter?ket=Minggu&rating='.request()->get('rating'))}}">Minggu</a></li>
+
                                     <li><a class="@if(request()->get('ket') == $hari) active @endif" href="{{url('semua-studio/filter?ket='.$hari.'&rating='.request()->get('rating'))}}">Tersedia Hari Ini</a></li>
                                 </ul>
 

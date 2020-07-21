@@ -24,7 +24,7 @@
     <section class="contact-area" >
        <div class="container">
            <div class="row">
-               <div class="col-lg-5">
+               <div class="col-lg-8">
                    <div class="left-content-area">
                        <h4 class="title">Studio Musik Tegal</h4>
                        <ul class="info-list">
@@ -34,20 +34,7 @@
                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                                    </div>
                                    <div class="content">
-                                       <span class="details">2523 Grand Avenue Orlando, FL 32803 <br/> New York , United States</span>
-                                   </div>
-                              </div>
-                           </li>
-                           <li>
-                              <div class="single-info-item">
-                                   <div class="icon">
-                                       <i class="fas fa-clock" aria-hidden="true"></i>
-                                   </div>
-                                   <div class="content d-flex align-self-center">
-                                           <div class="box align-self-center">
-                                                   <span class="details">Sunday - Friday</span>
-                                                   <span class="details">10AM - 8PM</span>
-                                           </div>
+                                       <span class="details">Jl. Sultanhasanudin no.10 <br/> Tegal, Kota Tegal</span>
                                    </div>
                               </div>
                            </li>
@@ -57,8 +44,8 @@
                                        <i class="fa fa-envelope" aria-hidden="true"></i>
                                    </div>
                                    <div class="content">
-                                       <span class="details">contact@Benteria.com</span>
-                                       <span class="details">support@Benteria.com</span>
+                                    <span>Email</span>
+                                       <span class="details"> <strong>studiotegal123@gmail.com</strong> </span>
                                    </div>
                               </div>
                            </li>
@@ -68,8 +55,8 @@
                                        <i class="fa fa-phone" aria-hidden="true"></i>
                                    </div>
                                    <div class="content">
-                                       <span class="details">+111 222 333 444</span>
-                                       <span class="details">+111 222 333 444</span>
+                                      <span>Telepon</span>
+                                       <span class="details"> <strong> +625 888 777 666</strong></span>
                                    </div>
                               </div>
                            </li>

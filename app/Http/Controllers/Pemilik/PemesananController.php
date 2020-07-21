@@ -19,7 +19,7 @@ class PemesananController extends Controller
     $pemesanan = PemesananTempat::with('studio')->whereHas('studio', function($query){
       $query->where('id_pemilik', Auth::user()->id);
     })->orderBy('id', 'DESC')->get();
-
+    
     return view('home.pemilik.pemesanan.pemesanan-tempat', compact('pemesanan'));
   }
 

@@ -33,7 +33,8 @@ class DataStudioController extends Controller
 
     public function filter(Request $request){
      $studio = Studio::where('status',1)->orderBy('id','DESC')->paginate(8);
-     $hari = Carbon::now()->isoFormat('dddd');
+     // $hari = Carbon::now()->isoFormat('dddd');
+     $hari = $request->get('ket');
      $rating = $request->get('rating');
      // dd($rating);
       if($request->get('ket') === 'sewa-tempat'){
@@ -42,7 +43,7 @@ class DataStudioController extends Controller
             $query->where('di_buat', '<>', null);
           })
           ->whereHas('ratings', function($query) use ($rating){
-            $query->where(DB::raw('round(nilai/jumlah)'), $rating);
+            $query->where(DB::raw('round(nilai/jumlah, 0)'), $rating);
           })
           ->where('status',1)->orderBy('id','DESC')->paginate(8);
         }else {
@@ -58,7 +59,7 @@ class DataStudioController extends Controller
             $query->where('di_buat', '<>', null);
           })
           ->whereHas('ratings', function($query) use ($rating){
-            $query->where(DB::raw('round(nilai/jumlah)'), $rating);
+            $query->where(DB::raw('round(nilai/jumlah, 0)'), $rating);
           })
           ->where('status',1)->orderBy('id','DESC')->paginate(8);
         }else {
@@ -66,13 +67,13 @@ class DataStudioController extends Controller
             $query->where('di_buat', '<>', null);
           })->where('status',1)->orderBy('id','DESC')->paginate(8);
         }
-      }else {
+      }else if($request->get('ket') !== 'sewa-tempat' || $request->get('ket') !== 'sewa-alat') {
         if($rating){
           $studio = Studio::whereHas('sewaTempat', function($query) use ($hari){
             $query->where('di_buat', '<>', null)->where('jadwal','LIKE','%'.$hari.'%');
           })
           ->whereHas('ratings', function($query) use ($rating){
-            $query->where(DB::raw('round(nilai/jumlah)'), $rating);
+            $query->where(DB::raw('round(nilai/jumlah, 0)'), $rating);
           })
           ->where('status',1)->orderBy('id','DESC')->paginate(8);
         }else {
@@ -80,6 +81,11 @@ class DataStudioController extends Controller
             $query->where('di_buat', '<>', null)->where('jadwal','LIKE','%'.$hari.'%');
           })->where('status',1)->orderBy('id','DESC')->paginate(8);
         }
+      }else{
+         $studio = Studio::whereHas('ratings', function($query) use ($rating){
+            $query->where(DB::raw('round(nilai/jumlah, 0)'), $rating);
+          })
+          ->where('status',1)->orderBy('id','DESC')->paginate(8);
       }
 
 
