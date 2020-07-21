@@ -25,7 +25,7 @@
                     <li class="nav-item dropdown @if(Request::is('pemesanan') || Request::is('pemesanan/*')) active @endif">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <strong>
-                        Pemesanan
+                        Status
                       </strong>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">

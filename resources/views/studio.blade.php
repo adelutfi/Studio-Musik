@@ -53,7 +53,6 @@
                                   </a>
                                 </div>
                                 <div class="content">
-                                   {{--  <span class="date"><i class="far fa-clock"></i> 14 Aug 2018</span> --}}
                                     <a href="{{route('detail.studio', $s)}}">
                                         <h3 class="title">{{$s->nama}}</h3>
                                     </a>
@@ -68,13 +67,24 @@
                                       @endfor
                                       <div class="row mt-2">
                                         @if($s->sewaTempat)
-                                        <div class="col-6" style="display: {{request()->get('ket') === 'sewa-alat' ? 'none' : ''}}">
+                                        <div class="col-6 col-md-6" style="display: {{request()->get('ket') === 'sewa-alat' ? 'none' : ''}}">
                                          <p><strong>Sewa Tempat <br> Rp. {{number_format($s->sewaTempat->harga,0,',','.') }} </strong></p>
                                         </div>
                                         @endif
                                         @if($s->sewaAlat)
-                                        <div class="col-6" style="display: {{request()->get('ket') === 'sewa-tempat' ? 'none' : ''}}">
+                                        <div class="col-6 col-md-6" style="display: {{request()->get('ket') === 'sewa-tempat' ? 'none' : ''}}">
                                          <p><strong>Sewa Alat <br> Rp. {{number_format($s->sewaAlat->harga,0,',','.') }} </strong></p>
+                                        </div>
+                                        @endif
+
+                                        @if($s->sewaTempat && request()->get('tanggal'))
+                                        <div class="col-6 col-md-6">
+                                          <a type="button" class="btn btn-warning text-white" href="{{url('s='.$s->id.'/ket=sewa-tempat/pemesanan?tanggal='.request()->get('tanggal'))}}" name="button">Sewa</a>
+                                        </div>
+                                        @endif
+                                        @if($s->sewaAlat && request()->get('tanggal'))
+                                        <div class="col-6 col-md-6">
+                                          <a type="button" class="btn btn-warning text-white" href="{{url('s='.$s->id.'/ket=sewa-alat/pemesanan?tanggal='.request()->get('tanggal'))}}" name="button">Sewa</a>
                                         </div>
                                         @endif
                                       </div>
@@ -99,28 +109,27 @@
                             <div class="widget-title">
                                 <h4 class="title">Filter</h4>
                             </div>
+                            <h6 class="">Pilih tanggal & hari</h6>
+                              <div class="col-12 col-md-12 input-group mb-4">
+                               <input type="text" class="form-control" id="datepicker-13" name="tanggal" value="{{request()->get('tanggal')}}" placeholder="Pilih Tanggal">
+                                <div class="input-group-append">
+                                  <span class="input-group-text" id="">
+                                    {{ request()->get('tanggal') ? \Carbon\Carbon::parse(request('tanggal'))->isoFormat('dddd') : '-'}}
+                                  </span>
+                                </div>
+                             </div>
+
                             <form class="" action="index.html" method="post">
                             <h6>Studio</h6>
 
                             <div class="widget-body">
                                 <ul>
-                                    <li><a class="@if(Request::is('semua-studio') || !request()->get('ket') && request()->get('rating')) active @endif" href="{{url('semua-studio')}}">Semua</a></li>
+                                    <li><a class="@if(!request()->get('ket') && request()->get('rating') && !request()->get('tanggal')) active @endif" href="{{url('semua-studio')}}">Semua</a></li>
                                     <li><a class="@if(request()->get('ket') == 'sewa-tempat') active @endif" href="{{url('semua-studio/filter?ket=sewa-tempat&rating='.request()->get('rating'))}}">Sewa Tempat</a></li>
                                     <li><a class="@if(request()->get('ket') == 'sewa-alat') active @endif" href="{{url('semua-studio/filter?ket=sewa-alat&rating='.request()->get('rating'))}}">Sewa Alat</a></li>
-                                    <li><a class="@if(request()->get('ket') == 'Senin') active @endif" href="{{url('semua-studio/filter?ket=Senin&rating='.request()->get('rating'))}}">Senin</a></li>
-                                    <li><a class="@if(request()->get('ket') == 'Selasa') active @endif" href="{{url('semua-studio/filter?ket=Selasa&rating='.request()->get('rating'))}}">Selasa</a></li>
-                                    <li><a class="@if(request()->get('ket') == 'Rabu') active @endif" href="{{url('semua-studio/filter?ket=Rabu&rating='.request()->get('rating'))}}">Rabu</a></li>
-                                    <li><a class="@if(request()->get('ket') == 'Kamis') active @endif" href="{{url('semua-studio/filter?ket=Kamis&rating='.request()->get('rating'))}}">Kamis</a></li>
-                                    <li><a class="@if(request()->get('ket') == 'Jumat') active @endif" href="{{url('semua-studio/filter?ket=Jumat&rating='.request()->get('rating'))}}">Jum'at</a></li>
-                                    <li><a class="@if(request()->get('ket') == 'Sabtu') active @endif" href="{{url('semua-studio/filter?ket=Sabtu&rating='.request()->get('rating'))}}">Sabtu</a></li>
-
-                                    <li><a class="@if(request()->get('ket') == 'Minggu') active @endif" href="{{url('semua-studio/filter?ket=Minggu&rating='.request()->get('rating'))}}">Minggu</a></li>
-
                                     <li><a class="@if(request()->get('ket') == $hari) active @endif" href="{{url('semua-studio/filter?ket='.$hari.'&rating='.request()->get('rating'))}}">Tersedia Hari Ini</a></li>
                                 </ul>
-
                                 <h6 class="mt-4">Rating</h6>
-
                             </div>
                             <ul>
                               <li class="mb-3">
@@ -131,7 +140,6 @@
                                   <span class="fa fa-star fa-lg"></span>
                                   <span class="fa fa-star fa-lg"></span>
                                   {!!request()->get('rating') == 1 ? '<span class="ml-2 fa fa-check text-info fa-lg"></span>' : ''!!}
-
                                 </a>
                               </li>
                               <li class="mb-3">
@@ -176,13 +184,30 @@
                               </li>
                             </ul>
                           </form>
-
                         </div><!-- //.widget area -->
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
+
+@endsection
+
+@section('script')
+<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript">
+  const url = '{{config("app.url")}}';
+$( "#datepicker-13" ).datepicker({
+  dateFormat: 'd-m-yy',
+  dayNamesMin: ['Min', 'Sen', 'Sel', 'Rab', "Kam", 'Jum', 'Sab'],
+  autoclose: true,
+  minDate: new Date(),
+  onSelect: function(date) {
+    window.location = url+'/semua-studio?tanggal='+date
+  }
+});
+</script>
 
 @endsection

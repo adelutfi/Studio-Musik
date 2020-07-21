@@ -93,7 +93,18 @@ class DataStudioController extends Controller
     }
 
     public function semuaStudio(){
+       $tanggal = request()->get('tanggal');
        $studio = Studio::where('status',1)->orderBy('id','DESC')->paginate(8);
+       if($tanggal){
+         $hari = Carbon::parse($tanggal)->isoFormat('dddd');
+
+         $studio = Studio::whereHas('sewaTempat', function($query) use ($hari){
+           $query->where('jadwal', 'LIKE', '%'.$hari.'%');
+         })->where('status',1)->orderBy('id','DESC')->paginate(8);
+
+         // dd($studio);
+       }
+
        return view('studio', compact('studio'));
     }
 

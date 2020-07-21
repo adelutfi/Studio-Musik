@@ -33,11 +33,11 @@
                     <h4 class="text-center">{{$studio->nama}}</h4>
                     <h4 class="text-center mb-2">{{$studio->alamat}}</h4>
                     <div class="text-center">
-                      @if($keterangan == 'sewa-tempat')
+                      <!-- @if($keterangan == 'sewa-tempat')
                         @foreach($jadwal as $j)
                         <h4 style="display: inline-block"><span class="badge badge-primary">{{$j}}</span></h4>
                         @endforeach
-                      @endif
+                      @endif -->
                     </div>
 
                     <ul class="info-list mt-5">
@@ -50,7 +50,7 @@
                              <div class="row">
                                <div class="col-6 col-md-4 form-group">
                                 <label>Hari & Tanggal</label>
-                                <input type="text" class="form-control" id="datepicker-13" name="tanggal" value="" placeholder="Pilih Tanggal" required>
+                                <input type="text" class="form-control" id="datepicker-13" name="tanggal" value="{{request()->get('tanggal')}}" placeholder="Pilih Tanggal" required>
                               </div>
                               <div class="col-6 col-md-3 form-group">
                                   <label>Waktu</label>
@@ -99,11 +99,11 @@
                              <div class="row">
                                <div class="col-6 col-md-4 form-group">
                                 <label>Tanggal Mulai</label>
-                                <input type="text" class="form-control" id="datepicker-13" name="tanggal_mulai" value="" placeholder="Pilih Tanggal" required>
+                                <input type="text" class="form-control" id="datepicker-13" name="tanggal_mulai" value="{{request()->get('tanggal')}}" placeholder="Pilih Tanggal" required>
                               </div>
                                <div class="col-6 col-md-4 form-group">
                                 <label>Tanggal Selesai</label>
-                                <input type="text" class="form-control" id="datepicker-14" name="tanggal_selesai" value="" placeholder="Pilih Tanggal" disabled required>
+                                <input type="text" class="form-control" id="datepicker-14" name="tanggal_selesai" value="" placeholder="Pilih Tanggal" {{request()->get('tanggal') ? '' : 'disabled'}}  required>
                               </div>
                               <div class="col-12">
                                 <p id="keterangan-jadwal" style="display: none">  </p>
@@ -159,7 +159,6 @@
   const url = '{{config("app.url")}}';
   const noTransaksi = document.querySelector('#no-transaksi');
   const snapToken = document.querySelector('#token');
-
 </script>
 @if($keterangan == 'sewa-tempat')
 <script>
@@ -179,6 +178,39 @@ async function toMidtrans(){
   let amount = harga*durasi.value;
   return fetch(url+'/pemesanan/payment-gateway?total='+amount).then(res => res.json()).then(res => res);
 }
+
+(async function(){
+  let op = ``;
+  let opDurasi = ``;
+  if(tanggal.value !== ''){
+    waktu.disabled = false;
+    durasi.disabled = false;
+    ruangan.disabled = false;
+    const waktuData = jadwalData.filter(j => j.date == tanggal.value);
+    // console.log(jadwalData);
+    const optionWaktu = Object.assign({},...waktuData);
+    for (let i = optionWaktu.opened.replace(':00', ''); i < optionWaktu.closed.replace(':00', ''); i++) {
+      op += `<option value="${('0' + i).slice(-2) + ':00'}">${('0' + i).slice(-2) + ':00'}</option>`;
+    }
+    for (let i = 1; i <= optionWaktu.closed.replace(':00', '') - optionWaktu.opened.replace(':00', ''); i++) {
+      opDurasi += `<option value="${i}">${i}</option>`;
+    }
+    waktu.innerHTML = op;
+    durasi.innerHTML = opDurasi;
+    closed = optionWaktu.closed.replace(':00', '');
+    keteranganJadwal.style.display = ``;
+    keteranganJadwal.innerHTML = `<strong>keterangan : Buka dari jam ${optionWaktu.opened} - ${optionWaktu.closed}</strong>`;
+    totalDurasi.innerText = 1;
+    totalHarga.innerText = rupiah(harga);
+  }else {
+    waktu.disabled = true;
+    durasi.disabled = true;
+    ruangan.disabled = true;
+    waktu.innerHTML = '';
+    durasi.innerHTML = '';
+    keteranganJadwal.style.display = 'none';
+  }
+}())
 
 bayar.addEventListener('click',async function(){
   if(tanggal.value === ''){
@@ -213,6 +245,7 @@ function enableDays(date){
         }
         return [false];
 }
+
 
 $( "#datepicker-13" ).on('change', function(){
   let op = ``;
@@ -307,7 +340,39 @@ tanggalMulai.addEventListener('change', function(){
     if(this.value === ''){
       tanggalSelesai.disabled = true;
     }
-})
+});
+
+if(tanggalMulai !== ''){
+  let dateStart = tanggalMulai.value.replace('-','/').replace('-','/').split('/')
+    dateStart = dateStart[1] + '/' +dateStart[0] +'/' +dateStart[2];
+    const newStartDate = new Date(dateStart);
+  const dateEnd = new Date(newStartDate.setDate(newStartDate.getDate() + 3));
+   // console.log(dateStart);
+  $( "#datepicker-14").datepicker({
+      dateFormat: 'dd-mm-yy',
+      dayNamesMin: ['Min', 'Sen', 'Sel', 'Rab', "Kam", 'Jum', 'Sab'],
+      autoclose: true,
+      beforeShow: function(){
+          $( "#datepicker-14").datepicker('option',{
+            minDate : new Date(dateStart),
+            maxDate : dateEnd,
+            onClose: function(date){
+              const dateFinish = date.replace('-','/').replace('-','/').split('/');
+              // if(date !== null){
+                const newDateFinish = new Date(dateFinish[1] + '/' +dateFinish[0] +'/' +dateFinish[2]);
+                const diffTime = Math.abs(newDateFinish - new Date(dateStart));
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+                totalDurasi.innerText = isNaN(diffDays) ? 1 : diffDays;
+                // console.log(isNaNdiffDays);
+                totalHarga.innerText = isNaN(diffDays) ? rupiah(harga) : rupiah(diffDays * harga.replace())
+              // }
+            }
+          });
+      },
+    })
+}
+
+
 
 $( "#datepicker-13").datepicker({
   dateFormat: 'dd-mm-yy',
@@ -339,12 +404,15 @@ $( "#datepicker-13").datepicker({
                     });
                 },
                 onClose: function(date){
-                  const dateFinish = date.replace('-','/').replace('-','/').split('/')
-                  const newDateFinish = new Date(dateFinish[1] + '/' +dateFinish[0] +'/' +dateFinish[2]);
-                  const diffTime = Math.abs(newDateFinish - newDate);
-                  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-                  totalDurasi.innerText = diffDays;
-                  totalHarga.innerText = rupiah(diffDays * harga.replace())
+                  const dateFinish = date.replace('-','/').replace('-','/').split('/');
+                  // if(date !== null){
+                    const newDateFinish = new Date(dateFinish[1] + '/' +dateFinish[0] +'/' +dateFinish[2]);
+                    const diffTime = Math.abs(newDateFinish - newDate);
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+                    totalDurasi.innerText = isNaN(diffDays) ? 1 : diffDays;
+                    // console.log(isNaNdiffDays);
+                    totalHarga.innerText = isNaN(diffDays) ? rupiah(harga) : rupiah(diffDays * harga.replace())
+                  // }
                 }
               });
         }

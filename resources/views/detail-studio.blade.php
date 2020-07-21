@@ -147,9 +147,9 @@
   </div>
 
     <div class="entry-comment">
-        <h3 class="title">(0) Komentar</h3>
+      <!--  <h3 class="title">(0) Komentar</h3>
         <ul class="comment-list">
-            <!-- <li>
+             <li>
                 <div class="single-comment-item"><!-- single comment item
                     <div class="thumb">
                         <img src="assets/img/comments/01.jpg" alt="comments image">
@@ -161,8 +161,8 @@
                         <p>nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
                     </div>
                 </div>
-            </li> -->
-        </ul>
+            </li>
+        </ul> -->
     </div>
     @auth('penyewa')
       <div class="comment-form-area mb-5">
