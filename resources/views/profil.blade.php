@@ -23,7 +23,7 @@
             </div>
             @endif
 
-              <div class="col-lg-6">
+              <div class="col-lg-12">
                 <div class="right-content-area">
                      <h4 class="title text-center">Data Diri {!!Auth::user()->konfirmasi_ktp ? '<i class="fa fa-check text-primary" aria-hidden="true"></i>' : ''!!}</h4>
                         <form action="{{route('profil.update')}}" method="post" enctype="multipart/form-data">
@@ -107,7 +107,7 @@
                       </form>
                 </div>
               </div>
-              <div class="col-lg-6">
+              <!-- <div class="col-lg-6">
                   <div class="right-content-area">
                   <form>
                     <h4 class="title text-center">Ubah Password</h4>
@@ -127,7 +127,7 @@
 
 
                 </div>
-              </div>
+              </div> -->
           </div>
           <!-- </form> -->
       </div>
