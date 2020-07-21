@@ -47,7 +47,7 @@
                                       <button class="submit" type="submit">Login</button>
                                   </form>
 
-                                  <a href="{{route('penyewa.lupa-password')}}" class="text-white">Lupa password ?</a>
+                                  <!-- <a href="{{route('penyewa.lupa-password')}}" class="text-white">Lupa password ?</a> -->
                                   <a href="{{url('register')}}" style="display: block;" class="text-white">Belum punya akun ?</a>
                               </div>
                               </div>

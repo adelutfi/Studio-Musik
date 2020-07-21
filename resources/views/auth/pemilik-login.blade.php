@@ -99,7 +99,7 @@
                                     </fieldset>
                                     <div class="form-group d-flex justify-content-between align-items-center">
                                         <div class="text-right">
-                                          <a href="{{route('pemilik.lupa-password')}}" class="card-link">Lupa Password?</a></div>
+                                          <!-- <a href="{{route('pemilik.lupa-password')}}" class="card-link">Lupa Password?</a></div> -->
                                     </div>
                                     <a href="{{route('pemilik.show.register')}}" class="btn btn-outline-primary float-left btn-inline">Register</a>
                                     <button type="submit" class="btn btn-primary float-right btn-inline">Login</button>
