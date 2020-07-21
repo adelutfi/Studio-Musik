@@ -15,12 +15,12 @@ class CreatePemesananAlatTable extends Migration
     {
         Schema::create('pemesanan_alat', function (Blueprint $table) {
           $table->bigIncrements('id');
+          $table->char('no_transaksi', 14)->unique();
           $table->bigInteger('id_penyewa')->unsigned();
           $table->bigInteger('id_studio')->unsigned();
           $table->integer('harga');
           $table->date('tanggal_mulai');
           $table->date('tanggal_selesai');
-          $table->string('pembayaran');
           $table->boolean('status')->nullable();
           $table->string('nama', 50);
           $table->char('no_telp',13);

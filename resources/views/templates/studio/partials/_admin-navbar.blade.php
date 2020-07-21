@@ -7,8 +7,8 @@
             <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
           </ul>
         </div>
-        <ul class="nav navbar-nav float-right">
-          <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon feather icon-bell"></i>
+      <ul class="nav navbar-nav float-right">
+            <!-- <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon feather icon-bell"></i>
             <span class="badge badge-pill badge-primary badge-up">0</span></a>
             <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
               <li class="dropdown-menu-header">
@@ -21,7 +21,7 @@
                   <div class="media-body">
                     <p>Belum ada notifikasi</p>
                 </div>
-              </div>
+              </div> -->
                 <!-- <a href="#">
                   <div class="media d-flex align-items-start">
                     <div class="media-left"><i class="feather icon-file font-medium-5 warning"></i></div>
@@ -31,10 +31,10 @@
                       <time class="media-meta" datetime="2015-06-11T18:29:20+08:00">Last month</time></small>
                   </div>
                 </a> -->
-                </li>
+                <!-- </li> -->
               <!-- <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center" href="javascript:void(0)">Lihat Semua Notifikasi</a></li> -->
-            </ul>
-          </li>
+            <!-- </ul> -->
+          <!-- </li> -->
           <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
               <div class="user-nav d-sm-flex d-none">
                 <span class="user-name text-bold-600">{{Auth::user()->nama}}</span>

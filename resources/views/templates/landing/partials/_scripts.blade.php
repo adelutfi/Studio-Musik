@@ -25,7 +25,7 @@
 
     @auth('penyewa')
     <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
-    <script>
+  <!-- <script>
     const user = '{{Auth::user()->id}}'
     const userChannel = 'penyewa-notification-'+user;
     const pusher = new Pusher('a77ce5183186534996b9', {
@@ -77,15 +77,15 @@
     }
 
     function showDataNotification(m){
-      return `  <!-- <a href="#"> -->
-        <div class="card-header bg-transparent">
+      return `   <a href="#"> -->
+        <!-- <div class="card-header bg-transparent">
           <i class="fa fa-circle" style="color: blue"></i>
           <span class="" style="font-size: 13px">
             ${m}
           </span>
         </div>
-        <!-- </a> -->`
-    }
+        </a>
+    }-->
 
 
     </script>

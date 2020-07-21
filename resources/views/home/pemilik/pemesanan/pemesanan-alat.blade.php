@@ -32,9 +32,10 @@
                                         <th>No</th>
                                         <th>Studio</th>
                                         <th>Nama Penyewa</th>
-                                        <th>Harga</th>
+                                        <th>Tgl Mulai</th>
+                                        <th>Tgl Selesai</th>
                                         <th>Durasi</th>
-                                        <th>Tanggal / waktu</th>
+                                        <th>Harga</th>
                                         <th>Total Harga</th>
                                         <th>Status Pembayaran</th>
                                         <th>Aksi</th>
@@ -42,14 +43,17 @@
                                 </thead>
                                 <tbody>
                                   @foreach($pemesanan as $p)
+                                  @php($tanggalMulai = \Carbon\Carbon::parse($p->tanggal_mulai))
+                                  @php($tanggalSelesai = \Carbon\Carbon::parse($p->tanggal_selesai))
                                   <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$p->studio->nama}}</td>
-                                    <td>{{$p->penyewa->nama}}</td>
+                                    <td>{{$p->nama}}</td>
+                                    <td align="center" width="17%">{{\Carbon\Carbon::parse($p->tanggal_mulai)->format('d-m-Y')}}</td>
+                                    <td align="center" width="15%">{{\Carbon\Carbon::parse($p->tanggal_selesai)->format('d-m-Y')}}</td>
                                     <td>Rp. {{number_format($p->harga, 0,',','.')}}</td>
-                                    <td>{{$p->durasi}} Jam</td>
-                                    <td>{{date("d-m-Y", strtotime($p->tanggal)) }} / {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->format('h:i')}}</td>
-                                    <td>Rp. {{number_format($p->harga * $p->durasi, 0,',','.')}}</td>
+                                    <td>{{$tanggalMulai->diffInDays($tanggalSelesai) + 1}} Hari</td>
+                                    <td align="center" width="15%">Rp. {{number_format($p->harga * ($tanggalMulai->diffInDays($tanggalSelesai) + 1), 0,',','.')}}</td>
                                     <td>
                                       @if($p->status === null)
                                         <span class="badge badge-square badge-warning">
@@ -74,7 +78,7 @@
                                  <div class="modal-dialog" role="document">
                                    <div class="modal-content">
                                      <div class="modal-header bg-info">
-                                       <h5 class="modal-title text-white" id="exampleModalLongTitle">Detail Pemesanan Tempat {{$p->studio->nama}}</h5>
+                                       <h5 class="modal-title text-white" id="exampleModalLongTitle">Detail Pemesanan Alat {{$p->studio->nama}}</h5>
                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                          <span aria-hidden="true">&times;</span>
                                        </button>
@@ -94,41 +98,33 @@
                                              <strong>Seselai</strong>
                                          </span>
                                        @endif
-                                       @if($p->pembayaran == 'indomart')
-                                       <img src="{{asset('public/indomart.png')}}"  width="90" alt="">
-                                       @else
-                                       <img src="{{asset('public/alfamart.png')}}"  width="90" alt="">
-                                       @endif
                                        <ul class="list-group list-group-flush text-dark">
                                          <li class="list-group-item">
-                                           Nama : {{$p->penyewa->nama}}
+                                           Nama : {{$p->nama}}
                                          </li>
                                          <li class="list-group-item">
-                                           No Telp : {{$p->penyewa->no_telp}}
+                                           No Telp : {{$p->no_telp}}
                                          </li>
                                          <li class="list-group-item">
-                                           Alamat : {{$p->penyewa->alamat}}
+                                           Alamat Studio : {{$p->alamat}}
                                          </li>
                                          <li class="list-group-item">
                                            Studio : {{$p->studio->nama}}
                                          </li>
                                          <li class="list-group-item">
-                                           Tanggal Sewa : {{date("d-m-Y", strtotime($p->tanggal)) }}
+                                           Tanggal Mulai : {{date("d-m-Y", strtotime($p->tanggal_mulai)) }}
                                          </li>
                                          <li class="list-group-item">
-                                           Waktu (Mulai - Selesai) :
-                                           {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->format('h:i')}}
-                                           -
-                                           {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->addHours($p->durasi)->format('h:i')}}
+                                           Tanggal Selesai : {{date("d-m-Y", strtotime($p->tanggal_selesai)) }}
                                          </li>
                                          <li class="list-group-item">
-                                           Durasi : {{$p->durasi}} Jam
+                                            Durasi : {{$tanggalMulai->diffInDays($tanggalSelesai) + 1}} Hari
                                          </li>
                                          <li class="list-group-item">
                                            Harga : Rp. {{number_format($p->harga, 0,',','.')}}
                                          </li>
                                          <li class="list-group-item">
-                                           Total Harga : Rp. {{number_format($p->harga * $p->durasi, 0,',','.')}}
+                                           Total Harga : Rp. {{number_format($p->harga * ($tanggalMulai->diffInDays($tanggalSelesai) + 1), 0,',','.')}}
                                          </li>
 
                                        </ul>

@@ -242,14 +242,15 @@
 @endif
 
 
-$(".owl-carousel").owlCarousel({
-    autoPlay: 3000,
-    items : 1, // THIS IS IMPORTANT
-    responsive : {
-          440 : { items : 1  }, // from zero to 480 screen width 4 items
-          768 : { items : 2  }, // from 480 screen widthto 768 6 items
-          1024 : { items : 2 }
-      },
-});
+// $(".owl-carousel").owlCarousel({
+//     // autoPlay: true,
+//     // slideSpeed: 300,
+//     items : 1, // THIS IS IMPORTANT
+//     responsive : {
+//           440 : { items : 1  }, // from zero to 480 screen width 4 items
+//           768 : { items : 1  }, // from 480 screen widthto 768 6 items
+//           1024 : { items : 1 }
+//       },
+// });
 </script>
 @endsection

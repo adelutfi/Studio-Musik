@@ -8,6 +8,8 @@ use Auth;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use App\PemesananAlat;
+use App\PemesananTempat;
 
 class PemesananController extends Controller
 {
@@ -62,7 +64,7 @@ class PemesananController extends Controller
           $keterangan = "sewa-alat";
           return view('pemesanan', compact('studio','keterangan'));
         }else{
-        return redirect()->back()->with('message','Sepertinya Ktp anda belum di konfirmasi oleh admin');
+        return redirect()->back()->with('message','Ktp anda belum di konfirmasi oleh admin');
         }
       }elseif ($request->keterangan == 'sewa-tempat') {
         $keterangan = "sewa-tempat";
@@ -96,6 +98,13 @@ class PemesananController extends Controller
       return redirect()->back()->with('message','Lengkapi dulu profil anda');
     }
 
+  }
+
+  public function pemesananTempat(){
+    $tanggal = Carbon::parse(request()->get('tanggal'))->format('Y-m-d');
+    $pemesanan = PemesananTempat::whereDate('tanggal', $tanggal)->get(['waktu','durasi','ruangan']);
+
+    return $pemesanan;
   }
 
 }

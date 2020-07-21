@@ -94,11 +94,6 @@
                                              <strong>Seselai</strong>
                                          </span>
                                        @endif
-                                       @if($p->pembayaran == 'indomart')
-                                       <img src="{{asset('public/indomart.png')}}"  width="90" alt="">
-                                       @else
-                                       <img src="{{asset('public/alfamart.png')}}"  width="90" alt="">
-                                       @endif
                                        <ul class="list-group list-group-flush text-dark">
                                          <li class="list-group-item">
                                            Nama : {{$p->penyewa->nama}}

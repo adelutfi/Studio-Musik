@@ -8,6 +8,7 @@ use App\PemesananTempat;
 use App\PemesananAlat;
 use App\Studio;
 use Auth;
+use Carbon\Carbon;
 
 class PemesananController extends Controller
 {
@@ -21,7 +22,9 @@ class PemesananController extends Controller
     }
 
     public function pemesananAlat(){
-      return view('pemesanan-alat');
+      $pemesanan = PemesananAlat::where('id_penyewa', Auth::user()->id)->orderBy('id','DESC')->paginate(6);
+      // dd($pemesanan);
+      return view('pemesanan-alat', compact('pemesanan'));
     }
 
     public function storePemesananTempat(Request $request, Studio $studio){
@@ -51,33 +54,27 @@ class PemesananController extends Controller
     }
     public function storePemesananAlat(Request $request, Studio $studio){
 
-      Auth::user()->update([
-        'nama' => $request->nama,
-        'no_telp' => $request->no_telp,
-        'alamat' => $request->alamat
-      ]);
-
       $tanggalMulai = strtotime($request->tanggal_mulai);
       $tanggalSelesai = strtotime($request->tanggal_selesai);
 
       $tanggalMulai = date('Y-m-d',$tanggalMulai);
       $tanggalSelesai = date('Y-m-d',$tanggalSelesai);
+      // dd($tanggalMulai);
 
-      PemesananTempat::create([
+      PemesananAlat::create([
+        'no_transaksi' => $request->no_transaksi,
         'id_penyewa' => Auth::user()->id,
         'id_studio' => $studio->id,
-        'harga' => $studio->sewaTempat->harga,
+        'harga' => $studio->sewaAlat->harga,
         'tanggal_mulai' => $tanggalMulai,
         'tanggal_selesai' => $tanggalMulai,
-        'pembayaran' => $request->pembayaran,
         'nama' => $request->nama,
         'no_telp' => $request->no_telp,
-        'alamat' => $request->alamat
+        'alamat' => $request->alamat,
+        'snap_token' => $request->snap_token
       ]);
 
-      return redirect()->route('pemesanan.tempat');
-
+      return redirect()->route('pemesanan.alat');
     }
-
 
 }

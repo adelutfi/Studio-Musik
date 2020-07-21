@@ -62,7 +62,7 @@
                                     <div class="modal-dialog" role="document">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabel">Detail Pemesanan</h5>
+                                          <h5 class="modal-title" id="exampleModalLabel">Detail Pemesanan Tempat</h5>
                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                           </button>
@@ -94,14 +94,14 @@
                                               No Telp Pemilik : {{$p->studio->pemilik->no_telp}}
                                             </li>
                                             <li class="list-group-item">
-                                              Alamat : {{$p->studio->alamat}}
+                                              Alamat Studio : {{$p->studio->alamat}}
                                             </li>
                                             <li class="list-group-item">
                                               Tanggal Sewa : {{date("d-m-Y", strtotime($p->tanggal)) }}
                                             </li>
                                             <li class="list-group-item">
                                               Waktu (Mulai - Selesai) :
-                                              {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->format('h:i')}}
+                                              {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->format('H:i')}}
                                               -
                                               {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->addHours($p->durasi)->format('H:i')}}
                                             </li>

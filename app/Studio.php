@@ -31,8 +31,8 @@ class Studio extends Model
       return $this->hasOne(SewaAlat::class,'id_studio','id');
     }
 
-    public function pemesanan(){
-        return $this->hasMany(Pemesanan::class, 'id_studio', 'id');
+    public function pemesananTempat(){
+        return $this->hasMany(PemesananTempat::class, 'id_studio', 'id');
     }
 
 }

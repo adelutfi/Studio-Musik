@@ -33,7 +33,7 @@
                           <a class="dropdown-item" href="{{route('pemesanan.alat')}}"> <i class="fa fa-truck"></i> Alat</a>
                       </div>
                    </li>
-                   <li class="nav-item dropdown">
+                   <!-- <li class="nav-item dropdown">
                        <a class="nav-link dropdown-toggle" onclick="document.querySelector('#notify').innerText = 0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                        <strong>
                         Notifications
@@ -43,17 +43,17 @@
                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <div class="card" style="width: 370px">
                             <div id="show-notify" class="">
-                              <!-- <a href="#"> -->
+                              <a href="#">
                                <div class="card-header bg-transparent">
                                  <span class="" style="font-size: 13px">
                                    <p>Belum Ada Notifikasi</p>
                                  </span>
                                </div>
-                               <!-- </a> -->
+                               </a>
                             </div>
                           </div>
                        </ul>
-                   </li>
+                   </li> -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <strong>

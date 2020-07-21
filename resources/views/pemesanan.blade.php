@@ -7,21 +7,9 @@
 }
 
 </style>
-<!-- <section class="breadcumb-area breadcrumb-bg">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="breadcumb-inner">
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
 <section class="contact-area" >
       <div class="container">
-        <form id="pemesanan-submit" action="{{$keterangan == 'sewa-tempat' ? route('simpan.pemesanan.tempat', $studio) : ''}}" method="post" class="contact-form">
+        <form id="pemesanan-submit" action="{{$keterangan == 'sewa-tempat' ? route('simpan.pemesanan.tempat', $studio) : route('simpan.pemesanan.alat', $studio)}}" method="post" class="contact-form">
           @csrf
           <div class="row">
               <div class="col-lg-5">
@@ -111,13 +99,12 @@
                              <div class="row">
                                <div class="col-6 col-md-4 form-group">
                                 <label>Tanggal Mulai</label>
-                                <input type="text" class="form-control" id="datepicker-13" name="tanggal" value="" placeholder="Pilih Tanggal" required>
+                                <input type="text" class="form-control" id="datepicker-13" name="tanggal_mulai" value="" placeholder="Pilih Tanggal" required>
                               </div>
                                <div class="col-6 col-md-4 form-group">
                                 <label>Tanggal Selesai</label>
-                                <input type="text" class="form-control" id="datepicker-14" name="tanggal" value="" placeholder="Pilih Tanggal" disabled required>
+                                <input type="text" class="form-control" id="datepicker-14" name="tanggal_selesai" value="" placeholder="Pilih Tanggal" disabled required>
                               </div>
-
                               <div class="col-12">
                                 <p id="keterangan-jadwal" style="display: none">  </p>
                               </div>
@@ -128,7 +115,7 @@
                           <table class="table table-sm borderless">
                             <tbody>
                               <tr>
-                                <td><h4>Harga / jam </h4></td>
+                                <td><h4>Harga / Hari </h4></td>
                                 <td> <h4>: Rp. {{number_format($studio->sewaAlat->harga,0,',','.')}}</h4> </td>
                               </tr>
                               <tr>
@@ -167,6 +154,13 @@
         src="https://app.sandbox.midtrans.com/snap/snap.js"
         data-client-key="{{config('app.midtrans_client')}}">
 </script>
+<script>
+  const bayar = document.querySelector('.submit-btn');
+  const url = '{{config("app.url")}}';
+  const noTransaksi = document.querySelector('#no-transaksi');
+  const snapToken = document.querySelector('#token');
+
+</script>
 @if($keterangan == 'sewa-tempat')
 <script>
 const tanggal = document.querySelector('#datepicker-13');
@@ -178,19 +172,13 @@ const harga = '{{$studio->sewaTempat->harga}}';
 const totalDurasi = document.querySelector('#total-durasi');
 const totalHarga = document.querySelector('#total-harga');
 const jadwalData = @json($tanggal);
-const noTransaksi = document.querySelector('#no-transaksi');
-const token = document.querySelector('#token');
-const snapToken = document.querySelector('#token');
 let closed = ``;
 const jadwalTanggal = jadwalData.map(j => j.date);
 
-const bayar = document.querySelector('.submit-btn');
-const url = '{{config("app.url")}}';
-
-  async function toMidtrans(){
-    let amount = harga*durasi.value;
-    return fetch(url+'/pemesanan/payment-gateway?total='+amount).then(res => res.json()).then(res => res);
-  }
+async function toMidtrans(){
+  let amount = harga*durasi.value;
+  return fetch(url+'/pemesanan/payment-gateway?total='+amount).then(res => res.json()).then(res => res);
+}
 
 bayar.addEventListener('click',async function(){
   if(tanggal.value === ''){
@@ -282,7 +270,6 @@ durasi.addEventListener('change', function(){
   }
 </script>
 @else
-
 <script type="text/javascript">
 const tanggalMulai = document.querySelector('#datepicker-13');
 const tanggalSelesai = document.querySelector('#datepicker-14');
@@ -290,6 +277,31 @@ const date = new Date();
 const harga = '{{$studio->sewaAlat->harga}}';
 const totalDurasi = document.querySelector('#total-durasi');
 const totalHarga = document.querySelector('#total-harga');
+
+async function toMidtrans(){
+  let amount = harga*totalDurasi.innerText;
+  return fetch(url+'/pemesanan/payment-gateway?total='+amount).then(res => res.json()).then(res => res);
+}
+
+bayar.addEventListener('click',async function(){
+  if(tanggalMulai.value === '' || tanggalSelesai.value === ''){
+    alert('pilih tanggal terlebih dahulu');
+    tanggalMulai.classList.add('border','border-danger')
+    tanggalSelesai.classList.add('border','border-danger')
+  }else {
+    const data = await toMidtrans();
+    if(data.status){
+      noTransaksi.value = data.no_transaksi;
+      snapToken.value = data.midtrans.token;
+      snap.pay(data.midtrans.token, {
+        onPending: function(result){
+          document.querySelector('#pemesanan-submit').submit();
+        },
+      })
+    }
+  }
+
+});
 
 tanggalMulai.addEventListener('change', function(){
     if(this.value === ''){
