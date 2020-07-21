@@ -34,8 +34,8 @@
                                         <th>Nama Penyewa</th>
                                         <th>Tgl Mulai</th>
                                         <th>Tgl Selesai</th>
-                                        <th>Durasi</th>
                                         <th>Harga</th>
+                                        <th>Durasi</th>
                                         <th>Total Harga</th>
                                         <th>Status Pembayaran</th>
                                         <th>Aksi</th>

@@ -67,7 +67,7 @@ class PemesananController extends Controller
         'id_studio' => $studio->id,
         'harga' => $studio->sewaAlat->harga,
         'tanggal_mulai' => $tanggalMulai,
-        'tanggal_selesai' => $tanggalMulai,
+        'tanggal_selesai' => $tanggalSelesai,
         'nama' => $request->nama,
         'no_telp' => $request->no_telp,
         'alamat' => $request->alamat,
