@@ -37,22 +37,22 @@
                                    <tr>
                                        <td align="center">{{$loop->iteration}}</td>
                                        <td align="center">{{$p->studio->nama}}</td>
-                                       <td align="center">{{date("d-m-Y", strtotime($p->tanggal)) }} / {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->format('h:i')}}</td>
+                                       <td align="center">{{date("d-m-Y", strtotime($p->tanggal)) }} / {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->format('H:i')}}</td>
                                        <td align="center">{{$p->durasi}} Jam</td>
                                        <td align="center">Rp. {{number_format($p->harga,0,',','.')}}</td>
                                        <td align="center">Rp. {{number_format($p->harga * $p->durasi,0,',','.')}}</td>
                                        <td align="center">
-                                         @if($p->status == null)
+                                         @if($p->status === null)
                                          Menunggu
-                                        @elseif($p->status == 0)
+                                        @elseif($p->status === 0)
                                           Gagal
-                                        @elseif($p->status == 1)
-                                          Selesai
+                                        @else
+                                          Sukses
                                         @endif
                                        </td>
                                        <td align="center">
                                          <a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#detail{{$p->id}}">Detail</a>
-                                         @if($p->status == null)
+                                         @if($p->status === null)
                                          <a href="https://app.sandbox.midtrans.com/snap/v2/vtweb/{{$p->snap_token}}" target="_blank">Pembayaran</a>
                                          @endif
                                        </td>
@@ -70,17 +70,17 @@
                                         <div class="modal-body">
                                         <div class="row">
                                           <div class="col-2">
-                                          @if($p->status == null)
+                                          @if($p->status === null)
                                             <span class="badge badge-square badge-warning badge-md mb-2">
                                               <strong class="text-white">Menunggu</strong>
                                             </span>
-                                          @elseif($p->status == 0)
+                                          @elseif($p->status === 0)
                                               <span class="badge badge-square badge-danger badge-md mb-2">
                                                   <strong>Gagal</strong>
                                               </span>
                                           @else
                                             <span class="badge badge-square badge-success badge-md mb-2">
-                                                <strong>Seselai</strong>
+                                                <strong>Sukses</strong>
                                             </span>
                                           @endif
                                           </div>

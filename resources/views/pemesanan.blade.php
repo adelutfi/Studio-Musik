@@ -50,7 +50,7 @@
                              <div class="row">
                                <div class="col-6 col-md-4 form-group">
                                 <label>Hari & Tanggal</label>
-                                <input type="text" class="form-control" id="datepicker-13" name="tanggal" value="{{request()->get('tanggal')}}" placeholder="Pilih Tanggal" required>
+                                <input type="text" class="form-control" id="datepicker-13" name="tanggal" value="{{request()->get('tanggal')}}" placeholder="Pilih Tanggal" {{request()->get('tanggal') ? 'disabled' : ''}} required>
                               </div>
                               <div class="col-6 col-md-3 form-group">
                                   <label>Waktu</label>
@@ -99,14 +99,11 @@
                              <div class="row">
                                <div class="col-6 col-md-4 form-group">
                                 <label>Tanggal Mulai</label>
-                                <input type="text" class="form-control" id="datepicker-13" name="tanggal_mulai" value="{{request()->get('tanggal')}}" placeholder="Pilih Tanggal" required>
+                                <input type="text" class="form-control" id="datepicker-13" name="tanggal_mulai" {{request()->get('tanggal') ? 'disabled' : ''}} value="{{request()->get('tanggal')}}" placeholder="Pilih Tanggal" required>
                               </div>
                                <div class="col-6 col-md-4 form-group">
                                 <label>Tanggal Selesai</label>
                                 <input type="text" class="form-control" id="datepicker-14" name="tanggal_selesai" value="" placeholder="Pilih Tanggal" {{request()->get('tanggal') ? '' : 'disabled'}}  required>
-                              </div>
-                              <div class="col-12">
-                                <p id="keterangan-jadwal" style="display: none">  </p>
                               </div>
                             </div>
                            </div>
