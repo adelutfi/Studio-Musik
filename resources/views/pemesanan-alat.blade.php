@@ -30,12 +30,13 @@
                                      <th class="text-white">Durasi</th>
                                      <th class="text-white">Harga</th>
                                      <th class="text-white">Total Harga</th>
-                                     <th class="text-white">Status Pembayaran</th>
+                                     <th class="text-white">Pembayaran</th>
+                                     <th class="text-white">Status</th>
                                      <th class="text-white"></th>
                                    </tr>
                                  </th>
                                    <tbody>
-                                     @foreach($pemesanan as $p)
+                                     @foreach($pemesanan as $key => $p)
                                      @php($tanggalMulai = \Carbon\Carbon::parse($p->tanggal_mulai))
                                      @php($tanggalSelesai = \Carbon\Carbon::parse($p->tanggal_selesai))
                                        <tr>
@@ -46,18 +47,19 @@
                                            <td align="center">{{$tanggalMulai->diffInDays($tanggalSelesai) + 1}} Hari</td>
                                            <td align="center" width="15%">Rp. {{number_format($p->harga,0,',','.')}}</td>
                                            <td align="center" width="15%">Rp. {{number_format($p->harga * ($tanggalMulai->diffInDays($tanggalSelesai) + 1), 0,',','.')}}</td>
+                                            <td align="center">{{$status[$key]['store']}}</td>
                                            <td align="center">
-                                             @if($p->status === null)
-                                             Menunggu
-                                            @elseif($p->status === 0)
+                                             @if($status[$key]['status'] === 'pending')
+                                              Menunggu
+                                             @elseif($status[$key]['status'] === 'expire')
                                               Gagal
-                                            @else
+                                             @else
                                               Sukses
-                                            @endif
+                                             @endif
                                            </td>
                                            <td align="center">
-                                             <a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#detail{{$p->id}}">Detail</a>
-                                             @if($p->status === null)
+                                             <a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#detail{{$p->id}}">Detail</a> <br>
+                                             @if($status[$key]['status'] === 'pending')
                                              <a href="https://app.sandbox.midtrans.com/snap/v2/vtweb/{{$p->snap_token}}" class="mt-1" target="_blank">Pembayaran</a>
                                              @endif
                                            </td>
@@ -75,11 +77,11 @@
                                             <div class="modal-body">
                                             <div class="row">
                                               <div class="col-2">
-                                              @if($p->status === null)
+                                              @if($status[$key]['status'] === 'pending')
                                                 <span class="badge badge-square badge-warning badge-md mb-2">
                                                   <strong class="text-white">Menunggu</strong>
                                                 </span>
-                                              @elseif($p->status === 0)
+                                              @elseif($status[$key]['status'] === 'expire')
                                                   <span class="badge badge-square badge-danger badge-md mb-2">
                                                       <strong>Gagal</strong>
                                                   </span>

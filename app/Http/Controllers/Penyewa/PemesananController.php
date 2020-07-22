@@ -9,6 +9,8 @@ use App\PemesananAlat;
 use App\Studio;
 use Auth;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class PemesananController extends Controller
 {
@@ -18,13 +20,54 @@ class PemesananController extends Controller
 
     public function pemesananTempat(){
       $pemesanan = PemesananTempat::where('id_penyewa', Auth::user()->id)->orderBy('id','DESC')->paginate(6);
-      return view('pemesanan-tempat', compact('pemesanan'));
+      $status = [];
+      $serverKey = config('app.midtrans_server');
+      $headers = [
+          'Accept' => 'application/json',
+          'Content-Type' => 'application/json',
+          'Authorization' => 'Basic '.base64_encode($serverKey.':'),
+      ];
+
+      $client = new Client();
+
+      foreach ($pemesanan as $p) {
+        $res = $client->get('https://api.sandbox.midtrans.com/v2/'.$p->no_transaksi.'/status', [
+          'headers' => $headers
+        ]);
+        $data = json_decode($res->getBody()->getContents());
+        $status [] = [
+          'status' => $data->transaction_status,
+          'store' => $data->store
+        ];
+      }
+
+      return view('pemesanan-tempat', compact('pemesanan','status'));
     }
 
     public function pemesananAlat(){
       $pemesanan = PemesananAlat::where('id_penyewa', Auth::user()->id)->orderBy('id','DESC')->paginate(6);
-      // dd($pemesanan);
-      return view('pemesanan-alat', compact('pemesanan'));
+      $status = [];
+      $serverKey = config('app.midtrans_server');
+      $headers = [
+          'Accept' => 'application/json',
+          'Content-Type' => 'application/json',
+          'Authorization' => 'Basic '.base64_encode($serverKey.':'),
+      ];
+
+      $client = new Client();
+
+      foreach ($pemesanan as $p) {
+        $res = $client->get('https://api.sandbox.midtrans.com/v2/'.$p->no_transaksi.'/status', [
+          'headers' => $headers
+        ]);
+        $data = json_decode($res->getBody()->getContents());
+        $status [] = [
+          'status' => $data->transaction_status,
+          'store' => $data->store
+        ];
+      }
+
+      return view('pemesanan-alat', compact('pemesanan', 'status'));
     }
 
     public function storePemesananTempat(Request $request, Studio $studio){
@@ -35,6 +78,10 @@ class PemesananController extends Controller
         'alamat' => $request->alamat
       ]);
       $tanggal = strtotime($request->tanggal);
+
+      if(request()->get('tanggal')){
+        $tanggal = strtotime(request()->get('tanggal'));
+      }
 
       $tanggal = date('Y-m-d',$tanggal);
       PemesananTempat::create([
@@ -56,6 +103,10 @@ class PemesananController extends Controller
 
       $tanggalMulai = strtotime($request->tanggal_mulai);
       $tanggalSelesai = strtotime($request->tanggal_selesai);
+
+      if(request()->get('tanggal')){
+        $tanggalMulai = strtotime(request()->get('tanggal'));
+      }
 
       $tanggalMulai = date('Y-m-d',$tanggalMulai);
       $tanggalSelesai = date('Y-m-d',$tanggalSelesai);

@@ -9,7 +9,7 @@
 </style>
 <section class="contact-area" >
       <div class="container">
-        <form id="pemesanan-submit" action="{{$keterangan == 'sewa-tempat' ? route('simpan.pemesanan.tempat', $studio) : route('simpan.pemesanan.alat', $studio)}}" method="post" class="contact-form">
+        <form id="pemesanan-submit" action="{{$keterangan == 'sewa-tempat' ? url('penyewa/pemesanan/'.$studio->id.'?tanggal='.request()->get('tanggal')) : url('penyewa/pemesanan/alat/'.$studio->id.'?tanggal='.request()->get('tanggal'))}}" method="post" class="contact-form">
           @csrf
           <div class="row">
               <div class="col-lg-5">

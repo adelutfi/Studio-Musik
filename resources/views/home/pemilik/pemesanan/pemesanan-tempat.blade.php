@@ -36,12 +36,13 @@
                                         <th>Durasi</th>
                                         <th>Tanggal / waktu</th>
                                         <th>Total Harga</th>
-                                        <th>Status Pembayaran</th>
+                                        <th>Pembayaran</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                  @foreach($pemesanan as $p)
+                                  @foreach($pemesanan as $key => $p)
                                   <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$p->studio->nama}}</td>
@@ -50,18 +51,19 @@
                                     <td>{{$p->durasi}} Jam</td>
                                     <td>{{date("d-m-Y", strtotime($p->tanggal)) }} / {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->format('h:i')}}</td>
                                     <td>Rp. {{number_format($p->harga * $p->durasi, 0,',','.')}}</td>
+                                    <td align="center">{{$status[$key]['store']}}</td>
                                     <td>
-                                      @if($p->status === null)
+                                     @if($status[$key]['status'] === 'pending')
                                         <span class="badge badge-square badge-warning">
                                           <strong>Menunggu</strong>
                                         </span>
-                                      @elseif($p->status === 0)
+                                     @elseif($status[$key]['status'] === 'expire')
                                           <span class="badge badge-square badge-danger">
                                               <strong>Gagal</strong>
                                           </span>
                                       @else
                                         <span class="badge badge-square badge-success">
-                                            <strong>Seselai</strong>
+                                            <strong>Sukses</strong>
                                         </span>
                                       @endif
                                     </td>
@@ -81,17 +83,17 @@
                                      </div>
 
                                      <div class="modal-body">
-                                       @if($p->status === null)
+                                       @if($status[$key]['status'] === 'pending')
                                          <span class="badge badge-square badge-warning badge-md mb-2">
                                            <strong>Menunggu</strong>
                                          </span>
-                                       @elseif($p->status === 0)
+                                        @elseif($status[$key]['status'] === 'expire')
                                            <span class="badge badge-square badge-danger badge-md mb-2">
                                                <strong>Gagal</strong>
                                            </span>
                                        @else
                                          <span class="badge badge-square badge-success badge-md mb-2">
-                                             <strong>Seselai</strong>
+                                             <strong>Sukses</strong>
                                          </span>
                                        @endif
                                        <ul class="list-group list-group-flush text-dark">
