@@ -95,7 +95,7 @@
                                                 @if($p->status === null && $p->tanggal_mulai !== now()->format('Y-m-d'))
                                                <h5 class="text-center">Alat akan dikirim tanggal {{\Carbon\Carbon::parse($p->tanggal_mulai)->format('d-M-Y')}} </h5>
                                                @elseif($p->status === null && $p->tanggal_mulai === now()->format('Y-m-d'))
-                                               <h5 class="text-center">Alat Belum dikirim</h5>
+                                               <h5 class="text-center">Alat segera dikirim pukul 08:00</h5>
                                                @elseif($p->status === 0)
                                                <h5 class="text-center">Alat sudah dikirim</h5>
                                                <h5 class="text-center">Batas pengembalian alat tanggal {{\Carbon\Carbon::parse($p->tanggal_selesai)->format('d-M-Y')}}</h5>
