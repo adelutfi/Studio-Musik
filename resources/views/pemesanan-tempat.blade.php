@@ -52,7 +52,6 @@
                                          @else
                                           Sukses
                                          @endif
-
                                        </td>
                                        <td align="center">
                                          <a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#detail{{$p->id}}">Detail</a> <br>
