@@ -13,4 +13,8 @@ class Rating extends Model
   public $timestamps = false;
 
   public $incrementing = false;
+
+  public function studio(){
+  	return $this->belongsTo(Studio::class,'id_studio','id');
+  }
 }

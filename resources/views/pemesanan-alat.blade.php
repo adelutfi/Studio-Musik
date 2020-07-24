@@ -91,8 +91,19 @@
                                                 </span>
                                               @endif
                                               </div>
+                                              <div class="col-12">
+                                                @if($p->status === null && $p->tanggal_mulai !== now()->format('Y-m-d'))
+                                               <h5 class="text-center">Tunggu Taggal pengiriman alat</h5>
+                                               @elseif($p->status === null && $p->tanggal_mulai === now()->format('Y-m-d'))
+                                               <h5 class="text-center">Alat Belum dikirim</h5>
+                                               @elseif($p->status === 0)
+                                               <h5 class="text-center">Alat sudah dikirim</h5>
+                                               @elseif($p->status === 1)
+                                               <h5 class="text-center">Alat telah di kembalikan</h5>
+                                               @endif
                                               </div>
-
+                                              </div>
+                                               
                                               <ul class="list-group list-group-flush text-dark">
                                                 <li class="list-group-item">
                                                   Nama Studio : {{$p->studio->nama}}

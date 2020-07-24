@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Studio;
 use Carbon\Carbon;
+use App\Rating;
 use DB;
 
 class DataStudioController extends Controller
@@ -14,10 +15,12 @@ class DataStudioController extends Controller
       $rating = [];
       $semuaStudio = Studio::all();
       if($semuaStudio){
-        foreach ($semuaStudio as $data) {
-        $total = $data->ratings->nilai/$data->ratings->jumlah;
-          if($total > 2){
-            $rating[] = $data;
+        foreach ($semuaStudio as $key => $data) {
+          if(count($rating) <= $key){
+              $total = $data->ratings ? $data->ratings->nilai/$data->ratings->jumlah : 0;
+            if($total > 2){
+              $rating[] = $data;
+            }
           }
         }
       }

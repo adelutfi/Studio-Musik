@@ -72,7 +72,13 @@
                                       @endif
                                     </td>
                                     <td>
-                                      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detail{{$p->id}}"> Detail </button>
+                                      <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detail{{$p->id}}"> Detail </button>
+
+                                      @if($p->tanggal_mulai === now()->format('Y-m-d') && $p->status === null) 
+                                      <button type="button" class="btn btn-primary btn-sm mt-1" data-toggle="modal" data-target="#pengiriman{{$p->id}}"> <i class="fa fa-truck"></i> </button>
+                                      @elseif($p->tanggal_mulai === now()->format('Y-m-d') && $p->status === 0)
+                                       <button type="button" class="btn btn-success btn-sm mt-1" data-toggle="modal" data-target="#selesai{{$p->id}}"> <i class="fa fa-check"></i> </button>
+                                      @endif
                                     </td>
                                   </tr>
 
@@ -99,6 +105,13 @@
                                          <span class="badge badge-square badge-success badge-md mb-2">
                                              <strong>Seselai</strong>
                                          </span>
+                                       @endif
+                                       @if($p->status === null && $p->tanggal_mulai === now()->format('Y-m-d'))
+                                       <h5 class="float-right">Alat Belum dikirim</h5>
+                                       @elseif($p->status === 0)
+                                       <h5 class="float-right">Alat sudah dikirim</h5>
+                                       @elseif($p->status === 1)
+                                       <h5 class="float-right">Alat telah di kembalikan</h5>
                                        @endif
                                        <ul class="list-group list-group-flush text-dark">
                                          <li class="list-group-item">
@@ -135,6 +148,52 @@
                                        <button type="submit" class="btn btn-info" data-dismiss="modal">OK</a>
                                      </div>
 
+                                   </div>
+                                 </div>
+                               </div>
+
+                            <div class="modal fade" id="pengiriman{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                 <div class="modal-dialog" role="document">
+                                   <div class="modal-content">
+                                     <div class="modal-header bg-info">
+                                       <h5 class="modal-title text-white" id="exampleModalLongTitle">Pengiriman alat studio dari {{$p->studio->nama}}</h5>
+                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                         <span aria-hidden="true">&times;</span>
+                                       </button>
+                                     </div>
+                                     <form method="post" action="{{route('pemilik.kirim.alat', $p)}}">
+                                      @csrf
+                                      @method('PATCH')
+                                     <div class="modal-body">
+                                       <p class="text-dark">Apakah alat studio siap untuk dikirim ?</p>
+                                     </div>
+                                     <div class="modal-footer">
+                                       <button type="submit" class="btn btn-info">OK</a>
+                                     </div>
+                                     </form>
+                                   </div>
+                                 </div>
+                               </div>
+
+                                 <div class="modal fade" id="selesai{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                 <div class="modal-dialog" role="document">
+                                   <div class="modal-content">
+                                     <div class="modal-header bg-success">
+                                       <h5 class="modal-title text-white" id="exampleModalLongTitle">Alat Sampai</h5>
+                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                         <span aria-hidden="true">&times;</span>
+                                       </button>
+                                     </div>
+                                     <form method="post" action="{{route('pemilik.selesai.alat', $p)}}">
+                                      @csrf
+                                      @method('PUT')
+                                     <div class="modal-body">
+                                       <p class="text-dark">Apakah Alat telah sampai di {{$p->studio->nama}} ?</p>
+                                     </div>
+                                     <div class="modal-footer">
+                                       <button type="submit" class="btn btn-success">OK</a>
+                                     </div>
+                                     </form>
                                    </div>
                                  </div>
                                </div>

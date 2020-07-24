@@ -27,6 +27,10 @@ class Pemilik extends Authenticatable
   public function studio(){
     return $this->hasMany(Studio::class,'id_pemilik', 'id');
   }
+
+  public function sendNotifyPenyewa($message, $penyewa){
+    return event(new Events\PenyewaNotification($message, $penyewa));
+  }
   /**
    * The attributes that should be hidden for arrays.
    *

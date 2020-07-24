@@ -74,4 +74,16 @@ class PemesananController extends Controller
 
     return view('home.pemilik.pemesanan.pemesanan-alat', compact('pemesanan', 'status'));
   }
+
+  public function notifikasiPengiriman(PemesananAlat $pemesanan){
+      $pemesanan->update(['status' => 0]);
+
+      return redirect()->back();
+  }
+
+   public function notifikasiSelesai(PemesananAlat $pemesanan){
+      $pemesanan->update(['status' => 1]);
+
+      return redirect()->back();
+  }
 }

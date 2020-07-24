@@ -34,11 +34,12 @@ class PemesananController extends Controller
         $res = $client->get('https://api.sandbox.midtrans.com/v2/'.$p->no_transaksi.'/status', [
           'headers' => $headers
         ]);
-        $data = json_decode($res->getBody()->getContents());
-        $status [] = [
-          'status' => $data->transaction_status,
-          'store' => $data->store
+        $data = json_decode($res->getBody()->getContents(), true);
+        $status[] = [
+          'status' => $data['transaction_status'],
+          'store' => $data['store']
         ];
+
       }
 
       return view('pemesanan-tempat', compact('pemesanan','status'));
