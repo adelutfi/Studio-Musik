@@ -165,7 +165,7 @@
         </ul> -->
     </div>
     @auth('penyewa')
-      <div class="comment-form-area mb-5">
+     {{--  <div class="comment-form-area mb-5">
           <h3 class="title">Masukan Komentar</h3>
           <form action="blog-details.html" class="comments-entry-form">
               <div class="form-group textarea">
@@ -173,7 +173,7 @@
               </div>
               <button type="submit" class="submit-btn">Simpan</button>
           </form>
-      </div>
+      </div> --}}
       @endauth
   </div><!-- //. blog details content -->
 </div>
