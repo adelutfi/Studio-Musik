@@ -99,7 +99,7 @@
                                     <div class="col-3">
                                         <div class="form-label-group">
                                             <select id="jam-tutup" data-id="{{$i}}" class="form-control" name="jam_tutup[]" placeholder="Jam Tutup" disabled="">
-                                             @for($hours = 12; $hours < 25; $hours++)
+                                             @for($hours = 13; $hours < 25; $hours++)
                                                 @for($min = 0; $min < 60; $min+=60)
                                                 <option value="{{str_pad($hours,2,'0',STR_PAD_LEFT)}}:{{str_pad($min,2,'0',STR_PAD_LEFT)}}">
                                                 {{str_pad($hours,2,'0',STR_PAD_LEFT)}}:{{str_pad($min,2,'0',STR_PAD_LEFT)}}
@@ -110,10 +110,10 @@
                                         </div>
                                     </div>
                                     @endfor
-                                    <div class="col-12 text-center mb-2 mt-2">
+                                   {{--  <div class="col-12 text-center mb-2 mt-2">
                                     <h4>Alat Tambahan</h4>
                                     </div>
-
+ --}}
                                     </div>
 
                                     <div class="col-12 text-center">

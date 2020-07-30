@@ -42,6 +42,8 @@ class SewaTempatController extends Controller
         'required' => ':attribute tidak boleh kosong.',
       ];
 
+      // dd($request->jam_buka);
+
       $this->validate($request, $rule, $message);
 
       SewaTempat::create([

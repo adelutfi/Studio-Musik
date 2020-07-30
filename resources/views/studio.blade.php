@@ -45,7 +45,7 @@
                         @foreach($studio as $s)
                          @php($totalRating = $s->ratings->nilai/$s->ratings->jumlah )
                            @if($s->sewaAlat || $s->sewaTempat)
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-md-6">
                             <div class="single-blog-item"><!-- single blog item -->
                                 <div class="thumb">
                                    <a href="{{route('detail.studio', $s)}}">
@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="content">
                                     <a href="{{route('detail.studio', $s)}}">
-                                        <h3 class="title">{{$s->nama}}</h3>
+                                        <h5 class="title">{{$s->nama}}</h5>
                                     </a>
                                     <p class="mb-2">{{$s->alamat}}</p>
                                     <div>
