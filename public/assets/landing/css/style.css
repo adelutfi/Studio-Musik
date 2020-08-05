@@ -1014,7 +1014,7 @@ button {
   background: -webkit-gradient(linear, left bottom, left top, from(#6501a1), to(#a730b2));
   background: -webkit-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
   background: -o-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
-  background: linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+  background: linear-gradient(0deg, #CE93D8 0%, #E040FB 100%);
   border-bottom: 0px; }
 
 /*====================
@@ -1203,7 +1203,7 @@ ul {
   width: 100%;
   z-index: 2;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  background-image: linear-gradient(0deg, rgb(101, 1, 161) 0%, rgb(167, 48, 178) 100%); }
+  background-image: linear-gradient(0deg, #CE93D8 0%, #E040FB 100%); }
   .navbar-area .navbar-collapse {
     -webkit-box-pack: end;
     -ms-flex-pack: end;
@@ -1280,7 +1280,7 @@ Hero Area Css Start
     background: -ms-linear-gradient(-40deg, #6501a1 0%, #a730b2 100%);
     background: -webkit-linear-gradient(130deg, #6501a1 0%, #a730b2 100%);
     background: -o-linear-gradient(130deg, #6501a1 0%, #a730b2 100%);
-    background: linear-gradient(-40deg, #6501a1 0%, #a730b2 100%);
+    background: linear-gradient(-40deg, #E040FB 0%, #a730b2 100%);
     position: absolute;
     left: 0px;
     top: 0px;

@@ -126,7 +126,7 @@ nav.navbar{
   background: -webkit-gradient(linear, left bottom, left top, from(#6501a1), to(#a730b2));
   background: -webkit-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
   background: -o-linear-gradient(bottom, #6501a1 0%, #a730b2 100%);
-  background: linear-gradient(0deg, #6501a1 0%, #a730b2 100%);
+  background: linear-gradient(0deg, #CE93D8 0%, #E040FB 100%);
     border-bottom: 0px;
 }
 #navbarSupportedContent{
