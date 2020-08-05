@@ -48,6 +48,7 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/pemilik','Admin\HomeController@pemilik')->name('admin.pemilik');
     Route::get('/penyewa','Admin\HomeController@penyewa')->name('admin.penyewa');
     Route::get('/studio','Admin\HomeController@studio')->name('admin.studio');
+    Route::get('/penyewaan','Admin\HomeController@penyewaan')->name('admin.penyewaan');
     Route::patch('/studio/{studio}','Admin\HomeController@terimaStudio')->name('admin.studio.terima');
     Route::post('logout','Admin\AuthAdminController@logout')->name('admin.logout');
 

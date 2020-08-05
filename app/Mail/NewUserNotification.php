@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class NewUserNotification extends Mailable
 {
     use Queueable, SerializesModels;
+
     public $nama;
     public $token;
     public $guard;

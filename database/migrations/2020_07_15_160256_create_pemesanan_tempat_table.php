@@ -23,9 +23,8 @@ class CreatePemesananTempatTable extends Migration
           $table->date('tanggal');
           $table->time('waktu');
           $table->integer('ruangan');
-          $table->string('pembayaran');
           $table->boolean('status')->nullable();
-          $table->string('snap_token')->nullable();
+          $table->text('snap_token')->nullable();
           $table->timestamp('di_buat')->useCurrent();
 
           $table->foreign('id_penyewa')->references('id')->on('penyewa')->onDelete('CASCADE');

@@ -24,7 +24,7 @@
 <script src="{{ asset('public/assets/studio/js/scripts/customizer.min.js')}}"></script>
 <script src="{{ asset('public/assets/studio/js/scripts/footer.min.js')}}"></script>
 <!-- END: Theme JS-->
-
+<script src="{{ asset('public/assets/studio/js/scripts/navs/navs.min.js')}}"></script>
 <!-- BEGIN: Page JS-->
 @yield('script')
 <script src="{{ asset('public/assets/studio/js/scripts/pages/dashboard-ecommerce.min.js')}}"></script>
@@ -39,7 +39,7 @@ if (!window.Notification) {
 } else {
     // check if permission is already granted
     if (Notification.permission === 'granted') {
-    
+
     } else {
         // request permission from user
         Notification.requestPermission().then(function(p) {

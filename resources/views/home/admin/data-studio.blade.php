@@ -80,7 +80,37 @@
                                             <form action="{{route('admin.studio.terima', $s)}}" method="post">
                                               @csrf
                                               @method('PATCH')
-                                            <div class="modal-body">
+                                            <div class="modal-body text-dark">
+                                              <h3 class="text-center">{{$s->nama}}</h3>
+                                                <h4 class="text-center">Fasilitas</h4>
+                                                <p>{!! $s->deskripsi !!}</p>
+                                              <div class="mt-3">
+                                                <div class="vs-radio-con vs-radio-danger">
+                                                   <input type="radio" name="radiocolor" value="false">
+                                                   <span class="vs-radio">
+                                                     <span class="vs-radio--border"></span>
+                                                     <span class="vs-radio--circle"></span>
+                                                   </span>
+                                                   <span class="text-danger">Primary (Default)</span>
+                                                 </div>
+                                                <div class="vs-radio-con vs-radio-warning">
+                                                   <input type="radio" name="radiocolor" value="false">
+                                                   <span class="vs-radio">
+                                                     <span class="vs-radio--border"></span>
+                                                     <span class="vs-radio--circle"></span>
+                                                   </span>
+                                                   <span class="text-danger">Primary (Default)</span>
+                                                 </div>
+                                                <div class="vs-radio-con vs-radio-success">
+                                                   <input type="radio" name="radiocolor" value="false">
+                                                   <span class="vs-radio">
+                                                     <span class="vs-radio--border"></span>
+                                                     <span class="vs-radio--circle"></span>
+                                                   </span>
+                                                   <span class="text-danger">Primary (Default)</span>
+                                                 </div>
+                                              </div>
+
                                               <div class="text-center">
                                                 <h3>Beri rating</h3>
                                               </div>

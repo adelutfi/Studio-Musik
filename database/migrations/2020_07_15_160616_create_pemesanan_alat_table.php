@@ -21,10 +21,12 @@ class CreatePemesananAlatTable extends Migration
           $table->integer('harga');
           $table->date('tanggal_mulai');
           $table->date('tanggal_selesai');
+          $table->time('jam_penyewaan');
+          $table->time('jam_pengembalian');
           $table->boolean('status')->nullable();
           $table->string('nama', 50);
           $table->char('no_telp',13);
-          $table->text('alamat')->nullable();
+          $table->text('alamat');
           $table->string('snap_token')->nullable();
           $table->timestamp('di_buat')->useCurrent();
 
@@ -40,6 +42,6 @@ class CreatePemesananAlatTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pemesanan_tempat_alat');
+        Schema::dropIfExists('pemesanan_alat');
     }
 }

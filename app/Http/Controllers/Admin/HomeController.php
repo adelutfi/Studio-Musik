@@ -8,6 +8,7 @@ use App\Pemilik;
 use App\Studio;
 use App\Penyewa;
 use App\Rating;
+use App\PemesananAlat;
 
 class HomeController extends Controller
 {
@@ -47,6 +48,11 @@ class HomeController extends Controller
       ]);
 
       return redirect()->back()->with('message','Berhasil');
+    }
+
+    public function penyewaan(){
+      $pemesanan = new PemesananAlat;
+      return view('home.admin.data-penyewaan', compact('pemesanan'));
     }
 
 }

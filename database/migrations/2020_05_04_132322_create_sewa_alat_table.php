@@ -17,7 +17,7 @@ class CreateSewaAlatTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('id_studio')->unsigned();
             $table->integer('harga')->length(8)->unsigned();
-            $table->text('keterangan');
+            $table->text('deskripsi');
             $table->timestamp('di_buat')->useCurrent();
             $table->timestamp('di_ubah')->useCurrent();
 

@@ -16,9 +16,9 @@ class CreateStudioTable extends Migration
         Schema::create('studio', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama', 45);
-            $table->string('gambar');
+            $table->text('gambar');
             $table->text('alamat');
-            $table->text('deskripsi');
+            $table->text('keterangan');
             $table->boolean('status')->nullable();
             $table->bigInteger('id_pemilik')->unsigned();
             $table->timestamp('di_buat')->useCurrent();
