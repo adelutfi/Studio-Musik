@@ -17,7 +17,7 @@ class CreateNotifikasiTable extends Migration
           $table->bigInteger('id_penyewa')->unsigned()->nullable();
           $table->bigInteger('id_pemilik')->unsigned()->nullable();
           $table->text('pesan');
-          $table->string('keterangan');
+          $table->text('keterangan');
           $table->boolean('status')->default(true);
           $table->timestamp('di_buat')->useCurrent();
 

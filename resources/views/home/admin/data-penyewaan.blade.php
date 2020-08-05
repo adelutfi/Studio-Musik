@@ -78,7 +78,7 @@
 
                             <div class="modal fade text-left" id="detail{{$p->id}}" tabindex="-1" role="dialog"
                               aria-labelledby="myModalLabel160" aria-hidden="true">
-                              <div class="modal-dialog modal-lg" role="document">
+                              <div class="modal-dialog modal-xl" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header bg-danger">
                                     <h5 class="modal-title" id="myModalLabel160">Detail Pemesanan Alat (Belum Dikembalikan)</h5>
@@ -254,6 +254,7 @@
                       </table>
                   </div>
                </div>
+
                <div class="tab-pane" id="tabVerticalLeft2" role="tabpanel" aria-labelledby="baseVerticalLeft-tab2">
                 <p class="text-success"> <strong>Telah Mengembalikan</strong> </p>
                  <div class="table-responsive">
@@ -290,9 +291,10 @@
                                 </button>
                               </td>
                             </tr>
+
                             <div class="modal fade text-left" id="detail{{$p->id}}" tabindex="-1" role="dialog"
                               aria-labelledby="myModalLabel160" aria-hidden="true">
-                              <div class="modal-dialog modal-lg" role="document">
+                              <div class="modal-dialog modal-xl" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header bg-success">
                                     <h5 class="modal-title" id="myModalLabel160">Detail Pemesanan Alat (Telah Dikembalikan)</h5>

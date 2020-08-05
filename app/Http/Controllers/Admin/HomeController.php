@@ -41,11 +41,11 @@ class HomeController extends Controller
   	}
 
     public function terimaStudio(Request $request, Studio $studio){
-      $studio->update([ 'status' => 1 ]);
-      Rating::create([
-        'id_studio' => $studio->id,
-        'nilai' => $request->rating
-      ]);
+      $studio->update([ 'status' => 1, 'keterangan' => $request->keterangan ]);
+      // Rating::create([
+      //   'id_studio' => $studio->id,
+      //   'nilai' => $request->rating
+      // ]);
 
       return redirect()->back()->with('message','Berhasil');
     }

@@ -35,7 +35,7 @@ class StudioController extends Controller
         'nama' => 'required|min:3',
         'alamat' => 'required|min:5',
         'gambar' => 'image|max:2048|mimes:jpg,png,jpeg',
-        'deskripsi' => 'required|min:5'
+        'fasilitas' => 'required|min:5'
       ];
 
       $message = [
@@ -52,7 +52,7 @@ class StudioController extends Controller
       Studio::create([
         'nama' => $request->nama,
         'alamat' => $request->alamat,
-        'deskripsi' => $request->deskripsi,
+        'fasilitas' => $request->fasilitas,
         'gambar' => $gambar,
         'id_pemilik' => Auth::user()->id
       ]);
@@ -69,7 +69,7 @@ class StudioController extends Controller
         'nama' => 'required|min:3',
         'alamat' => 'required|min:5',
         'gambar' => 'image|max:2048|mimes:jpg,png,jpeg',
-        'deskripsi' => 'required|min:5'
+        'fasilitas' => 'required|min:10'
       ];
 
       $message = [
@@ -92,7 +92,7 @@ class StudioController extends Controller
       $studio->update([
         'nama' => $request->nama,
         'alamat' => $request->alamat,
-        'deskripsi' => $request->deskripsi,
+        'fasilitas' => $request->fasilitas,
         'gambar' => $gambar
       ]);
 
@@ -102,13 +102,13 @@ class StudioController extends Controller
 
     public function destroy(Studio $studio){
       $gambar = $studio->gambar;
-      
+
       if (Storage::exists($gambar)) {
           Storage::delete($gambar);
        }
        $studio->delete();
 
       return redirect()->route('pemilik.studio')->with('message','Studio berhasil dihapus');
-      
+
     }
 }

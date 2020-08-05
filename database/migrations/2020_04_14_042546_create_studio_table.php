@@ -18,7 +18,7 @@ class CreateStudioTable extends Migration
             $table->string('nama', 45);
             $table->text('gambar');
             $table->text('alamat');
-            $table->text('keterangan');
+            $table->text('fasilitas');
             $table->boolean('status')->nullable();
             $table->bigInteger('id_pemilik')->unsigned();
             $table->timestamp('di_buat')->useCurrent();

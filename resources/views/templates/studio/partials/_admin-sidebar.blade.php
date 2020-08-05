@@ -34,7 +34,7 @@
           <span class="menu-title" data-i18n="Dashboard">Studio</span>
         </a>
       </li>
-      <li class="@if(Request::is('admin/studio')) active @endif nav-item">
+      <li class="@if(Request::is('admin/penyewaan')) active @endif nav-item">
         <a href="{{route('admin.penyewaan')}}">
           <i class="fa fa-history"></i>
           <span class="menu-title" data-i18n="Dashboard">Riwayat</span>

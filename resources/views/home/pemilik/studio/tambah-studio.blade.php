@@ -50,9 +50,9 @@
                       </div>
                       <div class="col-12">
                           <div class="form-group">
-                              <label for="first-name-icon"><h4>Deskripsi</h4></label>
+                              <label for="first-name-icon"><h4>Fasilitas</h4></label>
                               <div class="position-relative has-icon-left">
-                                  <textarea class="form-control form-control-lg" minlength="10" name="deskripsi" rows="10" placeholder="" required>{{old('deskripsi')}}</textarea>
+                                  <textarea class="form-control form-control-lg" minlength="10" name="fasilitas" rows="10" placeholder="" required>{{old('fasilitas')}}</textarea>
                                   <div class="form-control-position">
                                   <i class="feather icon-book-open"></i>
                                 </div>

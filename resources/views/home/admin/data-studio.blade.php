@@ -69,7 +69,7 @@
                                     <!-- Modal terima -->
                                       <div class="modal fade text-left" id="terima-{{$s->id}}" tabindex="-1" role="dialog"
                                         aria-labelledby="myModalLabel110" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
                                           <div class="modal-content">
                                             <div class="modal-header bg-success white">
                                               <h5 class="modal-title" id="myModalLabel110">Terima Studio</h5>
@@ -83,35 +83,48 @@
                                             <div class="modal-body text-dark">
                                               <h3 class="text-center">{{$s->nama}}</h3>
                                                 <h4 class="text-center">Fasilitas</h4>
-                                                <p>{!! $s->deskripsi !!}</p>
-                                              <div class="mt-3">
-                                                <div class="vs-radio-con vs-radio-danger">
-                                                   <input type="radio" name="radiocolor" value="false">
-                                                   <span class="vs-radio">
-                                                     <span class="vs-radio--border"></span>
-                                                     <span class="vs-radio--circle"></span>
-                                                   </span>
-                                                   <span class="text-danger">Primary (Default)</span>
-                                                 </div>
-                                                <div class="vs-radio-con vs-radio-warning">
-                                                   <input type="radio" name="radiocolor" value="false">
-                                                   <span class="vs-radio">
-                                                     <span class="vs-radio--border"></span>
-                                                     <span class="vs-radio--circle"></span>
-                                                   </span>
-                                                   <span class="text-danger">Primary (Default)</span>
-                                                 </div>
-                                                <div class="vs-radio-con vs-radio-success">
-                                                   <input type="radio" name="radiocolor" value="false">
-                                                   <span class="vs-radio">
-                                                     <span class="vs-radio--border"></span>
-                                                     <span class="vs-radio--circle"></span>
-                                                   </span>
-                                                   <span class="text-danger">Primary (Default)</span>
-                                                 </div>
-                                              </div>
+                                                <p>{!! $s->fasilitas !!}</p>
+                                              <div class="mt-3 text-center mb-2">
+                                                <ul class="list-unstyled mb-0">
+                                                  <li class="d-inline-block mr-1">
+                                                    <fieldset>
+                                                      <div class="vs-radio-con vs-radio-danger">
+                                                         <input type="radio" name="keterangan" value="Kurang" required>
+                                                         <span class="vs-radio">
+                                                           <span class="vs-radio--border"></span>
+                                                           <span class="vs-radio--circle"></span>
+                                                         </span>
+                                                      <strong><span class="text-danger">Kurang</span></strong>
+                                                       </div>
+                                                     </fieldset>
+                                                   </li>
+                                                   <li class="d-inline-block mr-2">
+                                                     <fieldset>
+                                                       <div class="vs-radio-con vs-radio-warning">
+                                                         <input type="radio" name="keterangan" value="Cukup" required>
+                                                         <span class="vs-radio">
+                                                           <span class="vs-radio--border"></span>
+                                                           <span class="vs-radio--circle"></span>
+                                                         </span>
+                                                      <strong><span class="text-warning">Cukup</span></strong>
+                                                       </div>
+                                                     </fieldset>
+                                                   </li>
+                                                   <li class="d-inline-block mr-2">
+                                                     <fieldset>
+                                                       <div class="vs-radio-con vs-radio-success">
+                                                         <input type="radio" name="keterangan" value="Baik" required>
+                                                         <span class="vs-radio">
+                                                           <span class="vs-radio--border"></span>
+                                                           <span class="vs-radio--circle"></span>
+                                                         </span>
+                                                        <strong><span class="text-success">Baik</span></strong>
+                                                       </div>
+                                                     </fieldset>
+                                                   </li>
+                                                </ul>
 
-                                              <div class="text-center">
+                                              <!-- <div class="text-center">
                                                 <h3>Beri rating</h3>
                                               </div>
                                               <div class="rating">
@@ -125,7 +138,7 @@
                                                 <label for="2">☆</label>
                                                 <input type="radio" name="rating" value="1" id="1" checked>
                                                 <label for="1">☆</label>
-                                              </div>
+                                              </div> -->
                                             </div>
                                             <div class="modal-footer">
                                               <button type="submit" class="btn btn-success">Simpan</button>
@@ -134,6 +147,7 @@
                                           </div>
                                         </div>
                                       </div>
+                                    </div>
 
                                       <!-- modal ditolak -->
                                       <div class="modal fade text-left" id="tolak-{{$s->id}}" tabindex="-1" role="dialog"
@@ -161,6 +175,8 @@
                                           </div>
                                         </div>
                                       </div>
+                                    </div>
+
                                     @endforeach
                                 </tbody>
                             </table>
