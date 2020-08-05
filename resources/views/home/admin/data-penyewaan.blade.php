@@ -20,7 +20,7 @@
 </div>
 <section id="">
 <div class="row match-height">
- <div class="col-xl-6 col-lg-12">
+ <div class="col-xl-12 col-lg-12">
    <div class="card overflow-hidden">
        <div class="card-header">
          <h4 class="card-title">Data Pengembalian Penyewaan Alat</h4>
