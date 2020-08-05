@@ -20,38 +20,48 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="misicSliderClass owl-carousel">
-                          @foreach($rating as $r)
-                          @php($totalRating = $r->ratings->nilai/$r->ratings->jumlah)
-                            @if($r->sewaAlat || $r->sewaTempat)
+                          @foreach($studio->where('keterangan', '<>','Kurang')->get() as $s)
                             <div class="item">
                                 <div class="contentBox">
                                     <div class="left">
-                                      <a href="{{route('detail.studio', $r)}}">
+                                      <a href="{{route('detail.studio', $s)}}">
                                         <div class="img">
-                                            <img src="{{asset('public/'.$r->gambar)}}" alt="">
+                                            <img src="{{asset('public/'.$s->gambar)}}" alt="">
                                         </div>
                                       </a>
                                         <div class="text">
-                                            <a href="{{route('detail.studio', $r)}}">
+                                            <a href="{{route('detail.studio', $s)}}">
                                             <h4 class="secondaryTitle">
-                                                {{$r->nama}}
+                                                {{$s->nama}}
                                             </h4>
-                                            @for($i = 0; $i < 5; $i++)
-                                             @if($totalRating <= $i)
-                                              <span class="fa fa-star fa-xs"></span>
-                                             @else
-                                            <span class="fa fa-star checked fa-xs"></span>
-                                           @endif
-                                           @endfor
                                             </a>
-                                            <p>{{$r->alamat}}</p>
-                                           <p><strong> {{$r->sewaTempat ? 'Sewa Tempat Rp. '.number_format($r->sewaTempat->harga,0,',','.') : ''}} </strong></p>
-                                            <p><strong>{{$r->sewaAlat ? 'Sewa Alat Rp. '.number_format($r->sewaAlat->harga,0,',','.') : ''}} </strong></p>
+                                            <p>{{$s->alamat}}</p>
+                                            <p>Fasilitas : {{$s->keterangan}}</p>
+                                           <p><strong> {{$s->sewaTempat ? 'Sewa Tempat Rp. '.number_format($s->sewaTempat->harga,0,',','.') : ''}} </strong></p>
+                                            <p><strong>{{$s->sewaAlat ? 'Sewa Alat Rp. '.number_format($s->sewaAlat->harga,0,',','.') : ''}} </strong></p>
+
+                                            <div class="mt-1">
+                                            @if($s->rating)
+                                              @php($totalRating = round($s->rating->nilai /  $s->rating->jumlah, 2))
+                                              @for($i = 0; $i < 5; $i++)
+                                                 @if($totalRating <= $i)
+                                                  <span class="fa fa-star fa-xs"></span>
+                                                 @else
+                                                <span class="fa fa-star checked fa-xs"></span>
+                                               @endif
+                                              @endfor
+                                              @else
+                                                <span class="fa fa-star fa-xs"></span>
+                                                <span class="fa fa-star fa-xs"></span>
+                                                <span class="fa fa-star fa-xs"></span>
+                                                <span class="fa fa-star fa-xs"></span>
+                                                <span class="fa fa-star fa-xs"></span>
+                                            @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            @endif
                             @endforeach
                         </div>
                     </div>
@@ -74,9 +84,7 @@
              </div>
          </div>
          <div class="row">
-           @foreach($studio as $s)
-           @php($total = $s->ratings->nilai/$s->ratings->jumlah )
-            @if($s->sewaAlat || $s->sewaTempat)
+           @foreach($studio->orderBy('di_buat', 'DESC')->get() as $s)
              <div class="col-lg-4 col-md-6 col-12 mt-4">
                  <div class="single-blog-item">
                      <!-- single blog item -->
@@ -86,19 +94,12 @@
                          </a>
                      </div>
                      <div class="content">
-                         <span class="date">
-                           @for($i = 0; $i < 5; $i++)
-                            @if($total <= $i)
-                             <span class="fa fa-star fa-xs"></span>
-                            @else
-                           <span class="fa fa-star checked fa-xs"></span>
-                          @endif
-                          @endfor
-                         </span>
+
                          <a href="{{route('detail.studio', $s)}}">
                              <h5 class="title">{{$s->nama}}</h5>
                          </a>
                          <p>{{str_limit($s->alamat,20,'....')}}</p>
+                         <p>Fasilitas : {{$s->keterangan}}</p>
                          <div class="row">
                            @if($s->sewaTempat)
                            <div class="col-6">
@@ -112,6 +113,24 @@
                            @endif
 
                          </div>
+                         <span class="date">
+                           @if($s->rating)
+                             @php($totalRating = round($s->rating->nilai /  $s->rating->jumlah, 2))
+                             @for($i = 0; $i < 5; $i++)
+                                @if($totalRating <= $i)
+                                 <span class="fa fa-star fa-xs"></span>
+                                @else
+                               <span class="fa fa-star checked fa-xs"></span>
+                              @endif
+                             @endfor
+                             @else
+                               <span class="fa fa-star fa-xs"></span>
+                               <span class="fa fa-star fa-xs"></span>
+                               <span class="fa fa-star fa-xs"></span>
+                               <span class="fa fa-star fa-xs"></span>
+                               <span class="fa fa-star fa-xs"></span>
+                           @endif
+                         </span>
                          <a href="{{route('detail.studio', $s)}}" class="readmore">
                            <div class="float-right">
                             <i class="fas fa-arrow-right fa-lg text-info"></i> </a>
@@ -119,18 +138,11 @@
                      </div>
                  </div>
              </div>
-             @endif
              @endforeach
              <div class="col-12 text-center mt-4">
                  <button type="button" onclick="window.location='{{route("semua.studio")}}'" class="submit">
                    Lihat Selengkapnya
                  </button>
-
-                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                   Launch demo modal
-                 </button> -->
-
-<!-- Modal -->
 
              </div>
          </div>

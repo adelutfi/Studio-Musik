@@ -43,7 +43,6 @@
                     <div class="row">
                       @php($hari = \Carbon\Carbon::now()->isoFormat('dddd'))
                         @foreach($studio as $s)
-                         @php($totalRating = $s->ratings->nilai/$s->ratings->jumlah )
                            @if($s->sewaAlat || $s->sewaTempat)
                         <div class="col-md-6">
                             <div class="single-blog-item"><!-- single blog item -->
@@ -58,13 +57,22 @@
                                     </a>
                                     <p class="mb-2">{{$s->alamat}}</p>
                                     <div>
-                                       @for($i = 0; $i < 5; $i++)
-                                         @if($totalRating <= $i)
-                                          <span class="fa fa-star fa-xs"></span>
-                                         @else
+                                      @if($s->rating)
+                                        @php($totalRating = round($s->rating->nilai /  $s->rating->jumlah, 2))
+                                        @for($i = 0; $i < 5; $i++)
+                                           @if($totalRating <= $i)
+                                            <span class="fa fa-star fa-xs"></span>
+                                           @else
                                           <span class="fa fa-star checked fa-xs"></span>
-                                        @endif
-                                      @endfor
+                                         @endif
+                                        @endfor
+                                        @else
+                                          <span class="fa fa-star fa-xs"></span>
+                                          <span class="fa fa-star fa-xs"></span>
+                                          <span class="fa fa-star fa-xs"></span>
+                                          <span class="fa fa-star fa-xs"></span>
+                                          <span class="fa fa-star fa-xs"></span>
+                                      @endif
                                       <div class="row mt-2">
                                         @if($s->sewaTempat)
                                         <div class="col-6 col-md-6" style="display: {{request()->get('ket') === 'sewa-alat' ? 'none' : ''}}">

@@ -15,7 +15,7 @@ class Studio extends Model
     const CREATED_AT = 'di_buat';
     const UPDATED_AT = 'di_ubah';
 
-    public function ratings(){
+    public function rating(){
       return $this->hasOne(Rating::class,'id_studio','id');
     }
 

@@ -35,7 +35,7 @@
                                             <option>Pilih Studio</option>
                                             @foreach($studio as $s)
                                             @if(!$s->sewaTempat || $s->sewaTempat->id_studio == $s->id)
-                                            <option value="{{$s->id}}" {{$sewaTempat->id_studio === $s->id ? 'selected' : ''}}>{{$s->nama}}</option>
+                                            <option value="{{$s->id}}" {{old('id_studio',$sewaTempat->id_studio) == $s->id ? 'selected' : ''}}>{{$s->nama}}</option>
                                             @endif
                                             @endforeach
                                            </select>
@@ -44,15 +44,28 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-label-group input-group">
-                                            <input type="tel" id="harga" maxlength="6" minlength="4" class="form-control form-control-lg" value="{{old('harga', $sewaTempat->harga)}}" name="harga" placeholder="Harga" required>
+                                            <input type="tel" id="harga" maxlength="6" minlength="4" class="form-control form-control-lg {{ $errors->has('harga') ? 'is-invalid' : '' }}" value="{{old('harga', $sewaTempat->harga)}}" name="harga" placeholder="Harga" required>
                                             <div class="input-group-append">
                                             <span class="input-group-text" id="harga"> / Jam</span>
                                           </div>
+                                          @if ($errors->has('harga'))
+                                          <span class="invalid-feedback text-danger" role="alert">
+                                            <strong>{{ $errors->first('harga') }}</strong>
+                                          </span>
+                                          @endif
                                         </div>
                                     </div>
                                     <div class="col-4">
-                                        <div class="form-label-group">
-                                            <input type="tel" id="jumlah_ruangan" maxlength="1" minlength="1" class="form-control form-control-lg" value="{{old('harga', $sewaTempat->jumlah_ruangan)}}" name="jumlah_ruangan" placeholder="Jumlah Ruangan" required>
+                                        <div class="form-label-group input-group">
+                                            <input type="tel" id="jumlah_ruangan" maxlength="1" minlength="1" class="form-control form-control-lg {{ $errors->has('jumlah_ruangan') ? 'is-invalid' : '' }}" value="{{old('jumlah_ruangan', $sewaTempat->jumlah_ruangan)}}" name="jumlah_ruangan" placeholder="Jumlah Ruangan" required>
+                                            <div class="input-group-append">
+                                            <span class="input-group-text" id="harga"> / Ruang</span>
+                                          </div>
+                                            @if ($errors->has('jumlah_ruangan'))
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                              <strong>{{ $errors->first('jumlah_ruangan') }}</strong>
+                                            </span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-12">

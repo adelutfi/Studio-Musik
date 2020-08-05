@@ -35,17 +35,26 @@
                   <div class="col-md-9 col-6">
                   <h4 class="title">{{$studio->nama}}</h4>
                 </div>
-                 @php($total = $studio->ratings->nilai/$studio->ratings->jumlah )
-                <div class="col-md-3 col-6">
-                    @for($i = 0; $i < 5; $i++)
-                      @if($total <= $i)
-                      <span class="fa fa-star fa-lg"></span>
-                      @else
-                     <span class="fa fa-star fa-lg checked"></span>
-                     @endif
+                  <div class="col-md-3 col-6">
+                @if($studio->rating)
+                  @php($totalRating = round($studio->rating->nilai /  $studio->rating->jumlah, 2))
+                  @for($i = 0; $i < 5; $i++)
+                     @if($totalRating <= $i)
+                        <span class="fa fa-star fa-lg"></span>
+                     @else
+                  <span class="fa fa-star fa-lg checked"></span>
+                   @endif
                   @endfor
+                  @else
+                      <span class="fa fa-star fa-lg"></span>
+                      <span class="fa fa-star fa-lg"></span>
+                      <span class="fa fa-star fa-lg"></span>
+                      <span class="fa fa-star fa-lg"></span>
+                      <span class="fa fa-star fa-lg"></span>
+                @endif
                 </div>
-              </div>
+            </div>
+
 
     <!-- <ul class="post-meta">
         <li><i class="fas fa-clock"></i> Aug 21,2018</li>
@@ -54,8 +63,8 @@
     </ul> -->
     <div class="entry-content">
         <blockquote class="blockquote">
-            <h5 class="text-white">Keterangan : <h5>
-            <h5 class="text-white">{{$studio->deskripsi}}</h5>
+            <h5 class="text-white">Fasilitas : {{$studio->keterangan}}<h5>
+            <h5 class="text-white">{{$studio->fasilitas}}</h5>
             <hr>
               <div class="text-center">
             <span class="author-name"><i class="fa fa-map-marker mr-3" aria-hidden="true"></i></i><strong> {{$studio->alamat}}</strong></span>

@@ -30,12 +30,13 @@ class SewaAlatController extends Controller
 
     public function store(Request $request){
       $rule = [
-        'harga' => 'required|',
+        'harga' => 'required|regex:^[1-9][0-9]+|not_in:0',
         'keterangan' => 'required'
       ];
 
       $message = [
         'required' => ':attribute tidak boleh kosong.',
+        'harga.regex' => 'Masukan harga dengan benar',
       ];
 
       $this->validate($request, $rule, $message);
@@ -57,13 +58,14 @@ class SewaAlatController extends Controller
 
     public function update(Request $request, SewaAlat $sewaAlat){
       $rule = [
-        'harga' => 'required|',
+        'harga' => 'required|regex:^[1-9][0-9]+|not_in:0',
         'jadwal.*' => 'required',
         'keterangan' => 'required'
       ];
 
       $message = [
         'required' => ':attribute tidak boleh kosong.',
+        'harga.regex' => 'Masukan harga dengan benar',
       ];
 
       $this->validate($request, $rule, $message);

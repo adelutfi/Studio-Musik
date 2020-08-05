@@ -30,16 +30,20 @@ class SewaTempatController extends Controller
 
     public function store(Request $request){
       $rule = [
-        'harga' => 'required|',
+        'harga' => 'required|numeric|min:0|not_in:0',
         'jam_tutup.*' => 'required',
         'jam_buka.*' => 'required',
         'jadwal.*' => 'required',
-        'jumlah_ruangan' => 'required',
+        'jumlah_ruangan' => 'required|numeric|min:0|not_in:0',
         'keterangan' => 'required'
       ];
 
       $message = [
         'required' => ':attribute tidak boleh kosong.',
+        'harga.min' => 'Masukan harga dengan benar',
+        'harga.numeric' => 'Masukan harga dengan benar',
+        'jumlah_ruangan.min' => 'Masukan jumlah ruangan dengan benar',
+        'jumlah_ruangan.numeric' => 'Masukan jumlah ruangan dengan benar',
       ];
 
       // dd($request->jam_buka);
@@ -70,16 +74,20 @@ class SewaTempatController extends Controller
 
     public function update(Request $request, SewaTempat $sewaTempat){
       $rule = [
-        'harga' => 'required|',
+        'harga' => 'required|numeric|min:0|not_in:0',
         'jam_tutup.*' => 'required',
         'jam_buka.*' => 'required',
         'jadwal.*' => 'required',
-        'jumlah_ruangan' => 'required',
+        'jumlah_ruangan' => 'required|numeric|min:0|not_in:0',
         'keterangan' => 'required'
       ];
 
       $message = [
         'required' => ':attribute tidak boleh kosong.',
+        'harga.min' => 'Masukan harga dengan benar',
+        'harga.numeric' => 'Masukan harga dengan benar',
+        'jumlah_ruangan.min' => 'Masukan jumlah ruangan dengan benar',
+        'jumlah_ruangan.numeric' => 'Masukan jumlah ruangan dengan benar',
       ];
 
       $this->validate($request, $rule, $message);

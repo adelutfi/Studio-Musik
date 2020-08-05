@@ -11,23 +11,8 @@ use DB;
 class DataStudioController extends Controller
 {
     public function index(){
-      $studio = Studio::where('status',1)->orderBy('id','DESC')->limit(6)->get();
-      $rating = [];
-      $semuaStudio = Studio::all();
-      if($semuaStudio){
-        foreach ($semuaStudio as $key => $data) {
-          if(count($rating) <= $key){
-              $total = $data->ratings ? $data->ratings->nilai/$data->ratings->jumlah : 0;
-            if($total > 2){
-              $rating[] = $data;
-            }
-          }
-        }
-      }
-
-      $rating = array_splice($rating, 0, 4);
-
-      return view('welcome', compact('studio','rating'));
+      $studio = Studio::where('status',1)->whereHas('sewaTempat')->orWhereHas('sewaAlat')->limit(6);
+      return view('welcome', compact('studio'));
     }
 
     public function show(Studio $studio){
@@ -45,7 +30,7 @@ class DataStudioController extends Controller
           $studio = Studio::whereHas('sewaTempat', function($query){
             $query->where('di_buat', '<>', null);
           })
-          ->whereHas('ratings', function($query) use ($rating){
+          ->whereHas('rating', function($query) use ($rating){
             $query->where(DB::raw('round(nilai/jumlah, 0)'), $rating);
           })
           ->where('status',1)->orderBy('id','DESC')->paginate(8);
@@ -61,7 +46,7 @@ class DataStudioController extends Controller
           $studio = Studio::whereHas('sewaTempat', function($query){
             $query->where('di_buat', '<>', null);
           })
-          ->whereHas('ratings', function($query) use ($rating){
+          ->whereHas('rating', function($query) use ($rating){
             $query->where(DB::raw('round(nilai/jumlah, 0)'), $rating);
           })
           ->where('status',1)->orderBy('id','DESC')->paginate(8);
@@ -75,7 +60,7 @@ class DataStudioController extends Controller
           $studio = Studio::whereHas('sewaTempat', function($query) use ($hari){
             $query->where('di_buat', '<>', null)->where('jadwal','LIKE','%'.$hari.'%');
           })
-          ->whereHas('ratings', function($query) use ($rating){
+          ->whereHas('rating', function($query) use ($rating){
             $query->where(DB::raw('round(nilai/jumlah, 0)'), $rating);
           })
           ->where('status',1)->orderBy('id','DESC')->paginate(8);
@@ -85,7 +70,7 @@ class DataStudioController extends Controller
           })->where('status',1)->orderBy('id','DESC')->paginate(8);
         }
       }else{
-         $studio = Studio::whereHas('ratings', function($query) use ($rating){
+         $studio = Studio::whereHas('rating', function($query) use ($rating){
             $query->where(DB::raw('round(nilai/jumlah, 0)'), $rating);
           })
           ->where('status',1)->orderBy('id','DESC')->paginate(8);
