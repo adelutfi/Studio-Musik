@@ -18,8 +18,8 @@ class CreatePemesananTempatTable extends Migration
           $table->char('no_transaksi', 14)->unique();
           $table->bigInteger('id_penyewa')->unsigned();
           $table->bigInteger('id_studio')->unsigned();
-          $table->integer('harga');
-          $table->integer('durasi');
+          $table->integer('harga')->length(8);
+          $table->integer('durasi')->length(2);
           $table->date('tanggal');
           $table->time('waktu');
           $table->integer('ruangan');

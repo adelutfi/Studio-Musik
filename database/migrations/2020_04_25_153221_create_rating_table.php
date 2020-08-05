@@ -16,8 +16,8 @@ class CreateRatingTable extends Migration
         Schema::create('rating', function (Blueprint $table) {
 
             $table->bigInteger('id_studio')->unsigned();
-            $table->integer('nilai')->length(1)->unsigned();
-            $table->integer('jumlah')->length(1)->unsigned()->default(1);
+            $table->integer('nilai')->length(10)->unsigned();
+            $table->integer('jumlah')->length(10)->unsigned()->default(1);
 
             $table->foreign('id_studio')->references('id')->on('studio')->onDelete('CASCADE');
         });

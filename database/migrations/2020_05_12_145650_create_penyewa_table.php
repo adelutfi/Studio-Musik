@@ -17,9 +17,9 @@ class CreatePenyewaTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama', 50);
             $table->string('email', 50)->unique();
-            $table->string('password');
-            $table->string('foto')->default('gambar/foto.png');
-            $table->string('ktp')->nullable();
+            $table->text('password');
+            $table->text('foto')->default('gambar/foto.png');
+            $table->text('ktp')->nullable();
             $table->boolean('konfirmasi_ktp')->default(false);
             $table->timestamp('verifikasi_email')->nullable();
             $table->text('alamat')->nullable();

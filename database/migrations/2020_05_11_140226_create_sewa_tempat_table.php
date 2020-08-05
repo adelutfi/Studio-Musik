@@ -19,9 +19,9 @@ class CreateSewaTempatTable extends Migration
           $table->integer('harga')->length(6)->unsigned();
           $table->char('jumlah_ruangan');
           $table->text('keterangan');
-          $table->string('jadwal');
-          $table->string('jam_buka');
-          $table->string('jam_tutup');
+          $table->text('jadwal');
+          $table->text('jam_buka');
+          $table->text('jam_tutup');
           $table->timestamp('di_buat')->useCurrent();
           $table->timestamp('di_ubah')->useCurrent();
 

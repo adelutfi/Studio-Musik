@@ -18,11 +18,9 @@ class CreatePemesananAlatTable extends Migration
           $table->char('no_transaksi', 14)->unique();
           $table->bigInteger('id_penyewa')->unsigned();
           $table->bigInteger('id_studio')->unsigned();
-          $table->integer('harga');
+          $table->integer('harga')->length(8);
           $table->date('tanggal_mulai');
           $table->date('tanggal_selesai');
-          $table->time('jam_penyewaan');
-          $table->time('jam_pengembalian');
           $table->boolean('status')->nullable();
           $table->string('nama', 50);
           $table->char('no_telp',13);
