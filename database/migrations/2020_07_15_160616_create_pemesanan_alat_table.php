@@ -25,7 +25,7 @@ class CreatePemesananAlatTable extends Migration
           $table->string('nama', 50);
           $table->char('no_telp',13);
           $table->text('alamat');
-          $table->string('snap_token')->nullable();
+          $table->text('snap_token')->nullable();
           $table->timestamp('di_buat')->useCurrent();
 
           $table->foreign('id_penyewa')->references('id')->on('penyewa')->onDelete('CASCADE');

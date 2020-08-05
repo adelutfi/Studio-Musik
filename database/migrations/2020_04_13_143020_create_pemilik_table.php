@@ -18,7 +18,7 @@ class CreatePemilikTable extends Migration
             $table->string('nama', 50);
             $table->string('email', 50)->unique();
             $table->text('password');
-            $table->text('foto')->default('gambar/foto.png');
+            $table->text('foto')->nullable();
             $table->timestamp('verifikasi_email')->nullable();
             $table->text('alamat')->nullable();
             $table->char('no_telp',13)->unique()->nullable();

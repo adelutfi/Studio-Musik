@@ -17,7 +17,7 @@ class CreateSewaTempatTable extends Migration
           $table->bigIncrements('id');
           $table->bigInteger('id_studio')->unsigned();
           $table->integer('harga')->length(6)->unsigned();
-          $table->char('jumlah_ruangan');
+          $table->char('jumlah_ruangan', 3);
           $table->text('keterangan');
           $table->text('jadwal');
           $table->text('jam_buka');
