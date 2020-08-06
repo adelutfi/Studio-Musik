@@ -84,8 +84,14 @@
                 @method('PATCH')
                 <div class="media">
                   <a href="javascript: void(0);">
+                    @if(Auth::user()->foto)
                     <img src="{{asset('public/'.Auth::user()->foto)}}" class="rounded mr-75"
                       alt="profile image" height="64" width="64">
+                    @else
+                    <img src="{{ asset('public/gambar/foto.png')}}" class="rounded mr-75"
+                      alt="profile image" alt="avatar" height="40" width="40">
+                    @endif
+
                   </a>
                   <div class="media-body mt-75">
                     <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">

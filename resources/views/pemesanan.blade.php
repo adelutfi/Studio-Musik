@@ -97,13 +97,37 @@
                           @php($start = now())
                            <div class="single-info-item">
                              <div class="row">
-                               <div class="col-6 col-md-4 form-group">
+                               <div class="col-6 col-md-6 form-group">
                                 <label>Tanggal Mulai</label>
                                 <input type="text" class="form-control" id="datepicker-13" name="tanggal_mulai" {{request()->get('tanggal') ? 'disabled' : ''}} value="{{request()->get('tanggal')}}" placeholder="Pilih Tanggal" required>
                               </div>
-                               <div class="col-6 col-md-4 form-group">
+                               <div class="col-6 col-md-6 form-group">
                                 <label>Tanggal Selesai</label>
                                 <input type="text" class="form-control" id="datepicker-14" name="tanggal_selesai" value="" placeholder="Pilih Tanggal" {{request()->get('tanggal') ? '' : 'disabled'}}  required>
+                              </div>
+                               <div class="col-6 col-md-6 form-group">
+                                <label>Jam Pemesanan</label>
+                                <select class="form-control" id="jam_pemesanan" name="jam_pemesanan" placeholder="Jam Buka">
+                                  <option value="">Pilih Jam</option>
+                                   @for($hours = 1; $hours < 25; $hours++)
+                                       @for($min = 0; $min < 60; $min+=60)
+                                       <option value="{{str_pad($hours,2,'0',STR_PAD_LEFT)}}:{{str_pad($min,2,'0',STR_PAD_LEFT)}}">
+                                       {{str_pad($hours,2,'0',STR_PAD_LEFT)}}:{{str_pad($min,2,'0',STR_PAD_LEFT)}}</option>
+                                       @endfor
+                                   @endfor
+                                 </select>
+                              </div>
+                               <div class="col-6 col-md-6 form-group">
+                                <label>Jam Pengemalian</label>
+                                <select class="form-control" id="jam_pengembalian" name="jam_pengembalian" placeholder="Jam Buka">
+                                  <option value="">Pilih Jam</option>
+                                   @for($hours = 1; $hours < 25; $hours++)
+                                       @for($min = 0; $min < 60; $min+=60)
+                                       <option value="{{str_pad($hours,2,'0',STR_PAD_LEFT)}}:{{str_pad($min,2,'0',STR_PAD_LEFT)}}">
+                                       {{str_pad($hours,2,'0',STR_PAD_LEFT)}}:{{str_pad($min,2,'0',STR_PAD_LEFT)}}</option>
+                                       @endfor
+                                   @endfor
+                                 </select>
                               </div>
                             </div>
                            </div>
@@ -158,272 +182,8 @@
   const snapToken = document.querySelector('#token');
 </script>
 @if($keterangan == 'sewa-tempat')
-<script>
-const tanggal = document.querySelector('#datepicker-13');
-const waktu = document.querySelector('select[name="waktu"]');
-const durasi = document.querySelector('select[name="durasi"]');
-const ruangan = document.querySelector('select[name="ruangan"]');
-const keteranganJadwal = document.querySelector('#keterangan-jadwal');
-const harga = '{{$studio->sewaTempat->harga}}';
-const totalDurasi = document.querySelector('#total-durasi');
-const totalHarga = document.querySelector('#total-harga');
-const jadwalData = @json($tanggal);
-let closed = ``;
-const jadwalTanggal = jadwalData.map(j => j.date);
-
-async function toMidtrans(){
-  let amount = harga*durasi.value;
-  return fetch(url+'/pemesanan/payment-gateway?total='+amount).then(res => res.json()).then(res => res);
-}
-
-(async function(){
-  let op = ``;
-  let opDurasi = ``;
-  if(tanggal.value !== ''){
-    waktu.disabled = false;
-    durasi.disabled = false;
-    ruangan.disabled = false;
-    const waktuData = jadwalData.filter(j => j.date == tanggal.value);
-    // console.log(jadwalData);
-    const optionWaktu = Object.assign({},...waktuData);
-    for (let i = optionWaktu.opened.replace(':00', ''); i < optionWaktu.closed.replace(':00', ''); i++) {
-      op += `<option value="${('0' + i).slice(-2) + ':00'}">${('0' + i).slice(-2) + ':00'}</option>`;
-    }
-    for (let i = 1; i <= optionWaktu.closed.replace(':00', '') - optionWaktu.opened.replace(':00', ''); i++) {
-      opDurasi += `<option value="${i}">${i}</option>`;
-    }
-    waktu.innerHTML = op;
-    durasi.innerHTML = opDurasi;
-    closed = optionWaktu.closed.replace(':00', '');
-    keteranganJadwal.style.display = ``;
-    keteranganJadwal.innerHTML = `<strong>keterangan : Buka dari jam ${optionWaktu.opened} - ${optionWaktu.closed}</strong>`;
-    totalDurasi.innerText = 1;
-    totalHarga.innerText = rupiah(harga);
-  }else {
-    waktu.disabled = true;
-    durasi.disabled = true;
-    ruangan.disabled = true;
-    waktu.innerHTML = '';
-    durasi.innerHTML = '';
-    keteranganJadwal.style.display = 'none';
-  }
-}())
-
-bayar.addEventListener('click',async function(){
-  if(tanggal.value === ''){
-    alert('pilih tanggal terlebih dahulu');
-    tanggal.classList.add('border','border-danger')
-  }else {
-    const data = await toMidtrans();
-    if(data.status){
-      noTransaksi.value = data.no_transaksi;
-      snapToken.value = data.midtrans.token;
-      snap.pay(data.midtrans.token, {
-        onPending: function(result){
-          document.querySelector('#pemesanan-submit').submit();
-        },
-      })
-    }
-  }
-
-});
-
-$( "#datepicker-13" ).datepicker({
-  dateFormat: 'd-m-yy',
-  dayNamesMin: ['Min', 'Sen', 'Sel', 'Rab', "Kam", 'Jum', 'Sab'],
-  autoclose: true,
-  beforeShowDay: enableDays
-});
-
-function enableDays(date){
-  var sdate = $.datepicker.formatDate( 'd-m-yy', date)
-        if($.inArray(sdate, jadwalTanggal) != -1) {
-            return [true];
-        }
-        return [false];
-}
-
-
-$( "#datepicker-13" ).on('change', function(){
-  let op = ``;
-  let opDurasi = ``;
-
-  if(this.value !== ''){
-    waktu.disabled = false;
-    durasi.disabled = false;
-    ruangan.disabled = false;
-    const waktuData = jadwalData.filter(j => j.date == this.value);
-    const optionWaktu = Object.assign({},...waktuData);
-    for (let i = optionWaktu.opened.replace(':00', ''); i < optionWaktu.closed.replace(':00', ''); i++) {
-      op += `<option value="${('0' + i).slice(-2) + ':00'}">${('0' + i).slice(-2) + ':00'}</option>`;
-    }
-    for (let i = 1; i <= optionWaktu.closed.replace(':00', '') - optionWaktu.opened.replace(':00', ''); i++) {
-      opDurasi += `<option value="${i}">${i}</option>`;
-    }
-    waktu.innerHTML = op;
-    durasi.innerHTML = opDurasi;
-    closed = optionWaktu.closed.replace(':00', '');
-    keteranganJadwal.style.display = ``;
-    keteranganJadwal.innerHTML = `<strong>keterangan : Buka dari jam ${optionWaktu.opened} - ${optionWaktu.closed}</strong>`;
-    totalDurasi.innerText = 1;
-    totalHarga.innerText = rupiah(harga);
-  }else {
-    waktu.disabled = true;
-    durasi.disabled = true;
-    ruangan.disabled = true;
-    waktu.innerHTML = '';
-    durasi.innerHTML = '';
-    keteranganJadwal.style.display = 'none';
-  }
-});
-
-waktu.addEventListener('change', function(){
-  let newOpDurasi = ``;
-  for (let i = 1; i <= closed - this.value.replace(':00', ''); i++) {
-    newOpDurasi += `<option value="${i}">${i}</option>`;
-  }
-  durasi.innerHTML = newOpDurasi;
-  totalDurasi.innerText = 1;
-  totalHarga.innerText = rupiah(harga);
-});
-
-durasi.addEventListener('change', function(){
-  totalDurasi.innerText = this.value;
-  totalHarga.innerText = rupiah(this.value * harga);
-});
-
-  function rupiah(angka){
-    var reverse = angka.toString().split('').reverse().join(''),
-    ribuan = reverse.match(/\d{1,3}/g);
-    ribuan = ribuan.join('.').split('').reverse().join('');
-    return ribuan;
-  }
-</script>
+  @include('pemesanan.script-pemesanan-tempat')
 @else
-<script type="text/javascript">
-const tanggalMulai = document.querySelector('#datepicker-13');
-const tanggalSelesai = document.querySelector('#datepicker-14');
-const date = new Date();
-const harga = '{{$studio->sewaAlat->harga}}';
-const totalDurasi = document.querySelector('#total-durasi');
-const totalHarga = document.querySelector('#total-harga');
-
-async function toMidtrans(){
-  let amount = harga*totalDurasi.innerText;
-  return fetch(url+'/pemesanan/payment-gateway?total='+amount).then(res => res.json()).then(res => res);
-}
-
-bayar.addEventListener('click',async function(){
-  if(tanggalMulai.value === '' || tanggalSelesai.value === ''){
-    alert('pilih tanggal terlebih dahulu');
-    tanggalMulai.classList.add('border','border-danger')
-    tanggalSelesai.classList.add('border','border-danger')
-  }else {
-    const data = await toMidtrans();
-    if(data.status){
-      noTransaksi.value = data.no_transaksi;
-      snapToken.value = data.midtrans.token;
-      snap.pay(data.midtrans.token, {
-        onPending: function(result){
-          document.querySelector('#pemesanan-submit').submit();
-        },
-      })
-    }
-  }
-
-});
-
-tanggalMulai.addEventListener('change', function(){
-    if(this.value === ''){
-      tanggalSelesai.disabled = true;
-    }
-});
-
-if(tanggalMulai !== ''){
-  let dateStart = tanggalMulai.value.replace('-','/').replace('-','/').split('/')
-    dateStart = dateStart[1] + '/' +dateStart[0] +'/' +dateStart[2];
-    const newStartDate = new Date(dateStart);
-  const dateEnd = new Date(newStartDate.setDate(newStartDate.getDate() + 3));
-   // console.log(dateStart);
-  $( "#datepicker-14").datepicker({
-      dateFormat: 'dd-mm-yy',
-      dayNamesMin: ['Min', 'Sen', 'Sel', 'Rab', "Kam", 'Jum', 'Sab'],
-      autoclose: true,
-      beforeShow: function(){
-          $( "#datepicker-14").datepicker('option',{
-            minDate : new Date(dateStart),
-            maxDate : dateEnd,
-            onClose: function(date){
-              const dateFinish = date.replace('-','/').replace('-','/').split('/');
-              // if(date !== null){
-                const newDateFinish = new Date(dateFinish[1] + '/' +dateFinish[0] +'/' +dateFinish[2]);
-                const diffTime = Math.abs(newDateFinish - new Date(dateStart));
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-                totalDurasi.innerText = isNaN(diffDays) ? 1 : diffDays;
-                // console.log(isNaNdiffDays);
-                totalHarga.innerText = isNaN(diffDays) ? rupiah(harga) : rupiah(diffDays * harga.replace())
-              // }
-            }
-          });
-      },
-    })
-}
-
-
-
-$( "#datepicker-13").datepicker({
-  dateFormat: 'dd-mm-yy',
-  dayNamesMin: ['Min', 'Sen', 'Sel', 'Rab', "Kam", 'Jum', 'Sab'],
-  autoclose: true,
-  minDate: date,
-  maxDate: '+90D',
-  onClose: function( selectedDate, inst ) {
-            $('#datepicker-14').datepicker('destroy');
-             const date1 = selectedDate.replace('-','/').replace('-','/').split('/')
-             const date2 = date1[1] + '/' +date1[0] +'/' +date1[2];
-             const newDate  = new Date(date2);
-             const maxDate  = new Date(date2);
-             const newMaxDate = new Date(maxDate.setDate(maxDate.getDate() + 3));
-             tanggalSelesai.disabled = false;
-             tanggalSelesai.value = '';
-             harga.innerText = rupiah(harga);
-             totalDurasi.innerText = 1;
-             totalHarga.innerText = rupiah(harga);
-
-              $( "#datepicker-14").datepicker({
-                dateFormat: 'dd-mm-yy',
-                dayNamesMin: ['Min', 'Sen', 'Sel', 'Rab', "Kam", 'Jum', 'Sab'],
-                autoclose: true,
-                beforeShow: function(){
-                    $( "#datepicker-14").datepicker('option',{
-                      minDate : newDate,
-                      maxDate : newMaxDate
-                    });
-                },
-                onClose: function(date){
-                  const dateFinish = date.replace('-','/').replace('-','/').split('/');
-                  // if(date !== null){
-                    const newDateFinish = new Date(dateFinish[1] + '/' +dateFinish[0] +'/' +dateFinish[2]);
-                    const diffTime = Math.abs(newDateFinish - newDate);
-                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-                    totalDurasi.innerText = isNaN(diffDays) ? 1 : diffDays;
-                    // console.log(isNaNdiffDays);
-                    totalHarga.innerText = isNaN(diffDays) ? rupiah(harga) : rupiah(diffDays * harga.replace())
-                  // }
-                }
-              });
-        }
-
-});
-
-function rupiah(angka){
-  var reverse = angka.toString().split('').reverse().join(''),
-  ribuan = reverse.match(/\d{1,3}/g);
-  ribuan = ribuan.join('.').split('').reverse().join('');
-  return ribuan;
-}
-</script>
-
-
+  @include('pemesanan.script-pemesanan-alat')
 @endif
 @endsection

@@ -57,6 +57,8 @@ class StudioController extends Controller
         'id_pemilik' => Auth::user()->id
       ]);
 
+
+
       return redirect()->route('pemilik.studio')->with('message','Studio berhasil ditambahkan, Tunggu konfirmasi dari admin');
     }
 

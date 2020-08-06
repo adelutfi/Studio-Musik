@@ -22,6 +22,10 @@
                         <a class="nav-link" href="{{route('kontak')}}"><strong>Kontak</strong></a>
                     </li>
                     @auth('penyewa')
+                    @php($reminder = array_filter(Auth::user()->pemesanan->toArray(), function($pemesanan){
+                      return $pemesanan['status'] == '0';
+                    }))
+
                     <li class="nav-item dropdown @if(Request::is('pemesanan') || Request::is('pemesanan/*')) active @endif">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <strong>
@@ -62,6 +66,11 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('profil')}}"> <i class="fa fa-user"></i> Profil</a>
+                            <a class="dropdown-item" href="{{route('profil')}}"> <i class="fa fa-address-book"></i>
+                              Reminder
+
+                              <span class="ml-3 badge badge-danger">{{count($reminder)}}</span></h1>
+                            </a>
                             <a class="dropdown-item" href="{{route('penyewa.logout')}}" onclick="event.preventDefault();
                            document.getElementById('logout-penyewa-form').submit();"> <i class="fa fa-power-off"></i> Keluar</a>
                             <form id="logout-penyewa-form" action="{{ route('penyewa.logout') }}" method="POST" style="display: none;">

@@ -25,7 +25,7 @@ class Penyewa extends Authenticatable
     const UPDATED_AT = 'di_ubah';
 
     public function pemesanan(){
-        return $this->hasMany(Pemesanan::class, 'id_penyewa', 'id');
+        return $this->hasMany(PemesananAlat::class, 'id_penyewa', 'id');
     }
 
     public function sendNotifyAdmin($message){

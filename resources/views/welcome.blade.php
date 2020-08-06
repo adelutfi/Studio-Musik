@@ -11,6 +11,7 @@
                     <div class="maintitle">
                         <h1>Penyewaan studio Musik Ning Tegal</h1>
                         <p>Aja Klalen Sewa</p>
+                        
                     </div>
                 </div>
             </div>
@@ -20,7 +21,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="misicSliderClass owl-carousel">
-                          @foreach($studio->where('keterangan', '<>','Kurang')->get() as $s)
+                          @foreach($studio->where('keterangan', '!=', 'Kurang')->limit(3)->get() as $s)
                             <div class="item">
                                 <div class="contentBox">
                                     <div class="left">
@@ -84,7 +85,7 @@
              </div>
          </div>
          <div class="row">
-           @foreach($studio->orderBy('di_buat', 'DESC')->get() as $s)
+           @foreach($studio->orderBy('di_buat', 'DESC')->limit(6)->get() as $s)
              <div class="col-lg-4 col-md-6 col-12 mt-4">
                  <div class="single-blog-item">
                      <!-- single blog item -->

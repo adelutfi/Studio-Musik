@@ -11,7 +11,7 @@ use DB;
 class DataStudioController extends Controller
 {
     public function index(){
-      $studio = Studio::where('status',1)->whereHas('sewaTempat')->orWhereHas('sewaAlat')->limit(6);
+      $studio = Studio::where('status',1)->whereHas('sewaTempat')->orWhereHas('sewaAlat');
       return view('welcome', compact('studio'));
     }
 

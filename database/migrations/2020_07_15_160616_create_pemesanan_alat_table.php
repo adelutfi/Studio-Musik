@@ -21,10 +21,13 @@ class CreatePemesananAlatTable extends Migration
           $table->integer('harga')->length(8);
           $table->date('tanggal_mulai');
           $table->date('tanggal_selesai');
+          $table->time('jam_pemesanan');
+          $table->time('jam_pengembalian');
           $table->boolean('status')->nullable();
           $table->string('nama', 50);
           $table->char('no_telp',13);
           $table->text('alamat');
+          $table->boolean('rating')->default(0);
           $table->text('snap_token')->nullable();
           $table->timestamp('di_buat')->useCurrent();
 

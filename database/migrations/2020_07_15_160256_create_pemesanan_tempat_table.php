@@ -24,6 +24,7 @@ class CreatePemesananTempatTable extends Migration
           $table->time('waktu');
           $table->integer('ruangan');
           $table->boolean('status')->nullable();
+          $table->boolean('rating')->default(0);
           $table->text('snap_token')->nullable();
           $table->timestamp('di_buat')->useCurrent();
 

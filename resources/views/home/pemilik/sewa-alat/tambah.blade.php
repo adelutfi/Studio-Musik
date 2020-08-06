@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-label-group">
-                                            <textarea name="keterangan" class="form-control form-control-lg" rows="4" cols="60" placeholder="Keterangan"></textarea>
+                                            <textarea name="keterangan" class="form-control form-control-lg" rows="4" cols="60" placeholder="Keterangan" required></textarea>
                                         </div>
                                     </div>
 

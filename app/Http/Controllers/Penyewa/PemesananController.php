@@ -120,6 +120,8 @@ class PemesananController extends Controller
         'harga' => $studio->sewaAlat->harga,
         'tanggal_mulai' => $tanggalMulai,
         'tanggal_selesai' => $tanggalSelesai,
+        'jam_pemesanan' => $request->jam_pemesanan,
+        'jam_pengembalian' => $request->jam_pengembalian,
         'nama' => $request->nama,
         'no_telp' => $request->no_telp,
         'alamat' => $request->alamat,
