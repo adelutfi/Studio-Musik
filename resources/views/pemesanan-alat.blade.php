@@ -1,6 +1,73 @@
 @extends('templates.landing.default')
 
 @section('content')
+<style media="screen">
+.rating {
+      display: inline-block;
+      position: relative;
+      height: 50px;
+      line-height: 50px;
+      font-size: 50px;
+    }
+
+    .rating label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .rating label:last-child {
+      position: static;
+    }
+
+    .rating label:nth-child(1) {
+      z-index: 5;
+    }
+
+    .rating label:nth-child(2) {
+      z-index: 4;
+    }
+
+    .rating label:nth-child(3) {
+      z-index: 3;
+    }
+
+    .rating label:nth-child(4) {
+      z-index: 2;
+    }
+
+    .rating label:nth-child(5) {
+      z-index: 1;
+    }
+
+    .rating label input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+    }
+
+    .rating label .icon {
+      float: left;
+      color: transparent;
+    }
+
+    .rating label:last-child .icon {
+      color: #000;
+    }
+
+    .rating:not(:hover) label input:checked ~ .icon,
+    .rating:hover label:hover input ~ .icon {
+      color: #fffb00;
+    }
+
+    .rating label input:focus:not(:checked) ~ .icon:last-child {
+      color: #000;
+      text-shadow: 0 0 5px #09f;
+    }
+</style>
 <section class="concert">
            <div class="overlay"></div>
            <div class="container">
@@ -62,7 +129,7 @@
                                              <a href="https://app.sandbox.midtrans.com/snap/v2/vtweb/{{$p->snap_token}}" class="mt-1" target="_blank">Pembayaran</a>
                                              @endif
 
-                                             @if($p->status == 1 && $p->rating == 0)
+                                             @if($p->status == 1 & $p->rating == 0)
                                               <a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#rating{{$p->id}}">Rating</a>
                                              @endif
                                            </td>
@@ -147,6 +214,7 @@
                                       </div>
 
                                       <div class="modal fade" id="rating{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                           <div class="modal-content">
                                             <div class="modal-header">
@@ -155,12 +223,52 @@
                                                 <span aria-hidden="true">&times;</span>
                                               </button>
                                             </div>
-                                            <div class="modal-body">
+                                            <form class="" action="{{route('rating.alat', $p->id)}}" method="post">
+                                              @csrf
+                                            <div class="modal-body text-center">
+                                              <div class="row">
+                                                <div class="col-lg-12">
+                                                  <div class="rating">
+                                                  <label>
+                                                    <input type="radio" name="rating" value="1" required/>
+                                                    <span class="icon">★</span>
+                                                  </label>
+                                                  <label>
+                                                    <input type="radio" name="rating" value="2" />
+                                                    <span class="icon">★</span>
+                                                    <span class="icon">★</span>
+                                                  </label>
+                                                  <label>
+                                                    <input type="radio" name="rating" value="3" />
+                                                    <span class="icon">★</span>
+                                                    <span class="icon">★</span>
+                                                    <span class="icon">★</span>
+                                                  </label>
+                                                  <label>
+                                                    <input type="radio" name="rating" value="4" />
+                                                    <span class="icon">★</span>
+                                                    <span class="icon">★</span>
+                                                    <span class="icon">★</span>
+                                                    <span class="icon">★</span>
+                                                  </label>
+                                                  <label>
+                                                    <input type="radio" name="rating" value="5" />
+                                                    <span class="icon">★</span>
+                                                    <span class="icon">★</span>
+                                                    <span class="icon">★</span>
+                                                    <span class="icon">★</span>
+                                                    <span class="icon">★</span>
+                                                  </label>
+                                                </div>
 
+                                                </div>
+                                              </div>
 
                                             <div class="modal-footer">
-                                              <button type="button" class="btn btn-warning text-white" data-dismiss="modal">Simpan</button>
+                                              <button type="submit" class="btn btn-warning text-white" >Simpan</button>
                                             </div>
+
+                                            </form>
                                           </div>
                                         </div>
                                       </div>
@@ -181,4 +289,18 @@
            </div>
        </section>
 
+@endsection
+
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script>
+
+  @if(Session::has('success'))
+  Swal.fire(
+    'Berhasil!',
+    '{{Session::get('success')}}',
+    'success'
+  )
+  @endif
+</script>
 @endsection

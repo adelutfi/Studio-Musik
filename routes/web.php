@@ -39,6 +39,7 @@ Route::group(['prefix' => '/'], function(){
   Route::post('penyewa/pemesanan/{studio}','Penyewa\PemesananController@storePemesananTempat')->name('simpan.pemesanan.tempat');
   Route::post('penyewa/pemesanan/alat/{studio}','Penyewa\PemesananController@storePemesananAlat')->name('simpan.pemesanan.alat');
   Route::get('cek/pemesanan/tempat', 'PemesananController@pemesananTempat');
+  Route::post('rating/alat/{id}', 'Penyewa\PemesananController@ratingAlat')->name('rating.alat');
 
 });
 

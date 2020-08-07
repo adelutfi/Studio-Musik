@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\PemesananTempat;
 use App\PemesananAlat;
+use App\Rating;
 use App\Studio;
 use Auth;
 use Carbon\Carbon;
@@ -36,7 +37,7 @@ class PemesananController extends Controller
         ]);
         $data = json_decode($res->getBody()->getContents(), true);
         $status[] = [
-          'status' => $data['transaction_status'],
+          'status' => isset($data['transaction_status']) ? $data['transaction_status'] : 'expire',
           'store' => $data['store']
         ];
 
@@ -61,10 +62,11 @@ class PemesananController extends Controller
         $res = $client->get('https://api.sandbox.midtrans.com/v2/'.$p->no_transaksi.'/status', [
           'headers' => $headers
         ]);
-        $data = json_decode($res->getBody()->getContents());
+        $data = json_decode($res->getBody()->getContents(), true);
+        // dd($data);
         $status [] = [
-          'status' => $data->transaction_status,
-          'store' => $data->store
+          'status' => isset($data['transaction_status']) ? $data['transaction_status'] : 'expire',
+          'store' => isset($data['store']) ? $data['store'] : 'Indomaret'
         ];
       }
 
@@ -129,6 +131,29 @@ class PemesananController extends Controller
       ]);
 
       return redirect()->route('pemesanan.alat');
+    }
+
+    public function ratingAlat(Request $request, $id){
+      $pemesanan = PemesananAlat::find($id);
+      $rating = Rating::where('id_studio', $pemesanan->studio->id)->first();
+      // dd($rating);
+
+      if($rating){
+        Rating::where('id_studio', $pemesanan->studio->id)->update([
+          'nilai' => $rating->nilai + $request->rating,
+          'jumlah' => $rating->jumlah + 1,
+        ]);
+      }else {
+        $newRating = Rating::create([
+          'id_studio' => $pemesanan->studio->id,
+          'nilai' => $request->rating,
+          'jumlah' => 1
+        ]);
+      }
+
+      $pemesanan->update(['rating' => 1]);
+
+      return redirect()->back()->with('success',  'Rating berhasil ditambakan ke '.$pemesanan->studio->nama);
     }
 
 }
