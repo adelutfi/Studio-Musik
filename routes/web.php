@@ -30,6 +30,7 @@ Route::group(['prefix' => '/'], function(){
   Route::get('pemesanan/alat','Penyewa\PemesananController@PemesananAlat')->name('pemesanan.alat');
   Route::get('s={studio}/ket={keterangan}/pemesanan','PemesananController@index')->name('pemesanan');
   Route::get('profil','PenyewaController@index')->name('profil');
+  Route::get('reminder','PenyewaController@reminder')->name('reminder');
   Route::patch('profil','PenyewaController@update')->name('profil.update');
   Route::get('kontak', function(){
     return view('kontak');
@@ -38,6 +39,7 @@ Route::group(['prefix' => '/'], function(){
   Route::post('penyewa/pemesanan/{studio}','Penyewa\PemesananController@storePemesananTempat')->name('simpan.pemesanan.tempat');
   Route::post('penyewa/pemesanan/alat/{studio}','Penyewa\PemesananController@storePemesananAlat')->name('simpan.pemesanan.alat');
   Route::get('cek/pemesanan/tempat', 'PemesananController@pemesananTempat');
+
 });
 
 // Routing lingkup Admin
@@ -102,6 +104,8 @@ Route::group(['prefix' => 'pemilik'], function(){
 
   Route::patch('kirim/alat/{pemesanan}','Pemilik\PemesananController@notifikasiPengiriman')->name('pemilik.kirim.alat');
   Route::put('kirim/alat/{pemesanan}','Pemilik\PemesananController@notifikasiSelesai')->name('pemilik.selesai.alat');
+
+  Route::get('pemesanan/alat/pdf', 'Pemilik\PemesananController@pdfSewaAlat')->name('pdf.sewa-alat');
 
 
 });

@@ -50,7 +50,7 @@
                              <div class="row">
                                <div class="col-6 col-md-4 form-group">
                                 <label>Hari & Tanggal</label>
-                                <input type="text" class="form-control" id="datepicker-13" name="tanggal" value="{{request()->get('tanggal')}}" placeholder="Pilih Tanggal" {{request()->get('tanggal') ? 'disabled' : ''}} required>
+                                <input type="text" class="form-control" id="datepicker-13" autocomplete="false" name="tanggal" value="{{request()->get('tanggal')}}" placeholder="Pilih Tanggal" {{request()->get('tanggal') ? 'disabled' : ''}} required>
                               </div>
                               <div class="col-6 col-md-3 form-group">
                                   <label>Waktu</label>
@@ -92,6 +92,8 @@
                             </tbody>
                           </table>
                         </li>
+
+                        <!-- Sewa alat -->
                         @else
                         <li>
                           @php($start = now())
@@ -99,11 +101,11 @@
                              <div class="row">
                                <div class="col-6 col-md-6 form-group">
                                 <label>Tanggal Mulai</label>
-                                <input type="text" class="form-control" id="datepicker-13" name="tanggal_mulai" {{request()->get('tanggal') ? 'disabled' : ''}} value="{{request()->get('tanggal')}}" placeholder="Pilih Tanggal" required>
+                                <input type="text" class="form-control" id="datepicker-13" autocomplete="off" name="tanggal_mulai" {{request()->get('tanggal') ? 'disabled' : ''}} value="{{request()->get('tanggal')}}" placeholder="Pilih Tanggal" required>
                               </div>
                                <div class="col-6 col-md-6 form-group">
                                 <label>Tanggal Selesai</label>
-                                <input type="text" class="form-control" id="datepicker-14" name="tanggal_selesai" value="" placeholder="Pilih Tanggal" {{request()->get('tanggal') ? '' : 'disabled'}}  required>
+                                <input type="text" class="form-control" id="datepicker-14" autocomplete="off" name="tanggal_selesai" value="" placeholder="Pilih Tanggal" {{request()->get('tanggal') ? '' : 'disabled'}}  required>
                               </div>
                                <div class="col-6 col-md-6 form-group">
                                 <label>Jam Pemesanan</label>

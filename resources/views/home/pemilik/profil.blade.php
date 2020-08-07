@@ -185,7 +185,7 @@
                     <div class="form-group">
                       <div class="controls">
                         <label for="account-birth-date">No Rekening</label>
-                        <input type="tel" name="no_rek" value="{{old('no_rek',Auth::user()->no_rek)}}" class="form-control{{ $errors->has('no_rek') ? ' is-invalid' : '' }} form-control-lg" minlength="16" maxlength="16" value="{{Auth::user()->no_rek}}" required>
+                        <input type="tel" name="no_rek" value="{{old('no_rek',Auth::user()->no_rek)}}" class="form-control{{ $errors->has('no_rek') ? ' is-invalid' : '' }} form-control-lg" minlength="15" maxlength="16" value="{{Auth::user()->no_rek}}" required>
                         @if ($errors->has('no_rek'))
                         <span class="invalid-feedback text-danger" role="alert">
                           <strong>{{ $errors->first('no_rek') }}</strong>

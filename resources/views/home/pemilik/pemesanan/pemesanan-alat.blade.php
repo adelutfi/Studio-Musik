@@ -22,9 +22,23 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-
                 <div class="card-content">
                     <div class="card-body card-dashboard">
+                      <form class="" action="{{route('pdf.sewa-alat')}}" method="get">
+                        <div class="row mb-3">
+                          <div class="col-4">
+                            <select name="bulan" class="form-control" id="basicSelect" required>
+                               <option value="">Pilih Bulan</option>
+                               @foreach($bulan as $key => $b)
+                               <option value="{{$key}}">{{$b}}</option>
+                               @endforeach
+                           </select>
+                          </div>
+                          <div class="col-4">
+                            <button type="submit" class="btn btn-danger"> <i class="fa fa-print"></i> </button>
+                          </div>
+                        </div>
+                      </form>
                         <div class="table-responsive">
                             <table class="table zero-configuration">
                                 <thead>
@@ -39,6 +53,7 @@
                                         <th>Total Harga</th>
                                         <th>Pembayaran</th>
                                         <th>Status</th>
+                                        <th>Peminjaman</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -72,9 +87,26 @@
                                       @endif
                                     </td>
                                     <td>
+
+                                      @if(is_null($p->status))
+                                      <span class="badge badge-square badge-danger">
+                                        <strong>Menunggu Pengiriman</strong>
+                                      </span>
+
+                                      @elseif($p->status == 1)
+                                      <span class="badge badge-square badge-success">
+                                        <strong>Selesai Penyewaan</strong>
+                                      </span>
+                                      @else
+                                      <span class="badge badge-square badge-warning">
+                                        <strong>Dalam Penyewaan</strong>
+                                      </span>
+                                      @endif
+                                    </td>
+                                    <td>
                                       <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detail{{$p->id}}"> Detail </button>
 
-                                      @if($p->tanggal_mulai === now()->format('Y-m-d') && $p->status === null) 
+                                      @if($p->tanggal_mulai === now()->format('Y-m-d') && $p->status === null)
                                       <button type="button" class="btn btn-primary btn-sm mt-1" data-toggle="modal" data-target="#pengiriman{{$p->id}}"> <i class="fa fa-truck"></i> </button>
                                       @elseif($p->tanggal_mulai === now()->format('Y-m-d') && $p->status === 0)
                                        <button type="button" class="btn btn-success btn-sm mt-1" data-toggle="modal" data-target="#selesai{{$p->id}}"> <i class="fa fa-check"></i> </button>
@@ -93,6 +125,7 @@
                                      </div>
 
                                      <div class="modal-body">
+                                       <h5>Pembayaran : </h5>
                                       @if($status[$key]['status'] === 'pending')
                                          <span class="badge badge-square badge-warning badge-md mb-2">
                                            <strong>Menunggu</strong>
@@ -109,7 +142,7 @@
                                        @if($p->status === null && $p->tanggal_mulai === now()->format('Y-m-d'))
                                        <h5 class="float-right">Alat Belum dikirim</h5>
                                        @elseif($p->status === 0)
-                                       <h5 class="float-right">Alat sudah dikirim</h5>
+                                       <h5 class="float-right">Alat dalam peminjaman</h5>
                                        @elseif($p->status === 1)
                                        <h5 class="float-right">Alat telah di kembalikan</h5>
                                        @endif
@@ -127,10 +160,10 @@
                                            Studio : {{$p->studio->nama}}
                                          </li>
                                          <li class="list-group-item">
-                                           Tanggal Mulai : {{date("d-m-Y", strtotime($p->tanggal_mulai)) }}
+                                           Tanggal & Jam Pemesanan : {{date("d-m-Y", strtotime($p->tanggal_mulai)) }} / {{\Carbon\Carbon::parse($p->jam_pemesanan)->format('H:i')}}
                                          </li>
                                          <li class="list-group-item">
-                                           Tanggal Selesai : {{date("d-m-Y", strtotime($p->tanggal_selesai)) }}
+                                           Tanggal & Jam Pengemalian : {{date("d-m-Y", strtotime($p->tanggal_selesai)) }} / {{\Carbon\Carbon::parse($p->jam_pengembalian)->format('H:i')}}
                                          </li>
                                          <li class="list-group-item">
                                             Durasi : {{$tanggalMulai->diffInDays($tanggalSelesai) + 1}} Hari
@@ -153,7 +186,7 @@
                                </div>
 
                             <div class="modal fade" id="pengiriman{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                 <div class="modal-dialog" role="document">
+                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                    <div class="modal-content">
                                      <div class="modal-header bg-info">
                                        <h5 class="modal-title text-white" id="exampleModalLongTitle">Pengiriman alat studio dari {{$p->studio->nama}}</h5>
@@ -165,10 +198,11 @@
                                       @csrf
                                       @method('PATCH')
                                      <div class="modal-body">
+                                       <h4 class="text-danger text-center mb-2">Kirim alat sebelum jam {{\Carbon\Carbon::parse($p->jam_pemesanan)->format('H:i')}}</h4>
                                        <p class="text-dark">Apakah alat studio siap untuk dikirim ?</p>
                                      </div>
                                      <div class="modal-footer">
-                                       <button type="submit" class="btn btn-info">OK</a>
+                                       <button type="submit" class="btn btn-info"><i class="fa fa-paper-plane" aria-hidden="true"></i> Kirim </a>
                                      </div>
                                      </form>
                                    </div>
@@ -176,7 +210,7 @@
                                </div>
 
                                  <div class="modal fade" id="selesai{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                 <div class="modal-dialog" role="document">
+                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                    <div class="modal-content">
                                      <div class="modal-header bg-success">
                                        <h5 class="modal-title text-white" id="exampleModalLongTitle">Alat Sampai</h5>

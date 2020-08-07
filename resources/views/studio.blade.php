@@ -39,6 +39,13 @@
     <section class="blog-area blog-bg blog-page">
         <div class="container">
             <div class="row">
+              <div class="col-8">
+                @if(Session::has('message'))
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Gagal</strong> {{Session::get('message')}}
+                  </div>
+                @endif
+              </div>
                 <div class="col-lg-8">
                     <div class="row">
                       @php($hari = \Carbon\Carbon::now()->isoFormat('dddd'))

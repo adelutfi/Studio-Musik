@@ -25,13 +25,19 @@
 
               <div class="col-lg-12">
                 <div class="right-content-area">
-                     <h4 class="title text-center">Data Diri {!!Auth::user()->konfirmasi_ktp ? '<i class="fa fa-check text-primary" aria-hidden="true"></i>' : ''!!}</h4>
+                     <h4 class="title text-center">Data Diri
+                       {!!Auth::user()->konfirmasi_ktp ? '<i class="fa fa-check text-primary" aria-hidden="true"></i>' : '' !!}
+                     </h4>
                         <form action="{{route('profil.update')}}" method="post" enctype="multipart/form-data">
                       @csrf
                       @method('PATCH')
                      <div class="row">
                        <div class="col-3">
+                         @if(Auth::user()->foto)
                          <img src="{{asset('public/'.Auth::user()->foto)}}" class="rounded-circle mb-3" alt="Foto" height="100" width="100">
+                         @else
+                         <img src="{{ asset('public/gambar/foto.png')}}" class="rounded-circle mb-3" alt="Foto" height="100" width="100">
+                         @endif
                        </div>
                         <div class="col-9">
                            <div class="custom-file mt-5">
@@ -85,7 +91,7 @@
                              </span>
                              @endif
                          </div>
-                         @if(!Auth::user()->ktp)
+                         @if(Auth::user()->konfirmasi_ktp == 0)
                          <h4>Tambahan untuk penyewaan alat</h4>
                           <div class="form-group">
                             <label>Upload Ktp Anda <span class="text-danger">(pilih gambar dengan benar karena gambar tidak bisa diubah)</span></label>

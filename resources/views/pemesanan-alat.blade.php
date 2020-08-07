@@ -20,7 +20,6 @@
                    <div class="col-lg-12">
                        <div class="tabilContainer table-responsive">
                            <table class="table">
-                               <tbody>
                                  <th>
                                    <tr>
                                      <th class="text-white">NO</th>
@@ -62,6 +61,10 @@
                                              @if($status[$key]['status'] === 'pending')
                                              <a href="https://app.sandbox.midtrans.com/snap/v2/vtweb/{{$p->snap_token}}" class="mt-1" target="_blank">Pembayaran</a>
                                              @endif
+
+                                             @if($p->status == 1 && $p->rating == 0)
+                                              <a href="javascript:void(0)" type="button" data-toggle="modal" data-target="#rating{{$p->id}}">Rating</a>
+                                             @endif
                                            </td>
                                        </tr>
 
@@ -93,12 +96,15 @@
                                               </div>
                                               <div class="col-12">
                                                 @if($p->status === null && $p->tanggal_mulai !== now()->format('Y-m-d'))
-                                               <h5 class="text-center">Alat akan dikirim tanggal {{\Carbon\Carbon::parse($p->tanggal_mulai)->format('d-M-Y')}} pukul 09:00</h5>
+                                               <h5 class="text-center">Alat akan dikirim pada tanggal
+                                                 {{\Carbon\Carbon::parse($p->tanggal_mulai)->format('d-m-Y')}}
+                                                 Sebelum Pukul {{\Carbon\Carbon::parse($p->jam_pemesanan)->format('H:i')}}</h5>
                                                @elseif($p->status === null && $p->tanggal_mulai === now()->format('Y-m-d'))
                                                <h5 class="text-center">Alat segera dikirim pukul 08:00</h5>
                                                @elseif($p->status === 0)
                                                <h5 class="text-center">Alat sudah dikirim</h5>
-                                               <h5 class="text-center">Batas pengembalian alat tanggal {{\Carbon\Carbon::parse($p->tanggal_selesai)->format('d-M-Y')}}</h5>
+                                               <h5 class="text-center">Batas pengembalian alat tanggal {{\Carbon\Carbon::parse($p->tanggal_selesai)->format('d-m-Y')}}
+                                                 Pukul {{\Carbon\Carbon::parse($p->jam_pengembalian)->format('H:i')}}</h5>
                                                @elseif($p->status === 1)
                                                <h5 class="text-center">Alat telah di kembalikan</h5>
                                                @endif
@@ -116,12 +122,11 @@
                                                   Alamat Studio : {{$p->studio->alamat}}
                                                 </li>
                                                 <li class="list-group-item">
-                                                  Tanggal Mulai : {{date("d-m-Y", strtotime($p->tanggal_mulai)) }}
+                                                  Tanggal & Jam Pemesanan : {{date("d-m-Y", strtotime($p->tanggal_mulai)) }} / {{\Carbon\Carbon::parse($p->jam_pemesanan)->format('H:i')}}
                                                 </li>
                                                 <li class="list-group-item">
-                                                  Tanggal Selesai : {{date("d-m-Y", strtotime($p->tanggal_selesai)) }}
+                                                  Tanggal & Jam Pengemalian : {{date("d-m-Y", strtotime($p->tanggal_selesai)) }} / {{\Carbon\Carbon::parse($p->jam_pengembalian)->format('H:i')}}
                                                 </li>
-
                                                 <li class="list-group-item">
                                                   Durasi : {{$tanggalMulai->diffInDays($tanggalSelesai) + 1}} Hari
                                                 </li>
@@ -136,6 +141,25 @@
 
                                             <div class="modal-footer">
                                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="modal fade" id="rating{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel">Berikan rating anda</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+
+
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-warning text-white" data-dismiss="modal">Simpan</button>
                                             </div>
                                           </div>
                                         </div>

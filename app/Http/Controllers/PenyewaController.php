@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Penyewa;
+use App\PemesananAlat;
 use Storage;
 
 class PenyewaController extends Controller
@@ -67,5 +68,10 @@ class PenyewaController extends Controller
       ]);
 
   	  return redirect()->back()->with('success', 'Profil berhasil diubah');
+  }
+
+  public function reminder(){
+    $pemesanan = PemesananAlat::where('id_penyewa', Auth::user()->id)->where('status', 0)->paginate(6);
+    return view('reminder', compact('pemesanan'));
   }
 }

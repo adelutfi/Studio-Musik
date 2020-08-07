@@ -66,7 +66,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('profil')}}"> <i class="fa fa-user"></i> Profil</a>
-                            <a class="dropdown-item" href="{{route('profil')}}"> <i class="fa fa-address-book"></i>
+                            <a class="dropdown-item" href="{{route('reminder')}}"> <i class="fa fa-address-book"></i>
                               Reminder
 
                               <span class="ml-3 badge badge-danger">{{count($reminder)}}</span></h1>
@@ -83,7 +83,7 @@
                         <a class="nav-link" href="{{route('login')}}"><strong>Login</strong></a>
                     </li>
                     <li class="nav-item @if(Request::is('register')) active @endif">
-                        <a class="nav-link" href="{{route('register')}}"><strong>Register</strong></a>
+                      <a class="nav-link" href="{{route('register')}}"><strong>Register</strong></a>
                     </li>
                     @endauth
 
