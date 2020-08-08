@@ -23,7 +23,7 @@ class ProfilController extends Controller
       $pemilik = Auth::user();
       $rule = [
         'nama' => 'required|min:3|regex:/^[\pL\s\-]+$/u',
-        'email' => 'required|email|regex:/(.*)@myemail\.com/i|unique:pemilik,email,'.$pemilik->id,
+        'email' => 'required|email|unique:pemilik,email,'.$pemilik->id,
         'foto' => 'image|max:1024|mimes:jpg,png,jpeg',
         'alamat' => 'required|min:3'
       ];

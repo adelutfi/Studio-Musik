@@ -109,7 +109,7 @@
                       <div class="form-group">
                         <div class="controls">
                           <label for="account-username">Nama</label>
-                          <input type="text" class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }}" name="nama" placeholder="Masukan nama anda" value="{{Auth::user()->nama}}" required>
+                          <input type="text" class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }}" name="nama" placeholder="Masukan nama anda" value="{{old('nama', Auth::user()->nama)}}" required>
                           @if ($errors->has('nama'))
                           <span class="invalid-feedback text-danger" role="alert">
                             <strong>{{ $errors->first('nama') }}</strong>
@@ -122,10 +122,10 @@
                       <div class="form-group">
                         <div class="controls">
                           <label for="account-username">Email</label>
-                          <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="Masukan email anda" value="{{Auth::user()->email}}" required>
-                          @if ($errors->has('nama'))
+                          <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="Masukan email anda" value="{{old('email', Auth::user()->email)}}" required>
+                          @if ($errors->has('email'))
                           <span class="invalid-feedback text-danger" role="alert">
-                            <strong>{{ $errors->first('nama') }}</strong>
+                            <strong>{{ $errors->first('email') }}</strong>
                           </span>
                           @endif
                         </div>
@@ -148,7 +148,7 @@
                       <div class="form-group">
                         <div class="controls">
                           <label for="account-username">Alamat</label>
-                          <textarea name="alamat" class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" rows="4" cols="80">{{Auth::user()->alamat}}</textarea>
+                          <textarea name="alamat" class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" rows="4" cols="80">{{old('alamat', Auth::user()->alamat)}}</textarea>
                           @if ($errors->has('alamat'))
                           <span class="invalid-feedback text-danger" role="alert">
                             <strong>{{ $errors->first('alamat') }}</strong>
