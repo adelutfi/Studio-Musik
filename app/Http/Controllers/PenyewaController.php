@@ -20,6 +20,7 @@ class PenyewaController extends Controller
   }
 
   public function update(Request $request){
+    // dd($request->all());
   	$penyewa = Auth::user();
   	$rule = [
         'nama' => 'required|regex:/^[\pL\s\-]+$/u',
@@ -37,7 +38,8 @@ class PenyewaController extends Controller
         'ktp.max' => 'Ktp Terlalu Besar maks 2MB',
         'email.unique' => 'Email sudah terdaftar di akun lain',
         'email.no_telp' => 'No Telepon sudah terdaftar di akun lain',
-        'alamat.min' => 'Alamat terlalu pendek'
+        'alamat.min' => 'Alamat terlalu pendek',
+        'email.email' => 'Masukan email dengan benar',
       ];
 
       $this->validate($request, $rule, $message);

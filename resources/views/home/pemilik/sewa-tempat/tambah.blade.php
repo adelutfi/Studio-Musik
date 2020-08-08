@@ -41,7 +41,7 @@
                                     <div class="col-12">
                                         <div class="form-label-group">
                                           <select class="form-control form-control-lg" name="id_studio" id="id_studio" required>
-                                            <option>Pilih Studio</option>
+                                            <option value="">Pilih Studio</option>
                                             @foreach($studio as $s)
                                             @if(!$s->sewaTempat)
                                             <option value="{{$s->id}}" {{old('id_studio') == $s->id ? 'selected' : '' }}>{{$s->nama}}</option>

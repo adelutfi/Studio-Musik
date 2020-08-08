@@ -18,6 +18,14 @@
     </div>
   </div>
 </div>
+@if($errors->all())
+  <div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Gagal Menyimpan</h4>
+    <p class="mb-0">
+      Silhakan cek kembali!
+    </p>
+  </div>
+@endif
 <section id="floating-label-layouts">
     <div class="row match-height">
         <div class="col-md-12 col-12">
@@ -31,10 +39,10 @@
                                     <div class="col-12">
                                         <div class="form-label-group">
                                           <select class="form-control form-control-lg" name="id_studio" id="id_studio" required>
-                                            <option>Pilih Studio</option>
+                                            <option value="">Pilih Studio</option>
                                             @foreach($studio as $s)
                                             @if(!$s->sewaAlat)
-                                            <option value="{{$s->id}}">{{$s->nama}}</option>
+                                            <option value="{{$s->id}}" {{old('id_studio') == $s->id ? 'selected' : '' }}>{{$s->nama}}</option>
                                             @endif
                                             @endforeach
                                            </select>
@@ -43,15 +51,26 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-label-group input-group">
-                                            <input type="tel" id="harga" maxlength="8" minlength="4" class="form-control form-control-lg" name="harga" placeholder="Harga" required>
+                                            <input type="tel" id="harga" value="{{old('harga')}}" maxlength="8" minlength="4" class="form-control form-control-lg {{ $errors->has('harga') ? 'is-invalid' : '' }}" name="harga" placeholder="Harga" required>
                                             <div class="input-group-append">
                                             <span class="input-group-text" id="harga"> / Hari</span>
                                           </div>
+                                          @if ($errors->has('harga'))
+                                          <span class="invalid-feedback text-danger" role="alert">
+                                            <strong>{{ $errors->first('harga') }}</strong>
+                                          </span>
+                                          @endif
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-label-group">
-                                            <textarea name="keterangan" class="form-control form-control-lg" rows="4" cols="60" placeholder="Keterangan" required></textarea>
+                                            <textarea name="keterangan" class="form-control form-control-lg {{ $errors->has('keterangan') ? 'is-invalid' : '' }}" rows="4" cols="60" placeholder="Keterangan" required>{{old('keterangan')}}</textarea>
+                                            @if ($errors->has('keterangan'))
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                              <strong>{{ $errors->first('keterangan') }}</strong>
+                                            </span>
+                                            @endif
+
                                         </div>
                                     </div>
 

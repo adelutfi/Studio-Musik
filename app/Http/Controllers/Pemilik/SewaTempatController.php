@@ -44,11 +44,12 @@ class SewaTempatController extends Controller
         'harga.numeric' => 'Masukan harga dengan benar',
         'jumlah_ruangan.min' => 'Masukan jumlah ruangan dengan benar',
         'jumlah_ruangan.numeric' => 'Masukan jumlah ruangan dengan benar',
+        'jumlah_ruangan.not_in' => 'Masukan jumlah ruangan minimal 1',
       ];
 
-      // dd($request->jam_buka);
-
       $this->validate($request, $rule, $message);
+
+      // dd($request->all());
 
       SewaTempat::create([
         'id_studio' => $request->id_studio,

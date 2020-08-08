@@ -22,16 +22,16 @@ class ProfilController extends Controller
     public function updateProfil(Request $request){
       $pemilik = Auth::user();
       $rule = [
-        'nama' => 'required|min:3',
-        'email' => 'required|email|unique:pemilik,email,'.$pemilik->id,
+        'nama' => 'required|min:3|regex:/^[\pL\s\-]+$/u',
+        'email' => 'required|email|regex:/(.*)@myemail\.com/i|unique:pemilik,email,'.$pemilik->id,
         'foto' => 'image|max:1024|mimes:jpg,png,jpeg',
         'alamat' => 'required|min:3'
       ];
 
       $message = [
         'required' => ':attribute tidak boleh kosong.',
-        'min' => 'terlaku pendek',
-        'max' => 'dengan benar'
+        'nama.regex' => 'Masukan nama dengan benar',
+        'nama.min' => 'Nama terlaku pendek',
       ];
 
       $this->validate($request, $rule, $message);

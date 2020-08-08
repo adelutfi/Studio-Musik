@@ -5,29 +5,28 @@
 <section class="contact-area" >
       <div class="container">
         <!-- <form id="contactform" class="contact-form"> -->
-          <div class="row">
-            @if($errors->all())
-            <div class="col-12">
-                <div class="alert alert-danger" role="alert">
-                  <i class="fas fa-exclamation-circle"></i>
-                      <strong>Gagal!</strong> Profil gagal diubah
-                </div>
-            </div>
-            @endif
-            @if(Session::has('success'))
-            <div class="col-12">
-                <div class="alert alert-success" role="alert">
-                  <i class="fas fa-exclamation-circle"></i>
-                      <strong>Berhasil!</strong> {{Session::get('success')}}
-                </div>
-            </div>
-            @endif
-
+          <div class="row mt-5">
               <div class="col-lg-12">
                 <div class="right-content-area">
                      <h4 class="title text-center">Data Diri
                        {!!Auth::user()->konfirmasi_ktp ? '<i class="fa fa-check text-primary" aria-hidden="true"></i>' : '' !!}
                      </h4>
+                     @if($errors->all())
+                     <div class="col-12">
+                         <div class="alert alert-danger" role="alert">
+                           <i class="fas fa-exclamation-circle"></i>
+                               <strong>Gagal!</strong> Profil gagal diubah
+                         </div>
+                     </div>
+                     @endif
+                     @if(Session::has('success'))
+                     <div class="col-12">
+                         <div class="alert alert-success" role="alert">
+                           <i class="fas fa-exclamation-circle"></i>
+                               <strong>Berhasil!</strong> {{Session::get('success')}}
+                         </div>
+                     </div>
+                     @endif
                         <form action="{{route('profil.update')}}" method="post" enctype="multipart/form-data">
                       @csrf
                       @method('PATCH')
@@ -62,7 +61,7 @@
                          </div>
                          <div class="form-group">
                           <label>Email</label>
-                             <input type="text" name="email" value="{{old('email',Auth::user()->email)}}" class="form-control{{ $errors->has('email') ? ' is-invalid border border-danger' : '' }}" placeholder="Email" required="">
+                             <input type="email" name="email" value="{{old('email',Auth::user()->email)}}" class="form-control{{ $errors->has('email') ? ' is-invalid border border-danger' : '' }}" placeholder="Email" required="">
                              @if ($errors->has('email'))
                              <span class="invalid-feedback text-danger" role="alert">
                                <strong>{{ $errors->first('email') }}</strong>
