@@ -31,7 +31,8 @@ class SewaAlatController extends Controller
     public function store(Request $request){
       $rule = [
         'harga' => 'required|numeric|min:0|not_in:0',
-        'keterangan' => 'required|min:5'
+        'keterangan' => 'required|min:5',
+        'jadwal' => 'required'
       ];
 
       $message = [
@@ -61,7 +62,7 @@ class SewaAlatController extends Controller
     public function update(Request $request, SewaAlat $sewaAlat){
       $rule = [
         'harga' => 'required|numeric|min:0|not_in:0',
-        'jadwal.*' => 'required',
+        'jadwal' => 'required',
         'keterangan' => 'required'
       ];
 

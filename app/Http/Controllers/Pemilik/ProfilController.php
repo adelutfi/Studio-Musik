@@ -69,6 +69,7 @@ class ProfilController extends Controller
         'no_telp.unique' => 'No Telepon sudah terdaftar',
         'no_telp.numeric' => 'No Telepon tidak benar',
         'no_rek.unique' => 'No Rekening sudah terdaftar',
+        'no_rek.numeric' => 'No Rekening tidak benar',
       ];
 
     $this->validate($request, $rule, $message);

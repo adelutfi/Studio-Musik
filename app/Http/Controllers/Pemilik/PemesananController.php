@@ -83,8 +83,8 @@ class PemesananController extends Controller
       ]);
       $data = json_decode($res->getBody()->getContents());
       $status [] = [
-        'status' => $data->transaction_status,
-        'store' => $data->store
+        'status' => isset($data->transaction_status) ? $data->transaction_status : 'expire',
+        'store' => isset($data->store) ? $data->store : 'Indomaret'
       ];
     }
 
@@ -106,13 +106,20 @@ class PemesananController extends Controller
   public function pdfSewaAlat(){
     $bulan = $this->bulan;
     $selectBulan = request()->get('bulan');
+    $selectTahun = request()->get('tahun');
     $namaBulan = $bulan[$selectBulan];
     $pemilik = Auth::user();
 
-    $pemesanan = PemesananAlat::whereMonth('tanggal_mulai', $selectBulan)->get();
-    $pdf = PDF::loadView('home.pemilik.pemesanan.pemesanan-alat-pdf',
-    compact('pemesanan','namaBulan', 'pemilik'));
-    return $pdf->stream();
+    $pemesanan = PemesananAlat::whereMonth('tanggal_mulai', $selectBulan)->whereYear('tanggal_mulai', $selectTahun)->get();
+
+    if(count($pemesanan) > 0){
+      $pdf = PDF::loadView('home.pemilik.pemesanan.pemesanan-alat-pdf',
+      compact('pemesanan','namaBulan', 'pemilik'));
+      return $pdf->stream();
+    }else {
+      return redirect()->back()->with('notfound', 'Data tidak ditemukan di bulan '.$namaBulan);
+    }
+
     // return view('home.pemilik.pemesanan.pemesanan-alat-pdf', compact('pemesanan','namaBulan', 'pemilik'));
 
   }
