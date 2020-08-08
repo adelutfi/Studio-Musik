@@ -42,13 +42,30 @@
   </button>
 </div>
 @endif
+@if(Session::has('failedPassword'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <p class="mb-0"><i class="feather icon-check-circle"></i><strong> Gagal! </strong> {{Session::get('failedPassword')}}</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+@endif
+@if(Session::has('successPassword'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <p class="mb-0"><i class="feather icon-check-circle"></i><strong> Sukses! </strong> {{Session::get('successPassword')}}</p>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+@endif
+
 <section id="page-account-settings">
   <div class="row">
     <!-- left menu section -->
     <div class="col-md-3 mb-2 mb-md-0">
       <ul class="nav nav-pills flex-column mt-md-0 mt-1">
         <li class="nav-item">
-          <a class="nav-link d-flex py-75 @if(Session::has('pribadi') || $errors->has('no_telp') || $errors->has('no_rek')) @else active @endif" id="account-pill-general" data-toggle="pill"
+          <a class="nav-link d-flex py-75 @if(Session::has('pribadi') || $errors->has('no_telp') || $errors->has('no_rek') || $errors->has('password') || Session::has('failedPassword')) @else active @endif" id="account-pill-general" data-toggle="pill"
             href="#account-vertical-general" aria-expanded="true">
             <i class="feather icon-globe mr-50 font-medium-3"></i>
             Umum
@@ -62,7 +79,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex py-75" id="account-pill-password" data-toggle="pill"
+          <a class="nav-link d-flex py-75 @if(Session::has('pribadi') || $errors->has('password') || Session::has('failedPassword')) active @else @endif" id="account-pill-password" data-toggle="pill"
             href="#account-vertical-password" aria-expanded="false">
             <i class="feather icon-lock mr-50 font-medium-3"></i>
             Ganti Password
@@ -77,7 +94,7 @@
         <div class="card-content">
           <div class="card-body">
             <div class="tab-content">
-              <div role="tabpanel" class="tab-pane @if(Session::has('pribadi') || $errors->has('no_telp') || $errors->has('no_rek')) fade @else active @endif" id="account-vertical-general"
+              <div role="tabpanel" class="tab-pane @if(Session::has('pribadi') || $errors->has('no_telp') || $errors->has('no_rek') || $errors->has('password') || Session::has('failedPassword') || Session::has('successPassword')) fade @else active @endif" id="account-vertical-general"
                 aria-labelledby="account-pill-general" aria-expanded="true">
               <form action="{{route('pemilik.update.profil')}}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -201,17 +218,22 @@
               </form>
             </div>
 
-              <div class="tab-pane fade " id="account-vertical-password" role="tabpanel"
+              <div class="tab-pane @if(Session::has('pribadi') || $errors->has('password') || Session::has('failedPassword') || Session::has('successPassword')) active @else fade @endif " id="account-vertical-password" role="tabpanel"
                 aria-labelledby="account-pill-password" aria-expanded="false">
-                <form novalidate>
+                <form action="{{route('pemilik.update.password')}}" method="post">
+                  @csrf
+                  @method('PATCH')
                   <div class="row">
                     <div class="col-12">
                       <div class="form-group">
                         <div class="controls">
                           <label for="account-old-password">Password Lama</label>
-                          <input type="password" class="form-control" id="account-old-password" required
-                            placeholder="Old Password"
-                            data-validation-required-message="This old password field is required">
+                          <input type="password" class="form-control @if(Session::has('failedPassword')) is-invalid @endif" required placeholder="Password Lama" name="old_password">
+                          @if(Session::has('failedPassword'))
+                          <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ Session::get('failedPassword') }}</strong>
+                          </span>
+                          @endif
                         </div>
                       </div>
                     </div>
@@ -219,9 +241,14 @@
                       <div class="form-group">
                         <div class="controls">
                           <label for="account-new-password">Password Baru</label>
-                          <input type="password" name="password" id="account-new-password" class="form-control"
-                            placeholder="New Password" required
+                          <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
+                            placeholder="Password Baru" required
                             data-validation-required-message="The password field is required" minlength="6">
+                            @if ($errors->has('password'))
+                            <span class="invalid-feedback text-danger" role="alert">
+                              <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                            @endif
                         </div>
                       </div>
                     </div>
@@ -229,9 +256,9 @@
                       <div class="form-group">
                         <div class="controls">
                           <label for="account-retype-new-password">Ulangi Password Baru</label>
-                          <input type="password" name="con-password" class="form-control" required
-                            id="account-retype-new-password" data-validation-match-match="password"
-                            placeholder="New Password"
+                          <input type="password" name="password_confirmation" class="form-control" required
+                           data-validation-match-match="password"
+                            placeholder="Ulangi Password Baru"
                             data-validation-required-message="The Confirm password field is required" minlength="6">
                         </div>
                       </div>

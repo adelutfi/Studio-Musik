@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Storage;
 use App\Pemilik;
 use Auth;
+use Hash;
 
 class ProfilController extends Controller
 {
@@ -80,5 +81,28 @@ class ProfilController extends Controller
     ]);
 
     return redirect()->back()->with('pribadi','Data Pribadi berhasil diubah');
+  }
+
+  public function updatePassword(Request $request){
+    // dd($request->all());
+    $pemilik = Auth::user();
+    $rule = [
+      'old_password' => 'required',
+      'password' => 'required|min:6|confirmed'
+    ];
+
+    $message = [
+      'password.min' => 'Password minimal 6 karakter',
+      'password.confirmed' => 'Password tidak sama'
+    ];
+
+    $this->validate($request, $rule, $message);
+
+    if(Hash::check($request->old_password, $pemilik->password)){
+       $pemilik->update(['password' => bcrypt($request->password)]);
+       return back()->with('successPassword','Password berhasil diubah');
+    }else{
+        return back()->with('failedPassword','Password lama tidak cocok');
+    }
   }
 }

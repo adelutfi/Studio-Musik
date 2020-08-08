@@ -102,6 +102,7 @@ Route::group(['prefix' => 'pemilik'], function(){
   Route::get('profil','Pemilik\ProfilController@index')->name('pemilik.profil');
   Route::patch('profil/umum','Pemilik\ProfilController@updateProfil')->name('pemilik.update.profil');
   Route::patch('profil/pribadi','Pemilik\ProfilController@updatePersonal')->name('pemilik.update.personal');
+  Route::patch('profil/password','Pemilik\ProfilController@updatePassword')->name('pemilik.update.password');
 
   Route::patch('kirim/alat/{pemesanan}','Pemilik\PemesananController@notifikasiPengiriman')->name('pemilik.kirim.alat');
   Route::put('kirim/alat/{pemesanan}','Pemilik\PemesananController@notifikasiSelesai')->name('pemilik.selesai.alat');
