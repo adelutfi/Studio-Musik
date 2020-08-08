@@ -17,8 +17,7 @@
                         <div class="footer-widget socilLink">
                             <div class="widget-body">
                                 <ul class="footer-social">
-                                    <li><a href="#"> <i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"> <i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li class="text-white">Studio Musik Tegal</li>
                                 </ul>
                             </div>
                         </div>

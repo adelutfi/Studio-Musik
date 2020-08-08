@@ -425,7 +425,7 @@
                                           <ul class="list-group text-dark">
                                              <li class="list-group-item d-flex">
                                                <p class="text-center mb-0">
-                                                 Waktu Pemesanan :
+                                                 Waktu Pemesanan : Pukul {{\Carbon\Carbon::parse($p->jam_pemesanan)->format('H:i')}}
                                                </p>
                                                <p class="ml-1 mb-0">
 
@@ -433,7 +433,7 @@
                                              </li>
                                              <li class="list-group-item d-flex">
                                                <p class="text-center mb-0">
-                                                 Waktu Pengembalian :
+                                                Waktu Pengembalian : Pukul {{\Carbon\Carbon::parse($p->jam_pengembalian)->format('H:i')}}
                                                </p>
                                                <p class="ml-1 mb-0">
 
