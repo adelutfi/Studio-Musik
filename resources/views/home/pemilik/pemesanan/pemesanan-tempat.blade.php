@@ -22,9 +22,29 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-
                 <div class="card-content">
                     <div class="card-body card-dashboard">
+                      <form class="" action="{{route('pdf.sewa-tempat')}}" method="get">
+                        <div class="row mb-3">
+                          <div class="col-2">
+                            <select name="bulan" class="form-control" id="basicSelect" required>
+                               <option value="">Pilih Bulan</option>
+                               @foreach($bulan as $key => $b)
+                               <option value="{{$key}}">{{$b}}</option>
+                               @endforeach
+                           </select>
+                          </div>
+                          <div class="col-2">
+                            <select name="tahun" class="form-control" id="basicSelect">
+                               <option value="2020">2019</option>
+                               <option value="2020" {{now()->format('Y') === '2020' ? 'selected' : ''}}>2020</option>
+                           </select>
+                          </div>
+                          <div class="col-4">
+                            <button type="submit" class="btn btn-danger"> <i class="fa fa-print fa-lg"></i> </button>
+                          </div>
+                        </div>
+                      </form>
                         <div class="table-responsive">
                             <table class="table zero-configuration">
                                 <thead>
@@ -49,7 +69,7 @@
                                     <td>{{$p->penyewa->nama}}</td>
                                     <td>Rp. {{number_format($p->harga, 0,',','.')}}</td>
                                     <td>{{$p->durasi}} Jam</td>
-                                    <td>{{date("d-m-Y", strtotime($p->tanggal)) }} / {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->format('h:i')}}</td>
+                                    <td>{{date("d-m-Y", strtotime($p->tanggal)) }} / {{\Carbon\Carbon::createFromFormat('H:i:s',$p->waktu)->format('H:i')}}</td>
                                     <td>Rp. {{number_format($p->harga * $p->durasi, 0,',','.')}}</td>
                                     <td align="center">{{$status[$key]['store']}}</td>
                                     <td>
@@ -148,4 +168,17 @@
     </div>
 </section>
 
+@endsection
+@section('script')
+<script type="text/javascript">
+@if(Session::has('notfound'))
+  Swal.fire({
+    title: "Gagal!",
+    text: "{{Session::get('notfound')}}!",
+    type: "error",
+    confirmButtonClass: "btn btn-primary",
+    buttonsStyling: !1
+  })
+@endif
+</script>
 @endsection

@@ -107,6 +107,7 @@ Route::group(['prefix' => 'pemilik'], function(){
   Route::put('kirim/alat/{pemesanan}','Pemilik\PemesananController@notifikasiSelesai')->name('pemilik.selesai.alat');
 
   Route::get('pemesanan/alat/pdf', 'Pemilik\PemesananController@pdfSewaAlat')->name('pdf.sewa-alat');
+  Route::get('pemesanan/tempat/pdf', 'Pemilik\PemesananController@pdfSewaTempat')->name('pdf.sewa-tempat');
 
 
 });

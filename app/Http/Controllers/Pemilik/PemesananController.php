@@ -58,7 +58,9 @@ class PemesananController extends Controller
       ];
     }
 
-    return view('home.pemilik.pemesanan.pemesanan-tempat', compact('pemesanan', 'status'));
+    $bulan = $this->bulan;
+
+    return view('home.pemilik.pemesanan.pemesanan-tempat', compact('pemesanan', 'status', 'bulan'));
   }
 
   public function pemesananAlat(){
@@ -121,6 +123,27 @@ class PemesananController extends Controller
     }
 
     // return view('home.pemilik.pemesanan.pemesanan-alat-pdf', compact('pemesanan','namaBulan', 'pemilik'));
+
+  }
+
+  public function pdfSewaTempat(){
+    $bulan = $this->bulan;
+    $selectBulan = request()->get('bulan');
+    $selectTahun = request()->get('tahun');
+    $namaBulan = $bulan[$selectBulan];
+    $pemilik = Auth::user();
+
+    $pemesanan = PemesananTempat::whereMonth('tanggal', $selectBulan)->whereYear('tanggal', $selectTahun)->get();
+
+    if(count($pemesanan) > 0){
+      // return view('home.pemilik.pemesanan.pemesanan-tempat-pdf', compact('pemesanan','namaBulan', 'pemilik'));
+      $pdf = PDF::loadView('home.pemilik.pemesanan.pemesanan-tempat-pdf',
+      compact('pemesanan','namaBulan', 'pemilik'));
+      return $pdf->stream();
+    }else {
+      return redirect()->back()->with('notfound', 'Data tidak ditemukan di bulan '.$namaBulan);
+    }
+
 
   }
 }
