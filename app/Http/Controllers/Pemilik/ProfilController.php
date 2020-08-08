@@ -60,15 +60,14 @@ class ProfilController extends Controller
     public function updatePersonal(Request $request){
       $pemilik = Auth::user();
       $rule = [
-        'no_telp' => 'required|min:11|max:13|unique:pemilik,no_telp,'.$pemilik->id,
-        'no_rek' => 'required|min:16|max:16|unique:pemilik,no_rek,'.$pemilik->id,
+        'no_telp' => 'required|numeric|unique:pemilik,no_telp,'.$pemilik->id,
+        'no_rek' => 'required|numeric|unique:pemilik,no_rek,'.$pemilik->id,
       ];
 
       $message = [
         'required' => ':attribute tidak boleh kosong.',
-        'min' => 'terlaku pendek',
-        'max' => 'dengan benar',
         'no_telp.unique' => 'No Telepon sudah terdaftar',
+        'no_telp.numeric' => 'No Telepon tidak benar',
         'no_rek.unique' => 'No Rekening sudah terdaftar',
       ];
 
