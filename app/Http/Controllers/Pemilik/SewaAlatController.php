@@ -61,14 +61,14 @@ class SewaAlatController extends Controller
     public function update(Request $request, SewaAlat $sewaAlat){
       $rule = [
         'harga' => 'required|numeric|min:0|not_in:0',
-        'jadwal' => 'required',
-        'keterangan' => 'required'
+        'keterangan' => 'required|min:5',
       ];
 
       $message = [
         'required' => ':attribute tidak boleh kosong.',
         'harga.min' => 'Masukan harga dengan benar',
         'harga.numeric' => 'Masukan harga dengan benar',
+        'keterangan.min' => 'Keterangan minimal 5 karakter'
       ];
 
       $this->validate($request, $rule, $message);
