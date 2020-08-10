@@ -79,7 +79,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex py-75 @if(Session::has('pribadi') || $errors->has('password') || Session::has('failedPassword')) active @else @endif" id="account-pill-password" data-toggle="pill"
+          <a class="nav-link d-flex py-75 @if($errors->has('password') || Session::has('failedPassword')) active @else @endif" id="account-pill-password" data-toggle="pill"
             href="#account-vertical-password" aria-expanded="false">
             <i class="feather icon-lock mr-50 font-medium-3"></i>
             Ganti Password
@@ -218,7 +218,7 @@
               </form>
             </div>
 
-              <div class="tab-pane @if(Session::has('pribadi') || $errors->has('password') || Session::has('failedPassword') || Session::has('successPassword')) active @else fade @endif " id="account-vertical-password" role="tabpanel"
+              <div class="tab-pane @if($errors->has('password') || Session::has('failedPassword') || Session::has('successPassword')) active @else fade @endif " id="account-vertical-password" role="tabpanel"
                 aria-labelledby="account-pill-password" aria-expanded="false">
                 <form action="{{route('pemilik.update.password')}}" method="post">
                   @csrf
