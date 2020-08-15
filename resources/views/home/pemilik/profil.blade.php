@@ -114,9 +114,16 @@
                     <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
                       <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer"
                         for="account-upload">Upload foto baru</label>
-                      <input type="file" name="foto" id="account-upload" accept="image/jpeg, image/png, image/jpg" hidden>
+                      <input type="file" name="foto" id="account-upload" onchange="checkImage(this)" accept="image/jpeg, image/png, image/jpg" hidden>
+                      <strong class="ml-3 text-success" id="file-name"></strong><br>
+
                     </div>
-                    <p class="text-dark ml-75 mt-50"><small> JPG,PNG, JPEG. Max 1MB</small></p>
+
+                    <p class="text-dark mt-3">
+
+                      <strong>Gambar harus JPG,JPEG,PNG Maksimal 1 MB</strong><br>
+                      <strong class="text-danger" id="message"></strong>
+                    </p>
                   </div>
                 </div>
                 <hr>
@@ -175,7 +182,7 @@
                       </div>
                     </div>
                     <div class="col-12 d-flex flex-sm-row flex-column justify-content-start">
-                      <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Simpan</button>
+                      <button type="submit" id="simpan" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Simpan</button>
                     </div>
                   </div>
                 </form>
@@ -292,5 +299,31 @@ function onNumbers(e) {
     e.value = e.value.replace(/[a-zA-Z\s-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/, "");
   }
 }
+</script>
+<script type="text/javascript">
+  const simpan = document.querySelector('#simpan');
+  const message = document.querySelector('#message');
+  const fileName = document.querySelector('#file-name');
+  const maxfilesize = 1024 * 1024;
+
+  function checkImage(e){
+    const file = e.files[0];
+
+    if(file || file.type == 'image/jpeg' || file.type == 'image/jpg' || file.type == 'image/png'){
+        if(+file.size > maxfilesize){
+          message.innerText = "Gambar yang anda masukan terlalu besar";
+          fileName.innerText = "nama file "+file.name;
+          simpan.disabled = true;
+        }else {
+          message.innerText = '';
+          fileName.innerText = "nama file "+file.name;
+          simpan.disabled = false
+        }
+    }else {
+      simpan.disabled = true;
+      fileName.innerText = "nama file "+file.name;
+      message.innerText = "Gambar yang anda masukan tidak sesuai";
+    }
+  }
 </script>
 @endsection

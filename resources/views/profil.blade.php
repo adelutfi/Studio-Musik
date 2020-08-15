@@ -40,8 +40,12 @@
                        </div>
                         <div class="col-9">
                            <div class="custom-file mt-5">
-                          <input type="file" name="foto" class="custom-file-input{{ $errors->has('foto') ? ' is-invalid border border-danger' : '' }}" accept="image/jpeg,image/png,image/jpg">
+                          <input type="file" id="foto" name="foto" onchange="checkImage(this)" class="custom-file-input{{ $errors->has('foto') ? ' is-invalid border border-danger' : '' }}" accept="image/jpeg,image/png,image/jpg">
                           <label class="custom-file-label" for="validatedCustomFile">Pilih Foto</label>
+                          <div class="mt-2">
+                            <strong>Gambar harus JPG,JPEG,PNG Maksimal 1 MB</strong><br>
+                            <strong class="text-danger" id="message"></strong>
+                          </div>
                           @if ($errors->has('foto'))
                           <span class="invalid-feedback text-danger" role="alert">
                             <strong>{{ $errors->first('foto') }}</strong>
@@ -107,7 +111,7 @@
                          @endif
 
                           <div class="text-center">
-                            <button type="submit" class="submit-btn">Simpan</button>
+                            <button type="submit" id="simpan" class="btn btn-primary">Simpan</button>
                           </div>
                       </form>
                 </div>
@@ -153,5 +157,28 @@ function onNumbers(e) {
     e.value = e.value.replace(/[a-zA-Z\s-!$%^&*()_+|~=`{}\[\\\]:";'<>?,.\/]/, "");
   }
 }
+</script>
+<script type="text/javascript">
+  const foto = document.querySelector('#foto');
+  const simpan = document.querySelector('#simpan');
+  const message = document.querySelector('#message');
+  const maxfilesize = 1024 * 1024;
+
+  function checkImage(e){
+    const file = e.files[0];
+    // console.log(file);
+    if(file || file.type == 'image/jpeg' || file.type == 'image/jpg' || file.type == 'image/png'){
+        if(+file.size > maxfilesize){
+          message.innerText = "Gambar yang anda masukan terlalu besar";
+          simpan.disabled = true;
+        }else {
+          message.innerText = '';
+          simpan.disabled = false
+        }
+    }else {
+      simpan.disabled = true;
+      message.innerText = "Gambar yang anda masukan tidak sesuai";
+    }
+  }
 </script>
 @endsection
