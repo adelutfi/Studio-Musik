@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-label-group input-group">
-                                            <input type="tel" id="harga" value="{{old('harga')}}" maxlength="8" minlength="4" class="form-control form-control-lg {{ $errors->has('harga') ? 'is-invalid' : '' }}" name="harga" placeholder="Harga" required>
+                                            <input onkeyup="onNumbers(this)" type="tel" id="harga" value="{{old('harga')}}" maxlength="8" minlength="4" class="form-control form-control-lg {{ $errors->has('harga') ? 'is-invalid' : '' }}" name="harga" placeholder="Harga" required>
                                             <div class="input-group-append">
                                             <span class="input-group-text" id="harga"> / Hari</span>
                                           </div>
@@ -87,4 +87,14 @@
         </div>
       </div>
     </section>
+@endsection
+@section('script')
+<script type="text/javascript">
+function onNumbers(e) {
+  const RegExpression = /^[0-9]+$/;
+  if(!RegExpression.test(e.value)){
+    e.value = e.value.replace(/[a-zA-Z\s-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/, "");
+  }
+}
+</script>
 @endsection

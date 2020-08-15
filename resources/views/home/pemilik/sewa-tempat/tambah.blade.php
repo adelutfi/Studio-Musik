@@ -34,7 +34,7 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form" method="post" action="{{route('pemilik.simpan.sewa-tempat')}}">
+                        <form id="form-submit" class="form" method="post" action="{{route('pemilik.simpan.sewa-tempat')}}">
                             @csrf
                             <div class="form-body">
                                 <div class="row">
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-label-group input-group">
-                                            <input type="tel" id="harga" value="{{old('harga')}}" maxlength="6" minlength="4" class="form-control form-control-lg {{ $errors->has('harga') ? 'is-invalid' : '' }}" name="harga" placeholder="Harga" required>
+                                            <input onkeyup="onNumbers(this)" type="tel" id="harga" value="{{old('harga')}}" maxlength="6" minlength="4" class="form-control form-control-lg {{ $errors->has('harga') ? 'is-invalid' : '' }}" name="harga" placeholder="Harga" required>
                                             <div class="input-group-append">
                                             <span class="input-group-text" id="harga"> / Jam</span>
                                           </div>
@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="col-4">
                                       <div class="form-label-group input-group">
-                                        <input type="tel" id="jumlah_ruangan" value="{{old('jumlah_ruangan')}}" maxlength="1" minlength="1" class="form-control form-control-lg {{ $errors->has('jumlah_ruangan') ? 'is-invalid' : '' }}" name="jumlah_ruangan" placeholder="Jumlah Ruangan" required>
+                                        <input type="tel" onkeyup="onNumbers(this)" id="jumlah_ruangan" value="{{old('jumlah_ruangan')}}" maxlength="1" minlength="1" class="form-control form-control-lg {{ $errors->has('jumlah_ruangan') ? 'is-invalid' : '' }}" name="jumlah_ruangan" placeholder="Jumlah Ruangan" required>
                                           <div class="input-group-append">
                                           <span class="input-group-text" id="harga"> / Ruang</span>
                                         </div>
@@ -83,10 +83,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 text-center">
-                                    <h4>Jadwal</h4>
-                                    </div>
-
+                              <div class="col-12 text-center">
+                                <h4>Jadwal</h4>
+                                </div>
 
                                 <div class="row justify-content-center mt-2 mb-2">
                                    @php($hari = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'])
@@ -130,14 +129,10 @@
                                         </div>
                                     </div>
                                     @endfor
-                                   {{--  <div class="col-12 text-center mb-2 mt-2">
-                                    <h4>Alat Tambahan</h4>
-                                    </div>
- --}}
                                     </div>
 
                                     <div class="col-12 text-center">
-                                        <button type="submit" class="btn btn-primary mr-1 mb-1 btn-lg">Simpan</button>
+                                        <button type="button" onclick="simpan()" class="btn btn-primary mr-1 mb-1 btn-lg">Simpan</button>
                                         <!-- <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button> -->
                                     </div>
                                 </div>
@@ -152,14 +147,39 @@
 @endsection
 
 @section('script')
+<script type="text/javascript">
+function onNumbers(e) {
+  const RegExpression = /^[0-9]+$/;
+  if(!RegExpression.test(e.value)){
+    e.value = e.value.replace(/[a-zA-Z\s-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/, "");
+  }
+}
+</script>
 <script>
     const jadwal = document.querySelectorAll('#jadwal');
     const jamBuka = document.querySelectorAll('#jam-buka');
     const jamTutup = document.querySelectorAll('#jam-tutup');
+    const form = document.querySelector('#form-submit');
+
+    function simpan(){
+      const checkJadwal = [...jadwal].filter(j => j.checked);
+
+      if(checkJadwal.length < 1){
+        Swal.fire({
+               type: "error",
+               title: "Oops...",
+               text: "Pilih jadwal terlebih dahulu",
+               confirmButtonClass: "btn btn-primary",
+               buttonsStyling: !1
+           });
+      }else {
+        form.submit();
+      }
+    }
+
 
     jadwal.forEach(j => {
         const id = j.dataset.id;
-        console.log(j.checked);
         if (j.checked) {
                jamTutup.forEach(t => t.dataset.id === id ? t.disabled = false : '' );
                jamBuka.forEach(t => t.dataset.id === id ? t.disabled = false : '' );

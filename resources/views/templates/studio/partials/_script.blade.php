@@ -33,7 +33,6 @@
 <script src="//js.pusher.com/3.1/pusher.min.js"></script>
 <script>
 const user = '{{Auth::user()->id}}'
-console.log(user);
 if (!window.Notification) {
   console.log('Browser does not support notifications.');
 } else {
