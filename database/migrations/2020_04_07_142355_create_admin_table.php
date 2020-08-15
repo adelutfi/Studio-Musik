@@ -17,7 +17,7 @@ class CreateAdminTable extends Migration
             $table->increments('id');
             $table->string('nama', 45);
             $table->string('username',45)->unique();
-            $table->text('password');
+            $table->string('password', 60);
         });
     }
 

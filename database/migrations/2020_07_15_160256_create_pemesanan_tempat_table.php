@@ -25,7 +25,7 @@ class CreatePemesananTempatTable extends Migration
           $table->integer('ruangan');
           $table->boolean('status')->nullable();
           $table->boolean('rating')->default(0);
-          $table->text('snap_token')->nullable();
+          $table->text('snap_token');
           $table->timestamp('di_buat')->useCurrent();
 
           $table->foreign('id_penyewa')->references('id')->on('penyewa')->onDelete('CASCADE');

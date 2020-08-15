@@ -17,7 +17,7 @@ class CreatePemilikTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama', 50);
             $table->string('email', 50)->unique();
-            $table->text('password');
+            $table->string('password', 60);
             $table->text('foto')->nullable();
             $table->timestamp('verifikasi_email')->nullable();
             $table->text('alamat')->nullable();
