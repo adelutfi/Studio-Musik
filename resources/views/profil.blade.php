@@ -143,14 +143,14 @@
 function onLetters(e) {
   const RegExpression = /^[a-zA-Z\s]*$/;
   if(!RegExpression.test(e.value)){
-    e.value = e.value.replace(/[0-9-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/, "");
+    e.value = e.value.replace(/[0-9-!$%^&*()_+|~=`{}\[\\\]:";'<>?,.\/]/, "");
   }
 }
 
 function onNumbers(e) {
   const RegExpression = /^[0-9]+$/;
   if(!RegExpression.test(e.value)){
-    e.value = e.value.replace(/[a-zA-Z\s-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/, "");
+    e.value = e.value.replace(/[a-zA-Z\s-!$%^&*()_+|~=`{}\[\\\]:";'<>?,.\/]/, "");
   }
 }
 </script>

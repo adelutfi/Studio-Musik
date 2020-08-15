@@ -151,7 +151,7 @@
 function onNumbers(e) {
   const RegExpression = /^[0-9]+$/;
   if(!RegExpression.test(e.value)){
-    e.value = e.value.replace(/[a-zA-Z\s-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/, "");
+    e.value = e.value.replace(/[a-zA-Z\s-!$%^&*()_+|~=`{}\[\\\]:";'<>?,.\/]/, "");
   }
 }
 </script>
