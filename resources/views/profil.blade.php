@@ -52,7 +52,7 @@
                       </div>
                          <div class="form-group">
                           <label>Nama</label>
-                             <input type="text" name="nama" value="{{old('nama',Auth::user()->nama)}}" class="form-control{{ $errors->has('nama') ? ' is-invalid border border-danger' : '' }}" placeholder="Nama" required="">
+                             <input type="text" onkeyup="onLetters(this)" name="nama" value="{{old('nama',Auth::user()->nama)}}" class="form-control{{ $errors->has('nama') ? ' is-invalid border border-danger' : '' }}" placeholder="Nama" required="">
                              @if ($errors->has('nama'))
                              <span class="invalid-feedback text-danger" role="alert">
                                <strong>{{ $errors->first('nama') }}</strong>
@@ -70,7 +70,7 @@
                          </div>
                          <div class="form-group">
                           <label>No Telepon</label>
-                             <input type="tel" maxlength="13" minlength="11" name="no_telp"  value="{{old('no_telp',Auth::user()->no_telp)}}" class="form-control{{ $errors->has('no_telp') ? ' is-invalid border border-danger' : '' }}" placeholder="No Telephon" required="">
+                             <input type="tel" onkeyup="onNumbers(this)" maxlength="13" minlength="11" name="no_telp"  value="{{old('no_telp',Auth::user()->no_telp)}}" class="form-control{{ $errors->has('no_telp') ? ' is-invalid border border-danger' : '' }}" placeholder="No Telephon" required="">
                              @if ($errors->has('no_telp'))
                              <span class="invalid-feedback text-danger" role="alert">
                                <strong>{{ $errors->first('no_telp') }}</strong>
@@ -137,4 +137,21 @@
           <!-- </form> -->
       </div>
   </section>
+@endsection
+@section('script')
+<script type="text/javascript">
+function onLetters(e) {
+  const RegExpression = /^[a-zA-Z\s]*$/;
+  if(!RegExpression.test(e.value)){
+    e.value = e.value.replace(/[0-9-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/, "");
+  }
+}
+
+function onNumbers(e) {
+  const RegExpression = /^[0-9]+$/;
+  if(!RegExpression.test(e.value)){
+    e.value = e.value.replace(/[a-zA-Z\s-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/, "");
+  }
+}
+</script>
 @endsection

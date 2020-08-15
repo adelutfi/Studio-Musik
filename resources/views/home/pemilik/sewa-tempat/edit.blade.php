@@ -24,7 +24,7 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form" method="post" action="{{route('pemilik.update.sewa-tempat', $sewaTempat)}}">
+                        <form id="form-submit" class="form" method="post" action="{{route('pemilik.update.sewa-tempat', $sewaTempat)}}">
                             @csrf
                             @method('PATCH')
                             <div class="form-body">
@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-label-group input-group">
-                                            <input type="tel" id="harga" maxlength="6" minlength="4" class="form-control form-control-lg {{ $errors->has('harga') ? 'is-invalid' : '' }}" value="{{old('harga', $sewaTempat->harga)}}" name="harga" placeholder="Harga" required>
+                                            <input type="tel" id="harga" onkeyup="onNumbers(this)" maxlength="6" minlength="4" class="form-control form-control-lg {{ $errors->has('harga') ? 'is-invalid' : '' }}" value="{{old('harga', $sewaTempat->harga)}}" name="harga" placeholder="Harga" required>
                                             <div class="input-group-append">
                                             <span class="input-group-text" id="harga"> / Jam</span>
                                           </div>
@@ -57,7 +57,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-label-group input-group">
-                                            <input type="tel" id="jumlah_ruangan" maxlength="1" minlength="1" class="form-control form-control-lg {{ $errors->has('jumlah_ruangan') ? 'is-invalid' : '' }}" value="{{old('jumlah_ruangan', $sewaTempat->jumlah_ruangan)}}" name="jumlah_ruangan" placeholder="Jumlah Ruangan" required>
+                                            <input type="tel" id="jumlah_ruangan" onkeyup="onNumbers(this)" maxlength="1" minlength="1" class="form-control form-control-lg {{ $errors->has('jumlah_ruangan') ? 'is-invalid' : '' }}" value="{{old('jumlah_ruangan', $sewaTempat->jumlah_ruangan)}}" name="jumlah_ruangan" placeholder="Jumlah Ruangan" required>
                                             <div class="input-group-append">
                                             <span class="input-group-text" id="harga"> / Ruang</span>
                                           </div>
@@ -125,8 +125,8 @@
                                     </div>
 
                                     <div class="col-12 text-center">
-                                        <button type="submit" onclick="window.location='{{route("pemilik.sewa-tempat")}}'" class="btn btn-secondary mr-1 mb-1">Kembali</button>
-                                        <button type="submit" class="btn btn-primary mr-1 mb-1">Simpan</button>
+                                        <button type="button" onclick="window.location='{{route("pemilik.sewa-tempat")}}'" class="btn btn-secondary mr-1 mb-1">Kembali</button>
+                                        <button type="button" onclick="simpan()" class="btn btn-primary mr-1 mb-1">Simpan</button>
                                         <!-- <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button> -->
                                     </div>
                                 </div>
@@ -141,15 +141,38 @@
 @endsection
 
 @section('script')
+<script type="text/javascript">
+function onNumbers(e) {
+  const RegExpression = /^[0-9]+$/;
+  if(!RegExpression.test(e.value)){
+    e.value = e.value.replace(/[a-zA-Z\s-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/, "");
+  }
+}
+</script>
 <script>
     const jadwal = document.querySelectorAll('#jadwal');
     const jamBuka = document.querySelectorAll('#jam-buka');
     const jamTutup = document.querySelectorAll('#jam-tutup');
     const cekJamBuka = @json($jamBuka);
     const cekJamTutup = @json($jamTutup);
-    // console.log(cekJamBuka);
-    // console.log(jamBuka);
     const cekJadwal = [...jadwal].filter(j => j.checked === true);
+    const form = document.querySelector('#form-submit');
+
+    function simpan(){
+      const checkJadwal = [...jadwal].filter(j => j.checked);
+
+      if(checkJadwal.length < 1){
+        Swal.fire({
+               type: "error",
+               title: "Oops...",
+               text: "Pilih jadwal terlebih dahulu",
+               confirmButtonClass: "btn btn-primary",
+               buttonsStyling: !1
+           });
+      }else {
+        form.submit();
+      }
+    }
 
     jamBuka.forEach(b => {
       cekJadwal.map((c, i) => {
@@ -175,8 +198,7 @@
           })
         }
       })
-    })
-    // console.log(cekJadwal);
+    });
 
 
     jadwal.forEach(j => {
