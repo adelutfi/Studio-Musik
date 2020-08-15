@@ -126,7 +126,7 @@
                       <div class="form-group">
                         <div class="controls">
                           <label for="account-username">Nama</label>
-                          <input type="text" class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }}" name="nama" placeholder="Masukan nama anda" value="{{old('nama', Auth::user()->nama)}}" required>
+                          <input type="text" onkeyup="onLetters(this)" class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }}" name="nama" placeholder="Masukan nama anda" value="{{old('nama', Auth::user()->nama)}}" required>
                           @if ($errors->has('nama'))
                           <span class="invalid-feedback text-danger" role="alert">
                             <strong>{{ $errors->first('nama') }}</strong>
@@ -190,7 +190,7 @@
                   <div class="col-6">
                     <div class="form-group">
                       <label for="accountTextarea">No Telepon</label>
-                      <input type="tel" name="no_telp" value="{{old('no_telp', Auth::user()->no_telp)}}" class="form-control{{ $errors->has('no_telp') ? ' is-invalid' : '' }} form-control-lg" minlength="11" maxlength="13" value="{{Auth::user()->no_telp}}" required>
+                      <input type="tel" onkeyup="onNumbers(this)" name="no_telp" value="{{old('no_telp', Auth::user()->no_telp)}}" class="form-control{{ $errors->has('no_telp') ? ' is-invalid' : '' }} form-control-lg" minlength="11" maxlength="13" value="{{Auth::user()->no_telp}}" required>
                       @if ($errors->has('no_telp'))
                       <span class="invalid-feedback text-danger" role="alert">
                         <strong>{{ $errors->first('no_telp') }}</strong>
@@ -202,7 +202,7 @@
                     <div class="form-group">
                       <div class="controls">
                         <label for="account-birth-date">No Rekening</label>
-                        <input type="tel" name="no_rek" value="{{old('no_rek',Auth::user()->no_rek)}}" class="form-control{{ $errors->has('no_rek') ? ' is-invalid' : '' }} form-control-lg" minlength="15" maxlength="16" value="{{Auth::user()->no_rek}}" required>
+                        <input type="tel" onkeyup="onNumbers(this)" name="no_rek" value="{{old('no_rek',Auth::user()->no_rek)}}" class="form-control{{ $errors->has('no_rek') ? ' is-invalid' : '' }} form-control-lg" minlength="15" maxlength="16" value="{{Auth::user()->no_rek}}" required>
                         @if ($errors->has('no_rek'))
                         <span class="invalid-feedback text-danger" role="alert">
                           <strong>{{ $errors->first('no_rek') }}</strong>
@@ -276,4 +276,21 @@
     </div>
   </div>
 </section>
+@endsection
+@section('script')
+<script type="text/javascript">
+function onLetters(e) {
+  const RegExpression = /^[a-zA-Z\s]*$/;
+  if(!RegExpression.test(e.value)){
+    e.value = e.value.replace(/[0-9-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/, "");
+  }
+}
+
+function onNumbers(e) {
+  const RegExpression = /^[0-9]+$/;
+  if(!RegExpression.test(e.value)){
+    e.value = e.value.replace(/[a-zA-Z\s-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/, "");
+  }
+}
+</script>
 @endsection
