@@ -41,7 +41,7 @@
                         <div class="col-9">
                            <div class="custom-file mt-5">
                           <input type="file" id="foto" name="foto" onchange="checkImage(this)" class="custom-file-input{{ $errors->has('foto') ? ' is-invalid border border-danger' : '' }}" accept="image/jpeg,image/png,image/jpg">
-                          <label class="custom-file-label" for="validatedCustomFile">Pilih Foto</label>
+                          <label id="file-name" class="custom-file-label" for="validatedCustomFile">Pilih Foto</label>
                           <div class="mt-2">
                             <strong>Gambar harus JPG,JPEG,PNG Maksimal 1 MB</strong><br>
                             <strong class="text-danger" id="message"></strong>
@@ -162,21 +162,26 @@ function onNumbers(e) {
   const foto = document.querySelector('#foto');
   const simpan = document.querySelector('#simpan');
   const message = document.querySelector('#message');
+  const fileName = document.querySelector('#file-name');
+
   const maxfilesize = 1024 * 1024;
 
   function checkImage(e){
     const file = e.files[0];
     // console.log(file);
-    if(file || file.type == 'image/jpeg' || file.type == 'image/jpg' || file.type == 'image/png'){
+    if(file.type == 'image/jpeg' || file.type == 'image/jpg' || file.type == 'image/png'){
         if(+file.size > maxfilesize){
           message.innerText = "Gambar yang anda masukan terlalu besar";
           simpan.disabled = true;
+          fileName.innerText = file.name;
         }else {
           message.innerText = '';
-          simpan.disabled = false
+          simpan.disabled = false;
+          fileName.innerText = file.name;
         }
     }else {
       simpan.disabled = true;
+      fileName.innerText = file.name;
       message.innerText = "Gambar yang anda masukan tidak sesuai";
     }
   }

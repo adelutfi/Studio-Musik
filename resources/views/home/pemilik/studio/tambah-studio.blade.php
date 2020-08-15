@@ -96,7 +96,7 @@
     function checkImage(e){
       const file = e.files[0];
 
-      if(file || file.type == 'image/jpeg' || file.type == 'image/jpg' || file.type == 'image/png'){
+      if(file.type == 'image/jpeg' || file.type == 'image/jpg' || file.type == 'image/png'){
           if(+file.size > maxfilesize){
             gambar.classList.add('is-invalid');
             message.innerText = "Gambar yang anda masukan terlalu besar";
