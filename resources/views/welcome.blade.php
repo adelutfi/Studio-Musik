@@ -28,15 +28,11 @@
                                       <a href="{{route('detail.studio', $s)}}">
                                         <div class="img">
                                             <img src="{{asset('public/'.$s->gambar)}}" alt="">
+                                            <h4 class="text-white">{{$s->nama}}</h4>
                                         </div>
                                       </a>
                                         <div class="text">
-                                            <a href="{{route('detail.studio', $s)}}">
-                                            <h4 class="secondaryTitle">
-                                                {{$s->nama}}
-                                            </h4>
-                                            </a>
-                                            <p>{{$s->alamat}}</p>
+                                            <p>{!! $s->alamat !!}</p>
                                             <p>Fasilitas : {{$s->keterangan}}</p>
                                            <p><strong> {{$s->sewaTempat ? 'Sewa Tempat Rp. '.number_format($s->sewaTempat->harga,0,',','.') : ''}} </strong></p>
                                             <p><strong>{{$s->sewaAlat ? 'Sewa Alat Rp. '.number_format($s->sewaAlat->harga,0,',','.') : ''}} </strong></p>
