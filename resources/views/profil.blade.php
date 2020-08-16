@@ -174,13 +174,17 @@ function onNumbers(e) {
           message.innerText = "Gambar yang anda masukan terlalu besar";
           simpan.disabled = true;
           fileName.innerText = file.name;
+          foto.classList.add('is-invalid');
         }else {
           message.innerText = '';
+          foto.classList.remove('is-invalid');
+          foto.classList.add('is-valid');
           simpan.disabled = false;
           fileName.innerText = file.name;
         }
     }else {
       simpan.disabled = true;
+      foto.classList.add('is-invalid');
       fileName.innerText = file.name;
       message.innerText = "Gambar yang anda masukan tidak sesuai";
     }
