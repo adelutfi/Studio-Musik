@@ -1,3 +1,4 @@
+
 @extends('templates.landing.default')
 
 @section('content')
@@ -40,8 +41,12 @@
                        </div>
                         <div class="col-9">
                            <div class="custom-file mt-5">
-                          <input type="file" name="foto" class="custom-file-input{{ $errors->has('foto') ? ' is-invalid border border-danger' : '' }}" accept="image/jpeg,image/png,image/jpg">
-                          <label class="custom-file-label" for="validatedCustomFile">Pilih Foto</label>
+                          <input type="file" id="foto" name="foto" onchange="checkImage(this)" class="custom-file-input{{ $errors->has('foto') ? ' is-invalid border border-danger' : '' }}" accept="image/jpeg,image/png,image/jpg">
+                          <label id="file-name" class="custom-file-label" for="validatedCustomFile">Pilih Foto</label>
+                          <div class="mt-2">
+                            <strong>Gambar harus JPG,JPEG,PNG Maksimal 1 MB</strong><br>
+                            <strong class="text-danger" id="message"></strong>
+                          </div>
                           @if ($errors->has('foto'))
                           <span class="invalid-feedback text-danger" role="alert">
                             <strong>{{ $errors->first('foto') }}</strong>
@@ -61,8 +66,11 @@
                          </div>
                          <div class="form-group">
                           <label>Email</label>
-                             <input type="email" name="email" value="{{old('email',Auth::user()->email)}}" class="form-control{{ $errors->has('email') ? ' is-invalid border border-danger' : '' }}" placeholder="Email" required="">
-                             @if ($errors->has('email'))
+                             <input onkeyup="onEmail(this)" type="email" name="email" value="{{old('email',Auth::user()->email)}}" class="form-control{{ $errors->has('email') ? ' is-invalid border border-danger' : '' }}" placeholder="Email" required="">
+                             <span class="invalid-feedback text-danger" role="alert">
+                               <strong id="email-message"></strong>
+                             </span>
+                            @if ($errors->has('email'))
                              <span class="invalid-feedback text-danger" role="alert">
                                <strong>{{ $errors->first('email') }}</strong>
                              </span>
@@ -105,9 +113,8 @@
                           </div>
                          </div>
                          @endif
-
-                          <div class="text-center">
-                            <button type="submit" class="submit-btn">Simpan</button>
+<div class="text-center">
+                            <button type="submit" id="simpan" class="btn btn-primary">Simpan</button>
                           </div>
                       </form>
                 </div>
@@ -140,18 +147,67 @@
 @endsection
 @section('script')
 <script type="text/javascript">
+  const foto = document.querySelector('#foto');
+  const simpan = document.querySelector('#simpan');
+  const message = document.querySelector('#message');
+  const fileName = document.querySelector('#file-name');
+  const emailMessage = document.querySelector('#email-message');
+
+  const maxfilesize = 1024 * 1024;
+
+function onEmail(e){
+  const RegExpression = /^[a-zA-Z0-9@.\s]*$/;
+  const valid = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  if(!RegExpression.test(e.value)){
+    e.value = e.value.replace(/[-!#$%^&*()_+|~=`{}\[\\\]:";'<>?,\/]/, "");
+  }else if(!valid.test(e.value)){
+    simpan.disabled = true;
+    e.classList.add('is-invalid');
+    emailMessage.innerText = "Masukan email dengan benar";
+  }else{
+    e.classList.remove('is-invalid');
+    e.classList.add('is-valid');
+    simpan.disabled = false
+  }
+}
+
 function onLetters(e) {
   const RegExpression = /^[a-zA-Z\s]*$/;
   if(!RegExpression.test(e.value)){
-    e.value = e.value.replace(/[0-9-!$%^&*()_+|~=`{}\[\\\]:";'<>?,.\/]/, "");
+    e.value = e.value.replace(/[0-9-!@$%^&*()_+|~=`{}\[\\\]:";'<>?,.\/]/, "");
   }
 }
 
 function onNumbers(e) {
   const RegExpression = /^[0-9]+$/;
   if(!RegExpression.test(e.value)){
-    e.value = e.value.replace(/[a-zA-Z\s-!$%^&*()_+|~=`{}\[\\\]:";'<>?,.\/]/, "");
+    e.value = e.value.replace(/[a-zA-Z\s-!@$%^&*()_+|~=`{}\[\\\]:";'<>?,.\/]/, "");
   }
 }
+
+  function checkImage(e){
+    const file = e.files[0];
+    // console.log(file);
+    if(file.type == 'image/jpeg' || file.type == 'image/jpg' || file.type == 'image/png'){
+        if(+file.size > maxfilesize){
+          message.innerText = "Gambar yang anda masukan terlalu besar";
+          simpan.disabled = true;
+          fileName.innerText = file.name;
+          foto.classList.add('is-invalid');
+        }else {
+          message.innerText = '';
+          foto.classList.remove('is-invalid');
+          foto.classList.add('is-valid');
+          simpan.disabled = false;
+          fileName.innerText = file.name;
+        }
+    }else {
+      simpan.disabled = true;
+      foto.classList.add('is-invalid');
+      fileName.innerText = file.name;
+      message.innerText = "Gambar yang anda masukan tidak sesuai";
+    }
+  }
 </script>
 @endsection

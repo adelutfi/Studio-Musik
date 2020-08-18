@@ -279,17 +279,34 @@
 @endsection
 @section('script')
 <script type="text/javascript">
+function onEmail(e){
+  const RegExpression = /^[a-zA-Z0-9@.\s]*$/;
+  const valid = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  if(!RegExpression.test(e.value)){
+    e.value = e.value.replace(/[-!#$%^&*()_+|~=`{}\[\\\]:";'<>?,\/]/, "");
+  }else if(!valid.test(e.value)){
+    simpan.disabled = true;
+    e.classList.add('is-invalid');
+    emailMessage.innerText = "Masukan email dengan benar";
+  }else{
+    e.classList.remove('is-invalid');
+    e.classList.add('is-valid');
+    simpan.disabled = false
+  }
+}
+
 function onLetters(e) {
   const RegExpression = /^[a-zA-Z\s]*$/;
   if(!RegExpression.test(e.value)){
-    e.value = e.value.replace(/[0-9-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/, "");
+    e.value = e.value.replace(/[0-9-!@$%^&*()_+|~=`{}\[\\\]:";'<>?,.\/]/, "");
   }
 }
 
 function onNumbers(e) {
   const RegExpression = /^[0-9]+$/;
   if(!RegExpression.test(e.value)){
-    e.value = e.value.replace(/[a-zA-Z\s-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/, "");
+    e.value = e.value.replace(/[a-zA-Z\s-!@$%^&*()_+|~=`{}\[\\\]:";'<>?,.\/]/, "");
   }
 }
 </script>
