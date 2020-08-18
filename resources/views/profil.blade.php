@@ -113,7 +113,7 @@
                           </div>
                          </div>
                          @endif
-<div class="text-center">
+                    <div class="text-center">
                             <button type="submit" id="simpan" class="btn btn-primary">Simpan</button>
                           </div>
                       </form>
@@ -210,4 +210,5 @@ function onNumbers(e) {
     }
   }
 </script>
+
 @endsection

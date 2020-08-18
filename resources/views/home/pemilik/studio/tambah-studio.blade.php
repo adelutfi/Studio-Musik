@@ -64,16 +64,17 @@
                               <label for="first-name-icon"><h4>Gambar</h4></label>
                               <div class="position-relative has-icon-left">
                                 <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="gambar" accept="image/jpeg,image/png,image/jpg" required>
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                        <small>Gambar Maksimal 2 MB</small>
+                                        <input id="gambar" type="file" class="custom-file-input" onchange="checkImage(this)" name="gambar" accept="image/jpeg,image/png,image/jpg" required>
+                                        <label class="custom-file-label" for="inputGroupFile01">Pilih Gambar</label>
+                                        <small class="text-dark">Gambar harus JPG,JPEG,PNG Maksimal 2 MB</small>
+                                        <small id="message" class="text-danger"></small>
                                     </div>
                                 </div>
                               </div>
                           </div>
                       </div>
                     <div class="col-12">
-                      <button type="submit" class="btn btn-primary mr-1 mb-1">Simpan</button>
+                      <button type="submit" id="simpan" class="btn btn-primary mr-1 mb-1" disabled>Simpan</button>
                       <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Kembali</button>
               </div>
             </div>
@@ -84,4 +85,33 @@
   </div>
 </div>
 
+@endsection
+@section('script')
+  <script type="text/javascript">
+    const gambar = document.querySelector('#gambar');
+    const simpan = document.querySelector('#simpan');
+    const message = document.querySelector('#message');
+    const maxfilesize = 2048 * 1024;
+
+    function checkImage(e){
+      const file = e.files[0];
+
+      if(file.type == 'image/jpeg' || file.type == 'image/jpg' || file.type == 'image/png'){
+          if(+file.size > maxfilesize){
+            gambar.classList.add('is-invalid');
+            message.innerText = "Gambar yang anda masukan terlalu besar";
+            simpan.disabled = true;
+          }else {
+            message.innerText = '';
+            gambar.classList.remove('is-invalid');
+            gambar.classList.add('is-valid');
+            simpan.disabled = false
+          }
+      }else {
+        simpan.disabled = true
+        gambar.classList.add('is-invalid');
+        message.innerText = "Gambar yang anda masukan tidak sesuai";
+      }
+    }
+  </script>
 @endsection
